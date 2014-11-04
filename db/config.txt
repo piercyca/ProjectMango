@@ -1,0 +1,8 @@
+Azure
+================================================================
+server:		lfgqnrepad.database.windows.net,1433
+database: 	mango_db
+user:		webuser
+password:	KFUNJLU9yDjMaqK2
+
+** IP address must be added in Azure portal to access	
