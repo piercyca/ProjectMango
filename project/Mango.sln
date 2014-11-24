@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Core", "Mango.Core\Mango.Core.csproj", "{6F8E9878-0641-4FD2-9E78-480B5AC287CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Web", "Mango.Web\Mango.Web.csproj", "{D6850CFD-FD5D-40B6-B15C-AB8AE59AE7CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Admin", "Mango.Admin\Mango.Admin.csproj", "{B92157CA-8224-473E-AEF6-071E36FA5AC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F8E9878-0641-4FD2-9E78-480B5AC287CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F8E9878-0641-4FD2-9E78-480B5AC287CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F8E9878-0641-4FD2-9E78-480B5AC287CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F8E9878-0641-4FD2-9E78-480B5AC287CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6850CFD-FD5D-40B6-B15C-AB8AE59AE7CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6850CFD-FD5D-40B6-B15C-AB8AE59AE7CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6850CFD-FD5D-40B6-B15C-AB8AE59AE7CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6850CFD-FD5D-40B6-B15C-AB8AE59AE7CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B92157CA-8224-473E-AEF6-071E36FA5AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B92157CA-8224-473E-AEF6-071E36FA5AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B92157CA-8224-473E-AEF6-071E36FA5AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B92157CA-8224-473E-AEF6-071E36FA5AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
