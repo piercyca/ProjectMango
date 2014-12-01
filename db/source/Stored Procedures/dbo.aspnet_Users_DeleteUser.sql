@@ -43,7 +43,7 @@ BEGIN
 
     -- Delete from Membership table if (@TablesToDeleteFrom & 1) is set
     IF ((@TablesToDeleteFrom & 1) <> 0 AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_MembershipUsers') AND (type = 'V'))))
+        (EXISTS (SELECT name FROM sys.objects WHERE (name = N'vw_aspnet_MembershipUsers') AND (type = 'V'))))
     BEGIN
         DELETE FROM dbo.aspnet_Membership WHERE @UserId = UserId
 
@@ -59,7 +59,7 @@ BEGIN
 
     -- Delete from aspnet_UsersInRoles table if (@TablesToDeleteFrom & 2) is set
     IF ((@TablesToDeleteFrom & 2) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_UsersInRoles') AND (type = 'V'))) )
+        (EXISTS (SELECT name FROM sys.objects WHERE (name = N'vw_aspnet_UsersInRoles') AND (type = 'V'))) )
     BEGIN
         DELETE FROM dbo.aspnet_UsersInRoles WHERE @UserId = UserId
 
@@ -75,7 +75,7 @@ BEGIN
 
     -- Delete from aspnet_Profile table if (@TablesToDeleteFrom & 4) is set
     IF ((@TablesToDeleteFrom & 4) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Profiles') AND (type = 'V'))) )
+        (EXISTS (SELECT name FROM sys.objects WHERE (name = N'vw_aspnet_Profiles') AND (type = 'V'))) )
     BEGIN
         DELETE FROM dbo.aspnet_Profile WHERE @UserId = UserId
 
@@ -91,7 +91,7 @@ BEGIN
 
     -- Delete from aspnet_PersonalizationPerUser table if (@TablesToDeleteFrom & 8) is set
     IF ((@TablesToDeleteFrom & 8) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_WebPartState_User') AND (type = 'V'))) )
+        (EXISTS (SELECT name FROM sys.objects WHERE (name = N'vw_aspnet_WebPartState_User') AND (type = 'V'))) )
     BEGIN
         DELETE FROM dbo.aspnet_PersonalizationPerUser WHERE @UserId = UserId
 

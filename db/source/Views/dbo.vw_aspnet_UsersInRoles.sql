@@ -4,7 +4,7 @@ SET ANSI_NULLS ON
 GO
 
   CREATE VIEW [dbo].[vw_aspnet_UsersInRoles]
-  AS SELECT [dbo].[aspnet_UsersInRoles].[UserId], [dbo].[aspnet_UsersInRoles].[RoleId]
+  AS SELECT [UserId], [RoleId]
   FROM [dbo].[aspnet_UsersInRoles]
   
 GO

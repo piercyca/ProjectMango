@@ -3,7 +3,7 @@ CREATE TABLE [dbo].[aspnet_Membership]
 [ApplicationId] [uniqueidentifier] NOT NULL,
 [UserId] [uniqueidentifier] NOT NULL,
 [Password] [nvarchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
-[PasswordFormat] [int] NOT NULL CONSTRAINT [DF__aspnet_Me__Passw__0F624AF8] DEFAULT ((0)),
+[PasswordFormat] [int] NOT NULL CONSTRAINT [DF__aspnet_Me__Passw__05D8E0BE] DEFAULT ((0)),
 [PasswordSalt] [nvarchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 [MobilePIN] [nvarchar] (16) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [Email] [nvarchar] (256) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
@@ -23,11 +23,11 @@ CREATE TABLE [dbo].[aspnet_Membership]
 [Comment] [ntext] COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[aspnet_Membership] ADD CONSTRAINT [PK__aspnet_M__1788CC4D5BEE8821] PRIMARY KEY NONCLUSTERED  ([UserId]) ON [PRIMARY]
+ALTER TABLE [dbo].[aspnet_Membership] ADD CONSTRAINT [PK__aspnet_M__1788CC4DD8EFD418] PRIMARY KEY NONCLUSTERED  ([UserId]) ON [PRIMARY]
 GO
 CREATE CLUSTERED INDEX [aspnet_Membership_index] ON [dbo].[aspnet_Membership] ([ApplicationId], [LoweredEmail]) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[aspnet_Membership] ADD CONSTRAINT [FK__aspnet_Me__Appli__0D7A0286] FOREIGN KEY ([ApplicationId]) REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
+ALTER TABLE [dbo].[aspnet_Membership] ADD CONSTRAINT [FK__aspnet_Me__Appli__03F0984C] FOREIGN KEY ([ApplicationId]) REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-ALTER TABLE [dbo].[aspnet_Membership] ADD CONSTRAINT [FK__aspnet_Me__UserI__0E6E26BF] FOREIGN KEY ([UserId]) REFERENCES [dbo].[aspnet_Users] ([UserId])
+ALTER TABLE [dbo].[aspnet_Membership] ADD CONSTRAINT [FK__aspnet_Me__UserI__04E4BC85] FOREIGN KEY ([UserId]) REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO

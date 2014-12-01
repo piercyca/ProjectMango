@@ -5,5 +5,5 @@ CREATE TABLE [dbo].[aspnet_SchemaVersions]
 [IsCurrentVersion] [bit] NOT NULL
 ) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[aspnet_SchemaVersions] ADD CONSTRAINT [PK__aspnet_S__5A1E6BC19D512BA2] PRIMARY KEY CLUSTERED  ([Feature], [CompatibleSchemaVersion]) ON [PRIMARY]
+ALTER TABLE [dbo].[aspnet_SchemaVersions] ADD CONSTRAINT [PK__aspnet_S__5A1E6BC1AC530CC4] PRIMARY KEY CLUSTERED  ([Feature], [CompatibleSchemaVersion]) ON [PRIMARY]
 GO

@@ -30,6 +30,8 @@ END
 GO
 GRANT EXECUTE ON  [dbo].[aspnet_RegisterSchemaVersion] TO [aspnet_Membership_BasicAccess]
 GRANT EXECUTE ON  [dbo].[aspnet_RegisterSchemaVersion] TO [aspnet_Membership_ReportingAccess]
+GRANT EXECUTE ON  [dbo].[aspnet_RegisterSchemaVersion] TO [aspnet_Personalization_BasicAccess]
+GRANT EXECUTE ON  [dbo].[aspnet_RegisterSchemaVersion] TO [aspnet_Personalization_ReportingAccess]
 GRANT EXECUTE ON  [dbo].[aspnet_RegisterSchemaVersion] TO [aspnet_Profile_BasicAccess]
 GRANT EXECUTE ON  [dbo].[aspnet_RegisterSchemaVersion] TO [aspnet_Profile_ReportingAccess]
 GRANT EXECUTE ON  [dbo].[aspnet_RegisterSchemaVersion] TO [aspnet_Roles_BasicAccess]
