@@ -39,10 +39,14 @@
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,27 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Data\aspnet_Applications.cs" />
-    <Compile Include="Data\aspnet_Membership.cs" />
-    <Compile Include="Data\aspnet_Paths.cs" />
-    <Compile Include="Data\aspnet_PersonalizationAllUsers.cs" />
-    <Compile Include="Data\aspnet_PersonalizationPerUser.cs" />
-    <Compile Include="Data\aspnet_Profile.cs" />
-    <Compile Include="Data\aspnet_Roles.cs" />
-    <Compile Include="Data\aspnet_SchemaVersions.cs" />
-    <Compile Include="Data\aspnet_Users.cs" />
+    <Compile Include="Data\Application.cs" />
+    <Compile Include="Data\Membership.cs" />
     <Compile Include="Data\MangoContext.cs" />
-    <Compile Include="Data\vw_aspnet_Applications.cs" />
-    <Compile Include="Data\vw_aspnet_MembershipUsers.cs" />
-    <Compile Include="Data\vw_aspnet_Profiles.cs" />
-    <Compile Include="Data\vw_aspnet_Roles.cs" />
-    <Compile Include="Data\vw_aspnet_Users.cs" />
-    <Compile Include="Data\vw_aspnet_UsersInRoles.cs" />
-    <Compile Include="Data\vw_aspnet_WebPartState_Paths.cs" />
-    <Compile Include="Data\vw_aspnet_WebPartState_Shared.cs" />
-    <Compile Include="Data\vw_aspnet_WebPartState_User.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Data\Profile.cs" />
+    <Compile Include="Data\Role.cs" />
+    <Compile Include="Data\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
