@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Project Mango - Etchieve.com
+   ========================================================================== */
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+.jumbotron {
+   padding: 28px 0;
+}
+.jumbotron p { font-size: inherit !important; margin: 0; }
+.item h2, .item p { font-size: 1.3em !important; margin: 0; padding: 5px; text-align: center; }
+.steps img { margin-right: 20px; }
+footer img { margin-left: 10px;  }
+
+#categories.container { padding-top: 20px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
