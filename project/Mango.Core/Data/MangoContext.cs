@@ -17,6 +17,8 @@ namespace Mango.Core.Data
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,6 +49,11 @@ namespace Mango.Core.Data
             modelBuilder.Entity<User>()
                 .HasOptional(e => e.Profile)
                 .WithRequired(e => e.User);
+
+            modelBuilder.Entity<Product>()
+               .HasRequired(e => e.ProductCategory)
+               .WithMany()
+               .HasForeignKey(f => f.ProductCategoryId);
         }
     }
 }
