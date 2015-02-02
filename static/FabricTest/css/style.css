@@ -1,0 +1,9 @@
+[class*="col-"] {
+    background-clip: padding-box;
+    border: 10px solid transparent;
+}
+.container {  max-width: 1000px !important;}
+canvas { border: 1px solid #ccc;}
+#contents { margin-top: 20px; }
+.pic { color: green }
+.text { color: blue }
