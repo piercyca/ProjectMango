@@ -70,6 +70,14 @@
     <Compile Include="Migrations\201502012134393_CreateProductAndProductCategoryTables.Designer.cs">
       <DependentUpon>201502012134393_CreateProductAndProductCategoryTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502022033382_ProductKeyChange.cs" />
+    <Compile Include="Migrations\201502022033382_ProductKeyChange.Designer.cs">
+      <DependentUpon>201502022033382_ProductKeyChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502022040098_ProductKeyChange1.cs" />
+    <Compile Include="Migrations\201502022040098_ProductKeyChange1.Designer.cs">
+      <DependentUpon>201502022040098_ProductKeyChange1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,6 +94,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502012134393_CreateProductAndProductCategoryTables.resx">
       <DependentUpon>201502012134393_CreateProductAndProductCategoryTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502022033382_ProductKeyChange.resx">
+      <DependentUpon>201502022033382_ProductKeyChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502022040098_ProductKeyChange1.resx">
+      <DependentUpon>201502022040098_ProductKeyChange1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

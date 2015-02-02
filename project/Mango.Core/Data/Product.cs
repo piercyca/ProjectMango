@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Mango.Core.Data
 {
     using System;
@@ -5,7 +7,8 @@ namespace Mango.Core.Data
 
     public partial class Product
     {
-        public Guid ProductId { get; set; }
+        [Key]
+        public int ProductId { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -16,7 +19,8 @@ namespace Mango.Core.Data
         public string Name { get; set; }
 
         [Required]
-        public Guid ProductCategoryId { get; set; }
+        public int ProductCategoryId { get; set; }
+        [ForeignKey("ProductCategoryId")]
         public virtual ProductCategory ProductCategory { get; set; }
 
         public decimal Price { get; set; }

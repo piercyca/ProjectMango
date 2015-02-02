@@ -5,7 +5,8 @@ namespace Mango.Core.Data
 
     public partial class ProductCategory
     {
-        public Guid ProductCategoryId { get; set; }
+        [Key]
+        public int ProductCategoryId { get; set; }
 
         [Required]
         [StringLength(20)]
