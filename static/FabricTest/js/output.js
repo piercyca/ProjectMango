@@ -101,9 +101,6 @@ canvas.setBackgroundImage('assets/product/product-image.png', canvas.renderAll.b
         formatted.name = 'text';
 
         var newText = canvas.getItemByName(unformatted.name);
-        console.log(formatted.name);
-        console.log(formatted.width);
-        console.log(formatted.height);
 
         if(!newText)
         { canvas.add(formatted);

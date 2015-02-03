@@ -63,7 +63,7 @@ $(function () {
 
 $( "#uploadImg" ).change(function(e) {
     var reader = new FileReader();
-    reader.onload = function (event) { console.log('fdsf');
+    reader.onload = function (event) {
         var imgObj = new Image();
         imgObj.src = event.target.result;
         imgObj.onload = function () {
