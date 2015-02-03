@@ -10,9 +10,12 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
-<div class="container col-sm-12">
+
+
+<div class="container col-sm-12">Use this tool to specify placement of logo and text
+    <input type="file" id="uploadImg">
     <div class="col-md-7 ">
-        <canvas id="c" width="500" height="500"></canvas>
+        <canvas id="c" name="productname" width="500" height="500"></canvas>
     </div>
     <div id="contents" class="well col-md-4 col-md-offset-0 col-sm-12"></div>
 
@@ -20,8 +23,10 @@
         <input id="addPic" type="button" value="Add Pic" class="btn btn-success"/>
         <input id="addText" type="button" value="Add Text" class="btn btn-primary"/>
         <input id="removeObject" type="button" value="Remove" class="btn btn-danger"/>
+        <a id="download" name="productname">Download Test</a>
     </div>
 </div>
 <script src="js/canvas.js"></script>
+<script src="js/wordwrap.js"></script>
 </body>
 </html>
