@@ -97,23 +97,4 @@ $( "#uploadImg" ).change(function(e) {
     //download should be productname or id
     $("#download").click(function(){
     downloadFabric(canvas,'download');});
-
-
-//NOTE: For applying text to canvas
-//TODO: Fonts should be placed here
-    var unformatted = new fabric.Text('this will be text that multi-line using wordwrap.js', {
-        left: 5, //Take the block's position
-        top: 5,
-        fill: 'black',
-        fontFamily: 'Lato',
-        fontSize: 25
-    });
-//canvas.add(unformatted); //--testing
-
-//need to fit within coordinates
-//TODO: change height and with to textcoord h/w and font selection
-    var formatted = wrapCanvasText(unformatted, canvas, 200, 180, 'left');
-    formatted.top = 50;
-    formatted.left = 5;
-   // canvas.add(formatted);
 });

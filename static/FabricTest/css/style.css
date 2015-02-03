@@ -2,8 +2,22 @@
     background-clip: padding-box;
     border: 10px solid transparent;
 }
+textarea { margin: 10px 0 !important; }
+
 .container {  max-width: 1000px !important;}
-canvas { border: 1px solid #ccc;}
+canvas { border: 1px solid #ccc; }
 #contents { margin-top: 20px; }
 .pic { color: green }
 .text { color: blue }
+
+/*logo icons*/
+.icons { text-align: center; vertical-align: middle;}
+.icons div { display: inline-block;
+    border: 3px solid transparent; margin: 2px; vertical-align: middle;}
+.icons img { height: auto; width: 100%; max-width: 40px; max-height: 40px; vertical-align: middle; }
+.active {
+    border: 3px solid #7F9293 !important;
+    display: inline-block;
+}
+
+/*font selector*/
