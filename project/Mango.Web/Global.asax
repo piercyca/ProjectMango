@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Mango.Web.MvcApplication" Language="C#" %>
