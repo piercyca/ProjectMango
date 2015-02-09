@@ -54,14 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Application.cs" />
-    <Compile Include="Data\Membership.cs" />
     <Compile Include="Data\MangoContext.cs" />
     <Compile Include="Data\ProductCategory.cs" />
-    <Compile Include="Data\Profile.cs" />
-    <Compile Include="Data\Role.cs" />
     <Compile Include="Data\Product.cs" />
-    <Compile Include="Data\User.cs" />
     <Compile Include="Migrations\201502010217420_HelloWorld.cs" />
     <Compile Include="Migrations\201502010217420_HelloWorld.Designer.cs">
       <DependentUpon>201502010217420_HelloWorld.cs</DependentUpon>
@@ -77,6 +72,10 @@
     <Compile Include="Migrations\201502022040098_ProductKeyChange1.cs" />
     <Compile Include="Migrations\201502022040098_ProductKeyChange1.Designer.cs">
       <DependentUpon>201502022040098_ProductKeyChange1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502091740250_RemoveMembership.cs" />
+    <Compile Include="Migrations\201502091740250_RemoveMembership.Designer.cs">
+      <DependentUpon>201502091740250_RemoveMembership.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502022040098_ProductKeyChange1.resx">
       <DependentUpon>201502022040098_ProductKeyChange1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502091740250_RemoveMembership.resx">
+      <DependentUpon>201502091740250_RemoveMembership.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
