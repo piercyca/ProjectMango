@@ -5,11 +5,13 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Core", "Mango.Core\Mango.Core.csproj", "{6F8E9878-0641-4FD2-9E78-480B5AC287CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Admin", "Mango.Admin\Mango.Admin.csproj", "{B92157CA-8224-473E-AEF6-071E36FA5AC7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Store", "Mango.Store\Mango.Store.csproj", "{665C0F86-32FD-4EB1-9CAD-81C8F0A011DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Store.Tests", "Mango.Store.Tests\Mango.Store.Tests.csproj", "{EE57E0C2-1264-4219-BA14-8F1FB0A714E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Admin", "Mango.Admin\Mango.Admin.csproj", "{68FED6C8-B2A2-49CF-B5FB-70CC7BE54BCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Admin.Tests", "Mango.Admin.Tests\Mango.Admin.Tests.csproj", "{C50F78DE-D999-4D33-A263-3027B8654D4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +23,6 @@ Global
 		{6F8E9878-0641-4FD2-9E78-480B5AC287CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F8E9878-0641-4FD2-9E78-480B5AC287CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F8E9878-0641-4FD2-9E78-480B5AC287CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B92157CA-8224-473E-AEF6-071E36FA5AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B92157CA-8224-473E-AEF6-071E36FA5AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B92157CA-8224-473E-AEF6-071E36FA5AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B92157CA-8224-473E-AEF6-071E36FA5AC7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{665C0F86-32FD-4EB1-9CAD-81C8F0A011DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{665C0F86-32FD-4EB1-9CAD-81C8F0A011DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{665C0F86-32FD-4EB1-9CAD-81C8F0A011DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +31,14 @@ Global
 		{EE57E0C2-1264-4219-BA14-8F1FB0A714E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE57E0C2-1264-4219-BA14-8F1FB0A714E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE57E0C2-1264-4219-BA14-8F1FB0A714E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68FED6C8-B2A2-49CF-B5FB-70CC7BE54BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68FED6C8-B2A2-49CF-B5FB-70CC7BE54BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68FED6C8-B2A2-49CF-B5FB-70CC7BE54BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68FED6C8-B2A2-49CF-B5FB-70CC7BE54BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50F78DE-D999-4D33-A263-3027B8654D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50F78DE-D999-4D33-A263-3027B8654D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50F78DE-D999-4D33-A263-3027B8654D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50F78DE-D999-4D33-A263-3027B8654D4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
