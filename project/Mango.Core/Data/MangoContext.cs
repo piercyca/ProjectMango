@@ -12,41 +12,23 @@ namespace Mango.Core.Data
         {
         }
 
-        public virtual DbSet<Application> Applications { get; set; }
-        public virtual DbSet<Membership> Memberships { get; set; }
-        public virtual DbSet<Profile> Profiles { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        #region Products
+
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+
+        #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Application>()
-                .HasMany(e => e.Memberships)
-                .WithRequired(e => e.Application)
-                .WillCascadeOnDelete(false);
+            #region Products
 
-            modelBuilder.Entity<Application>()
-                .HasMany(e => e.Roles)
-                .WithRequired(e => e.Application)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Product>()
+               .HasRequired(e => e.ProductCategory)
+               .WithMany()
+               .HasForeignKey(f => f.ProductCategoryId);
 
-            modelBuilder.Entity<Application>()
-                .HasMany(e => e.Users)
-                .WithRequired(e => e.Application)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Role>()
-                .HasMany(e => e.Users)
-                .WithMany(e => e.Roles)
-                .Map(m => m.ToTable("UsersInRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
-
-            modelBuilder.Entity<User>()
-                .HasOptional(e => e.Membership)
-                .WithRequired(e => e.User);
-
-            modelBuilder.Entity<User>()
-                .HasOptional(e => e.Profile)
-                .WithRequired(e => e.User);
+            #endregion
         }
     }
 }
