@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Core", "Mango.Core\Mango.Core.csproj", "{6F8E9878-0641-4FD2-9E78-480B5AC287CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Store", "Mango.Store\Mango.Store.csproj", "{665C0F86-32FD-4EB1-9CAD-81C8F0A011DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6F8E9878-0641-4FD2-9E78-480B5AC287CC} = {6F8E9878-0641-4FD2-9E78-480B5AC287CC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Store.Tests", "Mango.Store.Tests\Mango.Store.Tests.csproj", "{EE57E0C2-1264-4219-BA14-8F1FB0A714E9}"
 EndProject
