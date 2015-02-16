@@ -14,6 +14,9 @@ namespace Mango.Core.Data
 
         #region Products
 
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderLineItem> OrderLineItems { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<ProductConfig> ProductConfigs { get; set; }
@@ -28,6 +31,21 @@ namespace Mango.Core.Data
                .HasRequired(e => e.ProductCategory)
                .WithMany()
                .HasForeignKey(f => f.ProductCategoryId);
+
+            modelBuilder.Entity<Order>()
+                .HasRequired(e => e.Customer)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Order>()
+                .HasRequired(e => e.ShipAddress)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Order>()
+                .HasRequired(e => e.ShipAddress)
+                .WithMany()
+                .WillCascadeOnDelete(false);
 
             #endregion
         }

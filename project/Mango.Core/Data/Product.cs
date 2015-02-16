@@ -3,10 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mango.Core.Data
 {
+    [Table("Product")]
     public class Product
     {
         [Key]
         public int ProductId { get; set; }
+
+        [Required]
+        public int ProductCategoryId { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -17,12 +21,9 @@ namespace Mango.Core.Data
         public string Name { get; set; }
 
         [Required]
-        public int ProductCategoryId { get; set; }
-        [ForeignKey("ProductCategoryId")]
-        public virtual ProductCategory ProductCategory { get; set; }
-
         public decimal Price { get; set; }
 
-        public int Quantity { get; set; }
+        [ForeignKey("ProductCategoryId")]
+        public virtual ProductCategory ProductCategory { get; set; }
     }
 }

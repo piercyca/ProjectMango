@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mango.Core.Data
 {
+    [Table("ProductConfig")]
     public class ProductConfig
     {
         [Key]
@@ -31,14 +32,14 @@ namespace Mango.Core.Data
         [Required]
         public string Configuration { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime DateCreated { get; set; }
 
         [ForeignKey("ProductId")] 
         public Product Product { get; set; }
 
         public ProductConfig()
         {
-            Created = DateTime.UtcNow;
+            DateCreated = DateTime.UtcNow;
         }
     }
 }
