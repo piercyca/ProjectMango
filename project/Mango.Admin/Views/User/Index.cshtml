@@ -10,12 +10,13 @@
 {
     if (Model.Any())
     {
-        <table class="table table-striped">
+        <table class="table table-striped" style="width:auto">
             <tr>
                 <th>Id</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th></th>
             </tr>
             @foreach (var m in Model)
             {
@@ -24,6 +25,7 @@
                     <td>@m.UserName</td>
                     <td>@m.Email</td>
                     <td>@m.PhoneNumber</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "User", new { id = m.Id}, null)</td>
                 </tr>
             }
         </table>

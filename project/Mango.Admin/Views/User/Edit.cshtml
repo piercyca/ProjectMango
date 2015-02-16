@@ -1,0 +1,37 @@
+﻿@model Mango.Admin.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal", @role = "form"}))
+    {
+        @Html.HiddenFor(m => m.Id)
+    <table class="table table-striped" style="width: auto">
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        <tr>
+            <td>@Model.Id</td>
+            <td><input type="text" name="username" value="@Model.UserName" /></td>
+            <td><input type="text" name="email" value="@Model.Email" /></td>
+            <td><input type="text" name="phone" value="@Model.PhoneNumber" /></td>
+
+
+            <td>
+                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                </td>
+    </table>
+    }
+}
+else
+{
+    <p calss="alert">Not logged in</p>
+}
