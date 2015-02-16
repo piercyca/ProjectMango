@@ -1,0 +1,39 @@
+﻿@model IQueryable<Mango.Admin.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (Model.Any())
+    {
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Id</td>
+                    <td>@m.UserName</td>
+                    <td>@m.Email</td>
+                    <td>@m.PhoneNumber</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p calss="alert">No records to display</p>
+    }
+}
+else
+{
+    <p calss="alert">Not logged in</p>
+}
