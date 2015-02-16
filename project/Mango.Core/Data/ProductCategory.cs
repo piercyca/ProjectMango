@@ -1,9 +1,9 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Mango.Core.Data
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class ProductCategory
+    public class ProductCategory
     {
         [Key]
         public int ProductCategoryId { get; set; }
@@ -18,6 +18,5 @@ namespace Mango.Core.Data
 
         [StringLength(500)]
         public string Description { get; set; }
-
     }
 }
