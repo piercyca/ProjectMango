@@ -1,4 +1,4 @@
-﻿@model Mango.Admin.Models.ApplicationUser
+﻿@model Mango.Admin.Models.UserViewModel
 
 @{
     ViewBag.Title = "Edit User";
@@ -10,24 +10,30 @@
 {
     using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal", @role = "form"}))
     {
-        @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.PasswordHash)
+    @Html.HiddenFor(m => m.SecurityStamp)
+    @Html.HiddenFor(m => m.LockoutEndDateUtc)
+    @Html.HiddenFor(m => m.AccessFailedCount)
     <table class="table table-striped" style="width: auto">
         <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Phone</th>
+            <th>@Html.LabelFor(m => m.Username)</th>
+            <th>@Html.LabelFor(m => m.Email)</th>
+            <th>@Html.LabelFor(m => m.EmailConfirmed)</th>
+            <th>@Html.LabelFor(m => m.PhoneNumber)</th>
+            <th>@Html.LabelFor(m => m.PhoneNumberConfirmed)</th>
+            <th>@Html.LabelFor(m => m.TwoFactorEnabled)</th>
+            <th>@Html.LabelFor(m => m.LockoutEnabled)</th>
         </tr>
         <tr>
-            <td>@Model.Id</td>
-            <td><input type="text" name="username" value="@Model.UserName" /></td>
-            <td><input type="text" name="email" value="@Model.Email" /></td>
-            <td><input type="text" name="phone" value="@Model.PhoneNumber" /></td>
-
-
-            <td>
-                    <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                </td>
+            <td>@Html.TextBoxFor(model => model.Username)</td>
+            <td>@Html.TextBoxFor(model => model.Email)</td>
+            <td class="text-center">@Html.EditorFor(x => x.EmailConfirmed)</td>
+            <td>@Html.TextBoxFor(model => model.PhoneNumber)</td>
+            <td class="text-center">@Html.EditorFor(x => x.PhoneNumberConfirmed)</td>
+            <td class="text-center">@Html.EditorFor(x => x.TwoFactorEnabled)</td>
+            <td class="text-center">@Html.EditorFor(x => x.LockoutEnabled)</td>
+            <td><button type="submit" class="btn btn-primary btn-sm">Save</button></td>
     </table>
     }
 }
