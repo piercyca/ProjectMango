@@ -28,6 +28,8 @@ namespace Mango.Core.Data
         [Required]
         public int Quantity { get; set; }
 
+        public string Configuration { get; set; }
+
         [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
 

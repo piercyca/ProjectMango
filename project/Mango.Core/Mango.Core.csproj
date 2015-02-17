@@ -95,6 +95,10 @@
     <Compile Include="Migrations\201502161919328_TableUnPluralization.Designer.cs">
       <DependentUpon>201502161919328_TableUnPluralization.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502172309437_OrderProductConfig.cs" />
+    <Compile Include="Migrations\201502172309437_OrderProductConfig.Designer.cs">
+      <DependentUpon>201502172309437_OrderProductConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502161919328_TableUnPluralization.resx">
       <DependentUpon>201502161919328_TableUnPluralization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502172309437_OrderProductConfig.resx">
+      <DependentUpon>201502172309437_OrderProductConfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
