@@ -14,11 +14,16 @@ namespace Mango.Core.Data
         [Key]
         public int OrderId { get; set; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public int CustomerId { get; set; }
 
         public int ShipAddressId { get; set; }
-
+        
+        /// <summary>
+        /// Billing Address Id
+        /// </summary>
         public int? BillAddressId { get; set; }
 
         [Required]
