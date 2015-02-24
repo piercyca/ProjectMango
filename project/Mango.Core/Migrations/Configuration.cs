@@ -1,3 +1,5 @@
+using Mango.Core.Data;
+
 namespace Mango.Core.Migrations
 {
     using System;
@@ -14,18 +16,11 @@ namespace Mango.Core.Migrations
 
         protected override void Seed(Mango.Core.Data.MangoContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new Data.ProductCategory { ProductCategoryId = 1, Code = "P", Name = "Product", Description = "Product" });
+            context.Products.AddOrUpdate(p => 
+                p.ProductId,
+                new Data.Product { Code = "P1", Name = "Granite platter rectangle w/handles", Price = 22.50m, ProductCategoryId = 1, ProductId = 1 },
+                new Data.Product { Code = "P2", Name = "Granite state of Georgia platter", Price = 15.50m, ProductCategoryId = 1, ProductId = 2 });
         }
     }
 }
