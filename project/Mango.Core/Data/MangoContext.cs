@@ -19,7 +19,6 @@ namespace Mango.Core.Data
         public virtual DbSet<OrderLineItem> OrderLineItems { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
-        public virtual DbSet<ProductConfig> ProductConfigs { get; set; }
 
         #endregion
 
