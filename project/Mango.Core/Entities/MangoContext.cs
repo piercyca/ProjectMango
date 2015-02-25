@@ -22,6 +22,11 @@ namespace Mango.Core.Entities
 
         #endregion
 
+        public virtual void Commit()
+        {
+            base.SaveChanges();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             #region Products

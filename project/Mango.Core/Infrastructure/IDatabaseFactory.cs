@@ -7,6 +7,9 @@ using Mango.Core.Entities;
 
 namespace Mango.Core.Infrastructure
 {
+    /// <summary>
+    /// Database factory interface
+    /// </summary>
     public interface IDatabaseFactory : IDisposable
     {
         MangoContext Get();

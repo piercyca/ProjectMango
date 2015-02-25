@@ -87,7 +87,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstracts\IProductRepository.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\MangoContext.cs" />
@@ -95,8 +94,14 @@
     <Compile Include="Entities\ProductCategory.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\OrderLineItem.cs" />
+    <Compile Include="Infrastructure\DatabaseFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDatabaseFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\Page.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Migrations\201502010217420_HelloWorld.cs" />
     <Compile Include="Migrations\201502010217420_HelloWorld.Designer.cs">
       <DependentUpon>201502010217420_HelloWorld.cs</DependentUpon>
@@ -185,6 +190,9 @@
     <EmbeddedResource Include="Migrations\201502242154074_Product.resx">
       <DependentUpon>201502242154074_Product.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repository\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />

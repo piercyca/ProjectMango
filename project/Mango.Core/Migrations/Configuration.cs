@@ -14,6 +14,10 @@ namespace Mango.Core.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
+        /// <summary>
+        /// Seeds data in the perisitent store
+        /// </summary>
+        /// <param name="context"></param>
         protected override void Seed(MangoContext context)
         {
             context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory { ProductCategoryId = 1, Code = "P", Name = "Product", Description = "Product" });
