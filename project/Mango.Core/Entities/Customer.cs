@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Providers.Entities;
 
-namespace Mango.Core.Data
+namespace Mango.Core.Entities
 {
     [Table("Customer")]
     public class Customer

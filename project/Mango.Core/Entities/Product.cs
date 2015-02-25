@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Mango.Core.Data
+namespace Mango.Core.Entities
 {
     [Table("Product")]
     public class Product
@@ -41,8 +41,12 @@ namespace Mango.Core.Data
         /// <summary>
         /// Configuration should be a JSON string defining the setup of the <canvas></canvas>.
         /// </summary>
-        [Required]
         public string Configuration { get; set; }
+
+        /// <summary>
+        /// Canvas Image
+        /// </summary>
+        public string CanvasImage { get; set; }
 
         /// <summary>
         /// Product Category

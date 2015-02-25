@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mango.Admin.Models;
-using Mango.Core.Data;
+using Mango.Core.Entities;
 
 namespace Mango.Admin.Controllers
 {

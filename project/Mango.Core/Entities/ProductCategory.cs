@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Mango.Core.Data
+namespace Mango.Core.Entities
 {
     [Table("ProductCategory")]
     public class ProductCategory

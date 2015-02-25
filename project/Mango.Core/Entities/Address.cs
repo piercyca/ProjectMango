@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Providers.Entities;
 
-namespace Mango.Core.Data
+namespace Mango.Core.Entities
 {
     [Table("Address")]
     public class Address
@@ -18,7 +18,7 @@ namespace Mango.Core.Data
         {
             DateCreated = DateTime.UtcNow;
             Status = AddressStatus.Active;
-            AddressType = Data.AddressType.Unknown;
+            AddressType = AddressType.Unknown;
         }
 
         [Key]

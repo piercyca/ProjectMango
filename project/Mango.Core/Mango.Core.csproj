@@ -84,13 +84,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Address.cs" />
-    <Compile Include="Data\Customer.cs" />
-    <Compile Include="Data\MangoContext.cs" />
-    <Compile Include="Data\Order.cs" />
-    <Compile Include="Data\ProductCategory.cs" />
-    <Compile Include="Data\Product.cs" />
-    <Compile Include="Data\OrderLineItem.cs" />
+    <Compile Include="Abstracts\IProductRepository.cs" />
+    <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\MangoContext.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\ProductCategory.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\OrderLineItem.cs" />
+    <Compile Include="Infrastructure\IDatabaseFactory.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Migrations\201502010217420_HelloWorld.cs" />
     <Compile Include="Migrations\201502010217420_HelloWorld.Designer.cs">
       <DependentUpon>201502010217420_HelloWorld.cs</DependentUpon>

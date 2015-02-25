@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace Mango.Core.Data
+namespace Mango.Core.Entities
 {
     public class MangoContext : DbContext
     {
