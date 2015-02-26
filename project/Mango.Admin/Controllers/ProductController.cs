@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Mango.Admin.ViewModels;
-using Mango.Core.Entities;
+using Mango.Core.Entity;
 using Mango.Core.Service;
 
 namespace Mango.Admin.Controllers

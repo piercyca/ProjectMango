@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Mango.Core.Entities
+namespace Mango.Core.Entity
 {
     [Table("Product")]
     public class Product

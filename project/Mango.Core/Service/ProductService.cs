@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mango.Core.Common;
-using Mango.Core.Entities;
+using Mango.Core.Entity;
 using Mango.Core.Infrastructure;
 using Mango.Core.Repository;
 

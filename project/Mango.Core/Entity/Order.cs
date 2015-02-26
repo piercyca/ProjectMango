@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mango.Core.Entities
+namespace Mango.Core.Entity
 {
     [Table("Order")]
     public class Order

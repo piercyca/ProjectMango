@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Providers.Entities;
 
-namespace Mango.Core.Entities
+namespace Mango.Core.Entity
 {
     [Table("Address")]
     public class Address
