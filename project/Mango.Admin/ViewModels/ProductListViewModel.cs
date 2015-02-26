@@ -19,5 +19,10 @@ namespace Mango.Admin.ViewModels
                        new SelectListItem{ Text="Code", Value="Code"}}, "Text", "Value", selectedSort);
 
         }
+
+        public ProductListViewModel()
+        {
+            
+        }
     }
 }

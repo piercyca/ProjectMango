@@ -14,9 +14,7 @@ namespace Mango.Admin.Controllers
     {
         private readonly IProductService _productService;
 
-        public ProductController()
-        {
-        }
+        public ProductController() { }
 
         public ProductController(IProductService productService)
         {
@@ -32,9 +30,11 @@ namespace Mango.Admin.Controllers
         public ActionResult List(string sortBy = "Date", int page = 0)
         {
             var products = _productService.GetProductsByPage(page, 20, sortBy);
-            var viewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductListViewModel>>(products).ToList();
-
-            return View(viewModel);
+            var productViewModel = new ProductListViewModel
+            {
+                ProductList = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductListItemViewModel>>(products)
+            };
+            return View(productViewModel);
         }
     }
 }

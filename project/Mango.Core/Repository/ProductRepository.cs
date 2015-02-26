@@ -22,7 +22,7 @@ namespace Mango.Core.Repository
             var skip = noOfRecords * currentPage;
             var products = GetAll();
             products = products.Skip(skip).Take(noOfRecords);
-            return products.ToList();
+            return products;
         }
     }
 
