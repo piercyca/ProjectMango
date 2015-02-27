@@ -18,7 +18,7 @@ namespace Mango.Admin.Mappings
 
         protected override void Configure()
         {
-            Mapper.CreateMap<Product, ProductViewModel>();
+            Mapper.CreateMap<Product, ProductFormViewModel>();
             Mapper.CreateMap<Product, ProductListItemViewModel>();
             //Mapper.CreateMap<X, XViewModel>()
             //    .ForMember(x => x.Property1, opt => opt.MapFrom(source => source.PropertyXYZ));

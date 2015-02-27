@@ -219,7 +219,7 @@
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="ViewModels\ProductListItemViewModel.cs" />
     <Compile Include="ViewModels\ProductListViewModel.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\ProductFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -303,6 +303,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Mango.Core.Web\Mango.Core.Web.csproj">
+      <Project>{14ea3816-dfcf-4eb0-bd97-7008d2528d77}</Project>
+      <Name>Mango.Core.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mango.Core\Mango.Core.csproj">
       <Project>{6f8e9878-0641-4fd2-9e78-480b5ac287cc}</Project>
       <Name>Mango.Core</Name>

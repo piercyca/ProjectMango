@@ -10,7 +10,7 @@ using Mango.Core.Entities;
 
 namespace Mango.Admin.ViewModels
 {
-    public class ProductViewModel
+    public class ProductFormViewModel
     {
         /// <summary>
         /// Product Id
