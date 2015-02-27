@@ -19,7 +19,6 @@ namespace Mango.Core.Service
         void DeleteProduct(int id);
         void SaveProduct();
         IEnumerable<Product> SearchProduct(string productName);
-
         IEnumerable<Product> GetProductsByPage(int currentPage, int noOfRecords, string sortBy);
     }
 

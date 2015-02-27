@@ -21,10 +21,12 @@ namespace Mango.Admin.ViewModels
         /// <summary>
         /// Product Category Id
         /// </summary>
-        [DisplayName("Code")] 
+        [DisplayName("Product Category")] 
         [Required]
         public int ProductCategoryId { get; set; }
-
+        /// <summary>
+        /// Select list items for product categories dropdown
+        /// </summary>
         public IEnumerable<SelectListItem> ProductCategories { get; set; }
 
             /// <summary>
