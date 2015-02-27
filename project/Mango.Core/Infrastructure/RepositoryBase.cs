@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Mango.Core.Entities;
+using Mango.Core.Entity;
 using PagedList;
 
 namespace Mango.Core.Infrastructure

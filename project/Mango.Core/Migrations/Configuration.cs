@@ -1,4 +1,4 @@
-using Mango.Core.Entities;
+using Mango.Core.Entity;
 
 namespace Mango.Core.Migrations
 {
@@ -7,7 +7,7 @@ namespace Mango.Core.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Mango.Core.Entities.MangoContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Mango.Core.Entity.MangoContext>
     {
         public Configuration()
         {
@@ -23,8 +23,8 @@ namespace Mango.Core.Migrations
             context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory { ProductCategoryId = 1, Code = "P", Name = "Product", Description = "Product" });
             context.Products.AddOrUpdate(p => 
                 p.ProductId,
-                new Entities.Product { Code = "P1", Name = "Granite platter rectangle w/handles", Price = 22.50m, ProductCategoryId = 1, ProductId = 1 },
-                new Entities.Product { Code = "P2", Name = "Granite state of Georgia platter", Price = 15.50m, ProductCategoryId = 1, ProductId = 2 });
+                new Entity.Product { Code = "P1", Name = "Granite platter rectangle w/handles", Price = 22.50m, ProductCategoryId = 1, ProductId = 1 },
+                new Entity.Product { Code = "P2", Name = "Granite state of Georgia platter", Price = 15.50m, ProductCategoryId = 1, ProductId = 2 });
         }
     }
 }

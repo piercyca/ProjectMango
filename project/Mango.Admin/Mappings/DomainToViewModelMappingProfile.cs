@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Mango.Admin.ViewModels;
-using Mango.Core.Entities;
+using Mango.Core.Entity;
 
 namespace Mango.Admin.Mappings
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Mango.Core.Entities;
+using Mango.Core.Entity;
 using Mango.Core.Infrastructure;
 
 namespace Mango.Core.Repository

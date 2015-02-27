@@ -88,13 +88,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ValidationResult.cs" />
-    <Compile Include="Entities\Address.cs" />
-    <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\MangoContext.cs" />
-    <Compile Include="Entities\Order.cs" />
-    <Compile Include="Entities\ProductCategory.cs" />
-    <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\OrderLineItem.cs" />
+    <Compile Include="Entity\Address.cs" />
+    <Compile Include="Entity\Customer.cs" />
+    <Compile Include="Entity\MangoContext.cs" />
+    <Compile Include="Entity\Order.cs" />
+    <Compile Include="Entity\ProductCategory.cs" />
+    <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\OrderLineItem.cs" />
     <Compile Include="Infrastructure\DatabaseFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDatabaseFactory.cs" />
