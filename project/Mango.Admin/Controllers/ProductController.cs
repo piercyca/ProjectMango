@@ -8,7 +8,7 @@ using Mango.Core.Web.Extensions;
 
 namespace Mango.Admin.Controllers
 {
-    public class ProductController : Controller
+    public partial class ProductController : Controller
     {
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
@@ -22,7 +22,7 @@ namespace Mango.Admin.Controllers
         }
 
         // GET: Product
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }
@@ -34,7 +34,7 @@ namespace Mango.Admin.Controllers
         /// <param name="page"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult List(string sortBy = "Date", int page = 0)
+        public virtual ActionResult List(string sortBy = "Date", int page = 0)
         {
             var products = _productService.GetProductsByPage(page, 20, sortBy);
             var productViewModel = new ProductListViewModel
@@ -50,7 +50,7 @@ namespace Mango.Admin.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             var product = _productService.GetProduct(id);
             var viewModel = Mapper.Map<Product, ProductFormViewModel>(product);
@@ -65,7 +65,7 @@ namespace Mango.Admin.Controllers
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns></returns>
-        public ActionResult Edit(ProductFormViewModel viewModel)
+        public virtual ActionResult Edit(ProductFormViewModel viewModel)
         {
             var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
             if (ModelState.IsValid)

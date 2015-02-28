@@ -8,10 +8,10 @@ using Mango.Core.Entity;
 
 namespace Mango.Admin.Controllers
 {
-    public class UserController : Controller
+    public partial class UserController : Controller
     {
         [HttpGet]
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             var db = new ApplicationDbContext();
             var users = db.Users.Select(s => s);
@@ -19,7 +19,7 @@ namespace Mango.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(string id)
+        public virtual ActionResult Edit(string id)
         {
             var db = new ApplicationDbContext();
             var user = db.Users.FirstOrDefault(u => u.Id == id);
@@ -43,7 +43,7 @@ namespace Mango.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(UserViewModel vm)
+        public virtual ActionResult Edit(UserViewModel vm)
         {
             if (vm == null)
                 throw new Exception("User info not found.");
