@@ -7,7 +7,7 @@ using Mango.Core.Repository;
 namespace Mango.Core.Service
 {
     /// <summary>
-    /// Interface to access a Service to access Customer entities
+    /// Interface to access a <see cref="OrderService"/> to access <see cref="Order"/> entities
     /// </summary>
     public interface IOrderService
     {
@@ -17,12 +17,12 @@ namespace Mango.Core.Service
         void EditOrder(Order order);
         void DeleteOrder(int id);
         void SaveOrder();
-        IEnumerable<Order> SearchOrderCustomerId(int customerId);
+        IEnumerable<Order> GetOrdersByCustomer(int customerId);
         IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords, string sortBy);
     }
 
     /// <summary>
-    /// Service to access Order entities
+    /// Service to access <see cref="Order"/> entities
     /// </summary>
     public class OrderService : IOrderService
     {
@@ -46,7 +46,7 @@ namespace Mango.Core.Service
         /// <returns></returns>
         public IEnumerable<Order> GetOrders()
         {
-            return _orderRepository.GetAll().OrderBy(p => p.LastName);
+            return _orderRepository.GetAll();
         }
 
         /// <summary>
@@ -99,13 +99,13 @@ namespace Mango.Core.Service
         }
 
         /// <summary>
-        /// Search order by custom name. Checks first name and last name.
+        /// Gets order(s) for customer
         /// </summary>
         /// <param name="customerId"></param>
         /// <returns></returns>
-        public IEnumerable<Order> SearchOrderCustomerId(int customerId)
+        public IEnumerable<Order> GetOrdersByCustomer(int customerId)
         {
-            return _orderRepository.GetMany(o => o.CustomerId == customerId));
+            return _orderRepository.GetMany(o => o.CustomerId == customerId);
         }
 
         /// <summary>

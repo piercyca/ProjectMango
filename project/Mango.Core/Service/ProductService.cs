@@ -7,7 +7,7 @@ using Mango.Core.Repository;
 namespace Mango.Core.Service
 {
     /// <summary>
-    /// Interface to access a Service to access Product entities
+    /// Interface to access a <see cref="ProductService"/> to access <see cref="Product"/> entities
     /// </summary>
     public interface IProductService
     {
@@ -17,12 +17,12 @@ namespace Mango.Core.Service
         void EditProduct(Product product);
         void DeleteProduct(int id);
         void SaveProduct();
-        IEnumerable<Product> SearchProduct(string productName);
+        IEnumerable<Product> SearchProductsByName(string productName);
         IEnumerable<Product> GetProductsByPage(int currentPage, int noOfRecords, string sortBy);
     }
 
     /// <summary>
-    /// Service to access Product entities
+    /// Service to access <see cref="Product"/> entities
     /// </summary>
     public class ProductService : IProductService
     {
@@ -103,7 +103,7 @@ namespace Mango.Core.Service
         /// </summary>
         /// <param name="productName"></param>
         /// <returns></returns>
-        public IEnumerable<Product> SearchProduct(string productName)
+        public IEnumerable<Product> SearchProductsByName(string productName)
         {
             return _productRepository.GetMany(p => p.Name.ToLower().Contains(productName.ToLower())).OrderBy(p => p.Name);
         }
