@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Mango.Core.Entity;
 using Mango.Core.Infrastructure;
 
@@ -18,9 +15,8 @@ namespace Mango.Core.Repository
         /// </summary>
         /// <param name="currentPage"></param>
         /// <param name="noOfRecords"></param>
-        /// <param name="sortBy"></param>
         /// <returns></returns>
-        IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords, string sortBy);
+        IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords);
     }
 
 
@@ -37,12 +33,12 @@ namespace Mango.Core.Repository
         {
         }
 
-        public IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords, string sortBy)
+        public IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords)
         {
             var skip = noOfRecords * currentPage;
-            var products = GetAll();
-            products = products.Skip(skip).Take(noOfRecords);
-            return products;
+            var orders = GetAll();
+            orders = orders.Skip(skip).Take(noOfRecords);
+            return orders;
         }
     }
 }

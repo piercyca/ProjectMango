@@ -1,13 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Mango.Core.Entity;
 using Mango.Core.Infrastructure;
 
 namespace Mango.Core.Repository
 {
+    /// <summary>
+    /// Interface for <see cref="ProductRepository"/>
+    /// </summary>
+    public interface IProductRepository : IRepository<Product>
+    {
+        /// <summary>
+        /// Method will return products as different page with specified number of records ,filter condition and sort criteria
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="noOfRecords"></param>
+        /// <param name="sortBy"></param>
+        /// <returns></returns>
+        IEnumerable<Product> GetProductsByPage(int currentPage, int noOfRecords, string sortBy);
+    }
+
     /// <summary>
     /// Product repository
     /// </summary>
@@ -22,20 +34,12 @@ namespace Mango.Core.Repository
             var skip = noOfRecords * currentPage;
             var products = GetAll();
             products = products.Skip(skip).Take(noOfRecords);
+            
+            // sort records
+            products = (sortBy == "Name") ? products.OrderBy(p => p.Name) : products;
+            products = (sortBy == "Code") ? products.OrderBy(p => p.Code) : products;
+            
             return products;
         }
-    }
-
-    public interface IProductRepository : IRepository<Product>
-    {
-        /// <summary>
-        /// /// Method will return products as different page with specified number of records ,filter condition and sort criteria
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="currentPage"></param>
-        /// <param name="noOfRecords"></param>
-        /// <param name="sortBy"></param>
-        /// <returns></returns>
-        IEnumerable<Product> GetProductsByPage(int currentPage, int noOfRecords, string sortBy);
     }
 }

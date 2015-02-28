@@ -7,7 +7,7 @@ using Mango.Core.Repository;
 namespace Mango.Core.Service
 {
     /// <summary>
-    /// Interface to access a Service to access Customer entities
+    /// Interface to access a <see cref="CustomerService"/> to access <see cref="Customer"/> entities
     /// </summary>
     public interface ICustomerService
     {
@@ -23,7 +23,7 @@ namespace Mango.Core.Service
     }
 
     /// <summary>
-    /// Service to access Customer entities
+    /// Service to access <see cref="Customer"/> entities
     /// </summary>
     public class CustomerService : ICustomerService
     {
