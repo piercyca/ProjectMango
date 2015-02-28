@@ -117,7 +117,7 @@ namespace Mango.Core.Service
         /// <returns></returns>
         public IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords, string sortBy)
         {
-            return _orderRepository.GetOrdersByPage(currentPage, noOfRecords, sortBy);
+            return _orderRepository.GetOrdersByPage(currentPage, noOfRecords);
         }
     }
 }
