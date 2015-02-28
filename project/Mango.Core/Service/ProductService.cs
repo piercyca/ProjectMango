@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mango.Core.Common;
 using Mango.Core.Entity;
 using Mango.Core.Infrastructure;
 using Mango.Core.Repository;
 
 namespace Mango.Core.Service
 {
+    /// <summary>
+    /// Interface to access a Service to access Product entities
+    /// </summary>
     public interface IProductService
     {
         IEnumerable<Product> GetProducts();
@@ -22,17 +21,29 @@ namespace Mango.Core.Service
         IEnumerable<Product> GetProductsByPage(int currentPage, int noOfRecords, string sortBy);
     }
 
+    /// <summary>
+    /// Service to access Product entities
+    /// </summary>
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="productRepository"></param>
+        /// <param name="unitOfWork"></param>
         public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
             _unitOfWork = unitOfWork;
         }
 
+        /// <summary>
+        /// Returns all products
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Product> GetProducts()
         {
             return _productRepository.GetAll().OrderBy(p => p.Name);

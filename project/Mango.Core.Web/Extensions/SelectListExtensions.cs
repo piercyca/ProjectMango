@@ -1,27 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
-using Mango.Core.Entities;
+using Mango.Core.Entity;
 
 namespace Mango.Core.Web.Extensions
 {
+    /// <summary>
+    /// Helper that generates select lists items
+    /// </summary>
     public static class SelectListExtensions
     {
+        /// <summary>
+        /// ProductCategory select list items
+        /// </summary>
+        /// <param name="productCategory"></param>
+        /// <param name="selectedId"></param>
+        /// <returns></returns>
         public static IEnumerable<SelectListItem> ToSelectListItems(
-            this IEnumerable<ProductCategory> metrics, int selectedId)
+            this IEnumerable<ProductCategory> productCategory, int selectedId)
         {
             return
-
-                metrics.OrderBy(metric => metric.Name)
-                    .Select(metric =>
+                productCategory.OrderBy(pc => pc.Name)
+                    .Select(pc =>
                         new SelectListItem
                         {
-                            Selected = (metric.ProductCategoryId == selectedId),
-                            Text = metric.Name,
-                            Value = metric.ProductCategoryId.ToString()
+                            Selected = (pc.ProductCategoryId == selectedId),
+                            Text = pc.Name,
+                            Value = pc.ProductCategoryId.ToString()
                         });
         }
     }

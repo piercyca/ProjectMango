@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Mango.Core.Entities;
+using Mango.Core.Entity;
 using Mango.Core.Infrastructure;
 using Mango.Core.Repository;
 
 namespace Mango.Core.Service
 {
+    /// <summary>
+    /// Interface to access a Service to access Product Category entities
+    /// </summary>
     public interface IProductCategoryService
     {
         IEnumerable<ProductCategory> GetProductCategories();
@@ -17,6 +20,9 @@ namespace Mango.Core.Service
         IEnumerable<ProductCategory> SearchProductCategory(string productCategoryName);
     }
 
+    /// <summary>
+    /// Service to access Product Category entities
+    /// </summary>
     public class ProductCategoryService : IProductCategoryService
     {
         private readonly IProductCategoryRepository _productCategoryRepository;
@@ -30,7 +36,7 @@ namespace Mango.Core.Service
 
         public IEnumerable<ProductCategory> GetProductCategories()
         {
-            return _productCategoryRepository.GetAll().OrderBy(p => p.Name);
+            return _productCategoryRepository.GetAll().OrderBy(pc => pc.Name);
         }
 
         /// <summary>
