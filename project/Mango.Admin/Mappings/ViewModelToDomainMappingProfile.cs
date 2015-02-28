@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Mango.Admin.ViewModels;
+using Mango.Core.Entity;
 
 namespace Mango.Admin.Mappings
 {
@@ -15,6 +17,8 @@ namespace Mango.Admin.Mappings
 
         protected override void Configure()
         {
+            Mapper.CreateMap<ProductFormViewModel, Product>();
+
             //Mapper.CreateMap<CommentFormModel, Comment>();
             //Mapper.CreateMap<GroupFormModel, Group>();
             //Mapper.CreateMap<FocusFormModel, Focus>();

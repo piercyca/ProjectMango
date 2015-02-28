@@ -20,7 +20,7 @@ namespace Mango.Admin.Mappings
         {
             Mapper.CreateMap<Product, ProductFormViewModel>();
             Mapper.CreateMap<Product, ProductListItemViewModel>();
-            Mapper.CreateMap<ProductFormViewModel, Product>();
+            
 
             //Mapper.CreateMap<X, XViewModel>()
             //    .ForMember(x => x.Property1, opt => opt.MapFrom(source => source.PropertyXYZ));
