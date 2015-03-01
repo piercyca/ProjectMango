@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
@@ -24,13 +25,11 @@ namespace Mango.Core.Entity
         [Key]
         public int AddressId { get; set; }
 
+        [DefaultValue(0)]
         public AddressStatus Status { get; set; }
 
+        [DefaultValue(0)]
         public AddressType AddressType { get; set; }
-
-        [Display(Name = "Nickname")]
-        [StringLength(100)]
-        public string Nickname { get; set; }
 
         [Display(Name = "First Name")]
         [StringLength(100)]
@@ -68,7 +67,7 @@ namespace Mango.Core.Entity
         [StringLength(10)]
         public string Zip { get; set; }
 
-        [StringLength(2)]
+        [StringLength(50)]
         public string Country { get; set; }
 
         public DateTime DateCreated { get; set; }
@@ -79,9 +78,6 @@ namespace Mango.Core.Entity
             get
             {
                 string result = "";
-
-                if (!String.IsNullOrEmpty(Nickname))
-                    result += Nickname + ": ";
 
                 if (!String.IsNullOrEmpty(FirstName))
                     result += FirstName + " ";

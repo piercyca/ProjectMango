@@ -17,6 +17,7 @@ namespace Mango.Admin.Mappings
 
         protected override void Configure()
         {
+            Mapper.CreateMap<AddressFormViewModel, Address>();
             Mapper.CreateMap<ProductFormViewModel, Product>();
 
             //Mapper.CreateMap<CommentFormModel, Comment>();

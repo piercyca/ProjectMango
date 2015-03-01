@@ -18,6 +18,8 @@ namespace Mango.Admin.Mappings
 
         protected override void Configure()
         {
+            Mapper.CreateMap<Address, AddressFormViewModel>();
+
             Mapper.CreateMap<Product, ProductFormViewModel>();
             Mapper.CreateMap<Product, ProductListItemViewModel>();
             

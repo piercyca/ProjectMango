@@ -147,12 +147,24 @@
     <Compile Include="Migrations\201502242154074_Product.Designer.cs">
       <DependentUpon>201502242154074_Product.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503011749449_AddressTweaks.cs" />
+    <Compile Include="Migrations\201503011749449_AddressTweaks.Designer.cs">
+      <DependentUpon>201503011749449_AddressTweaks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503011750495_AddressTweaks1.cs" />
+    <Compile Include="Migrations\201503011750495_AddressTweaks1.Designer.cs">
+      <DependentUpon>201503011750495_AddressTweaks1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503011829231_AddressTweaks2.cs" />
+    <Compile Include="Migrations\201503011829231_AddressTweaks2.Designer.cs">
+      <DependentUpon>201503011829231_AddressTweaks2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
-    <Compile Include="Repository\AddressRepository .cs" />
+    <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Service\OrderItemService.cs" />
     <Compile Include="Service\OrderService.cs" />
     <Compile Include="Service\CustomerService.cs" />
@@ -202,6 +214,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502242154074_Product.resx">
       <DependentUpon>201502242154074_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503011749449_AddressTweaks.resx">
+      <DependentUpon>201503011749449_AddressTweaks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503011750495_AddressTweaks1.resx">
+      <DependentUpon>201503011750495_AddressTweaks1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503011829231_AddressTweaks2.resx">
+      <DependentUpon>201503011829231_AddressTweaks2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
