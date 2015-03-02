@@ -79,6 +79,7 @@ namespace Mango.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Edit = "Edit";
+            public readonly string Create = "Create";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -86,6 +87,7 @@ namespace Mango.Admin.Controllers
         {
             public const string Index = "Index";
             public const string Edit = "Edit";
+            public const string Create = "Create";
         }
 
 
@@ -98,6 +100,14 @@ namespace Mango.Admin.Controllers
             public readonly string id = "id";
             public readonly string vm = "vm";
         }
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Create
+        {
+            public readonly string vm = "vm";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -108,9 +118,11 @@ namespace Mango.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
+            public readonly string Create = "~/Views/ProductCategory/Create.cshtml";
             public readonly string Edit = "~/Views/ProductCategory/Edit.cshtml";
             public readonly string Index = "~/Views/ProductCategory/Index.cshtml";
         }
@@ -153,6 +165,29 @@ namespace Mango.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
             EditOverride(callInfo, vm);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            CreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Admin.ViewModels.ProductCategoryViewModel vm);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create(Mango.Admin.ViewModels.ProductCategoryViewModel vm)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
+            CreateOverride(callInfo, vm);
             return callInfo;
         }
 

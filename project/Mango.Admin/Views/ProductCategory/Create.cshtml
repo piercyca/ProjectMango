@@ -8,7 +8,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    using (Html.BeginForm("Add", "ProductCategory", FormMethod.Post, new { @class = "form-horizontal", @role = "form"}))
+    using (Html.BeginForm("Create", "ProductCategory", FormMethod.Post, new { @class = "form-horizontal", @role = "form"}))
     {
     <table class="table table-striped" style="width: auto">
         <tr>

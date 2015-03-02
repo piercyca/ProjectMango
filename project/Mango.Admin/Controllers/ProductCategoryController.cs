@@ -51,14 +51,14 @@ namespace Mango.Admin.Controllers
         }
 
 		[HttpGet]
-		public virtual ActionResult Add()
+		public virtual ActionResult Create()
 		{
 			var vm = Mapper.Map<ProductCategory, ProductCategoryViewModel>(new ProductCategory());
 			return View(vm);
 		}
 
 		[HttpPost]
-		public virtual ActionResult Add(ProductCategoryViewModel vm)
+		public virtual ActionResult Create(ProductCategoryViewModel vm)
 		{
 			var productCategory = Mapper.Map<ProductCategoryViewModel, ProductCategory>(vm);
 			if (ModelState.IsValid)
