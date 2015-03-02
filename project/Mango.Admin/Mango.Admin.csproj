@@ -228,6 +228,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interfaces\IViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ProductCategoryController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
