@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Mango.Core.Entity;
 
 namespace Mango.Web.ViewModels
 {
+    /// <summary>
+    /// View model for <see cref="ProductCategory" />
+    /// </summary>
     public class ProductCategoryViewModel
     {
         [Required]

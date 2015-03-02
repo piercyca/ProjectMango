@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
-using Mango.Web.ViewModels;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Core.Web.Extensions;
+using Mango.Web.ViewModels;
 
-namespace Mango.Web.Controllers
+namespace Mango.Web.Areas.Admin.Controllers
 {
     public partial class ProductController : Controller
     {

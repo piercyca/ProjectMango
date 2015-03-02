@@ -22,7 +22,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Mango.Web.Controllers
+namespace Mango.Web.Areas.Admin.Controllers
 {
     public partial class ProductController
     {
@@ -63,9 +63,9 @@ namespace Mango.Web.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ProductController Actions { get { return MVC.Product; } }
+        public ProductController Actions { get { return MVC.Admin.Product; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
+        public readonly string Area = "Admin";
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Name = "Product";
         [GeneratedCode("T4MVC", "2.0")]
@@ -122,8 +122,8 @@ namespace Mango.Web.Controllers
                 public readonly string Edit = "Edit";
                 public readonly string List = "List";
             }
-            public readonly string Edit = "~/Views/Product/Edit.cshtml";
-            public readonly string List = "~/Views/Product/List.cshtml";
+            public readonly string Edit = "~/Areas/Admin/Views/Product/Edit.cshtml";
+            public readonly string List = "~/Areas/Admin/Views/Product/List.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -135,7 +135,7 @@ namespace Mango.Web.Controllers
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_ProductController : Mango.Web.Controllers.ProductController
+    public partial class T4MVC_ProductController : Mango.Web.Areas.Admin.Controllers.ProductController
     {
         public T4MVC_ProductController() : base(Dummy.Instance) { }
 

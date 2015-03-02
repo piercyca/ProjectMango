@@ -26,18 +26,26 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static partial class MVC
 {
+    static readonly AdminClass s_Admin = new AdminClass();
+    public static AdminClass Admin { get { return s_Admin; } }
     public static Mango.Web.Controllers.AccountController Account = new Mango.Web.Controllers.T4MVC_AccountController();
-    public static Mango.Web.Controllers.CustomerController Customer = new Mango.Web.Controllers.T4MVC_CustomerController();
     public static Mango.Web.Controllers.HomeController Home = new Mango.Web.Controllers.T4MVC_HomeController();
     public static Mango.Web.Controllers.ManageController Manage = new Mango.Web.Controllers.T4MVC_ManageController();
-    public static Mango.Web.Controllers.ProductCategoryController ProductCategory = new Mango.Web.Controllers.T4MVC_ProductCategoryController();
-    public static Mango.Web.Controllers.ProductController Product = new Mango.Web.Controllers.T4MVC_ProductController();
-    public static Mango.Web.Controllers.UserController User = new Mango.Web.Controllers.T4MVC_UserController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
 namespace T4MVC
 {
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class AdminClass
+    {
+        public readonly string Name = "Admin";
+        public Mango.Web.Areas.Admin.Controllers.CustomerController Customer = new Mango.Web.Areas.Admin.Controllers.T4MVC_CustomerController();
+        public Mango.Web.Areas.Admin.Controllers.ProductCategoryController ProductCategory = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductCategoryController();
+        public Mango.Web.Areas.Admin.Controllers.ProductController Product = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductController();
+        public Mango.Web.Areas.Admin.Controllers.UserController User = new Mango.Web.Areas.Admin.Controllers.T4MVC_UserController();
+        public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
+    }
 }
 
 namespace T4MVC

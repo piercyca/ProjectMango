@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Mango.Core.Entity;
 
 namespace Mango.Web.ViewModels
 {
+    /// <summary>
+    /// View model for <see cref="Product" />
+    /// </summary>
     public class ProductListItemViewModel
     {
         public int ProductId { get; set; }

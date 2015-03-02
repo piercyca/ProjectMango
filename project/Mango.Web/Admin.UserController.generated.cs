@@ -22,12 +22,15 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Mango.Web.Controllers
+namespace Mango.Web.Areas.Admin.Controllers
 {
-    public partial class CustomerController
+    public partial class UserController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected CustomerController(Dummy d) { }
+        public UserController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected UserController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -63,13 +66,13 @@ namespace Mango.Web.Controllers
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public CustomerController Actions { get { return MVC.Customer; } }
+        public UserController Actions { get { return MVC.Admin.User; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "";
+        public readonly string Area = "Admin";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Customer";
+        public readonly string Name = "User";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Customer";
+        public const string NameConst = "User";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,7 +82,6 @@ namespace Mango.Web.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Edit = "Edit";
-            public readonly string Create = "Create";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,7 +89,6 @@ namespace Mango.Web.Controllers
         {
             public const string Index = "Index";
             public const string Edit = "Edit";
-            public const string Create = "Create";
         }
 
 
@@ -100,14 +101,6 @@ namespace Mango.Web.Controllers
             public readonly string id = "id";
             public readonly string vm = "vm";
         }
-        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Create
-        {
-            public readonly string vm = "vm";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -118,20 +111,18 @@ namespace Mango.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
             }
-            public readonly string Create = "~/Views/Customer/Create.cshtml";
-            public readonly string Edit = "~/Views/Customer/Edit.cshtml";
-            public readonly string Index = "~/Views/Customer/Index.cshtml";
+            public readonly string Edit = "~/Areas/Admin/Views/User/Edit.cshtml";
+            public readonly string Index = "~/Areas/Admin/Views/User/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_CustomerController : Mango.Web.Controllers.CustomerController
+    public partial class T4MVC_UserController : Mango.Web.Areas.Admin.Controllers.UserController
     {
-        public T4MVC_CustomerController() : base(Dummy.Instance) { }
+        public T4MVC_UserController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -145,10 +136,10 @@ namespace Mango.Web.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string id);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(int id)
+        public override System.Web.Mvc.ActionResult Edit(string id)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
@@ -157,37 +148,14 @@ namespace Mango.Web.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.ViewModels.CustomerFormViewModel vm);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Models.UserViewModel vm);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Mango.Web.ViewModels.CustomerFormViewModel vm)
+        public override System.Web.Mvc.ActionResult Edit(Mango.Web.Models.UserViewModel vm)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
             EditOverride(callInfo, vm);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.ViewModels.CustomerFormViewModel vm);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Create(Mango.Web.ViewModels.CustomerFormViewModel vm)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
-            CreateOverride(callInfo, vm);
             return callInfo;
         }
 

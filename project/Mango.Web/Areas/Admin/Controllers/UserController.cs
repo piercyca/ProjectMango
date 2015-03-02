@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Mango.Web.Models;
-using Mango.Core.Entity;
 
-namespace Mango.Web.Controllers
+namespace Mango.Web.Areas.Admin.Controllers
 {
     public partial class UserController : Controller
     {

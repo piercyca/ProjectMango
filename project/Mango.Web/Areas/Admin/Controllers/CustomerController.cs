@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using Mango.Web.Models;
-using Mango.Web.ViewModels;
 using Mango.Core.Entity;
-using Mango.Core.Repository;
 using Mango.Core.Service;
+using Mango.Web.ViewModels;
 
-namespace Mango.Web.Controllers
+namespace Mango.Web.Areas.Admin.Controllers
 { 
     public partial class CustomerController : Controller
     {
