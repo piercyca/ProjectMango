@@ -28,5 +28,8 @@ namespace Mango.Admin.ViewModels
         [EmailAddress]
         [StringLength(200)]
         public string Email { get; set; }
+
+		[Required]
+		public string UserId { get; set; }
     }
 }
