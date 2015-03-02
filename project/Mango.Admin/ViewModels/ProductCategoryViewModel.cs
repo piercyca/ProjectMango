@@ -8,6 +8,7 @@ namespace Mango.Admin.ViewModels
 {
     public class ProductCategoryViewModel
     {
+        [Required]
         public int ProductCategoryId { get; set; }
 
         [Required]

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Mango.Admin.Models;
+using Mango.Admin.ViewModels;
 using Mango.Core.Entity;
 using Mango.Core.Repository;
 using Mango.Core.Service;
@@ -14,6 +16,13 @@ namespace Mango.Admin.Controllers
     {
         private readonly IProductCategoryService _productCategoryService;
 
+        public ProductCategoryController() { }
+
+        public ProductCategoryController(IProductCategoryService productCategoryService)
+        {
+            _productCategoryService = productCategoryService;
+        }
+
         [HttpGet]
         public virtual ActionResult Index()
         {
@@ -22,52 +31,21 @@ namespace Mango.Admin.Controllers
         }
 
         [HttpGet]
-        public virtual ActionResult Edit(string id)
+        public virtual ActionResult Edit(int id)
         {
-            var db = new ApplicationDbContext();
-            var user = db.Users.FirstOrDefault(u => u.Id == id);
-            var vm = new UserViewModel();
-            if (user != null)
-            {
-                vm.Id = user.Id;
-                vm.Username = user.UserName;
-                vm.Email = user.Email;
-                vm.EmailConfirmed = user.EmailConfirmed;
-                vm.PhoneNumber = user.PhoneNumber;
-                vm.PhoneNumberConfirmed = user.PhoneNumberConfirmed;
-                vm.PasswordHash = user.PasswordHash;
-                vm.SecurityStamp = user.SecurityStamp;
-                vm.TwoFactorEnabled = user.TwoFactorEnabled;
-                vm.LockoutEndDateUtc = user.LockoutEndDateUtc;
-                vm.LockoutEnabled = user.LockoutEnabled;
-                vm.AccessFailedCount = user.AccessFailedCount;
-            }
+            var productCategory = _productCategoryService.GetProductCategory(id);
+            var vm = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
             return View(vm);
         }
 
         [HttpPost]
-        public virtual ActionResult Edit(UserViewModel vm)
+        public virtual ActionResult Edit(ProductCategoryViewModel vm)
         {
-            if (vm == null)
-                throw new Exception("User info not found.");
-            foreach (var e in vm.Validate())
-                throw new Exception(e.ErrorMessage);
-            var db = new ApplicationDbContext();
-            var user = db.Users.Find(vm.Id);
-            if (TryUpdateModel(user))
+            var productCategory = Mapper.Map<ProductCategoryViewModel, ProductCategory>(vm);
+            if (ModelState.IsValid)
             {
-                user.UserName = vm.Username;
-                user.Email = vm.Email;
-                user.EmailConfirmed = vm.EmailConfirmed;
-                user.PhoneNumber = vm.PhoneNumber;
-                user.PhoneNumberConfirmed = vm.PhoneNumberConfirmed;
-                user.PasswordHash = vm.PasswordHash;
-                user.SecurityStamp = vm.SecurityStamp;
-                user.TwoFactorEnabled = vm.TwoFactorEnabled;
-                user.LockoutEndDateUtc = vm.LockoutEndDateUtc;
-                user.LockoutEnabled = vm.LockoutEnabled;
-                user.AccessFailedCount = vm.AccessFailedCount;
-                db.SaveChanges();
+                _productCategoryService.EditProductCategory(productCategory);
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
         }

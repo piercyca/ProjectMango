@@ -22,6 +22,8 @@ namespace Mango.Admin.Mappings
 
             Mapper.CreateMap<Product, ProductFormViewModel>();
             Mapper.CreateMap<Product, ProductListItemViewModel>();
+
+            Mapper.CreateMap<ProductCategory, ProductCategoryViewModel>();
             
 
             //Mapper.CreateMap<X, XViewModel>()
