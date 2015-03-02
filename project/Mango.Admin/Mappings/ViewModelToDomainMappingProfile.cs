@@ -19,6 +19,9 @@ namespace Mango.Admin.Mappings
         {
             Mapper.CreateMap<AddressFormViewModel, Address>();
             Mapper.CreateMap<ProductFormViewModel, Product>();
+            Mapper.CreateMap<ProductCategoryViewModel, ProductCategory>();
+
+			Mapper.CreateMap<CustomerFormViewModel, Customer>();
 
             //Mapper.CreateMap<CommentFormModel, Comment>();
             //Mapper.CreateMap<GroupFormModel, Group>();

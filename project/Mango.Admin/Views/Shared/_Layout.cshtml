@@ -22,6 +22,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
                     <li>@Html.ActionLink("Products", MVC.Product.List())</li>
+	                <li>@Html.ActionLink("Products Categories", MVC.ProductCategory.Index())</li>
+					<li>@Html.ActionLink("Customers", MVC.Customer.Index())</li>
                     <li>@Html.ActionLink("Users", MVC.User.Index())</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
