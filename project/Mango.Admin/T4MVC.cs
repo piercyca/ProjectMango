@@ -27,6 +27,7 @@ using T4MVC;
 public static partial class MVC
 {
     public static Mango.Admin.Controllers.AccountController Account = new Mango.Admin.Controllers.T4MVC_AccountController();
+    public static Mango.Admin.Controllers.CustomerController Customer = new Mango.Admin.Controllers.T4MVC_CustomerController();
     public static Mango.Admin.Controllers.HomeController Home = new Mango.Admin.Controllers.T4MVC_HomeController();
     public static Mango.Admin.Controllers.ManageController Manage = new Mango.Admin.Controllers.T4MVC_ManageController();
     public static Mango.Admin.Controllers.ProductCategoryController ProductCategory = new Mango.Admin.Controllers.T4MVC_ProductCategoryController();
