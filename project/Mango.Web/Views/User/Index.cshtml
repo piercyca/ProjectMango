@@ -1,0 +1,51 @@
+@model IQueryable<Mango.Web.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (Model.Any())
+    {
+        <table class="table table-striped table-hover" style="width:auto">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Email Confirmed</th>
+                <th>Phone</th>
+                <th>Phone Confirmed</th>
+                <th>Two Factor Enabled</th>
+                <th>Lockout End Date</th>
+                <th>Lockout Enabled</th>
+                <th>Access Failed Count</th>
+                <th></th>
+            </tr>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.UserName</td>
+                    <td>@m.Email</td>
+                    <td class="text-center">@(m.EmailConfirmed ? "Yes" : "No")</td>
+                    <td>@m.PhoneNumber</td>
+                    <td class="text-center">@(m.PhoneNumberConfirmed ? "Yes" : "No")</td>
+                    <td class="text-center">@(m.TwoFactorEnabled ? "Yes" : "No")</td>
+                    <td>@m.LockoutEndDateUtc</td>
+                    <td class="text-center">@(m.LockoutEnabled ? "Yes" : "No")</td>
+                    <td>@m.AccessFailedCount</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "User", new { id = m.Id}, null)</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p calss="alert">No records to display</p>
+    }
+}
+else
+{
+    <p calss="alert">Not logged in</p>
+}

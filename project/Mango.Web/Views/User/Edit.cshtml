@@ -1,0 +1,43 @@
+@model Mango.Web.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal", @role = "form"}))
+    {
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.PasswordHash)
+    @Html.HiddenFor(m => m.SecurityStamp)
+    @Html.HiddenFor(m => m.LockoutEndDateUtc)
+    @Html.HiddenFor(m => m.AccessFailedCount)
+    <table class="table table-striped" style="width: auto">
+        <tr>
+            <th>@Html.LabelFor(m => m.Username)</th>
+            <th>@Html.LabelFor(m => m.Email)</th>
+            <th>@Html.LabelFor(m => m.EmailConfirmed)</th>
+            <th>@Html.LabelFor(m => m.PhoneNumber)</th>
+            <th>@Html.LabelFor(m => m.PhoneNumberConfirmed)</th>
+            <th>@Html.LabelFor(m => m.TwoFactorEnabled)</th>
+            <th>@Html.LabelFor(m => m.LockoutEnabled)</th>
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(model => model.Username)</td>
+            <td>@Html.TextBoxFor(model => model.Email)</td>
+            <td class="text-center">@Html.EditorFor(x => x.EmailConfirmed)</td>
+            <td>@Html.TextBoxFor(model => model.PhoneNumber)</td>
+            <td class="text-center">@Html.EditorFor(x => x.PhoneNumberConfirmed)</td>
+            <td class="text-center">@Html.EditorFor(x => x.TwoFactorEnabled)</td>
+            <td class="text-center">@Html.EditorFor(x => x.LockoutEnabled)</td>
+            <td><button type="submit" class="btn btn-primary btn-sm">Save</button></td>
+    </table>
+    }
+}
+else
+{
+    <p calss="alert">Not logged in</p>
+}
