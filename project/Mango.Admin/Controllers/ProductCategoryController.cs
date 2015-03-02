@@ -49,5 +49,24 @@ namespace Mango.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+		[HttpGet]
+		public virtual ActionResult Add()
+		{
+			var vm = Mapper.Map<ProductCategory, ProductCategoryViewModel>(new ProductCategory());
+			return View(vm);
+		}
+
+		[HttpPost]
+		public virtual ActionResult Add(ProductCategoryViewModel vm)
+		{
+			var productCategory = Mapper.Map<ProductCategoryViewModel, ProductCategory>(vm);
+			if (ModelState.IsValid)
+			{
+				_productCategoryService.CreateProductCategory(productCategory);
+				return RedirectToAction("Index");
+			}
+			return RedirectToAction("Index");
+		}
     }
 }

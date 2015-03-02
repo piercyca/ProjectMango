@@ -1,0 +1,30 @@
+﻿@model Mango.Admin.ViewModels.ProductCategoryViewModel
+
+@{
+    ViewBag.Title = "Add Product Category";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("Add", "ProductCategory", FormMethod.Post, new { @class = "form-horizontal", @role = "form"}))
+    {
+    <table class="table table-striped" style="width: auto">
+        <tr>
+            <th>@Html.LabelFor(m => m.Code)</th>
+            <th>@Html.LabelFor(m => m.Name)</th>
+            <th>@Html.LabelFor(m => m.Description)</th>
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(model => model.Code)</td>
+            <td>@Html.TextBoxFor(model => model.Name)</td>
+            <td>@Html.TextBoxFor(model => model.Description)</td>
+            <td><button type="submit" class="btn btn-primary btn-sm">Save</button></td>
+    </table>
+    }
+}
+else
+{
+    <p calss="alert">Not logged in</p>
+}
