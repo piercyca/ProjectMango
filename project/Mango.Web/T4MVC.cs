@@ -218,13 +218,13 @@ namespace Links
             private const string URLPATH = "~/Content/images";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string logo_154x50_jpg = Url("logo-154x50.jpg");
-            public static readonly string logo_617x200_jpg = Url("logo-617x200.jpg");
+            public static readonly string logo_605x182_jpg = Url("logo-605x182.jpg");
+            public static readonly string logo_93x28_jpg = Url("logo-93x28.jpg");
         }
     
         public static readonly string PagedList_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/PagedList.min.css") ? Url("PagedList.min.css") : Url("PagedList.css");
              
-        public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
+        public static readonly string site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/site.min.css") ? Url("site.min.css") : Url("site.css");
              
     }
 
@@ -287,7 +287,7 @@ namespace Links
                 public const string bootstrap_css = "~/Content/bootstrap.css";
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
                 public const string PagedList_css = "~/Content/PagedList.css";
-                public const string Site_css = "~/Content/Site.css";
+                public const string site_css = "~/Content/site.css";
             }
         }
     }

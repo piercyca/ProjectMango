@@ -17,20 +17,31 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="@Url.Action(MVC.Home.Index())">
-                    <img src="@Url.Content("~/content/images/logo-154x50.jpg")" alt="etchieve.com" />
+                    <img src="@Links.Content.images.logo_93x28_jpg" alt="etchieve.com" />
                 </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
-                    <li>
-                        @Html.ActionLink("Products", MVC.Admin.Product.List())
-                        <ul>
+                    <li>@Html.ActionLink("< Store", MVC.Home.Index())</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Products <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Products", MVC.Admin.Product.List())</li>
                             <li>@Html.ActionLink("Categories", MVC.Admin.ProductCategory.Index())</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Customers", MVC.Admin.Customer.Index())</li>
-                    <li>@Html.ActionLink("Users", MVC.Admin.User.Index())</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Customers <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Customers", MVC.Admin.Customer.Index())</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Users", MVC.Admin.User.Index())</li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
