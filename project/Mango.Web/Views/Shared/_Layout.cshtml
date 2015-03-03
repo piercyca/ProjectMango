@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - etchieve.com</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -16,15 +16,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Etchieve Admin", MVC.Home.Index(), new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="@Url.Action(MVC.Home.Index())">
+                    <img src="@Url.Content("~/content/images/logo-154x50.jpg")" alt="etchieve.com"/>
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
-                    <li>@Html.ActionLink("Products", MVC.Admin.Product.List())</li>
-	                <li>@Html.ActionLink("Products Categories", MVC.Admin.ProductCategory.Index())</li>
-					<li>@Html.ActionLink("Customers", MVC.Admin.Customer.Index())</li>
-                    <li>@Html.ActionLink("Users", MVC.Admin.User.Index())</li>
+                    <li>@Html.ActionLink("Admin", MVC.Admin.Home.Index())</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
