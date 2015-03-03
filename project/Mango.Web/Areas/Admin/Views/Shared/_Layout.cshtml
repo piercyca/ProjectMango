@@ -21,11 +21,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
-                    <li>@Html.ActionLink("Products", MVC.Admin.Product.List())</li>
-	                <li>@Html.ActionLink("Products Categories", MVC.Admin.ProductCategory.Index())</li>
-					<li>@Html.ActionLink("Customers", MVC.Admin.Customer.Index())</li>
-                    <li>@Html.ActionLink("Users", MVC.Admin.User.Index())</li>
-                </ul>
+                    <li>
+                        @Html.ActionLink("Products", MVC.Admin.Product.List())
+                        <ul>
+                            <li>@Html.ActionLink("Products Categories", MVC.Admin.ProductCategory.Index())</li>
+                        </ul>
+                </li>
+                
+                <li>@Html.ActionLink("Customers", MVC.Admin.Customer.Index())</li>
+                <li>@Html.ActionLink("Users", MVC.Admin.User.Index())</li>
+            </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
