@@ -88,17 +88,15 @@ canvas.setBackgroundImage('assets/product/product-image.png', canvas.renderAll.b
         fontSize: 25,
         top: 280,
         left: center.left,
-        padding: 0,
-        cornersize: 0,
-        selectable: false,
         originX: 'center'
     });
 
 
 //need to fit within coordinates
-//TODO: change height and with to textcoord h/w and font selection
+//TODO: change height and width to textcoord h/w and font selection
     var formatted = wrapCanvasText(unformatted, canvas, 280,120, 'left');
         formatted.name = 'text';
+        formatted.selectable = false;
 
         var newText = canvas.getItemByName(unformatted.name);
 
