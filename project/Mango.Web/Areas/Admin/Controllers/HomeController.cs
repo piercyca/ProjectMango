@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Mango.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public partial class HomeController : Controller
     {
         /// <summary>

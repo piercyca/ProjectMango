@@ -5,7 +5,8 @@ using Mango.Core.Service;
 using Mango.Web.ViewModels;
 
 namespace Mango.Web.Areas.Admin.Controllers
-{ 
+{
+    [Authorize(Roles = "Admin")]
     public partial class ProductCategoryController : Controller
     {
         private readonly IProductCategoryService _productCategoryService;

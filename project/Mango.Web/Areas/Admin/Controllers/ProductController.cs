@@ -8,6 +8,7 @@ using Mango.Web.ViewModels;
 
 namespace Mango.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public partial class ProductController : Controller
     {
         private readonly IProductService _productService;

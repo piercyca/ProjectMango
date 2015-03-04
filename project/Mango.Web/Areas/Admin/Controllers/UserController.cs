@@ -5,6 +5,7 @@ using Mango.Web.Models;
 
 namespace Mango.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public partial class UserController : Controller
     {
         [HttpGet]

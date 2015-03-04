@@ -38,8 +38,10 @@ namespace T4MVC.Admin
             public class _ViewNamesClass
             {
                 public readonly string _Layout = "_Layout";
+                public readonly string _LoginPartial = "_LoginPartial";
             }
             public readonly string _Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+            public readonly string _LoginPartial = "~/Areas/Admin/Views/Shared/_LoginPartial.cshtml";
         }
     }
 
