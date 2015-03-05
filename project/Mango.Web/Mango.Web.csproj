@@ -438,7 +438,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Redirect\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
