@@ -28,6 +28,8 @@ public static partial class MVC
 {
     static readonly AdminClass s_Admin = new AdminClass();
     public static AdminClass Admin { get { return s_Admin; } }
+    static readonly StoreClass s_Store = new StoreClass();
+    public static StoreClass Store { get { return s_Store; } }
     public static Mango.Web.Controllers.AccountController Account = new Mango.Web.Controllers.T4MVC_AccountController();
     public static Mango.Web.Controllers.HomeController Home = new Mango.Web.Controllers.T4MVC_HomeController();
     public static Mango.Web.Controllers.ManageController Manage = new Mango.Web.Controllers.T4MVC_ManageController();
@@ -46,6 +48,13 @@ namespace T4MVC
         public Mango.Web.Areas.Admin.Controllers.ProductController Product = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductController();
         public Mango.Web.Areas.Admin.Controllers.UserController User = new Mango.Web.Areas.Admin.Controllers.T4MVC_UserController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class StoreClass
+    {
+        public readonly string Name = "Store";
+        public Mango.Web.Areas.Store.Controllers.HomeController Home = new Mango.Web.Areas.Store.Controllers.T4MVC_HomeController();
+        public T4MVC.Store.SharedController Shared = new T4MVC.Store.SharedController();
     }
 }
 
@@ -218,13 +227,43 @@ namespace Links
             private const string URLPATH = "~/Content/images";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string _02_granite_platter_state_ga_png = Url("02-granite platter state ga.png");
+            public static readonly string _04_granite_welcome_sign_png = Url("04-granite welcome sign.png");
+            public static readonly string alumni_png = Url("alumni.png");
+            public static readonly string coaster_leather_png = Url("coaster leather.png");
+            public static readonly string coffee_cup_white_16_png = Url("coffee cup white 16.png");
+            public static readonly string coffee_mug_black_png = Url("coffee mug black.png");
+            public static readonly string coffee_mug_White_png = Url("coffee mug White.png");
+            public static readonly string collegiateproducts_png = Url("collegiateproducts.png");
+            public static readonly string cuttingboard_png = Url("cuttingboard.png");
+            public static readonly string family_plaque_png = Url("family plaque.png");
+            public static readonly string Glass_Beer_Mug_Georgia_png = Url("Glass Beer Mug Georgia.png");
+            public static readonly string Glass_Coffee_Cup_Georgia_png = Url("Glass Coffee Cup Georgia.png");
+            public static readonly string glass_coffee_cup_png = Url("glass coffee cup.png");
+            public static readonly string glass_cutting_board_georgia_shape_png = Url("glass cutting board georgia shape.png");
+            public static readonly string glass_mug_handle_png = Url("glass mug handle.png");
+            public static readonly string Glass_Rocks_Georgia_png = Url("Glass Rocks Georgia.png");
+            public static readonly string granite_cheese_board_georgia_shape_png = Url("granite cheese board georgia shape.png");
+            public static readonly string gtech_png = Url("gtech.png");
             public static readonly string logo_605x182_jpg = Url("logo-605x182.jpg");
             public static readonly string logo_93x28_jpg = Url("logo-93x28.jpg");
+            public static readonly string official_licensed_logo_jpg = Url("official_licensed_logo.jpg");
+            public static readonly string ornamentsplash_png = Url("ornamentsplash.png");
+            public static readonly string rocks_square_png = Url("rocks square.png");
+            public static readonly string shot_glass_15_png = Url("shot glass 15.png");
+            public static readonly string smallglass_png = Url("smallglass.png");
+            public static readonly string Stemless_wine_glass_Georgia_png = Url("Stemless wine glass Georgia.png");
+            public static readonly string ugalogo_jpg = Url("ugalogo.jpg");
+            public static readonly string ugalogo_png = Url("ugalogo.png");
+            public static readonly string wineglass_stemless_png = Url("wineglass stemless.png");
+            public static readonly string wineglasskit_png = Url("wineglasskit.png");
         }
     
         public static readonly string PagedList_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/PagedList.min.css") ? Url("PagedList.min.css") : Url("PagedList.css");
              
         public static readonly string site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/site.min.css") ? Url("site.min.css") : Url("site.css");
+             
+        public static readonly string store_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/store.min.css") ? Url("store.min.css") : Url("store.css");
              
     }
 
@@ -288,6 +327,7 @@ namespace Links
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
                 public const string PagedList_css = "~/Content/PagedList.css";
                 public const string site_css = "~/Content/site.css";
+                public const string store_css = "~/Content/store.css";
             }
         }
     }

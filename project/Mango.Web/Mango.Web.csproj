@@ -233,6 +233,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
@@ -266,6 +267,12 @@
     <Compile Include="SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Store.HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Store.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -287,8 +294,37 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\02-granite platter state ga.png" />
+    <Content Include="Content\images\04-granite welcome sign.png" />
+    <Content Include="Content\images\alumni.png" />
+    <Content Include="Content\images\coaster leather.png" />
+    <Content Include="Content\images\coffee cup white 16.png" />
+    <Content Include="Content\images\coffee mug black.png" />
+    <Content Include="Content\images\coffee mug White.png" />
+    <Content Include="Content\images\collegiateproducts.png" />
+    <Content Include="Content\images\cuttingboard.png" />
+    <Content Include="Content\images\family plaque.png" />
+    <Content Include="Content\images\Glass Beer Mug Georgia.png" />
+    <Content Include="Content\images\Glass Coffee Cup Georgia.png" />
+    <Content Include="Content\images\glass coffee cup.png" />
+    <Content Include="Content\images\glass cutting board georgia shape.png" />
+    <Content Include="Content\images\glass mug handle.png" />
+    <Content Include="Content\images\Glass Rocks Georgia.png" />
+    <Content Include="Content\images\granite cheese board georgia shape.png" />
+    <Content Include="Content\images\gtech.png" />
     <Content Include="Content\images\logo-605x182.jpg" />
     <Content Include="Content\images\logo-93x28.jpg" />
+    <Content Include="Content\images\official_licensed_logo.jpg" />
+    <Content Include="Content\images\ornamentsplash.png" />
+    <Content Include="Content\images\rocks square.png" />
+    <Content Include="Content\images\shot glass 15.png" />
+    <Content Include="Content\images\smallglass.png" />
+    <Content Include="Content\images\Stemless wine glass Georgia.png" />
+    <Content Include="Content\images\ugalogo.jpg" />
+    <Content Include="Content\images\ugalogo.png" />
+    <Content Include="Content\images\wineglass stemless.png" />
+    <Content Include="Content\images\wineglasskit.png" />
+    <Content Include="Content\store.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -379,6 +415,9 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\Store\Views\web.config" />
+    <Content Include="Areas\Store\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Store\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Store\Views\Home\Index.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -453,9 +492,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Store\Controllers\" />
     <Folder Include="Areas\Store\Models\" />
-    <Folder Include="Areas\Store\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

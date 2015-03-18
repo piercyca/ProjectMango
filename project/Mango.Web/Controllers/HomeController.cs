@@ -10,7 +10,7 @@ namespace Mango.Web.Controllers
     {
         public virtual ActionResult Index()
         {
-            return View();
+            return RedirectToAction(MVC.Store.Home.Index());
         }
 
         public virtual ActionResult About()
