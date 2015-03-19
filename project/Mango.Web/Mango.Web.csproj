@@ -418,7 +418,8 @@
     <Content Include="Areas\Store\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Store\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Store\Views\Home\Index.cshtml" />
-    <None Include="Properties\PublishProfiles\mango-web.pubxml" />
+    <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\mango-web - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
