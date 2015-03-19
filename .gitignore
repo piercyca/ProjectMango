@@ -187,3 +187,15 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+#====================================
+# Jetbrains
+#====================================
+*.iml
+## Directory-based project format:
+**/.idea/
+## File-based project format:
+*.ipr
+*.iws
+# mpeltonen/sbt-idea plugin
+**/.idea_modules/
