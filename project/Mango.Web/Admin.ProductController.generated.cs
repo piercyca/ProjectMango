@@ -91,15 +91,6 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
 
-        static readonly ActionParamsClass_List s_params_List = new ActionParamsClass_List();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_List ListParams { get { return s_params_List; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_List
-        {
-            public readonly string sortBy = "sortBy";
-            public readonly string page = "page";
-        }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
@@ -151,15 +142,13 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sortBy, int page);
+        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult List(string sortBy, int page)
+        public override System.Web.Mvc.ActionResult List()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sortBy", sortBy);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "page", page);
-            ListOverride(callInfo, sortBy, page);
+            ListOverride(callInfo);
             return callInfo;
         }
 

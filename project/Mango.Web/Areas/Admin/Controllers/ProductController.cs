@@ -35,9 +35,9 @@ namespace Mango.Web.Areas.Admin.Controllers
         /// <param name="page"></param>
         /// <returns></returns>
         [HttpGet]
-        public virtual ActionResult List(string sortBy = "Date", int page = 0)
+        public virtual ActionResult List() //TODO (later) paginate .... string sortBy = "Date", int page = 0
         {
-            var products = _productService.GetProductsByPage(page, 20, sortBy);
+            var products = _productService.GetProducts();
             var productViewModel = new ProductListViewModel
             {
                 ProductList = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductListItemViewModel>>(products)

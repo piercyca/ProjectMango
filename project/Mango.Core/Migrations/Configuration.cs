@@ -20,7 +20,9 @@ namespace Mango.Core.Migrations
         /// <param name="context"></param>
         protected override void Seed(MangoContext context)
         {
-            context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory { ProductCategoryId = 1, Code = "P", Name = "Product", Description = "Product" });
+            context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory { ProductCategoryId = 1, UrlSlug = "drinkware", Name = "Drinkware", Description = "Drinkware description", Keywords = "cup,mug,drink" });
+            context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory { ProductCategoryId = 2, UrlSlug = "granite", Name = "Granite", Description = "Granite description", Keywords = "granite,sign" });
+            context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory { ProductCategoryId = 3, UrlSlug = "cutting-board", Name = "Cutting Board", Description = "Cutting board description", Keywords = "cutting board,kitchen" });
             context.Products.AddOrUpdate(p => 
                 p.ProductId,
                 new Entity.Product { Code = "P1", Name = "Granite platter rectangle w/handles", Price = 22.50m, ProductCategoryId = 1, ProductId = 1 },

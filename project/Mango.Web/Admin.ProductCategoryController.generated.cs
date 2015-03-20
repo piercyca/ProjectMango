@@ -77,7 +77,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
+            public readonly string List = "List";
             public readonly string Edit = "Edit";
             public readonly string Create = "Create";
         }
@@ -85,7 +85,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Index = "Index";
+            public const string List = "List";
             public const string Edit = "Edit";
             public const string Create = "Create";
         }
@@ -120,11 +120,18 @@ namespace Mango.Web.Areas.Admin.Controllers
             {
                 public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
-                public readonly string Index = "Index";
+                public readonly string List = "List";
             }
             public readonly string Create = "~/Areas/Admin/Views/ProductCategory/Create.cshtml";
             public readonly string Edit = "~/Areas/Admin/Views/ProductCategory/Edit.cshtml";
-            public readonly string Index = "~/Areas/Admin/Views/ProductCategory/Index.cshtml";
+            public readonly string List = "~/Areas/Admin/Views/ProductCategory/List.cshtml";
+            static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
+            public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _EditorTemplatesClass
+            {
+                public readonly string ProductCategoryFormViewModel = "ProductCategoryFormViewModel";
+            }
         }
     }
 
@@ -134,13 +141,13 @@ namespace Mango.Web.Areas.Admin.Controllers
         public T4MVC_ProductCategoryController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Index()
+        public override System.Web.Mvc.ActionResult List()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
+            ListOverride(callInfo);
             return callInfo;
         }
 
@@ -157,10 +164,10 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.ViewModels.ProductCategoryViewModel vm);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.ViewModels.ProductCategoryFormViewModel vm);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Mango.Web.ViewModels.ProductCategoryViewModel vm)
+        public override System.Web.Mvc.ActionResult Edit(Mango.Web.ViewModels.ProductCategoryFormViewModel vm)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
@@ -180,10 +187,10 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.ViewModels.ProductCategoryViewModel vm);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.ViewModels.ProductCategoryFormViewModel vm);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(Mango.Web.ViewModels.ProductCategoryViewModel vm)
+        public override System.Web.Mvc.ActionResult Create(Mango.Web.ViewModels.ProductCategoryFormViewModel vm)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);

@@ -7,7 +7,9 @@ using Mango.Core.Entity;
 
 namespace Mango.Web.ViewModels
 {
+    /// <summary>
     /// View model for <see cref="Product" />
+    /// </summary>
     public class ProductListViewModel
     {
         public IEnumerable<ProductListItemViewModel> ProductList { get; set; } 
