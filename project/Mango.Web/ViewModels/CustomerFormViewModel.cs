@@ -27,6 +27,7 @@ namespace Mango.Web.ViewModels
         [Required]
         [EmailAddress]
         [StringLength(200)]
+		[RegularExpression(@"(^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$)", ErrorMessage = "Incorrect email format.")]
         public string Email { get; set; }
 
 		[Required]

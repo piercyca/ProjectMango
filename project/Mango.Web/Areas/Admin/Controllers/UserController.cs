@@ -43,10 +43,6 @@ namespace Mango.Web.Areas.Admin.Controllers
         [HttpPost]
         public virtual ActionResult Edit(UserViewModel vm)
         {
-            if (vm == null)
-                throw new Exception("User info not found.");
-            foreach (var e in vm.Validate())
-                throw new Exception(e.ErrorMessage);
             var db = new ApplicationDbContext();
             var user = db.Users.Find(vm.Id);
             if (TryUpdateModel(user))
@@ -64,7 +60,7 @@ namespace Mango.Web.Areas.Admin.Controllers
                 user.AccessFailedCount = vm.AccessFailedCount;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return View(vm);
         }
     }
 }

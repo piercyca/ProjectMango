@@ -42,7 +42,7 @@ namespace Mango.Web.Areas.Admin.Controllers
 				_customerService.EditCustomer(customer);
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return View(vm);
         }
 
 		[HttpGet]
