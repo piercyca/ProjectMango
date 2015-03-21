@@ -13,56 +13,61 @@
 
 <div class="row">
     <div class="col-md-12">
+        <a href="@Url.Action(MVC.Admin.ProductCategory.Create())" class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-plus"></span> Create
+        </a>
+    </div>
+    <div class="col-md-12">
         @if (!Model.ProductCategoryList.Any())
         {
             <div class="alert-danger">
-                No Products Found
+                No Product Categories Found
             </div>
         }
         else
         {
             <table class="table">
                 <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Name</th>
-                        <th>Url Slug</th>
-                        <th>Description</th>
-                        <th>Keywords</th>
-                    </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Name</th>
+                    <th>Url Slug</th>
+                    <th>Description</th>
+                    <th>Keywords</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.ProductCategoryList)
-                    {
-                        <tr>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-primary">Actions</button>
-                                    <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a class="toggle-pleasewait" href="@Url.Action(MVC.Admin.ProductCategory.Edit(item.ProductCategoryId))">
-                                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
-                                            </a>
-                                        </li>
-                                        @*<li class="divider"></li>
+                @foreach (var item in Model.ProductCategoryList)
+                {
+                    <tr>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-xs btn-primary">Actions</button>
+                                <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a class="toggle-pleasewait" href="@Url.Action(MVC.Admin.ProductCategory.Edit(item.ProductCategoryId))">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+                                        </a>
+                                    </li>
+                                    @*<li class="divider"></li>
                                             <li>
                                                 <a aria-label="covers" href="@Url.Action(MVC.Issue.EditCovers(Model.IssueId))">
                                                     <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Covers
                                                 </a>
                                             </li>*@
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>@item.Name</td>
-                            <td>@item.UrlSlug</td>
-                            <td>@item.Description</td>
-                            <td>@item.Keywords</td>
-                        </tr>
-                    }
+                                </ul>
+                            </div>
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.UrlSlug</td>
+                        <td>@item.Description</td>
+                        <td>@item.Keywords</td>
+                    </tr>
+                }
                 </tbody>
             </table>
         }
