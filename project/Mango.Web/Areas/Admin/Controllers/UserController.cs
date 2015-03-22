@@ -59,6 +59,7 @@ namespace Mango.Web.Areas.Admin.Controllers
                 user.LockoutEnabled = vm.LockoutEnabled;
                 user.AccessFailedCount = vm.AccessFailedCount;
                 db.SaveChanges();
+				return RedirectToAction(MVC.Admin.User.Index());
             }
             return View(vm);
         }

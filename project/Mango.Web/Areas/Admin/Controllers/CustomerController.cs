@@ -40,7 +40,7 @@ namespace Mango.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 				_customerService.EditCustomer(customer);
-                return RedirectToAction("Index");
+				return RedirectToAction(MVC.Admin.Customer.Index());
             }
             return View(vm);
         }
@@ -59,9 +59,9 @@ namespace Mango.Web.Areas.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				_customerService.CreateCustomer(customer);
-				return RedirectToAction("Index");
+				return RedirectToAction(MVC.Admin.Customer.Index());
 			}
-			return RedirectToAction("Index");
+			return View(vm);
 		}
     }
 }
