@@ -27,7 +27,7 @@ namespace Mango.Web.Models
         [Required(ErrorMessage = "Phone is required.")]
         [Display(Name = "Phone")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone number must be 10 digits long.")]
-        [RegularExpression(@"(\d{10})", ErrorMessage = "Phone number must be numeric values.")]
+        [RegularExpression(@"(\d{10})", ErrorMessage = "Phone number must be 10 digits numeric values.")]
         public string PhoneNumber { get; set; }
 
         [Required]
