@@ -4,40 +4,90 @@
     ViewBag.Title = "Edit User";
 }
 
+<ol class="breadcrumb">
+	<li>@Html.ActionLink("Home", MVC.Home.Index())</li>
+	<li>@Html.ActionLink("Users", MVC.Admin.User.Index())</li>
+	<li class="active">@Html.ActionLink("Edit", MVC.Admin.User.Edit())</li>
+</ol>
+
 <h2>@ViewBag.Title</h2>
 
-@if (User.Identity.IsAuthenticated)
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new {@class = "form-horizontal", @role = "form"}))
 {
-    using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal", @role = "form"}))
-    {
-    @Html.HiddenFor(m => m.Id)
-    @Html.HiddenFor(m => m.PasswordHash)
-    @Html.HiddenFor(m => m.SecurityStamp)
-    @Html.HiddenFor(m => m.LockoutEndDateUtc)
-    @Html.HiddenFor(m => m.AccessFailedCount)
-    <table class="table table-striped" style="width: auto">
-        <tr>
-            <th>@Html.LabelFor(m => m.Username)</th>
-            <th>@Html.LabelFor(m => m.Email)</th>
-            <th>@Html.LabelFor(m => m.EmailConfirmed)</th>
-            <th>@Html.LabelFor(m => m.PhoneNumber)</th>
-            <th>@Html.LabelFor(m => m.PhoneNumberConfirmed)</th>
-            <th>@Html.LabelFor(m => m.TwoFactorEnabled)</th>
-            <th>@Html.LabelFor(m => m.LockoutEnabled)</th>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(model => model.Username)</td>
-            <td>@Html.TextBoxFor(model => model.Email)</td>
-            <td class="text-center">@Html.EditorFor(x => x.EmailConfirmed)</td>
-            <td>@Html.TextBoxFor(model => model.PhoneNumber)</td>
-            <td class="text-center">@Html.EditorFor(x => x.PhoneNumberConfirmed)</td>
-            <td class="text-center">@Html.EditorFor(x => x.TwoFactorEnabled)</td>
-            <td class="text-center">@Html.EditorFor(x => x.LockoutEnabled)</td>
-            <td><button type="submit" class="btn btn-primary btn-sm">Save</button></td>
-    </table>
-    }
+	@Html.AntiForgeryToken()
+		
+	@Html.HiddenFor(m => m.Id)
+	@Html.HiddenFor(m => m.PasswordHash)
+	@Html.HiddenFor(m => m.SecurityStamp)
+	@Html.HiddenFor(m => m.LockoutEndDateUtc)
+	@Html.HiddenFor(m => m.AccessFailedCount)
+
+	<div class="form-horizontal">
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.Username, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.EmailConfirmed, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.EmailConfirmed, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.EmailConfirmed, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.PhoneNumberConfirmed, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.PhoneNumberConfirmed, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.PhoneNumberConfirmed, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.TwoFactorEnabled, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.TwoFactorEnabled, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.TwoFactorEnabled, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.LockoutEnabled, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.LockoutEnabled, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.LockoutEnabled, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-default btn-primary">
+					<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Save
+				</button>
+			</div>
+		</div>
+	</div>
 }
-else
-{
-    <p calss="alert">Not logged in</p>
-}
+
