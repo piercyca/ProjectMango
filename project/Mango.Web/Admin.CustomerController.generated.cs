@@ -125,6 +125,13 @@ namespace Mango.Web.Areas.Admin.Controllers
             public readonly string Create = "~/Areas/Admin/Views/Customer/Create.cshtml";
             public readonly string Edit = "~/Areas/Admin/Views/Customer/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Customer/Index.cshtml";
+            static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
+            public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _EditorTemplatesClass
+            {
+                public readonly string CustomerFormViewModel = "CustomerFormViewModel";
+            }
         }
     }
 

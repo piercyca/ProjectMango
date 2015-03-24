@@ -232,6 +232,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
@@ -303,6 +304,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\02-granite platter state ga.png" />
     <Content Include="Content\images\04-granite welcome sign.png" />
+    <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\alumni.png" />
     <Content Include="Content\images\coaster leather.png" />
     <Content Include="Content\images\coffee cup white 16.png" />
@@ -427,6 +429,7 @@
     <Content Include="Areas\Store\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\EditorTemplates\ProductCategoryFormViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\EditorTemplates\CustomerFormViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\FileUpload.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -507,6 +510,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Store\Models\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -520,6 +524,10 @@
     <ProjectReference Include="..\Mango.Core\Mango.Core.csproj">
       <Project>{6f8e9878-0641-4fd2-9e78-480b5ac287cc}</Project>
       <Name>Mango.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mango.Storage\Mango.Storage.csproj">
+      <Project>{ecc22639-96b9-44b3-ad95-f4579d0e3ed5}</Project>
+      <Name>Mango.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

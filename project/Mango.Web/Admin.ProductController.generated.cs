@@ -80,6 +80,7 @@ namespace Mango.Web.Areas.Admin.Controllers
             public readonly string Index = "Index";
             public readonly string List = "List";
             public readonly string Edit = "Edit";
+            public readonly string FileUpload = "FileUpload";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,6 +89,7 @@ namespace Mango.Web.Areas.Admin.Controllers
             public const string Index = "Index";
             public const string List = "List";
             public const string Edit = "Edit";
+            public const string FileUpload = "FileUpload";
         }
 
 
@@ -111,9 +113,11 @@ namespace Mango.Web.Areas.Admin.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Edit = "Edit";
+                public readonly string FileUpload = "FileUpload";
                 public readonly string List = "List";
             }
             public readonly string Edit = "~/Areas/Admin/Views/Product/Edit.cshtml";
+            public readonly string FileUpload = "~/Areas/Admin/Views/Product/FileUpload.cshtml";
             public readonly string List = "~/Areas/Admin/Views/Product/List.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
@@ -173,6 +177,17 @@ namespace Mango.Web.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
             EditOverride(callInfo, viewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FileUploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult FileUpload()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FileUpload);
+            FileUploadOverride(callInfo);
             return callInfo;
         }
 

@@ -229,6 +229,7 @@ namespace Links
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string _02_granite_platter_state_ga_png = Url("02-granite platter state ga.png");
             public static readonly string _04_granite_welcome_sign_png = Url("04-granite welcome sign.png");
+            public static readonly string ajax_loader_gif = Url("ajax-loader.gif");
             public static readonly string alumni_png = Url("alumni.png");
             public static readonly string coaster_leather_png = Url("coaster leather.png");
             public static readonly string coffee_cup_white_16_png = Url("coffee cup white 16.png");

@@ -66,6 +66,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns></returns>
+        [HttpPost]
         public virtual ActionResult Edit(ProductFormViewModel viewModel)
         {
             var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
@@ -77,6 +78,16 @@ namespace Mango.Web.Areas.Admin.Controllers
             var productCategories = _productCategoryService.GetProductCategories();
             viewModel.ProductCategories = productCategories.ToSelectListItems(product.ProductCategoryId);
             return View(viewModel);
+        }
+
+        /// <summary>
+        /// GET: /product/fileupload
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public virtual ActionResult FileUpload()
+        {
+            return View();
         }
     }
 }
