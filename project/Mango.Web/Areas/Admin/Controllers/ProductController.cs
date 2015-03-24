@@ -22,10 +22,13 @@ namespace Mango.Web.Areas.Admin.Controllers
             _productCategoryService = productCategoryService;
         }
 
-        // GET: Product
+        /// <summary>
+        /// GET: /product/
+        /// </summary>
+        /// <returns></returns>
         public virtual ActionResult Index()
         {
-            return View();
+            return RedirectToActionPermanent(MVC.Admin.Product.List());
         }
 
         /// <summary>
@@ -84,6 +87,17 @@ namespace Mango.Web.Areas.Admin.Controllers
         /// <returns></returns>
         [HttpGet]
         public virtual ActionResult FileUpload()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// GET: /product/layout
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public virtual ActionResult Layout(int id)
         {
             return View();
         }

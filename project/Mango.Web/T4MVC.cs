@@ -107,6 +107,16 @@ namespace Links
         public static readonly string jquery_validate_unobtrusive_min_js = Url("jquery.validate.unobtrusive.min.js");
         public static readonly string modernizr_2_8_3_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/modernizr-2.8.3.min.js") ? Url("modernizr-2.8.3.min.js") : Url("modernizr-2.8.3.js");
         public static readonly string npm_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/npm.min.js") ? Url("npm.min.js") : Url("npm.js");
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public static class product_canvas {
+            private const string URLPATH = "~/Scripts/product-canvas";
+            public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+            public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string canvas_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/canvas.min.js") ? Url("canvas.min.js") : Url("canvas.js");
+            public static readonly string fabric_min_js = Url("fabric.min.js");
+            public static readonly string wordwrap_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/wordwrap.min.js") ? Url("wordwrap.min.js") : Url("wordwrap.js");
+        }
+    
         public static readonly string respond_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.min.js") ? Url("respond.min.js") : Url("respond.js");
         public static readonly string respond_matchmedia_addListener_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/respond.matchmedia.addListener.min.js") ? Url("respond.matchmedia.addListener.min.js") : Url("respond.matchmedia.addListener.js");
         public static readonly string respond_matchmedia_addListener_min_js = Url("respond.matchmedia.addListener.min.js");
@@ -274,6 +284,15 @@ namespace Links
     {
         public static partial class Scripts 
         {
+            public static partial class product_canvas 
+            {
+                public static class Assets
+                {
+                    public const string canvas_js = "~/Scripts/product-canvas/canvas.js"; 
+                    public const string fabric_min_js = "~/Scripts/product-canvas/fabric.min.js"; 
+                    public const string wordwrap_js = "~/Scripts/product-canvas/wordwrap.js"; 
+                }
+            }
             public static class Assets
             {
                 public const string _references_js = "~/Scripts/_references.js"; 

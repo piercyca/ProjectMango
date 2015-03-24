@@ -234,6 +234,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Models\ProductLayoutFormViewModel.cs" />
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -430,7 +431,7 @@
     <Content Include="Areas\Admin\Views\ProductCategory\EditorTemplates\ProductCategoryFormViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\EditorTemplates\CustomerFormViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Product\FileUpload.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\EditLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Layout.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -440,6 +441,8 @@
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\product-canvas\canvas.js" />
+    <Content Include="Scripts\product-canvas\fabric.min.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
@@ -450,6 +453,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\product-canvas\wordwrap.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -509,7 +513,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Store\Models\" />
     <Folder Include="Uploads\" />
   </ItemGroup>

@@ -54,23 +54,5 @@ namespace Mango.Web.ViewModels
         [DisplayName("Price")]
         [Required]
         public decimal Price { get; set; }
-
-        /// <summary>
-        /// Configuration
-        /// </summary>
-        [HiddenInput(DisplayValue = false)]
-        public string Configuration { get; set; }
-
-        /// <summary>
-        /// Canvas Image
-        /// </summary>
-        [HiddenInput(DisplayValue = false)]
-        public string CanvasImage { get; set;  }
-
-        /// <summary>
-        /// File to upload
-        /// </summary>
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase CanvasImageFileUpload { get; set; }
     }
 }
