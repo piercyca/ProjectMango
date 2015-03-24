@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Mango.Web.ViewModels;
 using Mango.Core.Entity;
+using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Mappings
 {
@@ -19,7 +19,7 @@ namespace Mango.Web.Mappings
         {
             Mapper.CreateMap<AddressFormViewModel, Address>();
             Mapper.CreateMap<ProductFormViewModel, Product>();
-            Mapper.CreateMap<ProductCategoryViewModel, ProductCategory>();
+            Mapper.CreateMap<ProductCategoryFormViewModel, ProductCategory>();
 
 			Mapper.CreateMap<CustomerFormViewModel, Customer>();
 

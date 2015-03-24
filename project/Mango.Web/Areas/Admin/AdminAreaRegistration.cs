@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 
 namespace Mango.Web.Areas.Admin
 {
@@ -8,7 +9,7 @@ namespace Mango.Web.Areas.Admin
         {
             get 
             {
-                return "Admin";
+                return "admin";
             }
         }
 
@@ -16,16 +17,24 @@ namespace Mango.Web.Areas.Admin
         {
             context.Routes.LowercaseUrls = true;
 
+            // Web API configuration and services
+            context.Routes.MapHttpRoute(
+                name: "admin_DefaultApi",
+                routeTemplate: "admin/api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
+            // Routes
             context.MapRoute(
-                "Admin_default",
-                "Admin/{controller}/{action}/{id}",
+                "admin_default",
+                "admin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
                 new[] { "Mango.Web.Areas.Admin.Controllers" }
             );
 
             context.MapRoute(
-                name: "Admin_wildcard",
-                url: "Admin/",
+                name: "admin_wildcard",
+                url: "admin/",
                 defaults: new { controller = "Home", action = "Index" },
                 namespaces: new[] { "Mango.Web.Areas.Admin.Controllers" }
             );

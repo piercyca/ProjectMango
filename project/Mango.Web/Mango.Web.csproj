@@ -232,7 +232,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Models\ProductLayoutFormViewModel.cs" />
+    <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
@@ -263,7 +266,18 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interfaces\IViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Store.HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Store.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC.cs">
@@ -273,9 +287,11 @@
     </Compile>
     <Compile Include="ViewModels\AddressFormViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
-    <Compile Include="ViewModels\ProductCategoryViewModel.cs" />
+    <Compile Include="ViewModels\ProductCategoryFormViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="ViewModels\ProductCategoryListItemViewModel.cs" />
     <Compile Include="ViewModels\ProductListItemViewModel.cs" />
+    <Compile Include="ViewModels\ProductCategoryListViewModel.cs" />
     <Compile Include="ViewModels\ProductListViewModel.cs" />
     <Compile Include="ViewModels\ProductFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -287,8 +303,38 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\02-granite platter state ga.png" />
+    <Content Include="Content\images\04-granite welcome sign.png" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\alumni.png" />
+    <Content Include="Content\images\coaster leather.png" />
+    <Content Include="Content\images\coffee cup white 16.png" />
+    <Content Include="Content\images\coffee mug black.png" />
+    <Content Include="Content\images\coffee mug White.png" />
+    <Content Include="Content\images\collegiateproducts.png" />
+    <Content Include="Content\images\cuttingboard.png" />
+    <Content Include="Content\images\family plaque.png" />
+    <Content Include="Content\images\Glass Beer Mug Georgia.png" />
+    <Content Include="Content\images\Glass Coffee Cup Georgia.png" />
+    <Content Include="Content\images\glass coffee cup.png" />
+    <Content Include="Content\images\glass cutting board georgia shape.png" />
+    <Content Include="Content\images\glass mug handle.png" />
+    <Content Include="Content\images\Glass Rocks Georgia.png" />
+    <Content Include="Content\images\granite cheese board georgia shape.png" />
+    <Content Include="Content\images\gtech.png" />
     <Content Include="Content\images\logo-605x182.jpg" />
     <Content Include="Content\images\logo-93x28.jpg" />
+    <Content Include="Content\images\official_licensed_logo.jpg" />
+    <Content Include="Content\images\ornamentsplash.png" />
+    <Content Include="Content\images\rocks square.png" />
+    <Content Include="Content\images\shot glass 15.png" />
+    <Content Include="Content\images\smallglass.png" />
+    <Content Include="Content\images\Stemless wine glass Georgia.png" />
+    <Content Include="Content\images\ugalogo.jpg" />
+    <Content Include="Content\images\ugalogo.png" />
+    <Content Include="Content\images\wineglass stemless.png" />
+    <Content Include="Content\images\wineglasskit.png" />
+    <Content Include="Content\store.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -379,10 +425,24 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\Store\Views\web.config" />
-    <None Include="Properties\PublishProfiles\mango-web.pubxml" />
+    <Content Include="Areas\Store\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Store\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Store\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\EditorTemplates\ProductCategoryFormViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\EditorTemplates\CustomerFormViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\FileUpload.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Layout.cshtml" />
+    <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\mango-web - Web Deploy.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\product-canvas\canvas.js" />
+    <Content Include="Scripts\product-canvas\fabric.min.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
@@ -393,6 +453,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\product-canvas\wordwrap.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -444,7 +505,7 @@
       <LastGenOutput>T4MVC.cs</LastGenOutput>
     </None>
     <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\List.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
@@ -452,10 +513,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Store\Controllers\" />
     <Folder Include="Areas\Store\Models\" />
-    <Folder Include="Areas\Store\Views\Shared\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -469,6 +528,10 @@
     <ProjectReference Include="..\Mango.Core\Mango.Core.csproj">
       <Project>{6f8e9878-0641-4fd2-9e78-480b5ac287cc}</Project>
       <Name>Mango.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mango.Storage\Mango.Storage.csproj">
+      <Project>{ecc22639-96b9-44b3-ad95-f4579d0e3ed5}</Project>
+      <Name>Mango.Storage</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using AutoMapper;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Core.Web.Extensions;
-using Mango.Web.ViewModels;
+using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Areas.Admin.Controllers
 {
@@ -22,22 +22,23 @@ namespace Mango.Web.Areas.Admin.Controllers
             _productCategoryService = productCategoryService;
         }
 
-        // GET: Product
+        /// <summary>
+        /// GET: /product/
+        /// </summary>
+        /// <returns></returns>
         public virtual ActionResult Index()
         {
-            return View();
+            return RedirectToActionPermanent(MVC.Admin.Product.List());
         }
 
         /// <summary>
         /// GET: /products/list
         /// </summary>
-        /// <param name="sortBy"></param>
-        /// <param name="page"></param>
         /// <returns></returns>
         [HttpGet]
-        public virtual ActionResult List(string sortBy = "Date", int page = 0)
+        public virtual ActionResult List() //TODO (later) paginate .... string sortBy = "Date", int page = 0
         {
-            var products = _productService.GetProductsByPage(page, 20, sortBy);
+            var products = _productService.GetProducts();
             var productViewModel = new ProductListViewModel
             {
                 ProductList = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductListItemViewModel>>(products)
@@ -66,6 +67,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns></returns>
+        [HttpPost]
         public virtual ActionResult Edit(ProductFormViewModel viewModel)
         {
             var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
@@ -77,6 +79,27 @@ namespace Mango.Web.Areas.Admin.Controllers
             var productCategories = _productCategoryService.GetProductCategories();
             viewModel.ProductCategories = productCategories.ToSelectListItems(product.ProductCategoryId);
             return View(viewModel);
+        }
+
+        /// <summary>
+        /// GET: /product/fileupload
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public virtual ActionResult FileUpload()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// GET: /product/layout
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public virtual ActionResult Layout(int id)
+        {
+            return View();
         }
     }
 }

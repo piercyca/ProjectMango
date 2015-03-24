@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Mango.Storage.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ImageBlobConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DefaultEndpointsProtocol=https;AccountName=mangoassets;AccountKey=VoyVSRbfxISONW6I0yq+p7ptlU5EZkh/VNKIcJ5nPnxjCRCX6iEju+Agi53JyXQ2mWp1sMKHaRCHiBs7XPv+0g==</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

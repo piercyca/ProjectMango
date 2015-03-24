@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Mango.Web.ViewModels;
 using Mango.Core.Entity;
+using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Mappings
 {
@@ -22,7 +22,8 @@ namespace Mango.Web.Mappings
 
             Mapper.CreateMap<Product, ProductFormViewModel>();
             Mapper.CreateMap<Product, ProductListItemViewModel>();
-            Mapper.CreateMap<ProductCategory, ProductCategoryViewModel>();
+            Mapper.CreateMap<ProductCategory, ProductCategoryFormViewModel>();
+            Mapper.CreateMap<ProductCategory, ProductCategoryListItemViewModel>();
 
 			Mapper.CreateMap<Customer, CustomerFormViewModel>();
 

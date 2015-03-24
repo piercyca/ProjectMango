@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "FileUpload";
+}
+
+@section ScriptsHead
+{
+    <script>
+        var imageUpload = [
+            buttonUpload = "#btnUpload",
+            containerControls = "#uploadControls",
+            containerProgress = "#uploadProgress",
+            fileUpload = "#fileUpload",
+            containerResults = "#uploadResults",
+            hiddenResultTarget = "#"
+        ];
+    </script>
+}
+
+<h2>Async file upload</h2>
+
+
+<form action="/admin/api/fileupload" method="post" enctype="multipart/form-data">
+    <div id="uploadControls">
+        <div>
+            <span>Select file(s) to upload :</span>
+            <input id="fileUpload" type="file"/>
+        </div>
+        <div>
+            <input id="btnUpload" type="button" value="Upload"/>
+        </div>
+        <ul id="uploadResults"></ul>
+    </div>
+    <div id="uploadProgress" class="hidden">
+        <img src="/content/images/ajax-loader.gif" alt=""/>
+    </div>
+</form>
+
+
+
+@section scripts {
+    <script>
+        (function() {
+            function showUploadControls() {
+                $(imageUpload.containerControls).show();
+                $(imageUpload.containerProgress).hide();
+            }
+
+            function showUploadProgress() {
+                $(imageUpload.containerControls).hide();
+                $(imageUpload.containerProgress).show();
+            }
+
+            function onUpload(evt) {
+                var files = $(imageUpload.containerResults).get(0).files;
+                if (files.length > 0) {
+
+                    showUploadProgress();
+
+                    if (window.FormData !== undefined) {
+                        var data = new FormData();
+                        for (i = 0; i < files.length; i++) {
+                            data.append("file" + i, files[i]);
+                        }
+                        $.ajax({
+                            type: "POST",
+                            url: "/admin/api/fileupload",
+                            contentType: false,
+                            processData: false,
+                            data: data,
+                            success: function (results) {
+                                showUploadControls();
+                                $(imageUpload.containerResults).empty();
+                                for (i = 0; i < results.length; i++) {
+                                    $(imageUpload.containerResults).append($("<li/>").text(results[i]));
+                                }
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                showUploadControls();
+                                alert(xhr.responseText);
+                            }
+                        });
+                    } else {
+                        alert("Your browser doesn't support HTML5 multiple file uploads! Please use some decent browser.");
+                    }
+                }
+            }
+
+            $(document).ready(function () {
+                $(imageUpload.buttonUpload).click(onUpload);
+            });
+        }).call(this);
+    </script>
+}
+

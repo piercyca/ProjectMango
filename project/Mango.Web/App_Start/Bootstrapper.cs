@@ -13,7 +13,7 @@ using Mango.Core.Service;
 
 namespace Mango.Web
 {
-    public class Bootstrapper
+    public static class Bootstrapper
     {
         public static void Run()
         {
@@ -22,18 +22,18 @@ namespace Mango.Web
             AutoMapperConfiguration.Configure();
         }
 
-        public static void SetAutofacContainer()
+        private static void SetAutofacContainer()
         {
             var builder = new ContainerBuilder();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerHttpRequest();
-            builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>().InstancePerHttpRequest();
-            builder.RegisterAssemblyTypes(typeof(ProductRepository).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerHttpRequest();
-            builder.RegisterAssemblyTypes(typeof(ProductService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerHttpRequest();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
+            builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>().InstancePerRequest();
+            builder.RegisterAssemblyTypes(typeof(ProductRepository).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterAssemblyTypes(typeof(ProductService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
 
             builder.RegisterFilterProvider();
             IContainer container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));            
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }

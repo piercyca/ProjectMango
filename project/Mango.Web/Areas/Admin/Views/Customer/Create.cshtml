@@ -1,32 +1,15 @@
-@model Mango.Web.ViewModels.CustomerFormViewModel
+@model Mango.Web.Areas.Admin.Models.CustomerFormViewModel
 
 @{
     ViewBag.Title = "Add Customer";
 }
 
+<ol class="breadcrumb">
+	<li>@Html.ActionLink("Home", MVC.Home.Index())</li>
+	<li>@Html.ActionLink("Customers", MVC.Admin.Customer.Index())</li>
+	<li class="active">@Html.ActionLink("Create", MVC.Admin.Customer.Create())</li>
+</ol>
+
 <h2>@ViewBag.Title</h2>
 
-@if (User.Identity.IsAuthenticated)
-{
-    using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { @class = "form-horizontal", @role = "form"}))
-    {
-    <table class="table table-striped" style="width: auto">
-        <tr>
-            <th>@Html.LabelFor(m => m.FirstName)</th>
-            <th>@Html.LabelFor(m => m.LastName)</th>
-	        <th>@Html.LabelFor(m => m.Email)</th>
-			<th>@Html.LabelFor(m => m.UserId)</th>
-        </tr>
-        <tr>
-            <td>@Html.TextBoxFor(model => model.FirstName)</td>
-            <td>@Html.TextBoxFor(model => model.LastName)</td>
-			<td>@Html.TextBoxFor(model => model.Email)</td>
-			<td>@Html.TextBoxFor(model => model.UserId)</td>
-            <td><button type="submit" class="btn btn-primary btn-sm">Save</button></td>
-    </table>
-    }
-}
-else
-{
-    <p calss="alert">Not logged in</p>
-}
+@Html.EditorForModel()

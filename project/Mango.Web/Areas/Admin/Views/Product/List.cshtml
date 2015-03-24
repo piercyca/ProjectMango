@@ -1,4 +1,4 @@
-@model Mango.Web.ViewModels.ProductListViewModel
+@model Mango.Web.Areas.Admin.Models.ProductListViewModel
 @{
     ViewBag.Title = "Products";
 }
@@ -42,8 +42,13 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a class="toggle-pleasewait" href="@Url.Action("Edit", "Product", new {id = item.ProductId})">
+                                            <a class="toggle-pleasewait" href="@Url.Action(MVC.Admin.Product.Edit(item.ProductId))">
                                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="toggle-pleasewait" href="@Url.Action(MVC.Admin.Product.Layout(item.ProductId))">
+                                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Layout
                                             </a>
                                         </li>
                                         @*<li class="divider"></li>

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Web", "Mango.Web\Mang
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Web.Tests", "Mango.Web.Tests\Mango.Web.Tests.csproj", "{C50F78DE-D999-4D33-A263-3027B8654D4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Storage", "Mango.Storage\Mango.Storage.csproj", "{ECC22639-96B9-44B3-AD95-F4579D0E3ED5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C50F78DE-D999-4D33-A263-3027B8654D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C50F78DE-D999-4D33-A263-3027B8654D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C50F78DE-D999-4D33-A263-3027B8654D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC22639-96B9-44B3-AD95-F4579D0E3ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC22639-96B9-44B3-AD95-F4579D0E3ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC22639-96B9-44B3-AD95-F4579D0E3ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC22639-96B9-44B3-AD95-F4579D0E3ED5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

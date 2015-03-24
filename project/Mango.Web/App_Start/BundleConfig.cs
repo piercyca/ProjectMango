@@ -26,6 +26,10 @@ namespace Mango.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/store").Include(
+                "~/Content/bootstrap.css",
+                "~/content/store.css"));
         }
     }
 }

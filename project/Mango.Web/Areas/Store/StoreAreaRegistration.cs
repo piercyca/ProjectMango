@@ -14,6 +14,8 @@ namespace Mango.Web.Areas.Store
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            context.Routes.LowercaseUrls = true;
+
             context.MapRoute(
                 "Store_default",
                 "Store/{controller}/{action}/{id}",

@@ -2,7 +2,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Mango.Core.Entity;
 using Mango.Core.Service;
-using Mango.Web.ViewModels;
+using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Areas.Admin.Controllers
 {
@@ -40,9 +40,9 @@ namespace Mango.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 				_customerService.EditCustomer(customer);
-                return RedirectToAction("Index");
+				return RedirectToAction(MVC.Admin.Customer.Index());
             }
-            return RedirectToAction("Index");
+            return View(vm);
         }
 
 		[HttpGet]
@@ -59,9 +59,9 @@ namespace Mango.Web.Areas.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				_customerService.CreateCustomer(customer);
-				return RedirectToAction("Index");
+				return RedirectToAction(MVC.Admin.Customer.Index());
 			}
-			return RedirectToAction("Index");
+			return View(vm);
 		}
     }
 }

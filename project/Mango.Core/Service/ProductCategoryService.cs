@@ -13,11 +13,13 @@ namespace Mango.Core.Service
     {
         IEnumerable<ProductCategory> GetProductCategories();
         ProductCategory GetProductCategory(int id);
+        ProductCategory GetProductCategory(string urlSlug);
         void CreateProductCategory(ProductCategory productCategory);
         void EditProductCategory(ProductCategory productCategory);
         void DeleteProductCategory(int id);
         void SaveProductCategory();
         IEnumerable<ProductCategory> SearchProductCategory(string productCategoryName);
+        bool UrlSlugExists(string valueToCheck, int currentId);
     }
 
     /// <summary>
@@ -47,6 +49,11 @@ namespace Mango.Core.Service
         public ProductCategory GetProductCategory(int id)
         {
             return _productCategoryRepository.GetById(id);
+        }
+
+        public ProductCategory GetProductCategory(string urlSlug)
+        {
+            return _productCategoryRepository.Get(pc => pc.UrlSlug == urlSlug);
         }
 
         /// <summary>
@@ -96,6 +103,19 @@ namespace Mango.Core.Service
         public IEnumerable<ProductCategory> SearchProductCategory(string productCategoryName)
         {
             return _productCategoryRepository.GetMany(p => p.Name.ToLower().Contains(productCategoryName.ToLower())).OrderBy(p => p.Name);
+        }
+
+        public bool UrlSlugExists(string valueToCheck, int currentId)
+        {
+            var pc = GetProductCategory(valueToCheck);
+            if (pc != null)
+            {
+                if (currentId != pc.ProductCategoryId)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

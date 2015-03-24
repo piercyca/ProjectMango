@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -19,6 +20,14 @@ namespace Mango.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Bootstrapper.Run();
+        }
+
+        protected void Application_BeginRequest(Object sender, EventArgs e)
+        {
+            if (!HttpContext.Current.Request.IsLocal && !HttpContext.Current.Request.IsSecureConnection)
+            {
+                Response.Redirect(string.Format("https://{0}{1}", Request.ServerVariables["HTTP_HOST"], HttpContext.Current.Request.RawUrl));
+            }
         }
     }
 }

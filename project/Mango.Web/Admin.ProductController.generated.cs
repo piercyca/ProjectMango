@@ -21,6 +21,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
+using Mango.Web.Areas.Admin.Models;
 using T4MVC;
 namespace Mango.Web.Areas.Admin.Controllers
 {
@@ -61,6 +62,12 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Layout()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Layout);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ProductController Actions { get { return MVC.Admin.Product; } }
@@ -80,6 +87,8 @@ namespace Mango.Web.Areas.Admin.Controllers
             public readonly string Index = "Index";
             public readonly string List = "List";
             public readonly string Edit = "Edit";
+            public readonly string FileUpload = "FileUpload";
+            public readonly string Layout = "Layout";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,18 +97,11 @@ namespace Mango.Web.Areas.Admin.Controllers
             public const string Index = "Index";
             public const string List = "List";
             public const string Edit = "Edit";
+            public const string FileUpload = "FileUpload";
+            public const string Layout = "Layout";
         }
 
 
-        static readonly ActionParamsClass_List s_params_List = new ActionParamsClass_List();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_List ListParams { get { return s_params_List; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_List
-        {
-            public readonly string sortBy = "sortBy";
-            public readonly string page = "page";
-        }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
@@ -108,6 +110,14 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             public readonly string id = "id";
             public readonly string viewModel = "viewModel";
+        }
+        static readonly ActionParamsClass_Layout s_params_Layout = new ActionParamsClass_Layout();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Layout LayoutParams { get { return s_params_Layout; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Layout
+        {
+            public readonly string id = "id";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -120,9 +130,13 @@ namespace Mango.Web.Areas.Admin.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Edit = "Edit";
+                public readonly string FileUpload = "FileUpload";
+                public readonly string Layout = "Layout";
                 public readonly string List = "List";
             }
             public readonly string Edit = "~/Areas/Admin/Views/Product/Edit.cshtml";
+            public readonly string FileUpload = "~/Areas/Admin/Views/Product/FileUpload.cshtml";
+            public readonly string Layout = "~/Areas/Admin/Views/Product/Layout.cshtml";
             public readonly string List = "~/Areas/Admin/Views/Product/List.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
@@ -151,15 +165,13 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string sortBy, int page);
+        partial void ListOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult List(string sortBy, int page)
+        public override System.Web.Mvc.ActionResult List()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "sortBy", sortBy);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "page", page);
-            ListOverride(callInfo, sortBy, page);
+            ListOverride(callInfo);
             return callInfo;
         }
 
@@ -176,14 +188,37 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.ViewModels.ProductFormViewModel viewModel);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, ProductFormViewModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Mango.Web.ViewModels.ProductFormViewModel viewModel)
+        public override System.Web.Mvc.ActionResult Edit(ProductFormViewModel viewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
             EditOverride(callInfo, viewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void FileUploadOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult FileUpload()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FileUpload);
+            FileUploadOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LayoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Layout(int id)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Layout);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
+            LayoutOverride(callInfo, id);
             return callInfo;
         }
 
