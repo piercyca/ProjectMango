@@ -22,6 +22,13 @@ namespace Mango.Core.Entity
 
         #endregion
 
+        #region Organizations 
+        // i.e. UGA
+
+        public virtual DbSet<Organization> Organizations { get; set; }
+
+        #endregion
+
         public virtual void Commit()
         {
             base.SaveChanges();

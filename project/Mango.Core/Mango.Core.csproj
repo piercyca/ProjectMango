@@ -92,6 +92,7 @@
     <Compile Include="Entity\Customer.cs" />
     <Compile Include="Entity\MangoContext.cs" />
     <Compile Include="Entity\Order.cs" />
+    <Compile Include="Entity\Organization.cs" />
     <Compile Include="Entity\ProductCategory.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\OrderLineItem.cs" />
@@ -167,6 +168,10 @@
     <Compile Include="Migrations\201503201520482_ProductCategoryKeywords.Designer.cs">
       <DependentUpon>201503201520482_ProductCategoryKeywords.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503242221007_OrganizationSetup.cs" />
+    <Compile Include="Migrations\201503242221007_OrganizationSetup.Designer.cs">
+      <DependentUpon>201503242221007_OrganizationSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -237,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503201520482_ProductCategoryKeywords.resx">
       <DependentUpon>201503201520482_ProductCategoryKeywords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503242221007_OrganizationSetup.resx">
+      <DependentUpon>201503242221007_OrganizationSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
