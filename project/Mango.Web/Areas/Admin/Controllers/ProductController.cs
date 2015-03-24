@@ -31,8 +31,6 @@ namespace Mango.Web.Areas.Admin.Controllers
         /// <summary>
         /// GET: /products/list
         /// </summary>
-        /// <param name="sortBy"></param>
-        /// <param name="page"></param>
         /// <returns></returns>
         [HttpGet]
         public virtual ActionResult List() //TODO (later) paginate .... string sortBy = "Date", int page = 0

@@ -430,6 +430,7 @@
     <Content Include="Areas\Admin\Views\ProductCategory\EditorTemplates\ProductCategoryFormViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\EditorTemplates\CustomerFormViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Product\FileUpload.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\EditLayout.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">

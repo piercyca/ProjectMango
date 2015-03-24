@@ -16,27 +16,26 @@ namespace Mango.Web.Areas.Admin.Controllers
         public Task<IEnumerable<string>> Post()
         {
             //throw new Exception("Custom error thrown for script error handling test!");
-
             if (Request.Content.IsMimeMultipartContent())
             {
                 //Simulate large file upload
                 System.Threading.Thread.Sleep(5000);
 
-
-                string fullPath = HttpContext.Current.Server.MapPath("~/Uploads");
-                CustomMultipartFormDataStreamProvider streamProvider = new CustomMultipartFormDataStreamProvider(fullPath);
+                CustomMultipartFormDataStreamProvider streamProvider = new CustomMultipartFormDataStreamProvider(Path.GetTempPath());
                 var task = Request.Content.ReadAsMultipartAsync(streamProvider).ContinueWith(t =>
                 {
                     if (t.IsFaulted || t.IsCanceled)
+                    {
                         throw new HttpResponseException(HttpStatusCode.InternalServerError);
+                    }
 
                     var fileInfo = streamProvider.FileData.Select(i =>
                     {
                         var info = new FileInfo(i.LocalFileName);
-
                         // upload to blob storage
-                        var blobUrl = Storage.Image.Upload(i.LocalFileName);
-                        return "File saved as " + blobUrl + " (" + info.Length + ")";
+                        var blobUrl = Storage.Image.Upload(i.LocalFileName, i.Headers.ContentType.ToString());
+                        //return "File saved as " + blobUrl + " (" + info.Length + ") (" + i.Headers.ContentType + ")";
+                        return blobUrl;
                     });
                     return fileInfo;
 
