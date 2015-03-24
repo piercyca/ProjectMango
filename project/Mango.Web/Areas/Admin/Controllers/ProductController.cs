@@ -4,7 +4,7 @@ using AutoMapper;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Core.Web.Extensions;
-using Mango.Web.ViewModels;
+using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Areas.Admin.Controllers
 {

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using Mango.Core.Entity;
 using Mango.Core.Web.CustomValidators;
 
-namespace Mango.Web.ViewModels
+namespace Mango.Web.Areas.Admin.Models
 {
     /// <summary>
     /// View model for <see cref="ProductCategory" />

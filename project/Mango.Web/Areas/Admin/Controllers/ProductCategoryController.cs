@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using Mango.Core.Entity;
 using Mango.Core.Service;
-using Mango.Web.ViewModels;
+using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Areas.Admin.Controllers
 {

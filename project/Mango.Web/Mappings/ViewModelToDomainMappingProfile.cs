@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Mango.Web.ViewModels;
 using Mango.Core.Entity;
+using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Mappings
 {

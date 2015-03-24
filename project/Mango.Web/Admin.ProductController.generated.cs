@@ -21,6 +21,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
+using Mango.Web.Areas.Admin.Models;
 using T4MVC;
 namespace Mango.Web.Areas.Admin.Controllers
 {
@@ -187,10 +188,10 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.ViewModels.ProductFormViewModel viewModel);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, ProductFormViewModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Mango.Web.ViewModels.ProductFormViewModel viewModel)
+        public override System.Web.Mvc.ActionResult Edit(ProductFormViewModel viewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);

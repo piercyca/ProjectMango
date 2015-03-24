@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Mango.Core.Entity;
 
-namespace Mango.Web.ViewModels
+namespace Mango.Web.Areas.Admin.Models
 {
     /// <summary>
     /// View model for <see cref="Product" />

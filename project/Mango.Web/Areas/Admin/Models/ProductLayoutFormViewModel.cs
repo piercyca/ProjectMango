@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace Mango.Web.Areas.Admin.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ProductLayoutFormViewModel
     {
         /// <summary>

@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Mango.Core.Entity;
 
-namespace Mango.Web.ViewModels
+namespace Mango.Web.Areas.Admin.Models
 {
     /// <summary>
     /// View Model. Maps to <see cref="Customer"/>
