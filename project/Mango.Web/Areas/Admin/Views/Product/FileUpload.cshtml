@@ -5,14 +5,14 @@
 @section ScriptsHead
 {
     <script>
-        var imageUpload = [
-            buttonUpload = "#btnUpload",
-            containerControls = "#uploadControls",
-            containerProgress = "#uploadProgress",
-            fileUpload = "#fileUpload",
-            containerResults = "#uploadResults",
-            hiddenResultTarget = "#"
-        ];
+        var imageUpload = {
+            buttonUpload:"#btnUpload",
+            containerControls:"#uploadControls",
+            containerProgress:"#uploadProgress",
+            fileUpload:"#fileUpload",
+            containerResults:"#uploadResults",
+            hiddenResultTarget:"#"
+        };
     </script>
 }
 
@@ -39,7 +39,7 @@
 
 @section scripts {
     <script>
-        (function() {
+        //(function() {
             function showUploadControls() {
                 $(imageUpload.containerControls).show();
                 $(imageUpload.containerProgress).hide();
@@ -51,7 +51,8 @@
             }
 
             function onUpload(evt) {
-                var files = $(imageUpload.containerResults).get(0).files;
+                alert("click");
+                var files = $(imageUpload.fileUpload).get(0).files;
                 if (files.length > 0) {
 
                     showUploadProgress();
@@ -86,9 +87,10 @@
             }
 
             $(document).ready(function () {
+                console.log(imageUpload.buttonUpload);
                 $(imageUpload.buttonUpload).click(onUpload);
             });
-        }).call(this);
+        //}).call(this);
     </script>
 }
 

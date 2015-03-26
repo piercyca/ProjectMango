@@ -99,7 +99,10 @@ namespace Mango.Web.Areas.Admin.Controllers
         [HttpGet]
         public virtual ActionResult Layout(int id)
         {
-            return View();
+            var product = _productService.GetProduct(id);
+            var viewModel = Mapper.Map<Product, ProductLayoutFormViewModel>(product);
+
+            return View(viewModel);
         }
     }
 }

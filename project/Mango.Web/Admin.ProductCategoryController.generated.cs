@@ -21,7 +21,6 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
-using Mango.Web.Areas.Admin.Models;
 using T4MVC;
 namespace Mango.Web.Areas.Admin.Controllers
 {
@@ -165,10 +164,10 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, ProductCategoryFormViewModel vm);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.ProductCategoryFormViewModel vm);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(ProductCategoryFormViewModel vm)
+        public override System.Web.Mvc.ActionResult Edit(Mango.Web.Areas.Admin.Models.ProductCategoryFormViewModel vm)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
@@ -188,10 +187,10 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, ProductCategoryFormViewModel vm);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.ProductCategoryFormViewModel vm);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(ProductCategoryFormViewModel vm)
+        public override System.Web.Mvc.ActionResult Create(Mango.Web.Areas.Admin.Models.ProductCategoryFormViewModel vm)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);

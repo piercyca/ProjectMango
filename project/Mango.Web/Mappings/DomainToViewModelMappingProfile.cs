@@ -21,6 +21,7 @@ namespace Mango.Web.Mappings
             Mapper.CreateMap<Address, AddressFormViewModel>();
 
             Mapper.CreateMap<Product, ProductFormViewModel>();
+            Mapper.CreateMap<Product, ProductLayoutFormViewModel>();
             Mapper.CreateMap<Product, ProductListItemViewModel>();
             Mapper.CreateMap<ProductCategory, ProductCategoryFormViewModel>();
             Mapper.CreateMap<ProductCategory, ProductCategoryListItemViewModel>();

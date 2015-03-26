@@ -6,18 +6,7 @@
 
 @section ScriptsHead
 {
-    <script src="@Links.Scripts.Areas.Admin.Product.Layout_js"></script>
-    <script>
-        var imageUpload = [
-            buttonUpload = "#btnUpload",
-            containerControls = "#uploadControls",
-            containerProgress = "#uploadProgress",
-            fileUpload = "#fileUpload",
-            containerResults = "#uploadResults",
-            hiddenResultTarget = "#"
-        ];
-    </script>
-
+    <script src="@Links.Scripts.product_canvas.fabric_min_js"></script>
     <style>
         canvas {
             border: 1px solid #ccc;
@@ -56,37 +45,34 @@
             display: inline-block;
         }
     </style>
-
-
 }
 
-<h2>EditLayout</h2>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
+    <li>@Html.ActionLink("Products", MVC.Admin.Product.List())</li>
+    <li class="active">@Html.ActionLink("Layout", MVC.Admin.Product.Layout(Model.ProductId))</li>
+</ol>
 
-
-
+<h2>Product Layout</h2>
 
 <div class="container col-sm-12">
+    <p>Use this tool to specify placement of logo and text</p>
 
     <form action="/admin/api/fileupload" method="post" enctype="multipart/form-data">
-        <div id="uploadControls">
-            <div>
-                <span>Select file(s) to upload :</span>
-                <input id="fileUpload" type="file" />
+        <div class="form-horizontal">
+            <div class="form-group" id="uploadControls">
+                <label class="control-label col-md-2">Upload Image</label>
+                <div class="col-md-10">
+                    <input id="fileUpload" type="file" />
+                </div>
             </div>
-            <div>
-                <input id="btnUpload" type="button" value="Upload" />
+            <div id="uploadProgress" class="hidden">
+                <img src="/content/images/ajax-loader.gif" alt=""/>
             </div>
-            <ul id="uploadResults"></ul>
-        </div>
-        <div id="uploadProgress" class="hidden">
-            <img src="/content/images/ajax-loader.gif" alt="" />
         </div>
     </form>
-
-
-    
-    Use this tool to specify placement of logo and text
-    <input type="file" id="uploadImg">
+</div>
+<div class="container col-sm-12">
     <div class="col-md-7 ">
         <canvas id="c" name="productname" width="500" height="500"></canvas>
     </div>
@@ -107,31 +93,9 @@
     @Html.HiddenFor(model => model.ProductId)
 
     <div class="form-horizontal">
-        <h4>ProductLayoutFormViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Configuration, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Configuration, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Configuration, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CanvasImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CanvasImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CanvasImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.Configuration)
+        @Html.HiddenFor(model => model.CanvasImage)
     </div>
 }
 
@@ -139,9 +103,29 @@
 @section Scripts {
     <script src="@Links.Scripts.product_canvas.canvas_js"></script>
     <script src="@Links.Scripts.product_canvas.wordwrap_js"></script>
-
+    <script src="@Links.Scripts.Areas.Admin.Product.Layout_js"></script>
+    <script>
+        var imageUpload = {
+            buttonUpload: "#btnUpload",
+            containerControls: "#uploadControls",
+            containerProgress: "#uploadProgress",
+            fileUpload: "#fileUpload",
+            containerResults: "#uploadResults",
+            controlImage: "#CanvasImage"
+        };
+    </script>
     <script>
         (function() {
+            var lcOptions = {
+                controlAddPic: "#addPic",
+                controlAddText: "#addText",
+                controlRemoveText: "#removeObject",
+                controlDownload: "#download",
+                inputConfiguration: "#Configuration",
+                config: ""
+            };
+            var lc = new layoutCanvas(lcOptions);
+
             function showUploadControls() {
                 $(imageUpload.containerControls).show();
                 $(imageUpload.containerProgress).hide();
@@ -152,9 +136,17 @@
                 $(imageUpload.containerProgress).show();
             }
 
+            function clearFileInput(controlId) {
+                var oldInput = $(controlId);
+                if (typeof oldInput !== "undefined" && oldInput !== null) {
+                    oldInput.replaceWith(oldInput.val('').clone(true));
+                }
+            }
+
             function onUpload(evt) {
-                var files = $(imageUpload.containerResults).get(0).files;
+                var files = $(imageUpload.fileUpload).get(0).files;
                 if (files.length > 0) {
+
                     showUploadProgress();
 
                     if (window.FormData !== undefined) {
@@ -169,24 +161,30 @@
                             processData: false,
                             data: data,
                             success: function(results) {
-                                showUploadControls();
-                                $(imageUpload.containerResults).empty();
-                                for (i = 0; i < results.length; i++) {
-                                    $(imageUpload.containerResults).append($("<li/>").text(results[i]));
+                                //$(imageUpload.containerResults).empty();
+                                for (var i = 0; i < results.length; i++) {
+                                    //$(imageUpload.containerResults).append($("<li/>").text(results[i]));
+                                    var url = results[i];
+                                    lc.updateCanvas(url); // update canvas url
+                                    $(imageUpload.controlImage).val(url); // save image url to CanvasImage hidden field
+                                    clearFileInput(imageUpload.fileUpload);
                                 }
+                                showUploadControls();
                             },
                             error: function(xhr, ajaxOptions, thrownError) {
                                 showUploadControls();
-                                alert(xhr.responseText);
+                                //alert(xhr.responseText);
                             }
                         });
-                    } else {
-                        alert("Your browser doesn't support HTML5 multiple file uploads! Please use some decent browser.");
                     }
+                    //else {
+                        //alert("Your browser doesn't support HTML5 multiple file uploads! Please use some decent browser.");
+                    //}
                 }
             }
 
             $(document).ready(function() {
+                console.log(imageUpload.buttonUpload);
                 $(imageUpload.buttonUpload).click(onUpload);
             });
         }).call(this);
