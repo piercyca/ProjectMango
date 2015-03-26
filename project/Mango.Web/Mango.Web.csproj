@@ -285,15 +285,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AddressFormViewModel.cs" />
-    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
-    <Compile Include="ViewModels\ProductCategoryFormViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\AddressFormViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CustomerFormViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductCategoryFormViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
-    <Compile Include="ViewModels\ProductCategoryListItemViewModel.cs" />
-    <Compile Include="ViewModels\ProductListItemViewModel.cs" />
-    <Compile Include="ViewModels\ProductCategoryListViewModel.cs" />
-    <Compile Include="ViewModels\ProductListViewModel.cs" />
-    <Compile Include="ViewModels\ProductFormViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductCategoryListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductCategoryListViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductListViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
