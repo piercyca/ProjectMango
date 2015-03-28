@@ -19,13 +19,6 @@ namespace Mango.Core.Entity
         public int ProductCategoryId { get; set; }
 
         /// <summary>
-        /// Code
-        /// </summary>
-        [Required]
-        [StringLength(20)]
-        public string Code { get; set; }
-
-        /// <summary>
         /// Name
         /// </summary>
         [Required]
@@ -37,6 +30,12 @@ namespace Mango.Core.Entity
         /// </summary>
         [Required]
         public decimal Price { get; set; }
+
+        [Required]
+        [MaxLength(200)]
+        [Column(TypeName = "varchar")]
+        [Index("IX_Product_UrlSlug", 1, IsUnique = true)]
+        public string UrlSlug { get; set; }
 
         /// <summary>
         /// Configuration should be a JSON string defining the setup of the <canvas></canvas>.

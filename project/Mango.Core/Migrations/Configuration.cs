@@ -25,9 +25,8 @@ namespace Mango.Core.Migrations
             context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory { ProductCategoryId = 3, UrlSlug = "cutting-board", Name = "Cutting Board", Description = "Cutting board description", Keywords = "cutting board,kitchen" });
             context.Products.AddOrUpdate(p => 
                 p.ProductId,
-                new Entity.Product { Code = "P1", Name = "Granite platter rectangle w/handles", Price = 22.50m, ProductCategoryId = 1, ProductId = 1 },
-                new Entity.Product { Code = "P2", Name = "Granite state of Georgia platter", Price = 15.50m, ProductCategoryId = 1, ProductId = 2 });
-
+                new Entity.Product { UrlSlug = "granite-platter-rectangle-handles", Name = "Granite platter rectangle w/handles", Price = 22.50m, ProductCategoryId = 1, ProductId = 1 },
+                new Entity.Product { UrlSlug = "granite-state-georgia-platter", Name = "Granite state of Georgia platter", Price = 15.50m, ProductCategoryId = 1, ProductId = 2 });
 
             context.Organizations.AddOrUpdate(o => o.OrganizationId, new Organization {OrganizationId = 1, Name = "University of Georgia", Abbreviation = "UGA"});
         }

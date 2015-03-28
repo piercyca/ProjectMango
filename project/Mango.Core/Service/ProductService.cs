@@ -13,6 +13,7 @@ namespace Mango.Core.Service
     {
         IEnumerable<Product> GetProducts();
         Product GetProduct(int id);
+        Product GetProduct(string urlSlug);
         void CreateProduct(Product product);
         void EditProduct(Product product);
         void DeleteProduct(int id);
@@ -57,6 +58,16 @@ namespace Mango.Core.Service
         public Product GetProduct(int id)
         {
             return _productRepository.GetById(id);
+        }
+
+        /// <summary>
+        /// Returns a product
+        /// </summary>
+        /// <param name="urlSlug"></param>
+        /// <returns></returns>
+        public Product GetProduct(string urlSlug)
+        {
+            return _productRepository.Get(p => p.UrlSlug == urlSlug);
         }
 
         /// <summary>
@@ -118,6 +129,25 @@ namespace Mango.Core.Service
         public IEnumerable<Product> GetProductsByPage(int currentPage, int noOfRecords, string sortBy)
         {
             return _productRepository.GetProductsByPage(currentPage, noOfRecords, sortBy);
+        }
+
+        /// <summary>
+        /// Check if product category exists
+        /// </summary>
+        /// <param name="valueToCheck"></param>
+        /// <param name="currentId"></param>
+        /// <returns></returns>
+        public bool UrlSlugExists(string valueToCheck, int currentId)
+        {
+            var pc = GetProduct(valueToCheck);
+            if (pc != null)
+            {
+                if (currentId != pc.ProductId)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

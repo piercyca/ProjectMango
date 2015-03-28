@@ -172,6 +172,14 @@
     <Compile Include="Migrations\201503242221007_OrganizationSetup.Designer.cs">
       <DependentUpon>201503242221007_OrganizationSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503282114567_ProductUrlSlug.cs" />
+    <Compile Include="Migrations\201503282114567_ProductUrlSlug.Designer.cs">
+      <DependentUpon>201503282114567_ProductUrlSlug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503282139378_ProductUrlSlugUnique.cs" />
+    <Compile Include="Migrations\201503282139378_ProductUrlSlugUnique.Designer.cs">
+      <DependentUpon>201503282139378_ProductUrlSlugUnique.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -245,6 +253,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503242221007_OrganizationSetup.resx">
       <DependentUpon>201503242221007_OrganizationSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503282114567_ProductUrlSlug.resx">
+      <DependentUpon>201503282114567_ProductUrlSlug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503282139378_ProductUrlSlugUnique.resx">
+      <DependentUpon>201503282139378_ProductUrlSlugUnique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

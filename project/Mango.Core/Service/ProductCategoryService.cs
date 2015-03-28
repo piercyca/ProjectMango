@@ -105,6 +105,12 @@ namespace Mango.Core.Service
             return _productCategoryRepository.GetMany(p => p.Name.ToLower().Contains(productCategoryName.ToLower())).OrderBy(p => p.Name);
         }
 
+        /// <summary>
+        /// Check if product category exists
+        /// </summary>
+        /// <param name="valueToCheck"></param>
+        /// <param name="currentId"></param>
+        /// <returns></returns>
         public bool UrlSlugExists(string valueToCheck, int currentId)
         {
             var pc = GetProductCategory(valueToCheck);

@@ -37,7 +37,7 @@ namespace Mango.Core.Repository
             
             // sort records
             products = (sortBy == "Name") ? products.OrderBy(p => p.Name) : products;
-            products = (sortBy == "Code") ? products.OrderBy(p => p.Code) : products;
+            products = (sortBy == "UrlSlug") ? products.OrderBy(p => p.UrlSlug) : products;
             
             return products;
         }

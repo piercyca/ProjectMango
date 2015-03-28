@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mango.Core.Entity;
+using Mango.Core.Web.CustomValidators;
 
 namespace Mango.Web.Areas.Admin.Models
 {
@@ -32,13 +33,14 @@ namespace Mango.Web.Areas.Admin.Models
         /// </summary>
         public IEnumerable<SelectListItem> ProductCategories { get; set; }
 
-            /// <summary>
-        /// Code
+        /// <summary>
+        /// Product Url Slug
         /// </summary>
-        [DisplayName("Code")]
+        [DisplayName("Url Slug")]
         [Required]
-        [StringLength(20)]
-        public string Code { get; set; }
+        [UniqueValidator("ProductId", UniqueValidatorType.ProductUrlSlug, ErrorMessage = "Url Slug Used")]
+        [UrlSlugValidator]
+        public string UrlSlug { get; set; }
 
         /// <summary>
         /// Name

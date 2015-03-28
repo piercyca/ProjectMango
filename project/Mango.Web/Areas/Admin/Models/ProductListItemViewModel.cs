@@ -14,7 +14,7 @@ namespace Mango.Web.Areas.Admin.Models
         public int ProductId { get; set; }
         public int ProductCategoryId { get; set; }
         public string Name { get; set; }
-        public string Code { get; set; }
+        public string UrlSlug { get; set; }
         public string Price { get; set; }
     }
 }

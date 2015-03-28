@@ -9,9 +9,13 @@ namespace Mango.Core.Web.CustomValidators {
 
     public enum UniqueValidatorType {
         /// <summary>
-        /// ProductCategoryUrlSlug
+        /// Product Category UrlSlug
         /// </summary>
-        ProductCategoryUrlSlug
+        ProductCategoryUrlSlug,
+        /// <summary>
+        /// Product UrlSlug
+        /// </summary>
+        ProductUrlSlug
     }
 
     /// <summary>
@@ -58,13 +62,16 @@ namespace Mango.Core.Web.CustomValidators {
                     var result = ValidationResult.Success;
                     if (!string.IsNullOrEmpty(value.ToString())) {
                         var currentValue = value.ToString();
-
+                        var dbFactory = new DatabaseFactory();
                         bool isValid;
                         switch (UniqueValidatorType) {
                             case UniqueValidatorType.ProductCategoryUrlSlug:
-                                var dbFactory = new DatabaseFactory();
                                 var productCategoryService = new ProductCategoryService(new ProductCategoryRepository(dbFactory), new UnitOfWork(dbFactory));
                                 isValid = !productCategoryService.UrlSlugExists(currentValue, currentId);
+                                break;
+                            case UniqueValidatorType.ProductUrlSlug:
+                                var productService = new ProductService(new ProductRepository(dbFactory), new UnitOfWork(dbFactory));
+                                isValid = !productService.UrlSlugExists(currentValue, currentId);
                                 break;
                             default:
                                 return new ValidationResult("Model Error: 'UniqueValidatorType' invalid.");
