@@ -43,13 +43,16 @@ var UploadImage = (function (opt) {
     }
 
     function showImage(url) {
-        consoleLog("showImage: " + url);
-        if (url.length > 0) {
-            $(opt.containerDisplay).html('<img src="' + url + '" />');
+        if (typeof opt.containerDisplay !== "undefined" && opt.containerDisplay !== null) {
+            consoleLog("showImage: " + url);
+            if (url.length > 0) {
+                $(opt.containerDisplay).html('<img src="' + url + '" />');
+            } else {
+                $(opt.containerDisplay).html('<p class="col-md-3 bg-info">No Image</div>');
+            }
         } else {
-            $(opt.containerDisplay).html('<p class="col-md-3 bg-info">No Image</div>');
+            consoleLog("opt.containerDisplay UNDEFINED");
         }
-        
     }
 
     function setUrl(url) {

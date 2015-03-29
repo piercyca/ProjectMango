@@ -1,5 +1,5 @@
 ﻿
-var layoutCanvas = (function(options) {
+var LayoutCanvas = (function(options) {
 
     var canvas = new fabric.Canvas('c');
     //Rect for Images
