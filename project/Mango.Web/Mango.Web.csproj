@@ -441,6 +441,8 @@
     <Content Include="Areas\Admin\Views\Product\Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\EditorTemplates\OrganizationFormViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Organization\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Organization\Create.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">

@@ -1,18 +1,17 @@
 @model Mango.Web.Areas.Admin.Models.OrganizationFormViewModel
 @{
-    ViewBag.Title = "Edit Organization";
+    ViewBag.Title = "Create Organization";
 }
 
 <ol class="breadcrumb">
     <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
     <li>@Html.ActionLink("Organizations", MVC.Admin.Organization.List())</li>
-    <li class="active">@Html.ActionLink("Edit", MVC.Admin.Organization.Edit(Model.OrganizationId))</li>
+    <li class="active">@Html.ActionLink("Create", MVC.Admin.Organization.Create())</li>
 </ol>
 
 <h2>@ViewBag.Title</h2>
 
 @Html.EditorForModel()
-
 
 @section scripts {
     <script src="@Links.Scripts.Areas.Admin.Shared.UploadImage_js"></script>
