@@ -44,6 +44,7 @@ namespace T4MVC
         public readonly string Name = "Admin";
         public Mango.Web.Areas.Admin.Controllers.CustomerController Customer = new Mango.Web.Areas.Admin.Controllers.T4MVC_CustomerController();
         public Mango.Web.Areas.Admin.Controllers.HomeController Home = new Mango.Web.Areas.Admin.Controllers.T4MVC_HomeController();
+        public Mango.Web.Areas.Admin.Controllers.OrganizationController Organization = new Mango.Web.Areas.Admin.Controllers.T4MVC_OrganizationController();
         public Mango.Web.Areas.Admin.Controllers.ProductCategoryController ProductCategory = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductCategoryController();
         public Mango.Web.Areas.Admin.Controllers.ProductController Product = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductController();
         public Mango.Web.Areas.Admin.Controllers.UserController User = new Mango.Web.Areas.Admin.Controllers.T4MVC_UserController();
@@ -110,6 +111,14 @@ namespace Links
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string Layout_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Layout.min.js") ? Url("Layout.min.js") : Url("Layout.js");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Shared {
+                    private const string URLPATH = "~/Scripts/Areas/Admin/Shared";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string UploadImage_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/UploadImage.min.js") ? Url("UploadImage.min.js") : Url("UploadImage.js");
                 }
             
             }
@@ -315,6 +324,13 @@ namespace Links
                         public static class Assets
                         {
                             public const string Layout_js = "~/Scripts/Areas/Admin/Product/Layout.js"; 
+                        }
+                    }
+                    public static partial class Shared 
+                    {
+                        public static class Assets
+                        {
+                            public const string UploadImage_js = "~/Scripts/Areas/Admin/Shared/UploadImage.js"; 
                         }
                     }
                     public static class Assets

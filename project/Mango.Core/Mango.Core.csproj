@@ -186,11 +186,13 @@
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
+    <Compile Include="Repository\OrganizationRepository.cs" />
     <Compile Include="Service\OrderItemService.cs" />
     <Compile Include="Service\OrderService.cs" />
     <Compile Include="Service\CustomerService.cs" />
     <Compile Include="Repository\ProductCategoryRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Service\OrganizationService.cs" />
     <Compile Include="Service\ProductCategoryService.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\ProductService.cs" />

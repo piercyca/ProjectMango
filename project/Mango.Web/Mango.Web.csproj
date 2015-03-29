@@ -212,6 +212,9 @@
     <Compile Include="Admin.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.OrganizationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.ProductCategoryController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrganizationController.cs" />
+    <Compile Include="Areas\Admin\Models\OrganizationFormViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\OrganizationListItemViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\OrganizationListViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductLayoutFormViewModel.cs" />
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
@@ -432,6 +439,8 @@
     <Content Include="Areas\Admin\Views\Customer\EditorTemplates\CustomerFormViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Product\FileUpload.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Organization\EditorTemplates\OrganizationFormViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Organization\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -440,6 +449,7 @@
     </None>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\Areas\Admin\Product\Layout.js" />
+    <Content Include="Scripts\Areas\Admin\Shared\UploadImage.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\product-canvas\canvas.js" />
@@ -515,7 +525,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Store\Models\" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
