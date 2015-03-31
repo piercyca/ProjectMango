@@ -54,7 +54,9 @@ namespace T4MVC
     public class StoreClass
     {
         public readonly string Name = "Store";
+        public Mango.Web.Areas.Store.Controllers.CartController Cart = new Mango.Web.Areas.Store.Controllers.T4MVC_CartController();
         public Mango.Web.Areas.Store.Controllers.HomeController Home = new Mango.Web.Areas.Store.Controllers.T4MVC_HomeController();
+        public Mango.Web.Areas.Store.Controllers.ProductController Product = new Mango.Web.Areas.Store.Controllers.T4MVC_ProductController();
         public T4MVC.Store.SharedController Shared = new T4MVC.Store.SharedController();
     }
 }
@@ -119,6 +121,21 @@ namespace Links
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string UploadImage_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/UploadImage.min.js") ? Url("UploadImage.min.js") : Url("UploadImage.js");
+                }
+            
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class Store {
+                private const string URLPATH = "~/Scripts/Areas/Store";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Product {
+                    private const string URLPATH = "~/Scripts/Areas/Store/Product";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string Customize_output_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Customize-output.min.js") ? Url("Customize-output.min.js") : Url("Customize-output.js");
                 }
             
             }
@@ -289,6 +306,18 @@ namespace Links
             public static readonly string gtech_png = Url("gtech.png");
             public static readonly string logo_605x182_jpg = Url("logo-605x182.jpg");
             public static readonly string logo_93x28_jpg = Url("logo-93x28.jpg");
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class logos {
+                private const string URLPATH = "~/Content/images/logos";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string ugalogo_png = Url("ugalogo.png");
+                public static readonly string ugalogo2_png = Url("ugalogo2.png");
+                public static readonly string ugalogo3_png = Url("ugalogo3.png");
+                public static readonly string ugalogo4_png = Url("ugalogo4.png");
+                public static readonly string ugalogo5_png = Url("ugalogo5.png");
+            }
+        
             public static readonly string official_licensed_logo_jpg = Url("official_licensed_logo.jpg");
             public static readonly string ornamentsplash_png = Url("ornamentsplash.png");
             public static readonly string rocks_square_png = Url("rocks square.png");
@@ -331,6 +360,19 @@ namespace Links
                         public static class Assets
                         {
                             public const string UploadImage_js = "~/Scripts/Areas/Admin/Shared/UploadImage.js"; 
+                        }
+                    }
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class Store 
+                {
+                    public static partial class Product 
+                    {
+                        public static class Assets
+                        {
+                            public const string Customize_output_js = "~/Scripts/Areas/Store/Product/Customize-output.js"; 
                         }
                     }
                     public static class Assets
@@ -392,6 +434,12 @@ namespace Links
             }
             public static partial class images 
             {
+                public static partial class logos 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
                 public static class Assets
                 {
                 }

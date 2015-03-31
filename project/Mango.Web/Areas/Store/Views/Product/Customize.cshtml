@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Customize";
+}
+
+<div class="container output">
+    <div class="col-md-7 canvas">
+        <canvas id="c" name="productnameorid" width="500" height="500"></canvas>
+    </div>
+    <div id="contents" class="well col-md-5 col-md-offset-0 col-sm-12">
+        Select a logo and then insert text
+    </div>
+
+    <div class="well col-md-5 col-md-offset-0 col-sm-12 icons">
+        <div id="uga1" class="active"><img src="/Content/images/logos/ugalogo.png" width="40" height="40">
+        </div>
+        <div id="uga2"><img src="/Content/images/logos/ugalogo2.png"/>
+        </div>
+        <div id="uga3"><img src="/Content/images/logos/ugalogo3.png"/>
+        </div>
+        <div id="uga4"><img src="/Content/images/logos/ugalogo4.png"/>
+        </div>
+        <div id="uga5"><img src="/Content/images/logos/ugalogo5.png"/>
+        </div>
+    </div>
+
+    <div class="well form-group col-md-5 col-md-offset-0 col-sm-12">
+        <select id="fontselector">
+            <option id="dancing+script">Dancing Script</option>
+            <option id="vast+shadow">Vast Shadow</option>
+            <option id="open+sans">Open Sans</option>
+        </select>
+        <textarea class="form-control" rows="8" id="addTextField"></textarea>
+        <a class="btn btn-primary btn-block" id="download" name="productnameorid">Download Test</a>
+    </div>
+</div>
+
+@section scripts {
+    <script src="@Links.Scripts.product_canvas.fabric_min_js"></script>
+    <script src="@Links.Scripts.product_canvas.wordwrap_js"></script>
+    <script src="@Links.Scripts.Areas.Store.Product.Customize_output_js"></script>
+}
+

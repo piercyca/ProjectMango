@@ -1,7 +1,7 @@
 /* ==========================================================================
    Project Mango - Etchieve.com
    ========================================================================== */
-body { font-family: Tahoma, Arial, sans-serif }
+body {font-family: Tahoma, Arial, sans-serif; padding-top: 50px; padding-bottom: 20px; }
 hr { border-top: 1px dotted #ccc; }
 .navbar-form .form-control { background: #000; border: 1px solid #555; }
 
@@ -50,7 +50,24 @@ footer img { margin-left: 10px; width: 50px; height:auto;  }
 #cart { margin-top: 20px; }
 #cart h5 { text-decoration: underline; color: #990000; font-style: italic; }
 
+textarea { margin: 10px 0 !important; }
 
+/*output*/
+.output { max-width: 1000px;}
+canvas { border: 1px solid #ccc; }
+#contents, .canvas { margin-top: 20px; }
+.pic { color: green }
+.text { color: blue }
+
+/*logo icons*/
+.icons { text-align: center; vertical-align: middle;}
+.icons div { display: inline-block;
+    border: 3px solid transparent; margin: 2px; vertical-align: middle;}
+.icons img { height: auto; width: 100%; max-width: 40px; max-height: 40px; vertical-align: middle; }
+.icons .active {
+    border: 3px solid #7F9293 !important;
+    display: inline-block;
+}
 
 
 

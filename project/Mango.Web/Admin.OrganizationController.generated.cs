@@ -120,9 +120,13 @@ namespace Mango.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
+                public readonly string List = "List";
             }
+            public readonly string Create = "~/Areas/Admin/Views/Organization/Create.cshtml";
             public readonly string Edit = "~/Areas/Admin/Views/Organization/Edit.cshtml";
+            public readonly string List = "~/Areas/Admin/Views/Organization/List.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
