@@ -10,20 +10,22 @@ var LayoutCanvas = (function(options) {
     function setConfig() {
         options.config =
         {
-            pic: {
-                top: Math.ceil(pic.top),
-                left: Math.ceil(pic.left),
-                width: Math.ceil(pic.getWidth()),
-                height: Math.ceil(pic.getHeight())
-            },
-            text: {
-                top: Math.ceil(text.top),
-                left: Math.ceil(text.left),
-                width: Math.ceil(text.getWidth()),
-                height: Math.ceil(text.getHeight())
+            layout: {
+                pic: {
+                    top: Math.ceil(pic.top),
+                    left: Math.ceil(pic.left),
+                    width: Math.ceil(pic.getWidth()),
+                    height: Math.ceil(pic.getHeight())
+                },
+                text: {
+                    top: Math.ceil(text.top),
+                    left: Math.ceil(text.left),
+                    width: Math.ceil(text.getWidth()),
+                    height: Math.ceil(text.getHeight())
+                }
             }
         }
-        $(options.inputConfiguration).val(options.config);
+        $(options.inputConfiguration).val(JSON.stringify(options.config));
     }
 
 
