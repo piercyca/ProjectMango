@@ -19,6 +19,7 @@ namespace Mango.Core.Entity
         public virtual DbSet<OrderLineItem> OrderLineItems { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+        public virtual DbSet<ProductImage> ProductImages { get; set; }
 
         #endregion
 
