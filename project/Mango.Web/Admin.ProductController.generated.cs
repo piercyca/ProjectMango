@@ -117,6 +117,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         public class ActionParamsClass_Layout
         {
             public readonly string id = "id";
+            public readonly string viewModel = "viewModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -218,6 +219,18 @@ namespace Mango.Web.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Layout);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             LayoutOverride(callInfo, id);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void LayoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.ProductLayoutFormViewModel viewModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Layout(Mango.Web.Areas.Admin.Models.ProductLayoutFormViewModel viewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Layout);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            LayoutOverride(callInfo, viewModel);
             return callInfo;
         }
 

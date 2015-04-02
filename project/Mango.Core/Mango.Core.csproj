@@ -93,6 +93,7 @@
     <Compile Include="Entity\MangoContext.cs" />
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\Organization.cs" />
+    <Compile Include="Entity\ProductImage.cs" />
     <Compile Include="Entity\ProductCategory.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\OrderLineItem.cs" />

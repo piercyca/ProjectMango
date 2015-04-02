@@ -74,7 +74,7 @@ namespace Mango.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _productService.EditProduct(product);
-                return RedirectToAction("List");
+                return RedirectToAction(MVC.Admin.Product.List());
             }
             var productCategories = _productCategoryService.GetProductCategories();
             viewModel.ProductCategories = productCategories.ToSelectListItems(product.ProductCategoryId);
@@ -92,7 +92,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// GET: /product/layout
+        /// GET: /product/layout/{id}
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -101,7 +101,24 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             var product = _productService.GetProduct(id);
             var viewModel = Mapper.Map<Product, ProductLayoutFormViewModel>(product);
+            return View(viewModel);
+        }
 
+        /// <summary>
+        /// POST: /products/layout/{id}
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public virtual ActionResult Layout(ProductLayoutFormViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var product = _productService.GetProduct(viewModel.ProductId);
+                var productLayout = Mapper.Map<ProductLayoutFormViewModel, Product>(viewModel, product);
+                _productService.EditProduct(product);
+                return RedirectToAction(MVC.Admin.Product.List());
+            }
             return View(viewModel);
         }
     }

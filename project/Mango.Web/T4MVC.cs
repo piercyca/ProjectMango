@@ -320,6 +320,14 @@ namespace Links
         
             public static readonly string official_licensed_logo_jpg = Url("official_licensed_logo.jpg");
             public static readonly string ornamentsplash_png = Url("ornamentsplash.png");
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class product {
+                private const string URLPATH = "~/Content/images/product";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string product_image_png = Url("product-image.png");
+            }
+        
             public static readonly string rocks_square_png = Url("rocks square.png");
             public static readonly string shot_glass_15_png = Url("shot glass 15.png");
             public static readonly string smallglass_png = Url("smallglass.png");
@@ -435,6 +443,12 @@ namespace Links
             public static partial class images 
             {
                 public static partial class logos 
+                {
+                    public static class Assets
+                    {
+                    }
+                }
+                public static partial class product 
                 {
                     public static class Assets
                     {
