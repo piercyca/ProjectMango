@@ -20,8 +20,6 @@ namespace Mango.Core.Service
         void SaveProduct();
         IEnumerable<Product> SearchProductsByName(string productName);
         IEnumerable<Product> GetProductsByPage(int currentPage, int noOfRecords, string sortBy);
-        IEnumerable<ProductImage> GetProductImages(int id);
-        void SortImages()
     }
 
     /// <summary>
