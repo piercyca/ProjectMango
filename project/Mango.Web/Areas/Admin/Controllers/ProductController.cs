@@ -80,6 +80,7 @@ namespace Mango.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _productService.EditProduct(product);
+                _productImageService.InsertProductImages(viewModel.ProductId, viewModel.ProductImagesString);
                 return RedirectToAction(MVC.Admin.Product.List());
             }
             var productCategories = _productCategoryService.GetProductCategories();

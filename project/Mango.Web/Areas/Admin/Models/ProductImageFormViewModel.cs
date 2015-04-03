@@ -14,18 +14,6 @@ namespace Mango.Web.Areas.Admin.Models
     public class ProductImageFormViewModel
     {
         /// <summary>
-        /// Product Id
-        /// </summary>
-        [Required]
-        public int ProductId { get; set; }
-
-        /// <summary>
-        /// Sort Order
-        /// </summary>
-        [Required]
-        public int SortOrder { get; set; }
-
-        /// <summary>
         /// Url to image
         /// </summary>
         [Required]

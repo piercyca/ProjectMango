@@ -62,5 +62,11 @@ namespace Mango.Web.Areas.Admin.Models
         /// </summary>
         [DisplayName("Product Images")]
         public IEnumerable<ProductImageFormViewModel> ProductImages { get; set; }
+
+        /// <summary>
+        /// Product Images string, for saving, populated by JavaScript on the client
+        /// </summary>
+        [HiddenInput(DisplayValue = false)]
+        public string ProductImagesString { get; set; }
     }
 }

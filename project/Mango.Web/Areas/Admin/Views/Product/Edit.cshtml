@@ -14,16 +14,30 @@
 
 @Html.EditorForModel()
 
-
 @section scripts
 {
     <script src="@Links.Scripts.jquery_sortable_js"></script>
     <script>
         $(function() {
-            $('.sortable').sortable();
+            $('.sortable-images').sortable();
             //$('.handles').sortable({
             //    handle: 'span'
             //});
+
+            console.log("product-save");
+
+            $('#product-form').submit(function () {
+                console.log("click");
+                var urls = [];
+                $('.sortable-item').each(function (index, value) {
+                    var url = $(value).find('img').prop('src');
+                    console.log(url);
+                    urls.push(url);
+                });
+                $('#ProductImagesString').val(JSON.stringify(urls));
+                console.log($('#ProductImagesString').val());
+            });
         });
+
     </script>
 }

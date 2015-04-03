@@ -3,6 +3,7 @@ using System.Linq;
 using Mango.Core.Entity;
 using Mango.Core.Infrastructure;
 using Mango.Core.Repository;
+using Newtonsoft.Json;
 
 namespace Mango.Core.Service
 {
@@ -13,7 +14,7 @@ namespace Mango.Core.Service
     {
         ProductImage GetProductImage(int productId, int sortOrder);
         void DeleteProductImages(int productId);
-        void InsertProductImages(int productId, List<ProductImage> productImages);
+        void InsertProductImages(int productId, string urls);
         IEnumerable<ProductImage> GetProductImages(int productId);
     }
 
@@ -73,15 +74,21 @@ namespace Mango.Core.Service
         /// Inserts product image(s)
         /// </summary>
         /// <param name="productId"></param>
-        /// <param name="productImages"></param>
-        public void InsertProductImages(int productId, List<ProductImage> productImages)
+        /// <param name="urls"></param>
+        public void InsertProductImages(int productId, string urls)
         {
             // delete first, prevents sort conflicts from existing data
             DeleteProductImages(productId);
             // save the updated records
-            foreach (var productImage in productImages)
+            var urlList = JsonConvert.DeserializeObject<object[]>(urls);
+            for (int i = 0; i < urlList.Length; i++)
             {
-                _productImageRepository.Add(productImage);
+                _productImageRepository.Add(new ProductImage
+                {
+                    ProductId = productId,
+                    Url = urlList[i].ToString(),
+                    SortOrder = i
+                });
             }
             // Save changes
             SaveProductImage();

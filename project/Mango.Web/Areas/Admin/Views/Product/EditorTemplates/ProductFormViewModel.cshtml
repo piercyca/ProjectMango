@@ -1,10 +1,11 @@
 @model Mango.Web.Areas.Admin.Models.ProductFormViewModel
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "product-form" }))
 {
     @Html.AntiForgeryToken()
 
     @Html.EditorFor(model => model.ProductId)
+    @Html.EditorFor(model => model.ProductImagesString)
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -44,23 +45,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProductImages, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
-                <ul class="sortable list">
-                    @foreach (var productImage in Model.ProductImages)
-                    {
-                        <li>
-                            <img src="@productImage.Url" />
-                        </li>
-                    }
-                </ul>
-
-                @Html.ValidationMessageFor(model => model.Price, "", new {@class = "text-danger"})
+                <div class="sortable-images">
+                    @Html.EditorFor(model => Model.ProductImages)
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default btn-primary">
+                <button type="submit" class="btn btn-default btn-primary" id="product-save">
                     <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Save
                 </button>
             </div>
