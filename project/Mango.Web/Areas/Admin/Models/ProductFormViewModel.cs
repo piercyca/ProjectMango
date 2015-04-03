@@ -56,5 +56,11 @@ namespace Mango.Web.Areas.Admin.Models
         [DisplayName("Price")]
         [Required]
         public decimal Price { get; set; }
+
+        /// <summary>
+        /// Product Images
+        /// </summary>
+        [DisplayName("Product Images")]
+        public IEnumerable<ProductImageFormViewModel> ProductImages { get; set; }
     }
 }

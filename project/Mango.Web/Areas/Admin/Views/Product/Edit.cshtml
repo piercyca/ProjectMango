@@ -13,3 +13,17 @@
 <h2>Edit Product</h2>
 
 @Html.EditorForModel()
+
+
+@section scripts
+{
+    <script src="@Links.Scripts.jquery_sortable_js"></script>
+    <script>
+        $(function() {
+            $('.sortable').sortable();
+            //$('.handles').sortable({
+            //    handle: 'span'
+            //});
+        });
+    </script>
+}

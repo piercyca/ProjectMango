@@ -242,6 +242,7 @@
     <Compile Include="Areas\Admin\Models\OrganizationFormViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrganizationListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrganizationListViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductImageFormViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductLayoutFormViewModel.cs" />
     <Compile Include="Areas\Store\Controllers\CartController.cs" />
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
@@ -436,6 +437,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.sortable.js" />
+    <Content Include="Scripts\jquery.sortable.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\product-canvas\canvas.js" />
     <Content Include="Scripts\product-canvas\fabric.min.js" />

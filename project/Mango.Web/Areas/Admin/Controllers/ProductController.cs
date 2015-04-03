@@ -13,13 +13,15 @@ namespace Mango.Web.Areas.Admin.Controllers
     {
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
+        private readonly IProductImageService _productImageService;
 
         public ProductController() { }
 
-        public ProductController(IProductService productService, IProductCategoryService productCategoryService)
+        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
+            _productImageService = productImageService;
         }
 
         /// <summary>
@@ -59,6 +61,10 @@ namespace Mango.Web.Areas.Admin.Controllers
 
             var productCategories = _productCategoryService.GetProductCategories();
             viewModel.ProductCategories = productCategories.ToSelectListItems(product.ProductCategoryId);
+            
+            var productImages = _productImageService.GetProductImages(id);
+            viewModel.ProductImages = Mapper.Map<IEnumerable<ProductImage>, IEnumerable<ProductImageFormViewModel>>(productImages);
+            
             return View(viewModel);
         }
 
