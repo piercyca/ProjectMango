@@ -19,5 +19,7 @@ namespace Mango.Web.Areas.Admin.Models
         [Required]
         [Url]
         public string Url { get; set; }
+
+        public UploadImageViewModel UploadImageViewModel { get; set; }
     }
 }

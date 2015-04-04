@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Mango.Core.Entity;
@@ -49,6 +50,41 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
+        /// GET: /products/create
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public virtual ActionResult Create()
+        {
+            var viewModel = new ProductFormViewModel();
+
+            var productCategories = _productCategoryService.GetProductCategories().ToList();
+            viewModel.ProductCategories = productCategories.ToSelectListItems(productCategories[0].ProductCategoryId);
+
+            return View(viewModel);
+        }
+
+        /// <summary>
+        /// POST: /products/create/
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public virtual ActionResult Create(ProductFormViewModel viewModel)
+        {
+            var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
+            if (ModelState.IsValid)
+            {
+                _productService.CreateProduct(product);
+                _productImageService.InsertProductImages(product.ProductId, viewModel.ProductImagesString);
+                return RedirectToAction(MVC.Admin.Product.List());
+            }
+            var productCategories = _productCategoryService.GetProductCategories();
+            viewModel.ProductCategories = productCategories.ToSelectListItems(product.ProductCategoryId);
+            return View(viewModel);
+        }
+
+        /// <summary>
         /// GET: /products/edit/{id}
         /// </summary>
         /// <param name="id"></param>
@@ -61,12 +97,13 @@ namespace Mango.Web.Areas.Admin.Controllers
 
             var productCategories = _productCategoryService.GetProductCategories();
             viewModel.ProductCategories = productCategories.ToSelectListItems(product.ProductCategoryId);
-            
+
             var productImages = _productImageService.GetProductImages(id);
             viewModel.ProductImages = Mapper.Map<IEnumerable<ProductImage>, IEnumerable<ProductImageFormViewModel>>(productImages);
-            
+
             return View(viewModel);
         }
+
 
         /// <summary>
         /// POST: /products/edit/

@@ -85,6 +85,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string List = "List";
+            public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string FileUpload = "FileUpload";
             public readonly string Layout = "Layout";
@@ -95,12 +96,21 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string List = "List";
+            public const string Create = "Create";
             public const string Edit = "Edit";
             public const string FileUpload = "FileUpload";
             public const string Layout = "Layout";
         }
 
 
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Create
+        {
+            public readonly string viewModel = "viewModel";
+        }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
@@ -129,12 +139,14 @@ namespace Mango.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
                 public readonly string FileUpload = "FileUpload";
                 public readonly string Layout = "Layout";
                 public readonly string List = "List";
                 public readonly string ScriptUploadProductImage = "ScriptUploadProductImage";
             }
+            public readonly string Create = "~/Areas/Admin/Views/Product/Create.cshtml";
             public readonly string Edit = "~/Areas/Admin/Views/Product/Edit.cshtml";
             public readonly string FileUpload = "~/Areas/Admin/Views/Product/FileUpload.cshtml";
             public readonly string Layout = "~/Areas/Admin/Views/Product/Layout.cshtml";
@@ -175,6 +187,29 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
             ListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            CreateOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.ProductFormViewModel viewModel);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Create(Mango.Web.Areas.Admin.Models.ProductFormViewModel viewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            CreateOverride(callInfo, viewModel);
             return callInfo;
         }
 

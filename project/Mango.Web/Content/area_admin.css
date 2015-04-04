@@ -23,3 +23,7 @@ textarea {
     max-width: 280px;
 }
 
+
+/* SORTABLE */
+.sortable-item { display: block;padding-bottom: 10px; }
+.sortable-item .sortable-controls { margin-bottom: 5px; }

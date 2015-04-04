@@ -259,6 +259,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Admin\Sortable.cs" />
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -425,6 +426,7 @@
     <Content Include="Areas\Admin\Views\Product\EditorTemplates\ProductImageFormViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\UploadImageViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Product\ScriptUploadProductImage.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy %282%29.pubxml" />
@@ -436,6 +438,7 @@
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\Areas\Admin\Product\Layout.js" />
+    <Content Include="Scripts\Areas\Admin\Product\SortableProductImages.js" />
     <Content Include="Scripts\Areas\Admin\Shared\UploadImage.js" />
     <Content Include="Scripts\Areas\Store\Product\Customize-output.js" />
     <Content Include="Scripts\bootstrap.js" />

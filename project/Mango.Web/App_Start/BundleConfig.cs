@@ -19,6 +19,7 @@ namespace Mango.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            // Bootstrap
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~" + Links.Scripts.bootstrap_js,
                       "~" + Links.Scripts.respond_js));

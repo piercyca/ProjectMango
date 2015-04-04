@@ -12,6 +12,11 @@
 
 <div class="row">
     <div class="col-md-12">
+        <a href="@Url.Action(MVC.Admin.Product.Create())" class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-plus"></span> Create
+        </a>
+        <div class="clearfix"></div>
+
         @if (!Model.ProductList.Any())
         {
             <div class="alert-danger">
@@ -22,49 +27,49 @@
         {
             <table class="table">
                 <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Name</th>
-                        <th>Url Slug</th>
-                        <th>Price</th>
-                    </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Name</th>
+                    <th>Url Slug</th>
+                    <th>Price</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.ProductList)
-                    {
-                        <tr>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-primary">Actions</button>
-                                    <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a class="toggle-pleasewait" href="@Url.Action(MVC.Admin.Product.Edit(item.ProductId))">
-                                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="toggle-pleasewait" href="@Url.Action(MVC.Admin.Product.Layout(item.ProductId))">
-                                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Layout
-                                            </a>
-                                        </li>
-                                        @*<li class="divider"></li>
+                @foreach (var item in Model.ProductList)
+                {
+                    <tr>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-xs btn-primary">Actions</button>
+                                <button type="button" class="btn btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a class="toggle-pleasewait" href="@Url.Action(MVC.Admin.Product.Edit(item.ProductId))">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="toggle-pleasewait" href="@Url.Action(MVC.Admin.Product.Layout(item.ProductId))">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Layout
+                                        </a>
+                                    </li>
+                                    @*<li class="divider"></li>
                                 <li>
                                     <a aria-label="covers" href="@Url.Action(MVC.Issue.EditCovers(Model.IssueId))">
                                         <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Covers
                                     </a>
                                 </li>*@
-                                    </ul>
-                                </div>
-                            </td>
-                            <td>@item.Name</td>
-                            <td>@item.UrlSlug</td>
-                            <td>@item.Price</td>
-                        </tr>
-                    }
+                                </ul>
+                            </div>
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.UrlSlug</td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
                 </tbody>
             </table>
         }

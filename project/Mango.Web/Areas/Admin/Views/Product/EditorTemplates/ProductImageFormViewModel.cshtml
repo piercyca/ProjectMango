@@ -1,5 +1,7 @@
-﻿@model Mango.Web.Areas.Admin.Models.ProductImageFormViewModel
+﻿@using Mango.Web.Helpers.Admin
+@model Mango.Web.Areas.Admin.Models.ProductImageFormViewModel
 
 <div class="sortable-item">
-    <img src="@Model.Url" />
+    @SortableHelper.Controls()
+    <img src="@Model.Url"/>
 </div>

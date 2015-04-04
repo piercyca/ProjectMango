@@ -1,13 +1,13 @@
 @using System.Globalization
 @model Mango.Web.Areas.Admin.Models.ProductFormViewModel
 @{
-    ViewBag.Title = "Products - Edit";
+    ViewBag.Title = "Products - Create";
 }
 
 <ol class="breadcrumb">
     <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
     <li>@Html.ActionLink("Products", MVC.Admin.Product.List())</li>
-    <li class="active">@Html.ActionLink("Edit", MVC.Admin.Product.Edit(Model.ProductId))</li>
+    <li class="active">@Html.ActionLink("Create", MVC.Admin.Product.Create())</li>
 </ol>
 
 <h2>Edit Product</h2>
