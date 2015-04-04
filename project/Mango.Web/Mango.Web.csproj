@@ -441,8 +441,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
-    <Content Include="Scripts\jquery.sortable.js" />
-    <Content Include="Scripts\jquery.sortable.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\product-canvas\canvas.js" />
     <Content Include="Scripts\product-canvas\fabric.min.js" />
