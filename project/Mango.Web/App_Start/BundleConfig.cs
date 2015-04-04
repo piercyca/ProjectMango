@@ -20,16 +20,28 @@ namespace Mango.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~" + Links.Scripts.bootstrap_js,
+                      "~" + Links.Scripts.respond_js));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/store").Include(
-                "~/Content/bootstrap.css",
-                "~/content/store.css"));
+            #region Styles
+
+            // root application
+            bundles.Add(new StyleBundle("~/Content/shared").Include(
+                "~" + Links.Content.bootstrap_css,
+                "~" + Links.Content.shared_css));
+
+            // Area: Admin
+            bundles.Add(new StyleBundle("~/Content/area_admin").Include(
+                "~" + Links.Content.bootstrap_css,
+                "~" + Links.Content.area_admin_css));
+
+            // Area: Store
+            bundles.Add(new StyleBundle("~/Content/area_store").Include(
+                "~" + Links.Content.bootstrap_css,
+                "~" + Links.Content.area_store_css));
+
+            #endregion
         }
     }
 }

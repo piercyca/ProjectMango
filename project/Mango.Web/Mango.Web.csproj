@@ -316,6 +316,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\shared.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -357,7 +358,7 @@
     <Content Include="Content\images\ugalogo.png" />
     <Content Include="Content\images\wineglass stemless.png" />
     <Content Include="Content\images\wineglasskit.png" />
-    <Content Include="Content\store.css" />
+    <Content Include="Content\area_store.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -395,7 +396,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\site.css" />
+    <Content Include="Content\area_admin.css" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />

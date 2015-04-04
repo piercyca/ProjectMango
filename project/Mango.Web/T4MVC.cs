@@ -150,8 +150,6 @@ namespace Links
         public static readonly string jquery_2_1_3_min_map = Url("jquery-2.1.3.min.map");
         public static readonly string jquery_ui_1_11_4_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery-ui-1.11.4.min.js") ? Url("jquery-ui-1.11.4.min.js") : Url("jquery-ui-1.11.4.js");
         public static readonly string jquery_ui_1_11_4_min_js = Url("jquery-ui-1.11.4.min.js");
-        public static readonly string jquery_sortable_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.sortable.min.js") ? Url("jquery.sortable.min.js") : Url("jquery.sortable.js");
-        public static readonly string jquery_sortable_min_js = Url("jquery.sortable.min.js");
         public static readonly string jquery_validate_vsdoc_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate-vsdoc.min.js") ? Url("jquery.validate-vsdoc.min.js") : Url("jquery.validate-vsdoc.js");
         public static readonly string jquery_validate_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/jquery.validate.min.js") ? Url("jquery.validate.min.js") : Url("jquery.validate.js");
         public static readonly string jquery_validate_min_js = Url("jquery.validate.min.js");
@@ -180,6 +178,10 @@ namespace Links
         private const string URLPATH = "~/Content";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string area_admin_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/area_admin.min.css") ? Url("area_admin.min.css") : Url("area_admin.css");
+             
+        public static readonly string area_store_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/area_store.min.css") ? Url("area_store.min.css") : Url("area_store.css");
+             
         public static readonly string bootstrap_theme_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-theme.min.css") ? Url("bootstrap-theme.min.css") : Url("bootstrap-theme.css");
              
         public static readonly string bootstrap_theme_css_map = Url("bootstrap-theme.css.map");
@@ -248,9 +250,7 @@ namespace Links
     
         public static readonly string PagedList_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/PagedList.min.css") ? Url("PagedList.min.css") : Url("PagedList.css");
              
-        public static readonly string site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/site.min.css") ? Url("site.min.css") : Url("site.css");
-             
-        public static readonly string store_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/store.min.css") ? Url("store.min.css") : Url("store.css");
+        public static readonly string shared_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shared.min.css") ? Url("shared.min.css") : Url("shared.css");
              
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class themes {
@@ -392,8 +392,6 @@ namespace Links
                 public const string jquery_2_1_3_min_js = "~/Scripts/jquery-2.1.3.min.js"; 
                 public const string jquery_ui_1_11_4_js = "~/Scripts/jquery-ui-1.11.4.js"; 
                 public const string jquery_ui_1_11_4_min_js = "~/Scripts/jquery-ui-1.11.4.min.js"; 
-                public const string jquery_sortable_js = "~/Scripts/jquery.sortable.js"; 
-                public const string jquery_sortable_min_js = "~/Scripts/jquery.sortable.min.js"; 
                 public const string jquery_validate_js = "~/Scripts/jquery.validate.js"; 
                 public const string jquery_validate_min_js = "~/Scripts/jquery.validate.min.js"; 
                 public const string jquery_validate_unobtrusive_js = "~/Scripts/jquery.validate.unobtrusive.js"; 
@@ -466,13 +464,14 @@ namespace Links
             }
             public static class Assets
             {
+                public const string area_admin_css = "~/Content/area_admin.css";
+                public const string area_store_css = "~/Content/area_store.css";
                 public const string bootstrap_theme_css = "~/Content/bootstrap-theme.css";
                 public const string bootstrap_theme_min_css = "~/Content/bootstrap-theme.min.css";
                 public const string bootstrap_css = "~/Content/bootstrap.css";
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
                 public const string PagedList_css = "~/Content/PagedList.css";
-                public const string site_css = "~/Content/site.css";
-                public const string store_css = "~/Content/store.css";
+                public const string shared_css = "~/Content/shared.css";
             }
         }
     }
