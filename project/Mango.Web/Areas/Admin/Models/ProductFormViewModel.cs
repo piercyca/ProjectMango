@@ -68,5 +68,13 @@ namespace Mango.Web.Areas.Admin.Models
         /// </summary>
         [HiddenInput(DisplayValue = false)]
         public string ProductImagesString { get; set; }
+
+
+        public UploadImageViewModel UploadProductImageViewModel { get; set; }
+
+        public ProductFormViewModel()
+        {
+            UploadProductImageViewModel = new UploadImageViewModel("modalUploadProductImage");
+        }
     }
 }

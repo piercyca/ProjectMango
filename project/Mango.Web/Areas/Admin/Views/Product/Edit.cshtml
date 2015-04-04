@@ -24,12 +24,10 @@
             //    handle: 'span'
             //});
 
-            console.log("product-save");
-
-            $('#product-form').submit(function () {
+            $('#product-form').submit(function() {
                 console.log("click");
                 var urls = [];
-                $('.sortable-item').each(function (index, value) {
+                $('.sortable-item').each(function(index, value) {
                     var url = $(value).find('img').prop('src');
                     console.log(url);
                     urls.push(url);
@@ -40,4 +38,6 @@
         });
 
     </script>
+    @* Partial for upload product image script *@
+    @Html.Partial(MVC.Admin.Product.Views.ViewNames.ScriptUploadProductImage, Model.UploadProductImageViewModel)
 }

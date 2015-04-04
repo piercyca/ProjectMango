@@ -1,3 +1,4 @@
+@using Mango.Web.Areas.Admin.Models
 @model Mango.Web.Areas.Admin.Models.ProductFormViewModel
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "product-form" }))
@@ -42,9 +43,13 @@
             </div>
         </div>
 
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.ProductImages, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                <a id="btnUploadProductImage" class="btn btn-info">Upload</a>
+                <hr/>
                 <div class="sortable-images">
                     @Html.EditorFor(model => Model.ProductImages)
                 </div>
@@ -60,3 +65,12 @@
         </div>
     </div>
 }
+
+<script>
+    var @Model.UploadProductImageViewModel.OptionsVarName = {
+        modalId: "#@Model.UploadProductImageViewModel.ModalId",
+        modalTrigger: "#btnUploadProductImage"
+    };
+</script>
+
+@Html.EditorFor(model => model.UploadProductImageViewModel)

@@ -244,6 +244,7 @@
     <Compile Include="Areas\Admin\Models\OrganizationListViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductImageFormViewModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductLayoutFormViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UploadImageViewModel.cs" />
     <Compile Include="Areas\Store\Controllers\CartController.cs" />
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\Controllers\ProductController.cs" />
@@ -421,6 +422,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Areas\Admin\Views\Product\EditorTemplates\ProductImageFormViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\UploadImageViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\ScriptUploadProductImage.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy %282%29.pubxml" />

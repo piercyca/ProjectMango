@@ -133,17 +133,20 @@ namespace Mango.Web.Areas.Admin.Controllers
                 public readonly string FileUpload = "FileUpload";
                 public readonly string Layout = "Layout";
                 public readonly string List = "List";
+                public readonly string ScriptUploadProductImage = "ScriptUploadProductImage";
             }
             public readonly string Edit = "~/Areas/Admin/Views/Product/Edit.cshtml";
             public readonly string FileUpload = "~/Areas/Admin/Views/Product/FileUpload.cshtml";
             public readonly string Layout = "~/Areas/Admin/Views/Product/Layout.cshtml";
             public readonly string List = "~/Areas/Admin/Views/Product/List.cshtml";
+            public readonly string ScriptUploadProductImage = "~/Areas/Admin/Views/Product/ScriptUploadProductImage.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _EditorTemplatesClass
             {
                 public readonly string ProductFormViewModel = "ProductFormViewModel";
+                public readonly string ProductImageFormViewModel = "ProductImageFormViewModel";
             }
         }
     }
