@@ -8,7 +8,7 @@
 
 <div>
     <h4>ProductDetailViewModel</h4>
-    <hr />
+    <hr/>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ProductId)
@@ -73,9 +73,18 @@
         <dd>
             @Html.DisplayFor(model => model.ProductCategoryKeywords)
         </dd>
-
     </dl>
 </div>
+
+@if (Model.ProductImages.Any())
+{
+    
+    foreach (var image in Model.ProductImages)
+    {
+    <div><img src="@image.Url"/></div>
+    }
+}
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")

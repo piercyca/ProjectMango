@@ -422,7 +422,7 @@
     <Content Include="Areas\Admin\Views\Organization\Create.cshtml" />
     <Content Include="Areas\Store\Views\Product\Index.cshtml" />
     <Content Include="Areas\Store\Views\Cart\Index.cshtml" />
-    <Content Include="Areas\Store\Views\Product\CustomizeTemp.cshtml" />
+    <Content Include="Areas\Store\Views\Product\Customize.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />

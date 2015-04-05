@@ -49,14 +49,14 @@ namespace Mango.Web.Areas.Store.Models
         /// </summary>
         [DisplayName("Product Category Name")]
         [ReadOnly(true)]
-        public int ProductCategoryName { get; set; }
+        public string ProductCategoryName { get; set; }
 
         /// <summary>
         /// Product Category Id
         /// </summary>
         [DisplayName("Product Category Description")]
         [ReadOnly(true)]
-        public int ProductCategoryDescription { get; set; }
+        public string ProductCategoryDescription { get; set; }
 
         [Required]
         [DisplayName("Product Category Url Slug")]

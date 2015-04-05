@@ -16,11 +16,11 @@ namespace Mango.Web.Areas.Store
         {
             context.Routes.LowercaseUrls = true;
 
-            context.MapRoute(
-                "Store_default",
-                "Store/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+            //context.MapRoute(
+            //    "Store_default",
+            //    "Store/{controller}/{action}/{id}",
+            //    new { action = "Index", id = UrlParameter.Optional }
+            //);
         }
     }
 }

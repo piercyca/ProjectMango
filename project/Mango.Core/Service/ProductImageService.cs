@@ -96,7 +96,7 @@ namespace Mango.Core.Service
 
         public IEnumerable<ProductImage> GetProductImages(int productId)
         {
-            return _productImageRepository.GetProductImages(productId);
+            return _productImageRepository.GetProductImages(productId).OrderBy(pi => pi.SortOrder);
         }
     }
 }

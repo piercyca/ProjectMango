@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace Mango.Web.Areas.Store.Controllers
 {
+    [RouteArea("store")]
+    [RoutePrefix("cart")]
+    [Route("{action}")]
     public partial class CartController : Controller
     {
         /// <summary>

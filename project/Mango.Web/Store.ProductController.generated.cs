@@ -27,9 +27,6 @@ namespace Mango.Web.Areas.Store.Controllers
     public partial class ProductController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ProductController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected ProductController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -114,7 +111,7 @@ namespace Mango.Web.Areas.Store.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Detail
         {
-            public readonly string urlSlug = "urlSlug";
+            public readonly string urlslug = "urlslug";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -127,9 +124,11 @@ namespace Mango.Web.Areas.Store.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Customize = "Customize";
+                public readonly string Detail = "Detail";
                 public readonly string Index = "Index";
             }
             public readonly string Customize = "~/Areas/Store/Views/Product/Customize.cshtml";
+            public readonly string Detail = "~/Areas/Store/Views/Product/Detail.cshtml";
             public readonly string Index = "~/Areas/Store/Views/Product/Index.cshtml";
         }
     }
@@ -163,14 +162,14 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string urlSlug);
+        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string urlslug);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Detail(string urlSlug)
+        public override System.Web.Mvc.ActionResult Detail(string urlslug)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "urlSlug", urlSlug);
-            DetailOverride(callInfo, urlSlug);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "urlslug", urlslug);
+            DetailOverride(callInfo, urlslug);
             return callInfo;
         }
 

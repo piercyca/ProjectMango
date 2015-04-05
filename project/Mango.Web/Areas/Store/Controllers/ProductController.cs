@@ -4,13 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Links;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Web.Areas.Store.Models;
 
 namespace Mango.Web.Areas.Store.Controllers
 {
+    [RouteArea("store")]
     [RoutePrefix("product")]
+    [Route("{action}")]
     public partial class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -42,6 +45,7 @@ namespace Mango.Web.Areas.Store.Controllers
         /// </summary>
         /// <param name="urlSlug"></param>
         /// <returns></returns>
+        [Route("customize/{urlslug}")]
         [HttpGet]
         public virtual ActionResult Customize(string urlSlug)
         {
@@ -53,11 +57,11 @@ namespace Mango.Web.Areas.Store.Controllers
         /// </summary>
         /// <param name="urlSlug"></param>
         /// <returns></returns>
-        [Route("detail/{urlslug}")]
+        [Route("detail/{urlslug:regex([a-z0-9-_]*)}")]
         [HttpGet]
-        public virtual ActionResult Detail(string urlSlug)
+        public virtual ActionResult Detail(string urlslug)
         {
-            var product = _productService.GetProduct(urlSlug);
+            var product = _productService.GetProduct(urlslug);
             if (product == null)
             {
                 return HttpNotFound();
