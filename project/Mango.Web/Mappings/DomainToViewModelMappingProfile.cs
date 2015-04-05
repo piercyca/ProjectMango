@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Mango.Core.Entity;
-using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Mappings
 {
@@ -18,18 +17,27 @@ namespace Mango.Web.Mappings
 
         protected override void Configure()
         {
-            Mapper.CreateMap<Address, AddressFormViewModel>();
+            #region Area_Admin
 
-            Mapper.CreateMap<Organization, OrganizationFormViewModel>();
-            Mapper.CreateMap<Organization, OrganizationListItemViewModel>();
-            Mapper.CreateMap<Product, ProductFormViewModel>().ForMember(dest => dest.UrlSlugCompare, opt => opt.MapFrom(src => src.UrlSlug));
-            Mapper.CreateMap<Product, ProductLayoutFormViewModel>();
-            Mapper.CreateMap<Product, ProductListItemViewModel>();
-            Mapper.CreateMap<ProductCategory, ProductCategoryFormViewModel>();
-            Mapper.CreateMap<ProductCategory, ProductCategoryListItemViewModel>();
-            Mapper.CreateMap<ProductImage, ProductImageFormViewModel>();
+            Mapper.CreateMap<Address, Areas.Admin.Models.AddressFormViewModel>();
+            Mapper.CreateMap<Customer, Areas.Admin.Models.CustomerFormViewModel>();
+            Mapper.CreateMap<Organization, Areas.Admin.Models.OrganizationFormViewModel>();
+            Mapper.CreateMap<Organization, Areas.Admin.Models.OrganizationListItemViewModel>();
+            Mapper.CreateMap<Product, Areas.Admin.Models.ProductFormViewModel>().ForMember(dest => dest.UrlSlugCompare, opt => opt.MapFrom(src => src.UrlSlug));
+            Mapper.CreateMap<Product, Areas.Admin.Models.ProductLayoutFormViewModel>();
+            Mapper.CreateMap<Product, Areas.Admin.Models.ProductListItemViewModel>();
+            Mapper.CreateMap<ProductCategory, Areas.Admin.Models.ProductCategoryFormViewModel>();
+            Mapper.CreateMap<ProductCategory, Areas.Admin.Models.ProductCategoryListItemViewModel>();
+            Mapper.CreateMap<ProductImage, Areas.Admin.Models.ProductImageFormViewModel>();
 
-			Mapper.CreateMap<Customer, CustomerFormViewModel>();
+            #endregion
+
+            #region Area_Store
+
+            Mapper.CreateMap<Product, Areas.Store.Models.ProductDetailViewModel>();
+            Mapper.CreateMap<ProductImage, Areas.Store.Models.ProductImageViewModel>();
+
+            #endregion
 
             //Mapper.CreateMap<X, XViewModel>()
             //    .ForMember(x => x.Property1, opt => opt.MapFrom(source => source.PropertyXYZ));

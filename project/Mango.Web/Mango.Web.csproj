@@ -124,6 +124,9 @@
     <Reference Include="PagedList.Mvc">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="RouteDebugger">
+      <HintPath>..\packages\routedebugger.2.1.4.0\lib\net40\RouteDebugger.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -248,6 +251,8 @@
     <Compile Include="Areas\Store\Controllers\CartController.cs" />
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Store\Models\ProductDetailViewModel.cs" />
+    <Compile Include="Areas\Store\Models\ProductImageViewModel.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
@@ -417,7 +422,7 @@
     <Content Include="Areas\Admin\Views\Organization\Create.cshtml" />
     <Content Include="Areas\Store\Views\Product\Index.cshtml" />
     <Content Include="Areas\Store\Views\Cart\Index.cshtml" />
-    <Content Include="Areas\Store\Views\Product\Customize.cshtml" />
+    <Content Include="Areas\Store\Views\Product\CustomizeTemp.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -427,6 +432,7 @@
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\UploadImageViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Product\ScriptUploadProductImage.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Store\Views\Product\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy %282%29.pubxml" />
@@ -517,7 +523,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Store\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

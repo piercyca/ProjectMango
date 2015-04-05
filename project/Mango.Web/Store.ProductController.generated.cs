@@ -64,6 +64,12 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customize);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Detail()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ProductController Actions { get { return MVC.Store.Product; } }
@@ -82,6 +88,7 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Customize = "Customize";
+            public readonly string Detail = "Detail";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -89,6 +96,7 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             public const string Index = "Index";
             public const string Customize = "Customize";
+            public const string Detail = "Detail";
         }
 
 
@@ -97,6 +105,14 @@ namespace Mango.Web.Areas.Store.Controllers
         public ActionParamsClass_Customize CustomizeParams { get { return s_params_Customize; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Customize
+        {
+            public readonly string urlSlug = "urlSlug";
+        }
+        static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Detail DetailParams { get { return s_params_Detail; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Detail
         {
             public readonly string urlSlug = "urlSlug";
         }
@@ -143,6 +159,18 @@ namespace Mango.Web.Areas.Store.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customize);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "urlSlug", urlSlug);
             CustomizeOverride(callInfo, urlSlug);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string urlSlug);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Detail(string urlSlug)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "urlSlug", urlSlug);
+            DetailOverride(callInfo, urlSlug);
             return callInfo;
         }
 
