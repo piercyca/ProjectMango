@@ -32,9 +32,9 @@ namespace Mango.Core.Migrations
                 new Entity.Product { UrlSlug = "granite-state-georgia-platter", Name = "Granite state of Georgia platter", Price = 15.50m, ProductCategoryId = 1, ProductId = 2 });
 
             // Product Images
-            context.ProductImages.AddOrUpdate(pi => pi.ProductId, new ProductImage { ProductId = 1, SortOrder = 1, Url = "https://mangoassets.blob.core.windows.net/images/03b46d6e7ce3447fba1868358a9a69a5.jpg" });
-            context.ProductImages.AddOrUpdate(pi => pi.ProductId, new ProductImage { ProductId = 1, SortOrder = 2, Url = "https://mangoassets.blob.core.windows.net/images/0a1baf98f04a4f96b78ebeaa38880415.jpg" });
-            context.ProductImages.AddOrUpdate(pi => pi.ProductId, new ProductImage { ProductId = 1, SortOrder = 3, Url = "https://mangoassets.blob.core.windows.net/images/211bebb2c309483fb548c20af242e880.png" });
+            context.ProductImages.AddOrUpdate(pi => new { pi.ProductId, pi.SortOrder }, new ProductImage { ProductId = 1, SortOrder = 0, Url = "https://mangoassets.blob.core.windows.net/images/03b46d6e7ce3447fba1868358a9a69a5.jpg" });
+            context.ProductImages.AddOrUpdate(pi => new { pi.ProductId, pi.SortOrder }, new ProductImage { ProductId = 1, SortOrder = 1, Url = "https://mangoassets.blob.core.windows.net/images/0a1baf98f04a4f96b78ebeaa38880415.jpg" });
+            context.ProductImages.AddOrUpdate(pi => new { pi.ProductId, pi.SortOrder }, new ProductImage { ProductId = 1, SortOrder = 2, Url = "https://mangoassets.blob.core.windows.net/images/211bebb2c309483fb548c20af242e880.png" });
 
             // Organizations
             context.Organizations.AddOrUpdate(o => o.OrganizationId, new Organization {OrganizationId = 1, Name = "University of Georgia", Abbreviation = "UGA"});

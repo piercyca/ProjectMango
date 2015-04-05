@@ -74,6 +74,7 @@
     <Compile Include="Entity\MangoContext.cs" />
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\Organization.cs" />
+    <Compile Include="Entity\ProductUrlSlugRedirect.cs" />
     <Compile Include="Entity\ProductImage.cs" />
     <Compile Include="Entity\ProductCategory.cs" />
     <Compile Include="Entity\Product.cs" />
@@ -166,6 +167,10 @@
     <Compile Include="Migrations\201504030006178_ProductImageAdd.Designer.cs">
       <DependentUpon>201504030006178_ProductImageAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504042056393_AddProductUrlSlugRedirect.cs" />
+    <Compile Include="Migrations\201504042056393_AddProductUrlSlugRedirect.Designer.cs">
+      <DependentUpon>201504042056393_AddProductUrlSlugRedirect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -173,6 +178,7 @@
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\OrganizationRepository.cs" />
+    <Compile Include="Repository\ProductUrlSlugRepository.cs" />
     <Compile Include="Repository\ProductImageRepository.cs" />
     <Compile Include="Service\OrderItemService.cs" />
     <Compile Include="Service\OrderService.cs" />
@@ -182,6 +188,7 @@
     <Compile Include="Service\OrganizationService.cs" />
     <Compile Include="Service\ProductCategoryService.cs" />
     <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\ProductUrlSlugRedirectService.cs" />
     <Compile Include="Service\ProductImageService.cs" />
     <Compile Include="Service\ProductService.cs" />
   </ItemGroup>
@@ -252,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504030006178_ProductImageAdd.resx">
       <DependentUpon>201504030006178_ProductImageAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504042056393_AddProductUrlSlugRedirect.resx">
+      <DependentUpon>201504042056393_AddProductUrlSlugRedirect.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

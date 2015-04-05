@@ -22,7 +22,7 @@ namespace Mango.Web.Mappings
 
             Mapper.CreateMap<Organization, OrganizationFormViewModel>();
             Mapper.CreateMap<Organization, OrganizationListItemViewModel>();
-            Mapper.CreateMap<Product, ProductFormViewModel>();
+            Mapper.CreateMap<Product, ProductFormViewModel>().ForMember(dest => dest.UrlSlugCompare, opt => opt.MapFrom(src => src.UrlSlug));
             Mapper.CreateMap<Product, ProductLayoutFormViewModel>();
             Mapper.CreateMap<Product, ProductListItemViewModel>();
             Mapper.CreateMap<ProductCategory, ProductCategoryFormViewModel>();

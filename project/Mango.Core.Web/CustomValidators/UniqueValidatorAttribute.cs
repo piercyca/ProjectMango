@@ -63,6 +63,7 @@ namespace Mango.Core.Web.CustomValidators {
                     if (!string.IsNullOrEmpty(value.ToString())) {
                         var currentValue = value.ToString();
                         var dbFactory = new DatabaseFactory();
+                        var unitOfWork = new UnitOfWork(dbFactory);
                         bool isValid;
                         switch (UniqueValidatorType) {
                             case UniqueValidatorType.ProductCategoryUrlSlug:
@@ -70,7 +71,7 @@ namespace Mango.Core.Web.CustomValidators {
                                 isValid = !productCategoryService.UrlSlugExists(currentValue, currentId);
                                 break;
                             case UniqueValidatorType.ProductUrlSlug:
-                                var productService = new ProductService(new ProductRepository(dbFactory), new UnitOfWork(dbFactory));
+                                var productService = new ProductService(new ProductRepository(dbFactory), unitOfWork);
                                 isValid = !productService.UrlSlugExists(currentValue, currentId);
                                 break;
                             default:

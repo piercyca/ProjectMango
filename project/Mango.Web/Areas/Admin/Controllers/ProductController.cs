@@ -15,14 +15,16 @@ namespace Mango.Web.Areas.Admin.Controllers
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
         private readonly IProductImageService _productImageService;
+        private readonly IProductUrlSlugRedirectService _productUrlSlugRedirectService;
 
         public ProductController() { }
 
-        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService)
+        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService, IProductUrlSlugRedirectService productUrlSlugRedirectService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
             _productImageService = productImageService;
+            _productUrlSlugRedirectService = productUrlSlugRedirectService;
         }
 
         /// <summary>
@@ -77,6 +79,9 @@ namespace Mango.Web.Areas.Admin.Controllers
             {
                 _productService.CreateProduct(product);
                 _productImageService.InsertProductImages(product.ProductId, viewModel.ProductImagesString);
+                // Deletes redirect if it exists
+                _productUrlSlugRedirectService.DeleteProductUrlSlugRedirect(viewModel.UrlSlug);
+
                 return RedirectToAction(MVC.Admin.Product.List());
             }
             var productCategories = _productCategoryService.GetProductCategories();
@@ -116,13 +121,64 @@ namespace Mango.Web.Areas.Admin.Controllers
             var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
             if (ModelState.IsValid)
             {
+                ManageProductUrlSlugRedirect(viewModel);
+
                 _productService.EditProduct(product);
                 _productImageService.InsertProductImages(viewModel.ProductId, viewModel.ProductImagesString);
+
                 return RedirectToAction(MVC.Admin.Product.List());
             }
             var productCategories = _productCategoryService.GetProductCategories();
             viewModel.ProductCategories = productCategories.ToSelectListItems(product.ProductCategoryId);
             return View(viewModel);
+        }
+
+        private void ManageProductUrlSlugRedirect(ProductFormViewModel viewModel)
+        {
+            // current data, update url slug redirect if necessary
+            if (viewModel.UrlSlug != viewModel.UrlSlugCompare)
+            {
+                // check if redirect exists and if so delete it
+                if (_productUrlSlugRedirectService.GetProductUrlSlugRedirect(viewModel.UrlSlug) != null)
+                {
+                    _productUrlSlugRedirectService.DeleteProductUrlSlugRedirect(viewModel.UrlSlug);
+                }
+
+                // check if old redirect exists, if so update it, if not create it
+                var productUrlSlugRedirectUrlSlugCompare =
+                    _productUrlSlugRedirectService.GetProductUrlSlugRedirect(viewModel.UrlSlugCompare);
+                if (productUrlSlugRedirectUrlSlugCompare == null)
+                {
+                    // create new
+                    _productUrlSlugRedirectService.CreateProductUrlSlugRedirect(new ProductUrlSlugRedirect
+                    {
+                        OldUrlSlug = viewModel.UrlSlugCompare,
+                        NewUrlSlug = viewModel.UrlSlug
+                    });
+                }
+                else
+                {
+                    // update saved
+                    productUrlSlugRedirectUrlSlugCompare.NewUrlSlug = viewModel.UrlSlug;
+                    _productUrlSlugRedirectService.EditProductUrlSlugRedirect(productUrlSlugRedirectUrlSlugCompare);
+                }
+
+                // update potiential conflicts and redirect loops
+                foreach (
+                    var redirect in _productUrlSlugRedirectService.GetProductUrlSlugRedirectNewUrlSlug(viewModel.UrlSlugCompare)
+                    )
+                {
+                    if (redirect.OldUrlSlug == viewModel.UrlSlug)
+                    {
+                        _productUrlSlugRedirectService.DeleteProductUrlSlugRedirect(redirect.OldUrlSlug);
+                    }
+                    else
+                    {
+                        redirect.NewUrlSlug = viewModel.UrlSlug;
+                        _productUrlSlugRedirectService.EditProductUrlSlugRedirect(redirect);
+                    }
+                }
+            }
         }
 
         /// <summary>

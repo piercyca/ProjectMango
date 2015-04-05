@@ -43,6 +43,13 @@ namespace Mango.Web.Areas.Admin.Models
         public string UrlSlug { get; set; }
 
         /// <summary>
+        /// Product Url Slug, used to compare to UrlSlug when 
+        /// saving to determine if a redirect should be created.
+        /// </summary>
+        [HiddenInput(DisplayValue = false)]
+        public string UrlSlugCompare { get; set; }
+
+        /// <summary>
         /// Name
         /// </summary>
         [DisplayName("Name")]
