@@ -57,11 +57,11 @@ namespace Mango.Web.Areas.Store.Controllers
         /// </summary>
         /// <param name="urlSlug"></param>
         /// <returns></returns>
-        [Route("detail/{urlslug:regex([a-z0-9-_]*)}")]
+        [Route("detail/{urlSlug:regex([a-z0-9-_]*)}")]
         [HttpGet]
-        public virtual ActionResult Detail(string urlslug)
+        public virtual ActionResult Detail(string urlSlug)
         {
-            var product = _productService.GetProduct(urlslug);
+            var product = _productService.GetProduct(urlSlug);
             if (product == null)
             {
                 return HttpNotFound();
