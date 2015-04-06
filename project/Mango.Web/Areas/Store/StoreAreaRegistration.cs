@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using RouteMagic;
 
 namespace Mango.Web.Areas.Store
 {
