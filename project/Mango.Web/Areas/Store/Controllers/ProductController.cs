@@ -54,13 +54,7 @@ namespace Mango.Web.Areas.Store.Controllers
             {
                 return HttpNotFound();
             }
-
-            var viewModel = Mapper.Map<Product, ProductDetailViewModel>(product);
-
-            var productImages = _productImageService.GetProductImages(viewModel.ProductId);
-            viewModel.ProductImages = Mapper.Map<List<ProductImage>, List<ProductImageViewModel>>(productImages.ToList());
-
-            return View(viewModel);
+            return View(GetProductModel(product));
         }
 
         /// <summary>
@@ -77,13 +71,16 @@ namespace Mango.Web.Areas.Store.Controllers
             {
                 return HttpNotFound();
             }
+            return View(GetProductModel(product));
+        }
 
+        private ProductDetailViewModel GetProductModel(Product product)
+        {
             var viewModel = Mapper.Map<Product, ProductDetailViewModel>(product);
 
             var productImages = _productImageService.GetProductImages(viewModel.ProductId);
             viewModel.ProductImages = Mapper.Map<List<ProductImage>, List<ProductImageViewModel>>(productImages.ToList());
-
-            return View(viewModel);
+            return viewModel;
         }
 
     }
