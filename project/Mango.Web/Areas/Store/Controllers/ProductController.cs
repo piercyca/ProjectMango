@@ -20,7 +20,7 @@ namespace Mango.Web.Areas.Store.Controllers
         private readonly IProductCategoryService _productCategoryService;
         private readonly IProductImageService _productImageService;
 
-        //public ProductController() { }
+        public ProductController() { }
 
         public ProductController(IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService)
         {

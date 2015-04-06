@@ -22,6 +22,7 @@ namespace Mango.Core.Entity
             DateCreated = DateTime.UtcNow;
             Status = AddressStatus.Active;
             AddressType = AddressType.Unknown;
+            Country = "US"; // use ISO codes, see: http://en.wikipedia.org/wiki/ISO_3166-1
         }
 
         /// <summary>
@@ -97,6 +98,7 @@ namespace Mango.Core.Entity
 
         /// <summary>
         /// Country
+        /// use ISO codes, see: http://en.wikipedia.org/wiki/ISO_3166-1
         /// </summary>
         [StringLength(50)]
         public string Country { get; set; }
