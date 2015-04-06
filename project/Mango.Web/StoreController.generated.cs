@@ -22,12 +22,15 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace Mango.Web.Areas.Store.Controllers
+namespace Mango.Web.Controllers
 {
-    public partial class ProductController
+    public partial class StoreController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ProductController(Dummy d) { }
+        public StoreController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected StoreController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -55,27 +58,15 @@ namespace Mango.Web.Areas.Store.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Customize()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customize);
-        }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Detail()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ProductController Actions { get { return MVC.StoreArea.Product; } }
+        public StoreController Actions { get { return MVC.Store; } }
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Area = "Store";
+        public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Product";
+        public readonly string Name = "Store";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Product";
+        public const string NameConst = "Store";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -84,35 +75,15 @@ namespace Mango.Web.Areas.Store.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Customize = "Customize";
-            public readonly string Detail = "Detail";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Customize = "Customize";
-            public const string Detail = "Detail";
         }
 
 
-        static readonly ActionParamsClass_Customize s_params_Customize = new ActionParamsClass_Customize();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Customize CustomizeParams { get { return s_params_Customize; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Customize
-        {
-            public readonly string urlSlug = "urlSlug";
-        }
-        static readonly ActionParamsClass_Detail s_params_Detail = new ActionParamsClass_Detail();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Detail DetailParams { get { return s_params_Detail; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Detail
-        {
-            public readonly string urlSlug = "urlSlug";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -123,20 +94,14 @@ namespace Mango.Web.Areas.Store.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Customize = "Customize";
-                public readonly string Detail = "Detail";
-                public readonly string Index = "Index";
             }
-            public readonly string Customize = "~/Areas/Store/Views/Product/Customize.cshtml";
-            public readonly string Detail = "~/Areas/Store/Views/Product/Detail.cshtml";
-            public readonly string Index = "~/Areas/Store/Views/Product/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_ProductController : Mango.Web.Areas.Store.Controllers.ProductController
+    public partial class T4MVC_StoreController : Mango.Web.Controllers.StoreController
     {
-        public T4MVC_ProductController() : base(Dummy.Instance) { }
+        public T4MVC_StoreController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -146,30 +111,6 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CustomizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string urlSlug);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Customize(string urlSlug)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customize);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "urlSlug", urlSlug);
-            CustomizeOverride(callInfo, urlSlug);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void DetailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string urlSlug);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Detail(string urlSlug)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Detail);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "urlSlug", urlSlug);
-            DetailOverride(callInfo, urlSlug);
             return callInfo;
         }
 

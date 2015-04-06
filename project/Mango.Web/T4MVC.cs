@@ -29,10 +29,11 @@ public static partial class MVC
     static readonly AdminClass s_Admin = new AdminClass();
     public static AdminClass Admin { get { return s_Admin; } }
     static readonly StoreClass s_Store = new StoreClass();
-    public static StoreClass Store { get { return s_Store; } }
+    public static StoreClass StoreArea { get { return s_Store; } }
     public static Mango.Web.Controllers.AccountController Account = new Mango.Web.Controllers.T4MVC_AccountController();
     public static Mango.Web.Controllers.HomeController Home = new Mango.Web.Controllers.T4MVC_HomeController();
     public static Mango.Web.Controllers.ManageController Manage = new Mango.Web.Controllers.T4MVC_ManageController();
+    public static Mango.Web.Controllers.StoreController Store = new Mango.Web.Controllers.T4MVC_StoreController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

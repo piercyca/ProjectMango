@@ -60,7 +60,7 @@ namespace Mango.Web.Areas.Store.Controllers
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController Actions { get { return MVC.Store.Home; } }
+        public HomeController Actions { get { return MVC.StoreArea.Home; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Store";
         [GeneratedCode("T4MVC", "2.0")]

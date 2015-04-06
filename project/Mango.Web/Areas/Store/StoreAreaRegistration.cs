@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using RouteMagic;
 
 namespace Mango.Web.Areas.Store
 {
@@ -8,7 +9,7 @@ namespace Mango.Web.Areas.Store
         {
             get 
             {
-                return "Store";
+                return "store";
             }
         }
 
@@ -17,13 +18,6 @@ namespace Mango.Web.Areas.Store
             var routes = context.Routes;
 
             routes.LowercaseUrls = true;
-
-            var routeStoreHomeRedirect = routes.MapRoute("StoreHomeRedirectTo",
-                "store/{controller}/{action}",
-                new { area = "store", controller = "home", action = "index" },
-                namespaces: new[] { "Mango.Web.Areas.Store.Controllers" });
-            routes.Redirect
-            //routes.Redirect(r => r.MapRoute("StoreHomeRedirect", "store")).To(routeStoreHomeRedirect);
 
             //context.MapRoute(
             //    "Store_default",
