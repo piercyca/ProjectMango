@@ -19,22 +19,18 @@
         </div>
 
         @* need logos loop *@
-        <div class="well  icons">
-            <div id="uga1" class="active">
-                <img src="/Content/images/logos/ugalogo.png" width="40" height="40">
-            </div>
-            <div id="uga2">
-                <img src="/Content/images/logos/ugalogo2.png" />
-            </div>
-            <div id="uga3">
-                <img src="/Content/images/logos/ugalogo3.png" />
-            </div>
-            <div id="uga4">
-                <img src="/Content/images/logos/ugalogo4.png" />
-            </div>
-            <div id="uga5">
-                <img src="/Content/images/logos/ugalogo5.png" />
-            </div>
+        <div class="well icons">
+            @if (Model.ProductImages.Any())
+            {
+                for (int i = 0; i < Model.ProductImages.Count; i++)
+                {
+                    var cssClass = (i == 0) ? "active" : string.Empty;
+                    var image = Model.ProductImages[i];
+                    <div id="@string.Format("image{0}", i)" class="@cssClass">
+                        <img src="@image.Url" width="40" height="40">
+                    </div>
+                }
+            }
         </div>
 
         <div class="well form-group">
