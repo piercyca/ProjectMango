@@ -18,24 +18,28 @@
             Select a logo and then insert text
         </div>
 
-        @* need logos loop *@
+        @* TODO: need logos loop // should be a separate place in admin for managing logos / Static for now *@
         <div class="well icons">
-            @if (Model.ProductImages.Any())
-            {
-                for (int i = 0; i < Model.ProductImages.Count; i++)
-                {
-                    var cssClass = (i == 0) ? "active" : string.Empty;
-                    var image = Model.ProductImages[i];
-                    <div id="@string.Format("image{0}", i)" class="@cssClass">
-                        <img src="@image.Url" width="40" height="40">
-                    </div>
-                }
-            }
+            <div id="uga1" class="active">
+                <img src="/Content/images/logos/ugalogo.png" width="40" height="40">
+            </div>
+            <div id="uga2">
+                <img src="/Content/images/logos/ugalogo2.png" />
+            </div>
+            <div id="uga3">
+                <img src="/Content/images/logos/ugalogo3.png" />
+            </div>
+            <div id="uga4">
+                <img src="/Content/images/logos/ugalogo4.png" />
+            </div>
+            <div id="uga5">
+                <img src="/Content/images/logos/ugalogo5.png" />
+            </div>
         </div>
 
         <div class="well form-group">
             <select id="fontselector">
-                @* need font loop *@
+                @* TODO: need font loop // should be a separate place in admin for managing fonts / Static for now *@
                 <option id="dancing+script">Dancing Script</option>
                 <option id="vast+shadow">Vast Shadow</option>
                 <option id="open+sans">Open Sans</option>
@@ -47,10 +51,24 @@
             @Html.HiddenFor(model => model.CanvasImage)
         </div>
     </div>
-    <div class="col-md-7 pull-left">
+    <div class="product-details col-md-7 pull-left">
         <h4>Product Details:</h4>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+        <hr/>
+        <div class="more-images col-lg-12">
+            @* product images will show in modal on click*@
+
+            @if (Model.ProductImages.Any())
+            {
+                for (int i = 0; i < Model.ProductImages.Count; i++)
+                {
+                    var cssClass = (i == 0) ? "active" : string.Empty;
+                    var image = Model.ProductImages[i];
+                    <img src="@image.Url" class="img-thumbnail img-responsive col-lg-2 col-sm-2 col-md-2">
+                }
+            }
+        </div>
     </div>
 </div>
 
