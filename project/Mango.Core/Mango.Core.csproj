@@ -186,7 +186,7 @@
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\OrganizationRepository.cs" />
-    <Compile Include="Repository\ProductUrlSlugRepository.cs" />
+    <Compile Include="Repository\ProductUrlSlugRedirectRepository.cs" />
     <Compile Include="Repository\ProductImageRepository.cs" />
     <Compile Include="Service\OrderItemService.cs" />
     <Compile Include="Service\OrderService.cs" />
