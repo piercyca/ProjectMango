@@ -12,11 +12,16 @@ namespace Mango.Core.Entity
         {
         }
 
-        #region Products
+        #region Orders
 
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderLineItem> OrderLineItems { get; set; }
+
+        #endregion
+
+        #region Products
+
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<ProductImage> ProductImages { get; set; }
