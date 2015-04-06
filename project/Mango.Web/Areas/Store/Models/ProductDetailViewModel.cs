@@ -77,6 +77,19 @@ namespace Mango.Web.Areas.Store.Models
         [ReadOnly(true)]
         public List<ProductImageViewModel> ProductImages { get; set; }
 
+        /// <summary>
+        /// Canvas Image
+        /// </summary>
+        [DisplayName("Canvas Image")]
+        [ReadOnly(false)]
+        public string CanvasImage { get; set; }
+
+        /// <summary>
+        /// Canvas Details
+        /// </summary>
+        [DisplayName("Canvas Configuration")]
+        [ReadOnly(false)]
+        public string Configuration { get; set; }
 
     }
 }
