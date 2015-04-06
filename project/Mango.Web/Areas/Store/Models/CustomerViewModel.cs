@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using Mango.Core.Entity;
 
-namespace Mango.Core.Entity
+namespace Mango.Web.Areas.Store.Models
 {
-    [Table("Customer")]
-    public class Customer
+    /// <summary>
+    /// View Model for <seealso cref="Customer"/>
+    /// Used by customer signup form and/or account creation
+    /// </summary>
+    public class CustomerViewModel
     {
         /// <summary>
         /// Customer Id
         /// </summary>
-        [Key]
+        [HiddenInput(DisplayValue = false)]
         public int CustomerId { get; set; }
 
         /// <summary>
@@ -39,17 +42,9 @@ namespace Mango.Core.Entity
         [StringLength(200)]
         public string Email { get; set; }
 
-        public DateTime DateCreated { get; set; }
-
+        /// <summary>
+        /// TODO figure this out
+        /// </summary>
         public string UserId { get; set; }
-
-        //TODO figure out how to relate
-        //[ForeignKey("UserId")]
-        //public virtual User User { get; set; } 
-
-        public Customer()
-        {
-            DateCreated = DateTime.Now;
-        }
     }
 }

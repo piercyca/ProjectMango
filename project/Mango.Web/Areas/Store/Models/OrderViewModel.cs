@@ -48,6 +48,9 @@ namespace Mango.Web.Areas.Store.Models
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
 
+
+
+
         /// <summary>
         /// Billing Address
         /// </summary>

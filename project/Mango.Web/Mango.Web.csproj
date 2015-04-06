@@ -252,6 +252,7 @@
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\Controllers\ProductController.cs" />
     <Compile Include="Areas\Store\Models\AddressViewModel.cs" />
+    <Compile Include="Areas\Store\Models\CustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrderViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductImageViewModel.cs" />
