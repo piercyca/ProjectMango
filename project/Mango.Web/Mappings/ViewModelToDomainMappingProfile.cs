@@ -32,6 +32,9 @@ namespace Mango.Web.Mappings
 
             #region Area_Store
 
+            Mapper.CreateMap<Areas.Store.Models.AddressViewModel, Address>();
+            Mapper.CreateMap<Areas.Store.Models.CustomerViewModel, Customer>();
+            Mapper.CreateMap<Areas.Store.Models.OrderViewModel, Order>();
             Mapper.CreateMap<Areas.Store.Models.ProductDetailViewModel, Product>();
             Mapper.CreateMap<Areas.Store.Models.ProductImageViewModel, ProductImage>();
 

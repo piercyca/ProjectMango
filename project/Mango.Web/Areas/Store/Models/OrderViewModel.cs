@@ -45,22 +45,16 @@ namespace Mango.Web.Areas.Store.Models
         /// <summary>
         /// Customer
         /// </summary>
-        [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
-
-
-
+        public CustomerViewModel Customer { get; set; }
 
         /// <summary>
         /// Billing Address
         /// </summary>
-        [ForeignKey("BillAddressId")]
-        public virtual Address BillAddress { get; set; }
+        public virtual AddressViewModel BillAddress { get; set; }
 
         /// <summary>
         /// Shipping Address
         /// </summary>
-        [ForeignKey("ShipAddressId")]
-        public virtual Address ShipAddress { get; set; }
+        public virtual AddressViewModel ShipAddress { get; set; }
     }
 }
