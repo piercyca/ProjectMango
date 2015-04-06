@@ -38,14 +38,20 @@
         </div>
 
         <div class="well form-group">
-            <select id="fontselector">
-                @* TODO: need font loop // should be a separate place in admin for managing fonts / Static for now *@
-                <option id="dancing+script">Dancing Script</option>
-                <option id="vast+shadow">Vast Shadow</option>
-                <option id="open+sans">Open Sans</option>
-            </select>
+
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">Select a Font</span>
+                <select id="fontselector" class="form-control">
+                    @* TODO: need font loop // should be a separate place in admin for managing fonts / Static for now *@
+                    <option id="dancing+script">Dancing Script</option>
+                    <option id="vast+shadow">Vast Shadow</option>
+                    <option id="open+sans">Open Sans</option>
+                </select>
+            </div>
+
+
             <textarea class="form-control" rows="5" id="addTextField"></textarea>
-            <a class="btn btn-success btn-block" name="productnameorid">Add To Cart</a>
+            <a class="btn btn-success btn-block" name="productnameorid"><i class="fa fa-shopping-cart fa-lg fa-fw"></i> Add To Cart</a>
 
             @Html.HiddenFor(model => model.Configuration)
             @Html.HiddenFor(model => model.CanvasImage)
