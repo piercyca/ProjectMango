@@ -45,11 +45,22 @@ namespace Mango.Web.Areas.Store.Controllers
         /// </summary>
         /// <param name="urlSlug"></param>
         /// <returns></returns>
-        [Route("customize/{urlslug}")]
+        [Route("customize/{urlSlug:regex([a-z0-9-_]*)}")]
         [HttpGet]
         public virtual ActionResult Customize(string urlSlug)
         {
-            return View();
+            var product = _productService.GetProduct(urlSlug);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = Mapper.Map<Product, ProductDetailViewModel>(product);
+
+            var productImages = _productImageService.GetProductImages(viewModel.ProductId);
+            viewModel.ProductImages = Mapper.Map<List<ProductImage>, List<ProductImageViewModel>>(productImages.ToList());
+
+            return View(viewModel);
         }
 
         /// <summary>

@@ -8,19 +8,24 @@
 /product image*/
 
 $(function () {
+
     var canvas = new fabric.Canvas('c');
     var center = canvas.getCenter();
+    var bgurl = $('#CanvasImage').val();
+    var parseConfig = JSON.parse($('#Configuration').val());
+    var imgConfig = parseConfig.layout.pic;
+    var picConfig = parseConfig.layout.text;
 
-    //TODO: this is an example -- the final version should grab the image from the admin tool
-    canvas.setBackgroundImage('/content/images/product/product-image.png', canvas.renderAll.bind(canvas), {
-        //center the background image
-        scaleX: 1,
-        scaleY: 1,
-        top: center.top,
-        left: center.left,
-        originX: 'center',
-        originY: 'center'
-    });
+        //TODO: this is an example -- the final version should grab the image from the admin tool
+        canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
+            //center the background image
+            scaleX: 1,
+            scaleY: 1,
+            top: center.top,
+            left: center.left,
+            originX: 'center',
+            originY: 'center'
+        });
 
     //Helper -- get all objects by name
     fabric.Canvas.prototype.getItemByName = function (name) {
@@ -48,8 +53,10 @@ $(function () {
         image.set({
             //TODO: using and offsetting center for now but NEED to get image position coord from db
             name: 'logo',
-            top: center.top * .75,
-            left: center.left,
+            //top: center.top * .75,
+            //left: center.left,
+            top: imgConfig.height / 2 + imgConfig.top,
+            left: imgConfig.width / 2 + imgConfig.left,
             padding: 0,
             cornersize: 0,
             selectable: false,
@@ -58,8 +65,8 @@ $(function () {
         });
 
         //TODO: get size from db
-        image.scaleToWidth(180);
-        image.scaleToHeight(100);
+        image.scaleToWidth(imgConfig.width * .5);
+        image.scaleToHeight(imgConfig.height * .5);
 
         //get name in order to overwrite the logo object
         var newImg = canvas.getItemByName(image.name);
@@ -89,7 +96,7 @@ $(function () {
             fill: 'white',
             fontFamily: fontSelection,
             fontSize: 25,
-            top: 280,
+            top: picConfig.top,
             left: center.left,
             originX: 'center'
         });
@@ -97,7 +104,7 @@ $(function () {
 
         //need to fit within coordinates
         //TODO: change height and width to textcoord h/w and font selection
-        var formatted = wrapCanvasText(unformatted, canvas, 280, 120, 'left');
+        var formatted = wrapCanvasText(unformatted, canvas, picConfig.width, picConfig.height, 'left');
         formatted.name = 'text';
         formatted.selectable = false;
 
