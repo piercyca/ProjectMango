@@ -12,11 +12,7 @@ var LayoutCanvas = (function(options) {
         //default
         var bgurl = $('#noimage').val();
     }
-    if (canvasConfig == "") {
-        //default
-
-    } else {
-
+    if (canvasConfig != "") {
         //If the config settings is already set
         var parseConfig = JSON.parse(canvasConfig);
         var imgConfig = parseConfig.layout.pic;

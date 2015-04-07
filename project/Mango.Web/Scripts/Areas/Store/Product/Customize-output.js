@@ -19,9 +19,7 @@ $(function () {
         var bgurl = $('#noimage').val();
     }
 
-    if (canvasConfig == "") {
-
-    } else {
+    if (canvasConfig != "") {
         //If the config settings is already set
         var parseConfig = JSON.parse(canvasConfig);
         var imgConfig = parseConfig.layout.pic;
@@ -78,7 +76,7 @@ $(function () {
 
         //TODO: get size from db
         image.scaleToWidth(imgConfig.width * .5);
-        image.scaleToHeight(imgConfig.height * .5);
+        //image.scaleToHeight(imgConfig.height * .5);
 
         //get name in order to overwrite the logo object
         var newImg = canvas.getItemByName(image.name);
