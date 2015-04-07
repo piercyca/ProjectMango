@@ -7,44 +7,7 @@
 @section ScriptsHead
 {
     <script src="@Links.Scripts.product_canvas.fabric_min_js"></script>
-    <style>
-        canvas {
-            border: 1px solid #ccc;
-        }
 
-        .pic {
-            color: green;
-        }
-
-        .text {
-            color: blue;
-        }
-        /*logo icons*/
-        .icons {
-            text-align: center;
-            vertical-align: middle;
-        }
-
-            .icons div {
-                display: inline-block;
-                border: 3px solid transparent;
-                margin: 2px;
-                vertical-align: middle;
-            }
-
-            .icons img {
-                height: auto;
-                width: 100%;
-                max-width: 40px;
-                max-height: 40px;
-                vertical-align: middle;
-            }
-
-        .active {
-            border: 3px solid #7F9293 !important;
-            display: inline-block;
-        }
-    </style>
 }
 
 <ol class="breadcrumb">
@@ -79,33 +42,26 @@
                 <input id="addPic" type="button" value="Add Pic" class="btn btn-success"/>
                 <input id="addText" type="button" value="Add Text" class="btn btn-primary"/>
                 <input id="removeObject" type="button" value="Remove" class="btn btn-danger"/>
-                <a id="download" name="productname">Download Test</a>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
 
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
 
-                @Html.HiddenFor(model => model.ProductId)
+            <div class="well col-md-4 col-md-offset-0 col-sm-12">
 
-                <div class="form-horizontal" style="margin-top: 20px;">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-                    @Html.HiddenFor(model => model.Configuration)
-                    @Html.HiddenFor(model => model.CanvasImage)
+                    @Html.HiddenFor(model => model.ProductId)
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default btn-primary">
-                                <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            }
+
+                        @Html.HiddenFor(model => model.Configuration)
+                        @Html.HiddenFor(model => model.CanvasImage)
+
+                                <button type="submit" class="btn btn-default btn-info btn-block">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save Configuration
+                                </button>
+                }
+            </div>
         </div>
     </div>
 </div>
@@ -142,7 +98,6 @@
 
 
 @section Scripts {
-    <script src="@Links.Scripts.product_canvas.canvas_js"></script>
     <script src="@Links.Scripts.product_canvas.wordwrap_js"></script>
     <script src="@Links.Scripts.Areas.Admin.Product.Layout_js"></script>
     <script src="@Links.Scripts.Areas.Admin.Shared.UploadImage_js"></script>

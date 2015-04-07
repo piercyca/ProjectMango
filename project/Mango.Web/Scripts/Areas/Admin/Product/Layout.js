@@ -2,10 +2,43 @@
 var LayoutCanvas = (function(options) {
 
     var canvas = new fabric.Canvas('c');
-    //Rect for Images
+    var center = canvas.getCenter();
+    var canvasConfig = $('#Configuration').val();
+    var bgurl = $('#CanvasImage').val();
     var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 480, height: 220, opacity: 0.8 });
-    //Rect for Text
     var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 480, height: 220, opacity: 0.8 });
+
+    console.log(parseConfig);
+
+    if (bgurl == "") {
+        //default
+        var bgurl = "https://mangoassets.blob.core.windows.net/images/03b46d6e7ce3447fba1868358a9a69a5.jpg"
+    }
+    if (canvasConfig == "") {
+        //default
+
+    } else {
+
+        //If the config settings is already set
+        var parseConfig = JSON.parse(canvasConfig);
+        var imgConfig = parseConfig.layout.pic;
+        var textConfig = parseConfig.layout.text;
+        var pic = new fabric.Rect({ left: imgConfig.left, top: imgConfig.top, fill: 'green', width: imgConfig.width, height: imgConfig.height, opacity: 0.8 });
+        var text = new fabric.Rect({ left: textConfig.left, top: textConfig.top, fill: 'blue', width: textConfig.width, height: textConfig.height, opacity: 0.8 });
+        canvas.add(pic);
+        canvas.add(text);
+}
+    canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
+        //center the background image
+        scaleX: 1,
+        scaleY: 1,
+        top: center.top,
+        left: center.left,
+        originX: 'center',
+        originY: 'center'
+    });
+
+
 
     function setConfig() {
         options.config =
@@ -34,30 +67,32 @@ var LayoutCanvas = (function(options) {
         //remove if exist then add
         canvas.remove(pic);
         canvas.add(pic);
+        canvas.renderAll();
     });
 
     $(options.controlAddText).click(function() {
         //remove if exist then add
         canvas.remove(text);
         canvas.add(text);
+        canvas.renderAll();
     });
 
     //observe any mouse movement
     canvas.observe('mouse:move', function () {
         setConfig();
         $("#contents").html(
-            '<div class=\"pic\">' +
-            'Pic Top: ' + options.config.pic.top + '<br/>' +
-            'Pic Left: ' + options.config.pic.left + '<br/>' +
-            'Pic Width: ' + options.config.pic.width + '<br/>' +
-            'Pic Height: ' + options.config.pic.height + '<br/><br/>' +
-            '</div><div class=\"text\">' +
-            'Text Top: ' + options.config.text.top + '<br/>' +
-            'Text Left: ' + options.config.text.left + '<br/>' +
-            'Text Width: ' + options.config.text.width + '<br/>' +
-            'Text Height: ' + options.config.text.height + '<br/>'
+            '<div class=\"pic col-sm-6\">' +
+            'Pic Top: ' + Math.ceil(pic.top) + '<br/>' +
+            'Pic Left: ' + Math.ceil(pic.left) + '<br/>' +
+            'Pic Width: ' + Math.ceil(pic.getWidth()) + '<br/>' +
+            'Pic Height: ' + Math.ceil(pic.getHeight()) +
+            '</div><div class=\"text col-sm-6\">' +
+            'Text Top: ' + Math.ceil(text.top) + '<br/>' +
+            'Text Left: ' + Math.ceil(text.left) + '<br/>' +
+            'Text Width: ' + Math.ceil(text.getWidth()) + '<br/>' +
+            'Text Height: ' + Math.ceil(text.getHeight())
             + '</div>'
-        );
+        )
     });
 
     //remove selected object
@@ -107,7 +142,7 @@ var LayoutCanvas = (function(options) {
         download(canvas.toDataURL(), name + '.png');
     }
 
-    var center = canvas.getCenter();
+    //var center = canvas.getCenter();
     this.updateCanvas = function(url) {
         canvas.setBackgroundImage(url, canvas.renderAll.bind(canvas), {
             //center the background image

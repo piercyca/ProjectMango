@@ -27,3 +27,12 @@ textarea {
 /* SORTABLE */
 .sortable-item { display: block;padding-bottom: 10px; }
 .sortable-item .sortable-controls { margin-bottom: 5px; }
+
+
+.pic {
+    color: green
+}
+
+.text {
+    color: blue
+}
