@@ -28,6 +28,15 @@ textarea {
 .sortable-item { display: block;padding-bottom: 10px; }
 .sortable-item .sortable-controls { margin-bottom: 5px; }
 
+/*output*/
+.output {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+canvas {
+    border: 1px solid #ccc;
+}
+
 
 .pic {
     color: green

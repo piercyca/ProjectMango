@@ -16,9 +16,8 @@
     <li class="active">@Html.ActionLink("Layout", MVC.Admin.Product.Layout(Model.ProductId))</li>
 </ol>
 
-<h2>Product Layout</h2>
+    <h2>Product Layout</h2>
 
-<div class="container">
     <div class="row">
         <div class=" col-sm-12">
             <p>Use this tool to specify placement of logo and text</p>
@@ -31,12 +30,13 @@
             </div>
         </div>
     </div>
+<div class="output">
     <div class="row">
         <div class="col-sm-12">
             <div class="col-md-7 ">
                 <canvas id="c" name="productname" width="500" height="500"></canvas>
             </div>
-            <div id="contents" class="well col-md-4 col-md-offset-0 col-sm-12"></div>
+            <div id="contents" class="well col-md-4 col-md-offset-0 hidden-sm hidden-xs"></div>
 
             <div class="well col-md-4 col-md-offset-0 col-sm-12">
                 <input id="addPic" type="button" value="Add Pic" class="btn btn-success"/>
@@ -63,8 +63,7 @@
                 }
             </div>
         </div>
-    </div>
-</div>
+    </div></div>
 
 <div id="modalImageUpload" class="modal fade">
     <div class="modal-dialog">
