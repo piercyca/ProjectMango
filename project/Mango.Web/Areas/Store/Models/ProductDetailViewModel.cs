@@ -42,6 +42,10 @@ namespace Mango.Web.Areas.Store.Models
         [ReadOnly(true)]
         public decimal Price { get; set; }
 
+        [DisplayName("Description")]
+        [ReadOnly(true)]
+        public string Description { get; set; }
+
         #region Product Category
 
         /// <summary>

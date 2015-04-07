@@ -64,6 +64,12 @@ namespace Mango.Web.Areas.Admin.Models
         [Required]
         public decimal Price { get; set; }
 
+        [DisplayName("Description")]
+        [DataType(DataType.MultilineText)]
+        [Required]
+        [AllowHtml]
+        public string Description { get; set; }
+
         /// <summary>
         /// Product Images
         /// </summary>
