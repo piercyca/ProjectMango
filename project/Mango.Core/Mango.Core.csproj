@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201504071839296_OrganizationImageRemovePrimaryLogoImageField.Designer.cs">
       <DependentUpon>201504071839296_OrganizationImageRemovePrimaryLogoImageField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504071933479_ProductDescriptionAdd.cs" />
+    <Compile Include="Migrations\201504071933479_ProductDescriptionAdd.Designer.cs">
+      <DependentUpon>201504071933479_ProductDescriptionAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -293,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504071839296_OrganizationImageRemovePrimaryLogoImageField.resx">
       <DependentUpon>201504071839296_OrganizationImageRemovePrimaryLogoImageField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504071933479_ProductDescriptionAdd.resx">
+      <DependentUpon>201504071933479_ProductDescriptionAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
