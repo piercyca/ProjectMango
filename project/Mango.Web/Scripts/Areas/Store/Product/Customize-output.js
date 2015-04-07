@@ -14,7 +14,7 @@ $(function () {
     var bgurl = $('#CanvasImage').val();
     var parseConfig = JSON.parse($('#Configuration').val());
     var imgConfig = parseConfig.layout.pic;
-    var picConfig = parseConfig.layout.text;
+    var textConfig = parseConfig.layout.text;
 
         //TODO: this is an example -- the final version should grab the image from the admin tool
         canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
@@ -96,7 +96,7 @@ $(function () {
             fill: 'white',
             fontFamily: fontSelection,
             fontSize: 25,
-            top: picConfig.top,
+            top: textConfig.top,
             left: center.left,
             originX: 'center'
         });
@@ -104,7 +104,7 @@ $(function () {
 
         //need to fit within coordinates
         //TODO: change height and width to textcoord h/w and font selection
-        var formatted = wrapCanvasText(unformatted, canvas, picConfig.width, picConfig.height, 'left');
+        var formatted = wrapCanvasText(unformatted, canvas, textConfig.width, textConfig.height, 'left');
         formatted.name = 'text';
         formatted.selectable = false;
 
