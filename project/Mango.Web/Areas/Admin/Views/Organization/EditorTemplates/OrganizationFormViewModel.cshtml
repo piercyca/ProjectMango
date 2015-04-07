@@ -1,11 +1,12 @@
 @model Mango.Web.Areas.Admin.Models.OrganizationFormViewModel
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "organization-form" }))
 {
     @Html.AntiForgeryToken()
     
     @Html.EditorFor(model => model.OrganizationId)
-    
+    @Html.EditorFor(model => model.OrganizationImagesString)
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -26,14 +27,14 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PrimaryLogoImage, new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.OrganizationImages, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <a class="btn btn-info" id="btnPrimaryLogoImageOpenModal">Upload Image</a>
-                @Html.HiddenFor(model => model.PrimaryLogoImage, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.PrimaryLogoImage, "", new {@class = "text-danger"})
-            </div>
-            <div class="col-md-10 col-md-offset-2" style="margin-top: 5px;">
-                <div id="containerDisplayPrimaryLogoImage"></div>
+                <a id="btnUploadOrganizationImage" class="btn btn-info">Upload</a>
+                <hr />
+                <div class="sortable-images">
+                    @Html.EditorFor(model => Model.OrganizationImages)
+                </div>
+                <hr />
             </div>
         </div>
 
@@ -48,46 +49,11 @@
 }
 
 <script>
-    var optionsImageUploadPrimaryLogoImage = {
-        urlDataTarget: "#PrimaryLogoImage",
-        modalId: "#modalPrimaryLogoImage",
-        modalTrigger: "#btnPrimaryLogoImageOpenModal",
-        containerDisplay: "#containerDisplayPrimaryLogoImage",
-        onUploaded: function (url) {
-            console.log("callbackUploaded: uploaded - " + url);
-        }
+    var @Model.UploadOrganizationImageViewModel.OptionsVarName = {
+        modalId: "#@Model.UploadOrganizationImageViewModel.ModalId",
+        modalTrigger: "#btnUploadOrganizationImage"
     };
 </script>
-
-<div id="modalPrimaryLogoImage" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Upload Primary Logo Image</h4>
-            </div>
-            <div class="modal-body">
-                <form action="/admin/api/fileupload" method="post" enctype="multipart/form-data">
-                    <div class="form-horizontal">
-                        <div class="form-group" data-upload="controls">
-                            <label class="control-label col-md-2">File</label>
-                            <div class="col-md-10">
-                                <input type="file" data-upload="fileupload" />
-                            </div>
-                        </div>
-                        <div data-upload="progress">
-                            <img src="/content/images/ajax-loader.gif" alt="" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-upload="upload">Upload</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+@Html.EditorFor(model => model.UploadOrganizationImageViewModel)
 
 

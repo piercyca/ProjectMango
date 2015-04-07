@@ -14,12 +14,14 @@ namespace Mango.Web.Areas.Admin.Controllers
     public partial class OrganizationController : Controller
     {
         private readonly IOrganizationService _organizationService;
+        private readonly IOrganizationImageService _organizationImageService;
 
         public OrganizationController() { }
 
-        public OrganizationController(IOrganizationService organizationService)
+        public OrganizationController(IOrganizationService organizationService, IOrganizationImageService organizationImageService)
         {
             _organizationService = organizationService;
+            _organizationImageService = organizationImageService;
         }
 
         /// <summary>
@@ -46,6 +48,35 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
+        /// GET: /organizations/create
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public virtual ActionResult Create()
+        {
+            var viewModel = Mapper.Map<Organization, OrganizationFormViewModel>(new Organization());
+            return View(viewModel);
+        }
+
+        /// <summary>
+        /// POST: /organizations/create
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public virtual ActionResult Create(OrganizationFormViewModel viewModel)
+        {
+            var organization = Mapper.Map<OrganizationFormViewModel, Organization>(viewModel);
+            if (ModelState.IsValid)
+            {
+                _organizationService.CreateOrganization(organization);
+                _organizationImageService.InsertOrganizationImages(organization.OrganizationId, viewModel.OrganizationImagesString);
+                return RedirectToAction(MVC.Admin.Organization.List());
+            }
+            return View(viewModel);
+        }
+
+        /// <summary>
         /// GET: /organizations/edit/{id}
         /// </summary>
         /// <param name="id"></param>
@@ -54,53 +85,33 @@ namespace Mango.Web.Areas.Admin.Controllers
         public virtual ActionResult Edit(int id)
         {
             var organization = _organizationService.GetOrganization(id);
-            var vm = Mapper.Map<Organization, OrganizationFormViewModel>(organization);
-            return View(vm);
+            var viewModel = Mapper.Map<Organization, OrganizationFormViewModel>(organization);
+
+            var organizationImages = _organizationImageService.GetOrganizationImages(id);
+            viewModel.OrganizationImages = Mapper.Map<IEnumerable<OrganizationImage>, IEnumerable<OrganizationImageFormViewModel>>(organizationImages);
+
+
+            return View(viewModel);
         }
 
         /// <summary>
         /// POST: /organizations/edit/{id}
         /// </summary>
-        /// <param name="vm"></param>
+        /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        public virtual ActionResult Edit(OrganizationFormViewModel vm)
+        public virtual ActionResult Edit(OrganizationFormViewModel viewModel)
         {
-            var organization = Mapper.Map<OrganizationFormViewModel, Organization>(vm);
+            var organization = Mapper.Map<OrganizationFormViewModel, Organization>(viewModel);
             if (ModelState.IsValid)
             {
                 _organizationService.EditOrganization(organization);
+                _organizationImageService.InsertOrganizationImages(organization.OrganizationId, viewModel.OrganizationImagesString);
                 return RedirectToAction(MVC.Admin.Organization.List());
             }
-            return View(vm);
+            return View(viewModel);
         }
 
-        /// <summary>
-        /// GET: /organizations/create
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public virtual ActionResult Create()
-        {
-            var vm = Mapper.Map<Organization, OrganizationFormViewModel>(new Organization());
-            return View(vm);
-        }
-
-        /// <summary>
-        /// POST: /organizations/create
-        /// </summary>
-        /// <param name="vm"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public virtual ActionResult Create(OrganizationFormViewModel vm)
-        {
-            var organization = Mapper.Map<OrganizationFormViewModel, Organization>(vm);
-            if (ModelState.IsValid)
-            {
-                _organizationService.CreateOrganization(organization);
-                return RedirectToAction(MVC.Admin.Organization.List());
-            }
-            return View(vm);
-        }
+        
     }
 }

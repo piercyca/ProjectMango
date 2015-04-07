@@ -74,6 +74,7 @@
     <Compile Include="Entity\MangoContext.cs" />
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\Organization.cs" />
+    <Compile Include="Entity\OrganizationImage.cs" />
     <Compile Include="Entity\ProductUrlSlugRedirect.cs" />
     <Compile Include="Entity\ProductImage.cs" />
     <Compile Include="Entity\ProductCategory.cs" />
@@ -179,6 +180,14 @@
     <Compile Include="Migrations\201504062041519_CustomerModification.Designer.cs">
       <DependentUpon>201504062041519_CustomerModification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504071757029_OrganizationImageAdd.cs" />
+    <Compile Include="Migrations\201504071757029_OrganizationImageAdd.Designer.cs">
+      <DependentUpon>201504071757029_OrganizationImageAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504071839296_OrganizationImageRemovePrimaryLogoImageField.cs" />
+    <Compile Include="Migrations\201504071839296_OrganizationImageRemovePrimaryLogoImageField.Designer.cs">
+      <DependentUpon>201504071839296_OrganizationImageRemovePrimaryLogoImageField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -186,6 +195,7 @@
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\OrganizationRepository.cs" />
+    <Compile Include="Repository\OrganizationImageRepository.cs" />
     <Compile Include="Repository\ProductUrlSlugRedirectRepository.cs" />
     <Compile Include="Repository\ProductImageRepository.cs" />
     <Compile Include="Service\OrderItemService.cs" />
@@ -196,6 +206,7 @@
     <Compile Include="Service\OrganizationService.cs" />
     <Compile Include="Service\ProductCategoryService.cs" />
     <Compile Include="Service\AddressService.cs" />
+    <Compile Include="Service\OrganizationImageService.cs" />
     <Compile Include="Service\ProductUrlSlugRedirectService.cs" />
     <Compile Include="Service\ProductImageService.cs" />
     <Compile Include="Service\ProductService.cs" />
@@ -276,6 +287,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504062041519_CustomerModification.resx">
       <DependentUpon>201504062041519_CustomerModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504071757029_OrganizationImageAdd.resx">
+      <DependentUpon>201504071757029_OrganizationImageAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504071839296_OrganizationImageRemovePrimaryLogoImageField.resx">
+      <DependentUpon>201504071839296_OrganizationImageRemovePrimaryLogoImageField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

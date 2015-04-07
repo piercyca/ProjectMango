@@ -100,7 +100,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
-            public readonly string vm = "vm";
+            public readonly string viewModel = "viewModel";
         }
         static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -108,7 +108,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Create
         {
-            public readonly string vm = "vm";
+            public readonly string viewModel = "viewModel";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -123,16 +123,19 @@ namespace Mango.Web.Areas.Admin.Controllers
                 public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
                 public readonly string List = "List";
+                public readonly string ScriptUploadOrganizationImage = "ScriptUploadOrganizationImage";
             }
             public readonly string Create = "~/Areas/Admin/Views/Organization/Create.cshtml";
             public readonly string Edit = "~/Areas/Admin/Views/Organization/Edit.cshtml";
             public readonly string List = "~/Areas/Admin/Views/Organization/List.cshtml";
+            public readonly string ScriptUploadOrganizationImage = "~/Areas/Admin/Views/Organization/ScriptUploadOrganizationImage.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _EditorTemplatesClass
             {
                 public readonly string OrganizationFormViewModel = "OrganizationFormViewModel";
+                public readonly string OrganizationImageFormViewModel = "OrganizationImageFormViewModel";
             }
         }
     }
@@ -177,14 +180,14 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.OrganizationFormViewModel vm);
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.OrganizationFormViewModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Mango.Web.Areas.Admin.Models.OrganizationFormViewModel vm)
+        public override System.Web.Mvc.ActionResult Edit(Mango.Web.Areas.Admin.Models.OrganizationFormViewModel viewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
-            EditOverride(callInfo, vm);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            EditOverride(callInfo, viewModel);
             return callInfo;
         }
 
@@ -200,14 +203,14 @@ namespace Mango.Web.Areas.Admin.Controllers
         }
 
         [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.OrganizationFormViewModel vm);
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.OrganizationFormViewModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Create(Mango.Web.Areas.Admin.Models.OrganizationFormViewModel vm)
+        public override System.Web.Mvc.ActionResult Create(Mango.Web.Areas.Admin.Models.OrganizationFormViewModel viewModel)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "vm", vm);
-            CreateOverride(callInfo, vm);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            CreateOverride(callInfo, viewModel);
             return callInfo;
         }
 

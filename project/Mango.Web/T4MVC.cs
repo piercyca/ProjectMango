@@ -114,7 +114,6 @@ namespace Links
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string Layout_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Layout.min.js") ? Url("Layout.min.js") : Url("Layout.js");
-                    public static readonly string SortableProductImages_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SortableProductImages.min.js") ? Url("SortableProductImages.min.js") : Url("SortableProductImages.js");
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -122,6 +121,7 @@ namespace Links
                     private const string URLPATH = "~/Scripts/Areas/Admin/Shared";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string SortableImages_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SortableImages.min.js") ? Url("SortableImages.min.js") : Url("SortableImages.js");
                     public static readonly string UploadImage_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/UploadImage.min.js") ? Url("UploadImage.min.js") : Url("UploadImage.js");
                 }
             
@@ -345,13 +345,13 @@ namespace Links
                         public static class Assets
                         {
                             public const string Layout_js = "~/Scripts/Areas/Admin/Product/Layout.js"; 
-                            public const string SortableProductImages_js = "~/Scripts/Areas/Admin/Product/SortableProductImages.js"; 
                         }
                     }
                     public static partial class Shared 
                     {
                         public static class Assets
                         {
+                            public const string SortableImages_js = "~/Scripts/Areas/Admin/Shared/SortableImages.js"; 
                             public const string UploadImage_js = "~/Scripts/Areas/Admin/Shared/UploadImage.js"; 
                         }
                     }

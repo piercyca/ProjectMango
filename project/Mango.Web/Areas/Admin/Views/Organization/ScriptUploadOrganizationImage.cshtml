@@ -1,0 +1,22 @@
+﻿@using Mango.Web.Helpers.Admin
+@model Mango.Web.Areas.Admin.Models.UploadImageViewModel
+
+<script src="@Links.Scripts.Areas.Admin.Shared.UploadImage_js"></script>
+<script>
+        @{
+            var optionsVarName = @Model.OptionsVarName;
+        }
+    var options = @optionsVarName;
+    if (typeof options !== undefined && options !== null) {
+        options.onUploaded = function(url) {
+            // add uploaded image
+            $('.sortable-images').prepend(
+                '<div class="sortable-item">' +
+                '@SortableHelper.Controls()' +
+                '<img src="' + url + '" />' +
+                '</div>');
+        }
+
+        var uploadOrganizationImage = new UploadImage(@optionsVarName);
+    }
+</script>

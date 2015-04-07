@@ -14,12 +14,16 @@
 @Html.EditorForModel()
 
 
-@section scripts {
-    <script src="@Links.Scripts.Areas.Admin.Shared.UploadImage_js"></script>
+@section scripts
+{
+    <script src="@Links.Scripts.jquery_ui_1_11_4_min_js"></script>
+    <script src="@Links.Scripts.Areas.Admin.Shared.SortableImages_js"></script>
     <script>
-        if (typeof optionsImageUploadPrimaryLogoImage !== "undefined" && optionsImageUploadPrimaryLogoImage !== null) {
-            var imageUploadPrimaryLogoImage = new UploadImage(optionsImageUploadPrimaryLogoImage);
-        }
+        var sortableImages = new SortableImages({
+            formId: "#organization-form",
+            controlImagesString: "#OrganizationImagesString"
+        });
     </script>
-
+    @* Partial for upload product image script *@
+    @Html.Partial(MVC.Admin.Organization.Views.ViewNames.ScriptUploadOrganizationImage, Model.UploadOrganizationImageViewModel)
 }
