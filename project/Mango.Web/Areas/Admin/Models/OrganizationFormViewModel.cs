@@ -37,9 +37,23 @@ namespace Mango.Web.Areas.Admin.Models
         public string Abbreviation { get; set; }
 
         /// <summary>
-        /// Primary Logo Image
+        /// Organization Images
         /// </summary>
-        [DisplayName("Primary Logo Image")] 
-        public string PrimaryLogoImage { get; set; }
+        [DisplayName("Organization Images")]
+        public IEnumerable<OrganizationImageFormViewModel> OrganizationImages { get; set; }
+
+        /// <summary>
+        /// Organization Images string, for saving, populated by JavaScript on the client
+        /// </summary>
+        [HiddenInput(DisplayValue = false)]
+        public string OrganizationImagesString { get; set; }
+
+
+        public UploadImageViewModel UploadOrganizationImageViewModel { get; set; }
+
+        public OrganizationFormViewModel()
+        {
+            UploadOrganizationImageViewModel = new UploadImageViewModel("modalUploadOrganizationImage");
+        }
     }
 }

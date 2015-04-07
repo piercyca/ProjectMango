@@ -33,6 +33,7 @@ namespace Mango.Core.Entity
         // i.e. UGA
 
         public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<OrganizationImage> OrganizationImages { get; set; }
 
         #endregion
 

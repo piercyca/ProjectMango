@@ -31,6 +31,12 @@ namespace Mango.Core.Entity
         [Required]
         public decimal Price { get; set; }
 
+        /// <summary>
+        /// Description HTML
+        /// </summary>
+        [StringLength(int.MaxValue)]
+        public string Description { get; set; }
+
         [Required]
         [MaxLength(200)]
         [Column(TypeName = "varchar")]

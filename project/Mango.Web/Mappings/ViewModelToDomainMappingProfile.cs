@@ -23,6 +23,7 @@ namespace Mango.Web.Mappings
             Mapper.CreateMap<Areas.Admin.Models.CustomerFormViewModel, Customer>();
             Mapper.CreateMap<Areas.Admin.Models.OrganizationFormViewModel, Organization>();
             Mapper.CreateMap<Areas.Admin.Models.OrganizationListItemViewModel, Organization>();
+            Mapper.CreateMap<Areas.Admin.Models.OrganizationImageFormViewModel, OrganizationImage>();
             Mapper.CreateMap<Areas.Admin.Models.ProductFormViewModel, Product>();
             Mapper.CreateMap<Areas.Admin.Models.ProductLayoutFormViewModel, Product>();
             Mapper.CreateMap<Areas.Admin.Models.ProductCategoryFormViewModel, ProductCategory>();

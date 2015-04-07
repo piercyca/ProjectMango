@@ -38,6 +38,9 @@ namespace Mango.Core.Migrations
 
             // Organizations
             context.Organizations.AddOrUpdate(o => o.OrganizationId, new Organization {OrganizationId = 1, Name = "University of Georgia", Abbreviation = "UGA"});
+            context.OrganizationImages.AddOrUpdate(pi => new { pi.OrganizationId, pi.SortOrder }, new OrganizationImage { OrganizationId = 1, SortOrder = 0, Url = "https://mangoassets.blob.core.windows.net/images/03b46d6e7ce3447fba1868358a9a69a5.jpg" });
+            context.OrganizationImages.AddOrUpdate(pi => new { pi.OrganizationId, pi.SortOrder }, new OrganizationImage { OrganizationId = 1, SortOrder = 1, Url = "https://mangoassets.blob.core.windows.net/images/0a1baf98f04a4f96b78ebeaa38880415.jpg" });
+
         }
     }
 }

@@ -27,10 +27,5 @@ namespace Mango.Core.Entity
         [Required]
         [StringLength(10)]
         public string Abbreviation { get; set; }
-
-        /// <summary>
-        /// Primary Logo Image
-        /// </summary>
-        public string PrimaryLogoImage { get; set; }
     }
 }
