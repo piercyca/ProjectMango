@@ -5,14 +5,12 @@ var LayoutCanvas = (function(options) {
     var center = canvas.getCenter();
     var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();
-    var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 480, height: 220, opacity: 0.8 });
-    var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 480, height: 220, opacity: 0.8 });
-
-    console.log(parseConfig);
+    var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 340, height: 220, opacity: 0.8 });
+    var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 340, height: 220, opacity: 0.8 });
 
     if (bgurl == "") {
         //default
-        var bgurl = "https://mangoassets.blob.core.windows.net/images/03b46d6e7ce3447fba1868358a9a69a5.jpg"
+        var bgurl = $('#noimage').val();
     }
     if (canvasConfig == "") {
         //default

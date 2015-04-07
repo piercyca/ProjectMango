@@ -11,10 +11,22 @@ $(function () {
 
     var canvas = new fabric.Canvas('c');
     var center = canvas.getCenter();
+    var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();
-    var parseConfig = JSON.parse($('#Configuration').val());
-    var imgConfig = parseConfig.layout.pic;
-    var textConfig = parseConfig.layout.text;
+
+    if (bgurl == "") {
+        //default
+        var bgurl = $('#noimage').val();
+    }
+
+    if (canvasConfig == "") {
+
+    } else {
+        //If the config settings is already set
+        var parseConfig = JSON.parse(canvasConfig);
+        var imgConfig = parseConfig.layout.pic;
+        var textConfig = parseConfig.layout.text;
+    }
 
         //TODO: this is an example -- the final version should grab the image from the admin tool
         canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
