@@ -168,10 +168,6 @@ textarea {
     margin-top: 70px;
 }
 
-canvas {
-    border: 1px solid #ccc;
-}
-
 .pic {
     color: green
 }
@@ -186,10 +182,6 @@ canvas {
     box-shadow: 0 0 2px rgba(0, 0, 0, .5);
 }
 
-.product-details {
-    padding-top: 20px;
-}
-
 h2.price {
     margin: 0;
 }
@@ -201,7 +193,6 @@ h2.price {
     display: block;
     width: 100%;
     text-align: left;
-    border-bottom: 1px solid #DDDDDD;
     font-weight: bold;
 }
 
@@ -315,7 +306,8 @@ h2.price {
     -ms-border-radius: 3px;
     border-radius: 3px;
     display: inline-block;
-    height: 40px;
+    height: 30px;
+    margin-top: 5px;
     padding: 0;
     width: 100%;
     color: #fff;
@@ -326,9 +318,11 @@ h2.price {
 }
 
 .bg-gray {
-    background-image: -moz-linear-gradient(center bottom, #BBBBBB 0%, #F0F0F0 100%);
-    box-shadow: 0 1px 0 #B4B3B3;
+    background: #A9B3BC;
 }
+    .bg-gray:hover {
+    background: #2C3E50
+    }
 
 .social li {
     background: none repeat scroll 0 0 #B5B5B5;
@@ -371,7 +365,7 @@ h2.price {
 
 .social li a i {
     font-size: 16px;
-    margin: 0 0 0 5px;
+    margin: 0 0 0 9px;
     color: #EDEFF1 !important;
 }
 

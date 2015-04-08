@@ -5,8 +5,8 @@ var LayoutCanvas = (function(options) {
     var center = canvas.getCenter();
     var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();
-    var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 340, height: 220, opacity: 0.8 });
-    var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 340, height: 220, opacity: 0.8 });
+    var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 0, height: 0, opacity: 0.8 });
+    var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 0, height: 0, opacity: 0.8 });
 
     if (bgurl == "") {
         //default
@@ -59,6 +59,7 @@ var LayoutCanvas = (function(options) {
     //on click add objects
     $(options.controlAddPic).click(function () {
         //remove if exist then add
+        var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 340, height: 220, opacity: 0.8 });
         canvas.remove(pic);
         canvas.add(pic);
         canvas.renderAll();
@@ -66,6 +67,7 @@ var LayoutCanvas = (function(options) {
 
     $(options.controlAddText).click(function() {
         //remove if exist then add
+        var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 340, height: 220, opacity: 0.8 });
         canvas.remove(text);
         canvas.add(text);
         canvas.renderAll();
