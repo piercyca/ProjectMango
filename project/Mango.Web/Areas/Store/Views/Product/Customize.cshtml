@@ -6,10 +6,10 @@
 
 <div class="container output">
 
-    <div class="col-md-12"><h3>@Html.DisplayFor(model => model.Name)</h3></div>
+    <div class="col-md-12"><h3><i class="fa fa-angle-down fa-1"></i> @Html.DisplayFor(model => model.Name)</h3></div>
 
     <div class="col-md-7 canvas">
-        <canvas id="c" name="productnameorid" width="500" height="500"></canvas>
+        <canvas id="c" name="productnameorid" width="520" height="500"></canvas>
 
     </div>
     <div class="col-md-5">
@@ -53,7 +53,7 @@
                     </select>
                 </div>
 
-                <textarea class="panel-body form-control" placeholder="Enter your desired text here" rows="5" id="addTextField"></textarea>
+                <textarea class="panel-body form-control textareafield" placeholder="Enter your desired text here" rows="5" id="addTextField"></textarea>
             <hr/><h2 class="price col-4-md pull-left">$@Html.DisplayFor(model => model.Price)</h2>
                 <a class="col-6-md pull-right btn btn-success" name="productnameorid"><i class="fa fa-shopping-cart fa-lg fa-fw"></i> Add To Cart</a></div>
 
@@ -73,9 +73,9 @@
             {
                 for (int i = 0; i < Model.ProductImages.Count; i++)
                 {
-                    var cssClass = (i == 0) ? "active" : string.Empty;
+                    var cssClass = (i == 0) ? "col-md-offset-1" : string.Empty;
                     var image = Model.ProductImages[i];
-                    <img src="@image.Url" class="img-thumbnail img-responsive col-lg-2 col-sm-2 col-md-2">
+                    <img src="@image.Url" class="img-thumbnail img-responsive col-lg-2 col-sm-2 col-md-2 col-xs-2"/>
                 }
             }
         </div>

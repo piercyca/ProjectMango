@@ -10,6 +10,7 @@
 $(function () {
 
     var canvas = new fabric.Canvas('c');
+    $('.canvas-container').addClass('panel');
     var center = canvas.getCenter();
     var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();
@@ -74,9 +75,22 @@ $(function () {
             originY: 'center'
         });
 
+
+        if (imgConfig.width/2 > imgConfig.height) {
+            image.scaleToHeight(imgConfig.height * .75);
+        } else {
+            image.scaleToWidth(imgConfig.width * .75);
+        }
+
+        if (imgConfig.height/2 > imgConfig.width) {
+            image.scaleToWidth(imgConfig.width * .75);
+        }
+     
+
         //TODO: get size from db
-        image.scaleToWidth(imgConfig.width * .5);
-        //image.scaleToHeight(imgConfig.height * .5);
+        //image.scaleToWidth(imgConfig.width * .75);
+        //image.scaleToHeight(imgConfig.height);
+
 
         //get name in order to overwrite the logo object
         var newImg = canvas.getItemByName(image.name);
@@ -129,7 +143,9 @@ $(function () {
         }
     }
 
-    //TODO: grab coordinates for text and the image
+    canvas.renderAll();
+
+
     //TODO: Load available fonts from db
     //TODO: load available logos from db
 
@@ -154,5 +170,6 @@ $(function () {
     $("#download").click(function () {
         downloadFabric(canvas, 'download');
     });
+
 
 });
