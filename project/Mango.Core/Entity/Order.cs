@@ -32,7 +32,7 @@ namespace Mango.Core.Entity
         public DateTime DateCreated { get; set; }
 
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         [ForeignKey("BillAddressId")]
         public virtual Address BillAddress { get; set; }
