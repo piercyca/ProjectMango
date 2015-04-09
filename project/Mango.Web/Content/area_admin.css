@@ -1,4 +1,7 @@
-﻿body {
+﻿@import url(//fonts.googleapis.com/css?family=Ubuntu:400,500,700);
+
+body {
+    font-family: 'Ubuntu', sans-serif; 
     padding-top: 50px;
     padding-bottom: 20px;
 }

@@ -1,8 +1,12 @@
 /* ==========================================================================
    Project Mango - Etchieve.com
    ========================================================================== */
+
+/* FONTS */
+@import url(//fonts.googleapis.com/css?family=Vollkorn:400,700,400italic,700italic|Droid+Sans:400,700|Lobster);
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Droid Sans', Arial, sans-serif;
     font-size: 13px;
 }
 
@@ -93,7 +97,7 @@ hr {
     margin: 0;
     padding: 5px;
     text-align: center;
-    font-family: georgia, times, serif;
+    font-family: 'Vollkorn', cursive;
     font-style: italic;
 }
 
@@ -107,7 +111,7 @@ hr {
 
 .list-group-item {
     background: transparent;
-    border-width: 0px 0px 1px 0px;
+    border-width: 0 0 1px 0;
     border-style: dotted
 }
 
@@ -117,14 +121,16 @@ hr {
 
 .list-group-item h4 {
     color: #fff;
-    font-family: georgia, times, serif;
-    font-style: italic;
+    font-family: 'Lobster', serif;
+    /*font-family: 'Vollkorn', cursive;
+    font-style: italic;*/
     font-size: 1.5em;
 }
 
 .list-group-item span {
     width: 50px;
     height: 50px;
+    -ms-border-radius: 50%;
     border-radius: 50%;
     text-align: center;
     line-height: 50px;
@@ -179,6 +185,8 @@ textarea {
 .panel {
     overflow: hidden;
     border: 5px solid #EDEFF1;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    -ms-box-shadow: 0 0 2px rgba(0, 0, 0, .5);
     box-shadow: 0 0 2px rgba(0, 0, 0, .5);
 }
 
