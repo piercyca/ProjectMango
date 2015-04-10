@@ -49,11 +49,7 @@ hr {
 .jumbotron {
     padding: 28px 0;
     margin: 30px 0 0;
-    background: -webkit-linear-gradient(#5d5d5d, #cbcbcb); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#5d5d5d, #cbcbcb); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#5d5d5d, #cbcbcb); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#5d5d5d, #cbcbcb); /* Standard syntax */
-
+    background: #A9B3BC;
 }
 
 .jumbotron .container {
@@ -74,8 +70,7 @@ hr {
     padding: 5px 0;
     text-align: center;
     margin-bottom: 25px;
-    background: #efefef;
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2)
+    background: #E3E3E3;
 }
 
 .testimonials div {
@@ -93,7 +88,7 @@ hr {
     position: relative;
     border: 1px solid #ddd;
     margin: 30px 0;
-    border-radius: 10px;
+    border-radius: 3px;
     overflow: hidden;
 }
 .products div.item:hover { box-shadow: 0 0 10px rgba(0,0,0,.3); border: 1px solid #ccc}
@@ -113,8 +108,8 @@ hr {
   border: 1px solid #ddd;
   display: block;
   padding: 3px 8px;
-  -webkit-border-top-left-radius: 0.327em;
-  -webkit-border-bottom-left-radius: 0.327em;
+  -webkit-border-top-left-radius: 2em;
+  -webkit-border-bottom-left-radius: 2em;
   border-top-left-radius: 2em;
   border-bottom-left-radius: 2em;
   -moz-background-clip: padding;
@@ -131,7 +126,7 @@ hr {
     font-size: 1.2em !important;
     margin: 0; 
     text-align: center;
-    font-family: 'Vollkorn', cursive;
+    font-family: 'Vollkorn', 'Lucida Sans', cursive;
     font-style: italic;
     width: 100%; background: #EDEFF1;
     border-top: 1px solid #ddd;
@@ -166,11 +161,11 @@ hr {
 }
 
 .list-group-item h4 {
-    color: #fff;
+    color: #545454;
     font-family: 'Lobster', serif;
     /*font-family: 'Vollkorn', cursive;
     font-style: italic;*/
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
 .list-group-item span {
@@ -180,14 +175,14 @@ hr {
     border-radius: 50%;
     text-align: center;
     line-height: 50px;
-    background: #000;
+    background: #54697E;
     margin: 0 10px 10px 10px;
     font-size: 25px;
     color: #fff;
 }
 
 .steps img {
-    margin-right: 20px;
+    margin-right: 0px;
 }
 
 footer img {
