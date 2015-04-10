@@ -1,0 +1,51 @@
+﻿@model System.Collections.Generic.IEnumerable<Mango.Core.Entity.OrderLineItem>
+
+@{
+	ViewBag.Title = "Order Details";
+}
+
+<ol class="breadcrumb">
+	<li>@Html.ActionLink("Home", MVC.Home.Index())</li>
+	<li class="active">@Html.ActionLink("Orders", MVC.Admin.Order.List())</li>
+	<li class="active">@Html.ActionLink("Order Details", MVC.Admin.Order.Details(Model.First().OrderId))</li>
+</ol>
+
+<h2>Order Details</h2>
+
+<div class="row">
+	<div class="col-md-12">
+		@if (!Model.Any())
+		{
+			<div class="alert alert-danger">
+				No Order Items Found
+			</div>
+		}
+		else
+		{
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Order Id</th>
+						<th>Item number</th>
+						<th>Product</th>
+						<th>Price</th>
+						<th>Configuration</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.OrderId</td>
+							<td>@item.OrderItemSequence</td>
+							<td>@item.Product.Name</td>
+							<td>@item.UnitPrice</td>
+							<td>@item.Configuration</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		}
+
+	</div>
+</div>

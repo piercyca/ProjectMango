@@ -55,6 +55,12 @@ namespace Mango.Web.Areas.Admin.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Details()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public OrderController Actions { get { return MVC.Admin.Order; } }
@@ -73,6 +79,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string List = "List";
+            public readonly string Details = "Details";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -80,9 +87,18 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string List = "List";
+            public const string Details = "Details";
         }
 
 
+        static readonly ActionParamsClass_Details s_params_Details = new ActionParamsClass_Details();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Details DetailsParams { get { return s_params_Details; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Details
+        {
+            public readonly string orderId = "orderId";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -93,16 +109,11 @@ namespace Mango.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Details = "Details";
                 public readonly string List = "List";
             }
+            public readonly string Details = "~/Areas/Admin/Views/Order/Details.cshtml";
             public readonly string List = "~/Areas/Admin/Views/Order/List.cshtml";
-            static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
-            public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
-            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-            public partial class _EditorTemplatesClass
-            {
-                public readonly string OrderListViewModel = "OrderListViewModel";
-            }
         }
     }
 
@@ -130,6 +141,18 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
             ListOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void DetailsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int orderId);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Details(int orderId)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Details);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "orderId", orderId);
+            DetailsOverride(callInfo, orderId);
             return callInfo;
         }
 
