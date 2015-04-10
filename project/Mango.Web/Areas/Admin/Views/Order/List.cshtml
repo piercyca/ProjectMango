@@ -2,7 +2,6 @@
 @model IEnumerable<Mango.Core.Entity.Order>
 @{
     ViewBag.Title = "Orders";
-	IOrderLineItemService orderLineItemsService = null;
 }
 
 <ol class="breadcrumb">
@@ -39,13 +38,7 @@
                 {
                     <tr>
                         <td>@item.OrderId</td>
-	                    <td>
-		                    [In progress...]
-		                    @*							@foreach (var line in orderLineItemsService.GetOrderLineItemsByOrder(item.OrderId))*@
-		                    @*							{*@
-		                    @*								@line.Product.Name*@
-		                    @*							}*@
-	                    </td>
+	                    <td><div class="active">@Html.ActionLink("View Details", MVC.Admin.Order.Details(Model.First().OrderId))</div></td>
 						<td>@item.TotalAmount</td>
                         <td>@item.Customer.FirstName @item.Customer.LastName</td>
 	                    <td>

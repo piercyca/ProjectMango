@@ -13,12 +13,14 @@ namespace Mango.Web.Areas.Admin.Controllers
     public partial class OrderController : Controller
     {
         private readonly IOrderService _orderService;
+	    private readonly IOrderLineItemService _orderLineItemService;
 
         public OrderController() { }
 
-		public OrderController(IOrderService orderService)
+		public OrderController(IOrderService orderService, IOrderLineItemService orderLineItemService)
         {
             _orderService = orderService;
+			_orderLineItemService = orderLineItemService;
         }
 
         /// <summary>
@@ -40,6 +42,18 @@ namespace Mango.Web.Areas.Admin.Controllers
             var orders = _orderService.GetOrders();
             
             return View(orders);
+        }
+
+		/// <summary>
+		/// GET: /orders/details
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public virtual ActionResult Details(int orderId)
+        {
+            var orderLineItems = _orderLineItemService.GetOrderLineItemsByOrder(orderId);
+
+			return View(orderLineItems);
         }
 
     }
