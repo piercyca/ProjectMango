@@ -216,7 +216,7 @@ namespace Mango.Web.Areas.Admin.Controllers
             {
                 var product = _productService.GetProduct(viewModel.ProductId);
                 var productLayout = Mapper.Map<ProductLayoutFormViewModel, Product>(viewModel, product);
-                _productService.EditProduct(product);
+                _productService.EditProduct(productLayout);
                 return RedirectToAction(MVC.Admin.Product.List());
             }
             return View(viewModel);
