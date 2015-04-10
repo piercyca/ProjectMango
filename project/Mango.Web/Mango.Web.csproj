@@ -216,6 +216,9 @@
     <Compile Include="Admin.HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.OrderController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.OrganizationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -242,6 +245,8 @@
     <Compile Include="Areas\Admin\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrganizationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Models\OrderListViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrganizationFormViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrganizationListItemViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrganizationListViewModel.cs" />
@@ -445,6 +450,7 @@
     <Content Include="Areas\Store\Views\Shared\EditorTemplates\AddressViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\ScriptUploadOrganizationImage.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\EditorTemplates\OrganizationImageFormViewModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\List.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy %282%29.pubxml" />

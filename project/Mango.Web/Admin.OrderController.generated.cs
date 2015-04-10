@@ -24,10 +24,10 @@ using System.Web.Routing;
 using T4MVC;
 namespace Mango.Web.Areas.Admin.Controllers
 {
-    public partial class OrganizationController
+    public partial class OrderController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected OrganizationController(Dummy d) { }
+        protected OrderController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -55,21 +55,15 @@ namespace Mango.Web.Areas.Admin.Controllers
             return RedirectToActionPermanent(taskResult.Result);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Edit()
-        {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public OrganizationController Actions { get { return MVC.Admin.Organization; } }
+        public OrderController Actions { get { return MVC.Admin.Order; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "Admin";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Organization";
+        public readonly string Name = "Order";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Organization";
+        public const string NameConst = "Order";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -79,8 +73,6 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string List = "List";
-            public readonly string Create = "Create";
-            public readonly string Edit = "Edit";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -88,28 +80,9 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string List = "List";
-            public const string Create = "Create";
-            public const string Edit = "Edit";
         }
 
 
-        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Create
-        {
-            public readonly string viewModel = "viewModel";
-        }
-        static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Edit
-        {
-            public readonly string id = "id";
-            public readonly string viewModel = "viewModel";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -120,30 +93,23 @@ namespace Mango.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Create = "Create";
-                public readonly string Edit = "Edit";
                 public readonly string List = "List";
-                public readonly string ScriptUploadOrganizationImage = "ScriptUploadOrganizationImage";
             }
-            public readonly string Create = "~/Areas/Admin/Views/Organization/Create.cshtml";
-            public readonly string Edit = "~/Areas/Admin/Views/Organization/Edit.cshtml";
-            public readonly string List = "~/Areas/Admin/Views/Organization/List.cshtml";
-            public readonly string ScriptUploadOrganizationImage = "~/Areas/Admin/Views/Organization/ScriptUploadOrganizationImage.cshtml";
+            public readonly string List = "~/Areas/Admin/Views/Order/List.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
             public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _EditorTemplatesClass
             {
-                public readonly string OrganizationFormViewModel = "OrganizationFormViewModel";
-                public readonly string OrganizationImageFormViewModel = "OrganizationImageFormViewModel";
+                public readonly string OrderListViewModel = "OrderListViewModel";
             }
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_OrganizationController : Mango.Web.Areas.Admin.Controllers.OrganizationController
+    public partial class T4MVC_OrderController : Mango.Web.Areas.Admin.Controllers.OrderController
     {
-        public T4MVC_OrganizationController() : base(Dummy.Instance) { }
+        public T4MVC_OrderController() : base(Dummy.Instance) { }
 
         [NonAction]
         partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
@@ -164,53 +130,6 @@ namespace Mango.Web.Areas.Admin.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.List);
             ListOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Create()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            CreateOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.OrganizationFormViewModel viewModel);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Create(Mango.Web.Areas.Admin.Models.OrganizationFormViewModel viewModel)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
-            CreateOverride(callInfo, viewModel);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int id);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(int id)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
-            EditOverride(callInfo, id);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Admin.Models.OrganizationFormViewModel viewModel);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Edit(Mango.Web.Areas.Admin.Models.OrganizationFormViewModel viewModel)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
-            EditOverride(callInfo, viewModel);
             return callInfo;
         }
 
