@@ -230,6 +230,7 @@ namespace Links
                 public static readonly string ugalogo5_png = Url("ugalogo5.png");
             }
         
+            public static readonly string noimageavail_png = Url("noimageavail.png");
             public static readonly string official_licensed_logo_jpg = Url("official_licensed_logo.jpg");
             public static readonly string ornamentsplash_png = Url("ornamentsplash.png");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
