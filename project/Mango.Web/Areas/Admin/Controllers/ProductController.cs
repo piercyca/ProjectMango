@@ -118,12 +118,13 @@ namespace Mango.Web.Areas.Admin.Controllers
         [HttpPost]
         public virtual ActionResult Edit(ProductFormViewModel viewModel)
         {
-            var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
+            var product = _productService.GetProduct(viewModel.ProductId);
+            var productDetails = Mapper.Map<ProductFormViewModel, Product>(viewModel, product);
             if (ModelState.IsValid)
             {
                 ManageProductUrlSlugRedirect(viewModel);
 
-                _productService.EditProduct(product);
+                _productService.EditProduct(productDetails);
                 _productImageService.InsertProductImages(viewModel.ProductId, viewModel.ProductImagesString);
 
                 return RedirectToAction(MVC.Admin.Product.List());
@@ -216,7 +217,7 @@ namespace Mango.Web.Areas.Admin.Controllers
             {
                 var product = _productService.GetProduct(viewModel.ProductId);
                 var productLayout = Mapper.Map<ProductLayoutFormViewModel, Product>(viewModel, product);
-                _productService.EditProduct(product);
+                _productService.EditProduct(productLayout);
                 return RedirectToAction(MVC.Admin.Product.List());
             }
             return View(viewModel);

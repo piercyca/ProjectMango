@@ -40,6 +40,8 @@ namespace Mango.Core.Entity
         [ForeignKey("ShipAddressId")]
         public virtual Address ShipAddress { get; set; }
 
+		public virtual IEnumerable<OrderLineItem> OrderLineItems { get; set; }
+
         public Order()
         {
             DateCreated = DateTime.Now;

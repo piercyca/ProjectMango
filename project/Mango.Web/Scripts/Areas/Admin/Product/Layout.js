@@ -5,8 +5,8 @@ var LayoutCanvas = (function(options) {
     var center = canvas.getCenter();
     var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();
-    var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 0, height: 0, opacity: 0.8 });
-    var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 0, height: 0, opacity: 0.8 });
+    var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 340, height: 200, opacity: 0.8, name: 'pic' });
+    var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 340, height: 200, opacity: 0.8, name: 'text' });
 
     if (bgurl == "") {
         //default
@@ -17,10 +17,17 @@ var LayoutCanvas = (function(options) {
         var parseConfig = JSON.parse(canvasConfig);
         var imgConfig = parseConfig.layout.pic;
         var textConfig = parseConfig.layout.text;
-        var pic = new fabric.Rect({ left: imgConfig.left, top: imgConfig.top, fill: 'green', width: imgConfig.width, height: imgConfig.height, opacity: 0.8 });
-        var text = new fabric.Rect({ left: textConfig.left, top: textConfig.top, fill: 'blue', width: textConfig.width, height: textConfig.height, opacity: 0.8 });
+        if (imgConfig != null) {
+        var pic = new fabric.Rect({ left: imgConfig.left, top: imgConfig.top, fill: 'green', width: imgConfig.width, height: imgConfig.height, opacity: 0.8, name: 'pic' });
         canvas.add(pic);
+        }
+
+        if(textConfig != null){
+        var text = new fabric.Rect({ left: textConfig.left, top: textConfig.top, fill: 'blue', width: textConfig.width, height: textConfig.height, opacity: 0.8, name: 'text' });
         canvas.add(text);
+        }
+
+        
 }
     canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
         //center the background image
@@ -32,34 +39,26 @@ var LayoutCanvas = (function(options) {
         originY: 'center'
     });
 
-
-
     function setConfig() {
-        options.config =
-        {
-            layout: {
-                pic: {
-                    top: Math.ceil(pic.top),
-                    left: Math.ceil(pic.left),
-                    width: Math.ceil(pic.getWidth()),
-                    height: Math.ceil(pic.getHeight())
-                },
-                text: {
-                    top: Math.ceil(text.top),
-                    left: Math.ceil(text.left),
-                    width: Math.ceil(text.getWidth()),
-                    height: Math.ceil(text.getHeight())
-                }
-            }
-        }
-        $(options.inputConfiguration).val(JSON.stringify(options.config));
-    }
+        var objCoord = [];
+        canvas.forEachObject(function (obj) {
+            objCoord.push( '"' + obj.name + '": {' +
+                    '"top":' + Math.ceil(obj.top) + ',' +
+                    '"left":' + Math.ceil(obj.left) + ',' +
+                    '"width":' + Math.ceil(obj.getWidth()) + ',' +
+                    '"height":' + Math.ceil(obj.getHeight()) +
+                    '}');
 
+            objCoord.join(',');
+        });
+
+        options.config = '{"layout":{' + objCoord.toString() + '}}';
+        $(options.inputConfiguration).val(options.config);
+    }
 
     //on click add objects
     $(options.controlAddPic).click(function () {
         //remove if exist then add
-        var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 340, height: 220, opacity: 0.8 });
         canvas.remove(pic);
         canvas.add(pic);
         canvas.renderAll();
@@ -67,7 +66,6 @@ var LayoutCanvas = (function(options) {
 
     $(options.controlAddText).click(function() {
         //remove if exist then add
-        var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 340, height: 220, opacity: 0.8 });
         canvas.remove(text);
         canvas.add(text);
         canvas.renderAll();
@@ -98,6 +96,7 @@ var LayoutCanvas = (function(options) {
             return;
         }
         canvas.remove(activeO);
+        setConfig();
     });
 
     //TODO: upload and resize image (optional)

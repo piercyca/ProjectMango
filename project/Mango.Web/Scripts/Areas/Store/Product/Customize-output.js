@@ -27,6 +27,13 @@ $(function () {
         var textConfig = parseConfig.layout.text;
     }
 
+    if (textConfig == null) {
+        $('#addTextField, #fontselector').attr("disabled", "disabled");
+    }
+    if (imgConfig == null) {
+        $('#logos').hide();
+    }
+
         //TODO: this is an example -- the final version should grab the image from the admin tool
         canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
             //center the background image
@@ -61,6 +68,8 @@ $(function () {
         imgObj.src = logoURL;
 
         var image = new fabric.Image(imgObj);
+
+        if (imgConfig == null) return;
         image.set({
             //TODO: using and offsetting center for now but NEED to get image position coord from db
             name: 'logo',
@@ -102,6 +111,7 @@ $(function () {
         }
     });
 
+
     //TEXT / APPLY SELECTED FONT
     function addText() {
         var fontSelection = $('#fontselector').val();
@@ -112,7 +122,6 @@ $(function () {
         link.href = 'http://fonts.googleapis.com/css?family=' + fontSelection;
         $('head').append(link);
 
-
         //NOTE: For applying text to canvas -- get from inputs
         //TODO: Fonts should be placed here
         var unformatted = new fabric.Text(addTextField, {
@@ -121,7 +130,7 @@ $(function () {
             fontFamily: fontSelection,
             fontSize: 25,
             top: textConfig.top,
-            left: center.left,
+            left:  textConfig.width / 2 + textConfig.left,
             originX: 'center'
         });
 

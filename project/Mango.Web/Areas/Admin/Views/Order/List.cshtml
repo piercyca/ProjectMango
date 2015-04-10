@@ -1,0 +1,70 @@
+@using Mango.Core.Service
+@model IEnumerable<Mango.Core.Entity.Order>
+@{
+    ViewBag.Title = "Orders";
+}
+
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", MVC.Home.Index())</li>
+    <li class="active">@Html.ActionLink("Orders", MVC.Admin.Order.List())</li>
+</ol>
+
+<h2>Orders</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (Model == null)
+        {
+            <div class="alert alert-danger">
+                No Orders Found
+            </div>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                <tr>
+					<th>Order Id</th>
+	                <th>Order Items</th>
+					<th>Total Amount</th>
+					<th>Customer</th>
+					<th>Ship Address</th>
+	                <th>Bill Address</th>>
+					<th>Date Created</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.OrderId</td>
+	                    <td><div class="active">@Html.ActionLink("View Details", MVC.Admin.Order.Details(Model.First().OrderId))</div></td>
+						<td>@item.TotalAmount</td>
+                        <td>@item.Customer.FirstName @item.Customer.LastName</td>
+	                    <td>
+		                    <table>
+			                    <tr><td>@item.ShipAddress.AddressLine1</td></tr>
+			                    <tr><td>@item.ShipAddress.AddressLine2</td></tr>
+			                    <tr><td>@item.ShipAddress.City, @item.ShipAddress.State @item.ShipAddress.Zip</td></tr>
+			                    <tr><td>@item.ShipAddress.Country</td></tr>
+			                    <tr><td>@item.ShipAddress.Phone</td></tr>
+		                    </table>
+	                    </td>
+	                    <td>
+		                    <table>
+			                    <tr><td>@item.BillAddress.AddressLine1</td></tr>
+			                    <tr><td>@item.BillAddress.AddressLine2</td></tr>
+			                    <tr><td>@item.BillAddress.City, @item.BillAddress.State @item.BillAddress.Zip</td></tr>
+			                    <tr><td>@item.BillAddress.Country</td></tr>
+			                    <tr><td>@item.BillAddress.Phone</td></tr>
+		                    </table>
+	                    </td>
+						<td>@item.DateCreated</td>
+                    </tr>
+                }
+                </tbody>
+            </table>	
+        }
+
+    </div>
+</div>

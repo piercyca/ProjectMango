@@ -39,12 +39,18 @@
                             <li>@Html.ActionLink("Customers", MVC.Admin.Customer.Index())</li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Users", MVC.Admin.User.Index())</li>
-                        </ul>
-                    </li>
+	                <li class="dropdown">
+		                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+		                <ul class="dropdown-menu" role="menu">
+			                <li>@Html.ActionLink("Users", MVC.Admin.User.Index())</li>
+		                </ul>
+	                </li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Orders <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li>@Html.ActionLink("Orders", MVC.Admin.Order.Index())</li>
+						</ul>
+					</li>
                 </ul>
                 @Html.Partial(MVC.Admin.Shared.Views._LoginPartial)
             </div>

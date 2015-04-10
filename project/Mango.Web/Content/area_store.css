@@ -1,9 +1,14 @@
 /* ==========================================================================
    Project Mango - Etchieve.com
    ========================================================================== */
+
+/* FONTS */
+@import url(//fonts.googleapis.com/css?family=Vollkorn:400,700,400italic,700italic|Droid+Sans:400,700|Lobster);
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Droid Sans', Arial, sans-serif;
     font-size: 13px;
+    padding-top: 50px;
 }
 
 hr {
@@ -44,12 +49,8 @@ hr {
 
 .jumbotron {
     padding: 28px 0;
-    margin: 30px 0 0;
-    background: -webkit-linear-gradient(#5d5d5d, #cbcbcb); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#5d5d5d, #cbcbcb); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#5d5d5d, #cbcbcb); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#5d5d5d, #cbcbcb); /* Standard syntax */
-
+    margin: 0;
+    background: #A9B3BC;
 }
 
 .jumbotron .container {
@@ -70,8 +71,7 @@ hr {
     padding: 5px 0;
     text-align: center;
     margin-bottom: 25px;
-    background: #efefef;
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2)
+    background: #E3E3E3;
 }
 
 .testimonials div {
@@ -79,23 +79,69 @@ hr {
 }
 
 .img-thumbnail, .thumbnail img {
-    max-height: 165px;
-    border: 1px solid #fff;
+    max-height: 165px; border:  0;
 }
 
-.img-thumbnail:hover, .thumbnail:hover {
-    border: 1px solid #999;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+.products div.item {
+    height: 100%;
+    min-height: 210px;
+    max-height: 220px;
+    position: relative;
+    border: 1px solid #ddd;
+    margin: 30px 0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.products div.item:hover { box-shadow: 0 0 10px rgba(0,0,0,.3); border: 1px solid #ccc}
+
+.products div.item:hover img { padding: 20px; }
+
+.products img {
+    width: auto; max-height: 153px;
+    height: auto;
 }
 
-.item h2, .item p {
+.item span.price {
+  position: absolute;
+  bottom: 34px;
+  right: -1px;
+  background: #D9534F;
+  border: 1px solid #ddd;
+  display: block;
+  padding: 3px 8px;
+  -webkit-border-top-left-radius: 2em;
+  -webkit-border-bottom-left-radius: 2em;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 0 0 .327em 0; z-index: 54;
+}
+.item h2 {
+    position: absolute;
+    bottom: 0; padding: 16px 10px 12px 10px;
     font-size: 1.2em !important;
-    margin: 0;
-    padding: 5px;
+    margin: 0; 
     text-align: center;
-    font-family: georgia, times, serif;
+    font-family: 'Vollkorn', 'Lucida Sans', cursive;
     font-style: italic;
+    width: 100%; background: #EDEFF1;
+    border-top: 1px solid #ddd;
 }
+
+.item p {
+    font-size: 1.2em !important;
+    margin: 0; padding: 0;
+    text-align: center;
+    font-family: 'Vollkorn', cursive;
+    font-style: italic;
+    width: 100%;
+}
+
 
 .steps {
     margin: 40px 0 0 0;
@@ -107,7 +153,7 @@ hr {
 
 .list-group-item {
     background: transparent;
-    border-width: 0px 0px 1px 0px;
+    border-width: 0 0 1px 0;
     border-style: dotted
 }
 
@@ -116,26 +162,28 @@ hr {
 }
 
 .list-group-item h4 {
-    color: #fff;
-    font-family: georgia, times, serif;
-    font-style: italic;
-    font-size: 1.5em;
+    color: #545454;
+    font-family: 'Lobster', serif;
+    /*font-family: 'Vollkorn', cursive;
+    font-style: italic;*/
+    font-size: 2em;
 }
 
 .list-group-item span {
     width: 50px;
     height: 50px;
+    -ms-border-radius: 50%;
     border-radius: 50%;
     text-align: center;
     line-height: 50px;
-    background: #000;
+    background: #54697E;
     margin: 0 10px 10px 10px;
     font-size: 25px;
     color: #fff;
 }
 
 .steps img {
-    margin-right: 20px;
+    margin-right: 0px;
 }
 
 footer img {
@@ -179,6 +227,8 @@ textarea {
 .panel {
     overflow: hidden;
     border: 5px solid #EDEFF1;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    -ms-box-shadow: 0 0 2px rgba(0, 0, 0, .5);
     box-shadow: 0 0 2px rgba(0, 0, 0, .5);
 }
 
@@ -383,3 +433,4 @@ h2.price {
 .payments {
     font-size: 1.5em;
 }
+

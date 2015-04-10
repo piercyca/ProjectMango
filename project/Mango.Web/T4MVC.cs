@@ -45,6 +45,7 @@ namespace T4MVC
         public readonly string Name = "Admin";
         public Mango.Web.Areas.Admin.Controllers.CustomerController Customer = new Mango.Web.Areas.Admin.Controllers.T4MVC_CustomerController();
         public Mango.Web.Areas.Admin.Controllers.HomeController Home = new Mango.Web.Areas.Admin.Controllers.T4MVC_HomeController();
+        public Mango.Web.Areas.Admin.Controllers.OrderController Order = new Mango.Web.Areas.Admin.Controllers.T4MVC_OrderController();
         public Mango.Web.Areas.Admin.Controllers.OrganizationController Organization = new Mango.Web.Areas.Admin.Controllers.T4MVC_OrganizationController();
         public Mango.Web.Areas.Admin.Controllers.ProductCategoryController ProductCategory = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductCategoryController();
         public Mango.Web.Areas.Admin.Controllers.ProductController Product = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductController();
@@ -230,6 +231,7 @@ namespace Links
                 public static readonly string ugalogo5_png = Url("ugalogo5.png");
             }
         
+            public static readonly string noimageavail_png = Url("noimageavail.png");
             public static readonly string official_licensed_logo_jpg = Url("official_licensed_logo.jpg");
             public static readonly string ornamentsplash_png = Url("ornamentsplash.png");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
