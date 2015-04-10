@@ -34,20 +34,6 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         /// <summary>
-        /// GET: /store/account
-        /// </summary>
-        /// <returns></returns>
-        public virtual ActionResult Account()
-        {
-            var viewModel = new CartAccountViewModel
-            {
-                LoginViewModel = new LoginViewModel(),
-                RegisterViewModel = new RegisterViewModel()
-            };
-            return View(viewModel);
-        }
-
-        /// <summary>
         /// GET: /store/address
         /// </summary>
         /// <returns></returns>
@@ -56,16 +42,7 @@ namespace Mango.Web.Areas.Store.Controllers
             return View();
         }
 
-        //
-        // GET: /Account/Login
-        [AllowAnonymous]
-        public virtual ActionResult Login(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
-
-        #region Login
+        #region Account
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -93,9 +70,25 @@ namespace Mango.Web.Areas.Store.Controllers
             }
         }
 
+        /// <summary>
+        /// GET: /store/cart/account
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public virtual ActionResult Account()
+        {
+            ViewBag.ReturnUrl = Url.Action(MVC.StoreArea.Cart.Address());
+
+            var viewModel = new CartAccountViewModel
+            {
+                LoginViewModel = new LoginViewModel(),
+                RegisterViewModel = new RegisterViewModel()
+            };
+            return View(viewModel);
+        }
 
         /// <summary>
-        /// 
+        /// POST: /store/cart/login
         /// </summary>
         /// <param name="model"></param>
         /// <param name="returnUrl"></param>
@@ -103,43 +96,35 @@ namespace Mango.Web.Areas.Store.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public virtual async Task<ActionResult> Login(CartAccountViewModel model, string returnUrl)
         {
+            model.LoginMethod = "Login";
+
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(MVC.StoreArea.Cart.Views.ViewNames.Account, model);
             }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.LoginViewModel.Email, model.LoginViewModel.Password, model.LoginViewModel.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
-                    return View("Lockout");
+                    return View("Lockout"); //TODO handle lockout
                 //case SignInStatus.RequiresVerification:
                 //    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return View(MVC.StoreArea.Cart.Views.ViewNames.Account, model);
             }
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public virtual ActionResult Register()
-        {
-            return View(new RegisterViewModel());
-        }
-
-        /// <summary>
-        /// 
+        /// POST: /store/cart/register
         /// </summary>
         /// <param name="model"></param>
         /// <param name="returnUrl"></param>
@@ -147,16 +132,18 @@ namespace Mango.Web.Areas.Store.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Register(RegisterViewModel model, string returnUrl)
+        public virtual async Task<ActionResult> Register(CartAccountViewModel model, string returnUrl)
         {
+            model.LoginMethod = "Register";
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.RegisterViewModel.Email, Email = model.RegisterViewModel.Email };
+                var result = await UserManager.CreateAsync(user, model.RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
                     // Add user to Customer role
-                    await UserManager.AddToRoleAsync(user.UserName, "Customer");
+                    await UserManager.AddToRoleAsync(user.Id, "Customer");
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
@@ -172,7 +159,7 @@ namespace Mango.Web.Areas.Store.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View(MVC.StoreArea.Cart.Views.ViewNames.Account, model);
         }
 
         private void AddErrors(IdentityResult result)

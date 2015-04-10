@@ -57,9 +57,10 @@ namespace Mango.Web.Areas.Store.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Web.Mvc.ActionResult Login()
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Login()
         {
-            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -101,8 +102,8 @@ namespace Mango.Web.Areas.Store.Controllers
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_Login
         {
-            public readonly string returnUrl = "returnUrl";
             public readonly string model = "model";
+            public readonly string returnUrl = "returnUrl";
         }
         static readonly ActionParamsClass_Register s_params_Register = new ActionParamsClass_Register();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -134,6 +135,14 @@ namespace Mango.Web.Areas.Store.Controllers
             public readonly string Index = "~/Areas/Store/Views/Cart/Index.cshtml";
             public readonly string Login = "~/Areas/Store/Views/Cart/Login.cshtml";
             public readonly string Register = "~/Areas/Store/Views/Cart/Register.cshtml";
+            static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
+            public _EditorTemplatesClass EditorTemplates { get { return s_EditorTemplates; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _EditorTemplatesClass
+            {
+                public readonly string LoginViewModel = "LoginViewModel";
+                public readonly string RegisterViewModel = "RegisterViewModel";
+            }
         }
     }
 
@@ -176,22 +185,10 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string returnUrl);
+        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Store.Models.CartAccountViewModel model, string returnUrl);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Login(string returnUrl)
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
-            LoginOverride(callInfo, returnUrl);
-            return callInfo;
-        }
-
-        [NonAction]
-        partial void LoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Models.LoginViewModel model, string returnUrl);
-
-        [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Login(Mango.Web.Models.LoginViewModel model, string returnUrl)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Login(Mango.Web.Areas.Store.Models.CartAccountViewModel model, string returnUrl)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -212,10 +209,10 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Models.RegisterViewModel model, string returnUrl);
+        partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Store.Models.CartAccountViewModel model, string returnUrl);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Register(Mango.Web.Models.RegisterViewModel model, string returnUrl)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Register(Mango.Web.Areas.Store.Models.CartAccountViewModel model, string returnUrl)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

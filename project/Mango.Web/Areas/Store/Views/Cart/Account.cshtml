@@ -2,27 +2,47 @@
 @{
     ViewBag.Title = "Account";
 }
-
-<h2>Account</h2>
-
-
-
 <div class="container">
 
-    <div class="col-md-12">
-        <h1>Checkout</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Checkout</h1>
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Account</h2>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
-            <a class="btn btn-primary btn-lg btn-block" href="@Url.Action(MVC.StoreArea.Cart.Login())">Returning customer? Login</a>
-            <a class="btn btn-primary btn-lg btn-block" href="@Url.Action(MVC.StoreArea.Cart.Register())">Create an Account</a>
+            <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#cart_account_login">Returning customer? Login</button>
+            <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#cart_account_register">Need a login? Create one</button>
+            <a class="btn btn-primary btn-lg btn-block" href="@Url.Action(MVC.StoreArea.Cart.Address())">Neither? Checkout as a guest</a>
         </div>
     </div>
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
-            
+
         </div>
     </div>
 </div>
+
+@Html.EditorFor(model => model.LoginViewModel)
+@Html.EditorFor(model => model.RegisterViewModel)
+
+
+@section scripts
+{
+    @if (!string.IsNullOrEmpty(Model.LoginMethod))
+    {
+        <script>
+            $(window).load(function () {
+                $('#cart_account_@Model.LoginMethod.ToLower()').modal('show');
+            });
+        </script>
+    }
+}
+
