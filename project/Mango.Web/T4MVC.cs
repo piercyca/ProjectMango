@@ -45,6 +45,7 @@ namespace T4MVC
         public readonly string Name = "Admin";
         public Mango.Web.Areas.Admin.Controllers.CustomerController Customer = new Mango.Web.Areas.Admin.Controllers.T4MVC_CustomerController();
         public Mango.Web.Areas.Admin.Controllers.HomeController Home = new Mango.Web.Areas.Admin.Controllers.T4MVC_HomeController();
+        public Mango.Web.Areas.Admin.Controllers.OrderController Order = new Mango.Web.Areas.Admin.Controllers.T4MVC_OrderController();
         public Mango.Web.Areas.Admin.Controllers.OrganizationController Organization = new Mango.Web.Areas.Admin.Controllers.T4MVC_OrganizationController();
         public Mango.Web.Areas.Admin.Controllers.ProductCategoryController ProductCategory = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductCategoryController();
         public Mango.Web.Areas.Admin.Controllers.ProductController Product = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductController();

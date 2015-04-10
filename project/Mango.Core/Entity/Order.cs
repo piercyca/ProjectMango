@@ -32,13 +32,15 @@ namespace Mango.Core.Entity
         public DateTime DateCreated { get; set; }
 
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         [ForeignKey("BillAddressId")]
         public virtual Address BillAddress { get; set; }
 
         [ForeignKey("ShipAddressId")]
         public virtual Address ShipAddress { get; set; }
+
+		public virtual IEnumerable<OrderLineItem> OrderLineItems { get; set; }
 
         public Order()
         {
