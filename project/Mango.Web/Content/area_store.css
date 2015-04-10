@@ -83,23 +83,69 @@ hr {
 }
 
 .img-thumbnail, .thumbnail img {
-    max-height: 165px;
-    border: 1px solid #fff;
+    max-height: 165px; border:  0;
 }
 
-.img-thumbnail:hover, .thumbnail:hover {
-    border: 1px solid #999;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+.products div.item {
+    height: 100%;
+    min-height: 210px;
+    max-height: 220px;
+    position: relative;
+    border: 1px solid #ddd;
+    margin: 30px 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.products div.item:hover { box-shadow: 0 0 10px rgba(0,0,0,.3); border: 1px solid #ccc}
+
+.products div.item:hover img { padding: 20px; }
+
+.products img {
+    width: auto; max-height: 153px;
+    height: auto;
 }
 
-.item h2, .item p {
+.item span.price {
+  position: absolute;
+  bottom: 34px;
+  right: -1px;
+  background: #D9534F;
+  border: 1px solid #ddd;
+  display: block;
+  padding: 3px 8px;
+  -webkit-border-top-left-radius: 0.327em;
+  -webkit-border-bottom-left-radius: 0.327em;
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0 0 0 .327em 0; z-index: 54;
+}
+.item h2 {
+    position: absolute;
+    bottom: 0; padding: 16px 10px 12px 10px;
     font-size: 1.2em !important;
-    margin: 0;
-    padding: 5px;
+    margin: 0; 
     text-align: center;
     font-family: 'Vollkorn', cursive;
     font-style: italic;
+    width: 100%; background: #EDEFF1;
+    border-top: 1px solid #ddd;
 }
+
+.item p {
+    font-size: 1.2em !important;
+    margin: 0; padding: 0;
+    text-align: center;
+    font-family: 'Vollkorn', cursive;
+    font-style: italic;
+    width: 100%;
+}
+
 
 .steps {
     margin: 40px 0 0 0;
@@ -391,3 +437,4 @@ h2.price {
 .payments {
     font-size: 1.5em;
 }
+
