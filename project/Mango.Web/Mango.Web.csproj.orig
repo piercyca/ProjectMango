@@ -451,14 +451,15 @@
     <Content Include="Areas\Store\Views\Shared\EditorTemplates\AddressViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\ScriptUploadOrganizationImage.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\EditorTemplates\OrganizationImageFormViewModel.cshtml" />
-<<<<<<< HEAD
     <Content Include="Areas\Store\Views\Cart\Account.cshtml" />
     <Content Include="Areas\Store\Views\Cart\Address.cshtml" />
-    <Content Include="Areas\Store\Views\Cart\Login.cshtml" />
-    <Content Include="Areas\Store\Views\Cart\Register.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\EditorTemplates\LoginViewModel.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Areas\Store\Views\Cart\EditorTemplates\RegisterViewModel.cshtml" />
 =======
     <Content Include="Areas\Admin\Views\Order\List.cshtml" />
->>>>>>> ada6b9ec262bae44f52d37d40a257962601b388b
+    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
+>>>>>>> fb9615f2b54d6162e6d69e0f4e5f4d4a23e2e3de
     <None Include="Properties\PublishProfiles\mango-web - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy %282%29.pubxml" />

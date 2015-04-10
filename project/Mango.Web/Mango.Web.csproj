@@ -458,6 +458,7 @@
     <Content Include="Areas\Store\Views\Cart\EditorTemplates\LoginViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Order\List.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\EditorTemplates\RegisterViewModel.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy %282%29.pubxml" />

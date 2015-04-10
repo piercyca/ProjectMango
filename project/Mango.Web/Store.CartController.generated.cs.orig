@@ -62,13 +62,6 @@ namespace Mango.Web.Areas.Store.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Login);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Register()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
-            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public CartController Actions { get { return MVC.StoreArea.Cart; } }
@@ -86,8 +79,8 @@ namespace Mango.Web.Areas.Store.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Address = "Address";
             public readonly string Account = "Account";
+            public readonly string Address = "Address";
             public readonly string Login = "Login";
             public readonly string Register = "Register";
         }
@@ -96,8 +89,8 @@ namespace Mango.Web.Areas.Store.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Address = "Address";
             public const string Account = "Account";
+            public const string Address = "Address";
             public const string Login = "Login";
             public const string Register = "Register";
         }
@@ -148,7 +141,10 @@ namespace Mango.Web.Areas.Store.Controllers
             public partial class _EditorTemplatesClass
             {
                 public readonly string LoginViewModel = "LoginViewModel";
+<<<<<<< HEAD
                 public readonly string RegisterViewModel = "RegisterViewModel";
+=======
+>>>>>>> fb9615f2b54d6162e6d69e0f4e5f4d4a23e2e3de
             }
         }
     }
@@ -170,17 +166,6 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void AddressOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
-
-        [NonAction]
-        public override System.Web.Mvc.ActionResult Address()
-        {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Address);
-            AddressOverride(callInfo);
-            return callInfo;
-        }
-
-        [NonAction]
         partial void AccountOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
@@ -188,6 +173,17 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Account);
             AccountOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void AddressOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Address()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Address);
+            AddressOverride(callInfo);
             return callInfo;
         }
 
@@ -202,6 +198,17 @@ namespace Mango.Web.Areas.Store.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "returnUrl", returnUrl);
             LoginOverride(callInfo, model, returnUrl);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        [NonAction]
+        partial void RegisterOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Register()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
+            RegisterOverride(callInfo);
+            return callInfo;
         }
 
         [NonAction]

@@ -109,11 +109,15 @@ namespace Mango.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+<<<<<<< HEAD
+            }
+=======
                 public readonly string Details = "Details";
                 public readonly string List = "List";
             }
             public readonly string Details = "~/Areas/Admin/Views/Order/Details.cshtml";
             public readonly string List = "~/Areas/Admin/Views/Order/List.cshtml";
+>>>>>>> fb9615f2b54d6162e6d69e0f4e5f4d4a23e2e3de
         }
     }
 
