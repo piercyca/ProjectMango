@@ -21,6 +21,10 @@ hr {
     border-bottom: 1px solid #A9B3BC; 
 }
 
+.canvas-container {
+  margin-left: auto;
+  margin-right: auto;
+  }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background: #2C3E50;
     color: #fff;
