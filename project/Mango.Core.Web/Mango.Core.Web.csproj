@@ -90,6 +90,7 @@
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\SelectExtensions.cs" />
     <Compile Include="Extensions\SelectListExtensions.cs" />
+    <Compile Include="Helpers\UnitedStatesHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
