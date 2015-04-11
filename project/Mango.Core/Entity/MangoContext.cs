@@ -15,6 +15,7 @@ namespace Mango.Core.Entity
         #region Orders
 
         public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderLineItem> OrderLineItems { get; set; }
 

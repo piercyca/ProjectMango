@@ -41,11 +41,11 @@ namespace Mango.Core.Entity
 
         public DateTime DateCreated { get; set; }
 
-        public string UserId { get; set; }
-
-        //TODO figure out how to relate
-        //[ForeignKey("UserId")]
-        //public virtual User User { get; set; } 
+        /// <summary>
+        /// Username, loosely coupled with OWIN Identity - string IUser.Username, not 
+        /// the GUID IUser.Id. May be null to support guest checkout.
+        /// </summary>
+        public string Username { get; set; }
 
         public Customer()
         {
