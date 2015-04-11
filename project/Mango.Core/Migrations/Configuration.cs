@@ -21,7 +21,8 @@ namespace Mango.Core.Migrations
         /// <param name="context"></param>
         protected override void Seed(MangoContext context)
         {
-            // Product Categories
+            #region Product Categories
+
             context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory
             {
                 Name = "Drinkware",
@@ -54,10 +55,13 @@ namespace Mango.Core.Migrations
                 UrlSlug = "ornaments",
                 Keywords = "holiday,ornamenets,glass"
             });
-  
-            // Products
+
+            #endregion
+
+            #region Products
+
             context.Products.AddOrUpdate(p =>
-                p.ProductId,
+                new { p.ProductId, p.UrlSlug },
                          new Entity.Product
                          {
                              Name = "Coffee Mug - Black",
@@ -179,31 +183,55 @@ namespace Mango.Core.Migrations
                             Url = "https://mangoassets.blob.core.windows.net/images/b569b1114f6848e5a2d4ca77faedaa2a.png"
                         });
             
-            // Organizations
-            context.Organizations.AddOrUpdate(o => o.OrganizationId, new Organization {OrganizationId = 1, Name = "University of Georgia", Abbreviation = "UGA"});
-            context.Organizations.AddOrUpdate(o => o.OrganizationId, new Organization { OrganizationId = 2, Name = "Georgia Institute of Technology", Abbreviation = "GTech" });
+            #endregion
 
+            #region Organizations
 
-            context.OrganizationImages.AddOrUpdate(pi => new { pi.OrganizationId, pi.SortOrder }, new OrganizationImage { OrganizationId = 1, SortOrder = 0, Url = "https://mangoassets.blob.core.windows.net/images/784a1ad990fc447881ea0f94750f99e4.png" });
-            context.OrganizationImages.AddOrUpdate(pi => new { pi.OrganizationId, pi.SortOrder }, new OrganizationImage { OrganizationId = 1, SortOrder = 1, Url = "https://mangoassets.blob.core.windows.net/images/2977ea2bad1a4a54863eb5de18c7c081.png" });
-            context.OrganizationImages.AddOrUpdate(pi => new { pi.OrganizationId, pi.SortOrder }, new OrganizationImage { OrganizationId = 1, SortOrder = 2, Url = "https://mangoassets.blob.core.windows.net/images/66ac2617974146d2bab50b44058dda8b.png" });
+            context.Organizations.AddOrUpdate(o => o.OrganizationId, 
+                new Organization { OrganizationId = 1, Name = "University of Georgia", Abbreviation = "UGA"},
+                new Organization { OrganizationId = 2, Name = "Georgia Institute of Technology", Abbreviation = "GTech" });
 
-            //Customers
-            context.Customers.AddOrUpdate(c => c.CustomerId, new Entity.Customer { CustomerId = 1, DateCreated = DateTime.UtcNow, Email = "customer_person@etcheive.com", FirstName = "Frank", LastName = "Customer", Username = "customer_person@etcheive.com" });
+            #endregion
+
+            #region Organization Images
+
+            context.OrganizationImages.AddOrUpdate(pi => new { pi.OrganizationId, pi.SortOrder },
+                new OrganizationImage { OrganizationId = 1, SortOrder = 0, Url = "https://mangoassets.blob.core.windows.net/images/784a1ad990fc447881ea0f94750f99e4.png"},
+                new OrganizationImage { OrganizationId = 1, SortOrder = 1, Url = "https://mangoassets.blob.core.windows.net/images/2977ea2bad1a4a54863eb5de18c7c081.png"}, 
+                new OrganizationImage { OrganizationId = 1, SortOrder = 2, Url = "https://mangoassets.blob.core.windows.net/images/66ac2617974146d2bab50b44058dda8b.png" });
+
+            #endregion
+
+            #region Customers
+
+            context.Customers.AddOrUpdate(c => c.CustomerId, 
+                new Customer { CustomerId = 1, DateCreated = DateTime.UtcNow, Email = "customer_person@etcheive.com", FirstName = "Frank", LastName = "Customer", Username = "customer_person@etcheive.com" });
             //context.Customers.AddOrUpdate(c => c.CustomerId, new Entity.Customer { CustomerId = 2, DateCreated = DateTime.UtcNow, Email = "guest@etchieve.com", FirstName = "Guest", LastName = "Customer", Username = null });
 
-            //Adresses
-            context.Addresses.AddOrUpdate(a => a.AddressId, new Entity.Address { AddressId = 1, Status = AddressStatus.Active, AddressType = AddressType.Bill, FirstName = "John", LastName = "Smith", Phone = "5555555555", AddressLine1 = "33 Main St.", AddressLine2 = "Apt. 2", City = "Athens", State = "GA", Zip = "30605", Country = "USA", DateCreated = DateTime.Now });
-            context.Addresses.AddOrUpdate(a => a.AddressId, new Entity.Address { AddressId = 2, Status = AddressStatus.Active, AddressType = AddressType.Ship, FirstName = "John", LastName = "Smith", Phone = "7777777777", AddressLine1 = "157 Broad Ave.", AddressLine2 = "", City = "Atlanta", State = "GA", Zip = "30303", Country = "USA", DateCreated = DateTime.Now });
+            #endregion
 
-			//Orders
-			context.Orders.AddOrUpdate(o => o.OrderId, new Entity.Order { OrderId = 1, CustomerId = 1, ShipAddressId = 1, BillAddressId = 2, TotalAmount = 100.00m, DateCreated = DateTime.Now});
+            #region Adresses
 
-			//Order Line Items
-			context.OrderLineItems.AddOrUpdate(ol => ol.OrderId, new Entity.OrderLineItem { OrderId = 1, OrderItemSequence = 1, ProductId = 1, UnitPrice = 22.50m, Quantity = 2, Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" });
-            context.OrderLineItems.AddOrUpdate(ol => ol.OrderId, new Entity.OrderLineItem { OrderId = 1, OrderItemSequence = 2, ProductId = 2, UnitPrice = 15.50m, Quantity = 5, Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" });
+            context.Addresses.AddOrUpdate(a => a.AddressId, 
+                new Address { AddressId = 1, Status = AddressStatus.Active, AddressType = AddressType.Bill, FirstName = "John", LastName = "Smith", Phone = "5555555555", AddressLine1 = "33 Main St.", AddressLine2 = "Apt. 2", City = "Athens", State = "GA", Zip = "30605", Country = "USA", DateCreated = DateTime.Now}, 
+                new Address { AddressId = 2, Status = AddressStatus.Active, AddressType = AddressType.Ship, FirstName = "John", LastName = "Smith", Phone = "7777777777", AddressLine1 = "157 Broad Ave.", AddressLine2 = "", City = "Atlanta", State = "GA", Zip = "30303", Country = "USA", DateCreated = DateTime.Now });
 
+            #endregion
+
+            #region Orders
 			
+            context.Orders.AddOrUpdate(o => o.OrderId, 
+                new Entity.Order { OrderId = 1, CustomerId = 1, ShipAddressId = 1, BillAddressId = 2, TotalAmount = 100.00m, DateCreated = DateTime.Now});
+
+            #endregion
+
+            #region Order Line Items
+			
+            context.OrderLineItems.AddOrUpdate(ol => ol.OrderId, 
+                new OrderLineItem { OrderId = 1, OrderItemSequence = 1, ProductId = 1, UnitPrice = 22.50m, Quantity = 2, Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" },
+                new OrderLineItem { OrderId = 1, OrderItemSequence = 2, ProductId = 2, UnitPrice = 15.50m, Quantity = 5, Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" });
+
+            #endregion
         }
     }
 }
