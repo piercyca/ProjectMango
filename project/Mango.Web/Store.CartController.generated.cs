@@ -147,6 +147,7 @@ namespace Mango.Web.Areas.Store.Controllers
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public partial class _EditorTemplatesClass
             {
+                public readonly string AddressViewModel = "AddressViewModel";
                 public readonly string LoginViewModel = "LoginViewModel";
                 public readonly string RegisterViewModel = "RegisterViewModel";
             }

@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Mango.Core.Entity;
+using Mango.Core.Web.Helpers;
 
 namespace Mango.Web.Areas.Store.Models
 {
@@ -16,41 +18,45 @@ namespace Mango.Web.Areas.Store.Models
         /// <summary>
         /// Constructor
         /// </summary>
-        public AddressViewModel()
+        public AddressViewModel(AddressType addressType)
         {
             Status = AddressStatus.Active;
-            AddressType = AddressType.Unknown;
+            AddressType = addressType;
+            States = UnitedStatesHelper.States;
+            Country = "US";
         }
 
         /// <summary>
         /// Address Id
         /// </summary>
-        [Key]
+        [HiddenInput(DisplayValue = false)]
         public int AddressId { get; set; }
 
         /// <summary>
         /// Status
         /// </summary>
+        [HiddenInput(DisplayValue = false)]
         public AddressStatus Status { get; set; }
 
         /// <summary>
         /// Address Type
         /// </summary>
+        [HiddenInput(DisplayValue = false)]
         public AddressType AddressType { get; set; }
 
         /// <summary>
         /// First Name
         /// </summary>
-        [Display(Name = "First Name")]
         [Required]
+        [Display(Name = "First Name")]
         [StringLength(150)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// Last Name
         /// </summary>
-        [Display(Name = "Last Name")]
         [Required]
+        [Display(Name = "Last Name")]
         [StringLength(150)]
         public string LastName { get; set; }
 
@@ -58,23 +64,22 @@ namespace Mango.Web.Areas.Store.Models
         /// Phone
         /// </summary>
         [Display(Name = "Phone")]
-        [Required]
         [StringLength(20)]
         public string Phone { get; set; }
 
         /// <summary>
         /// Address Line 1
         /// </summary>
-        [Display(Name = "Address Line 1")]
-        
+        [Required]
         [StringLength(200)]
+        [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
 
         /// <summary>
         /// Address Line 2
         /// </summary>
-        [Display(Name = "Address Line 2")]
         [StringLength(200)]
+        [Display(Name = "Address Line 2")]
         public string AddressLine2 { get; set; }
 
         /// <summary>
@@ -85,11 +90,16 @@ namespace Mango.Web.Areas.Store.Models
         public string City { get; set; }
 
         /// <summary>
-        /// State
+        /// State Abbreviation
         /// </summary>
         [Required]
-        [StringLength(50)]
+        [StringLength(10)]
         public string State { get; set; }
+
+        /// <summary>
+        /// Select list items for states
+        /// </summary>
+        public IEnumerable<SelectListItem> States { get; set; }
 
         /// <summary>
         /// Zip
@@ -100,27 +110,9 @@ namespace Mango.Web.Areas.Store.Models
 
         /// <summary>
         /// Country
+        /// use ISO codes, see: http://en.wikipedia.org/wiki/ISO_3166-1
         /// </summary>
-        [Required]
-        [StringLength(50)]
+        [HiddenInput(DisplayValue = false)]
         public string Country { get; set; }
-
-        /// <summary>
-        /// Shorthand Format
-        /// </summary>
-        [ReadOnly(true)]
-        public string Shorthand { get; set; }
-
-        /// <summary>
-        /// Print Format
-        /// </summary>
-        [ReadOnly(true)]
-        public string Print { get; set; }
-
-        /// <summary>
-        /// Flat Address Format
-        /// </summary>
-        [ReadOnly(true)]
-        public string FlatAddress { get; set; }
     }
 }

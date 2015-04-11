@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Mango.Core.Entity;
 using Mango.Web.Areas.Store.Models;
 using Mango.Web.Models;
 using Microsoft.AspNet.Identity;
@@ -39,7 +40,13 @@ namespace Mango.Web.Areas.Store.Controllers
         /// <returns></returns>
         public virtual ActionResult Address()
         {
-            return View();
+            var addressesViewModel = new AddressesViewModel
+            {
+                Billing = new AddressViewModel(AddressType.Bill),
+                Shipping = new AddressViewModel(AddressType.Ship)
+            };
+
+            return View(addressesViewModel);
         }
 
         #region Account
