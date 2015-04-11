@@ -1,0 +1,65 @@
+﻿@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+@import url(//fonts.googleapis.com/css?family=Ubuntu:400,500,700);
+@import url(//fonts.googleapis.com/css?family=Vollkorn:400,700,400italic,700italic|Droid+Sans:400,700|Lobster);
+
+body {
+    padding-top: 70px;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+hr {
+    border-top: 1px dotted #ccc;
+}
+
+.navbar {
+    background: rgba(237,239,241,0.9);
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border-bottom: 1px solid #A9B3BC; 
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: #2C3E50;
+    color: #fff;
+}
+
+.navbar-toggle, .nav > li > a:hover, .nav > li > a:focus {
+    background: #A9B3BC;
+    color: #fff;
+}
+
+    .navbar-toggle:hover {
+        background: #2C3E50;
+    }
+
+    .navbar-toggle .icon-bar {
+        background: #fff;
+    }
+
+.navbar-form .form-control {
+    background: rgba(237,239,241,0.95);
+    border: 1px solid #A9B3BC;
+}
+
+.output {
+    max-width: 1000px;
+}
+
+.pic {
+    color: green;
+}
+
+.text {
+    color: blue;
+}
+
+.panel {
+    overflow: hidden;
+    border: 5px solid #EDEFF1;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    -ms-box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+}

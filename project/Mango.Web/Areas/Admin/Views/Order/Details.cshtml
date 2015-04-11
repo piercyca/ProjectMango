@@ -5,7 +5,7 @@
 }
 
 <ol class="breadcrumb">
-	<li>@Html.ActionLink("Home", MVC.Home.Index())</li>
+    <li>@Html.ActionLink("Home", MVC.Admin.Home.Index())</li>
 	<li class="active">@Html.ActionLink("Orders", MVC.Admin.Order.List())</li>
 	<li class="active">@Html.ActionLink("Order Details", MVC.Admin.Order.Details(Model.First().OrderId))</li>
 </ol>

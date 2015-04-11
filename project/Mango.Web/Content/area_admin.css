@@ -1,9 +1,8 @@
-﻿@import url(//fonts.googleapis.com/css?family=Ubuntu:400,500,700);
-
+﻿
 body {
-    font-family: 'Ubuntu', sans-serif; 
-    padding-top: 50px;
+    font-family: 'Droid Sans', Arial, sans-serif;
     padding-bottom: 20px;
+    color: #000;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,25 +25,21 @@ textarea {
     max-width: 280px;
 }
 
-
 /* SORTABLE */
-.sortable-item { display: block;padding-bottom: 10px; }
-.sortable-item .sortable-controls { margin-bottom: 5px; }
+.sortable-item {
+    display: block;
+    padding-bottom: 10px;
+}
+
+    .sortable-item .sortable-controls {
+        margin-bottom: 5px;
+    }
 
 /*output*/
 .output {
-    max-width: 1000px;
     margin: 0 auto;
 }
+
 canvas {
     border: 1px solid #ccc;
-}
-
-
-.pic {
-    color: green
-}
-
-.text {
-    color: blue
 }
