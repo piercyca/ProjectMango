@@ -1,3 +1,4 @@
+using System.Data.Entity.Core.Objects.DataClasses;
 using Mango.Core.Entity;
 
 namespace Mango.Core.Migrations
@@ -146,7 +147,7 @@ namespace Mango.Core.Migrations
                             Description = "Whether it's a nameplate for your desk or an address plaque for your home; show your team colors with Personalized Stoneworkz Sports collection. Starting with the Bulldogs of Georgia and the Yellow Jackets of Georgia Tech, we have a collection for school logoed items carved into beautiful granite along with the personalized elements that will proclaim your loyalties \nand your classy taste. "
                         });
 
-                // Product Images
+                        // Product Images
                         context.ProductImages.AddOrUpdate(pi => new { pi.ProductId, pi.SortOrder }, new ProductImage
                         {
                             ProductId = 1,
@@ -187,16 +188,22 @@ namespace Mango.Core.Migrations
             context.OrganizationImages.AddOrUpdate(pi => new { pi.OrganizationId, pi.SortOrder }, new OrganizationImage { OrganizationId = 1, SortOrder = 1, Url = "https://mangoassets.blob.core.windows.net/images/2977ea2bad1a4a54863eb5de18c7c081.png" });
             context.OrganizationImages.AddOrUpdate(pi => new { pi.OrganizationId, pi.SortOrder }, new OrganizationImage { OrganizationId = 1, SortOrder = 2, Url = "https://mangoassets.blob.core.windows.net/images/66ac2617974146d2bab50b44058dda8b.png" });
 
+            //Customers
+            context.Customers.AddOrUpdate(c => c.CustomerId, new Entity.Customer { CustomerId = 1, DateCreated = DateTime.UtcNow, Email = "customer_person@etcheive.com", FirstName = "Frank", LastName = "Customer", Username = "customer_person@etcheive.com" });
+            //context.Customers.AddOrUpdate(c => c.CustomerId, new Entity.Customer { CustomerId = 2, DateCreated = DateTime.UtcNow, Email = "guest@etchieve.com", FirstName = "Guest", LastName = "Customer", Username = null });
+
+            //Adresses
+            context.Addresses.AddOrUpdate(a => a.AddressId, new Entity.Address { AddressId = 1, Status = AddressStatus.Active, AddressType = AddressType.Bill, FirstName = "John", LastName = "Smith", Phone = "5555555555", AddressLine1 = "33 Main St.", AddressLine2 = "Apt. 2", City = "Athens", State = "GA", Zip = "30605", Country = "USA", DateCreated = DateTime.Now });
+            context.Addresses.AddOrUpdate(a => a.AddressId, new Entity.Address { AddressId = 2, Status = AddressStatus.Active, AddressType = AddressType.Ship, FirstName = "John", LastName = "Smith", Phone = "7777777777", AddressLine1 = "157 Broad Ave.", AddressLine2 = "", City = "Atlanta", State = "GA", Zip = "30303", Country = "USA", DateCreated = DateTime.Now });
+
 			//Orders
-			context.Orders.AddOrUpdate(o => o.OrderId, new Entity.Order {OrderId = 1, CustomerId = 1, ShipAddressId = 1, BillAddressId = 2, TotalAmount = 100.00m, DateCreated = DateTime.Now});
+			context.Orders.AddOrUpdate(o => o.OrderId, new Entity.Order { OrderId = 1, CustomerId = 1, ShipAddressId = 1, BillAddressId = 2, TotalAmount = 100.00m, DateCreated = DateTime.Now});
 
 			//Order Line Items
 			context.OrderLineItems.AddOrUpdate(ol => ol.OrderId, new Entity.OrderLineItem { OrderId = 1, OrderItemSequence = 1, ProductId = 1, UnitPrice = 22.50m, Quantity = 2, Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" });
-			context.OrderLineItems.AddOrUpdate(ol => ol.OrderId, new Entity.OrderLineItem { OrderId = 1, OrderItemSequence = 2, ProductId = 2, UnitPrice = 15.50m, Quantity = 5, Configuration = "" });
+            context.OrderLineItems.AddOrUpdate(ol => ol.OrderId, new Entity.OrderLineItem { OrderId = 1, OrderItemSequence = 2, ProductId = 2, UnitPrice = 15.50m, Quantity = 5, Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" });
 
-			//Adresses
-			context.Addresses.AddOrUpdate(a => a.AddressId, new Entity.Address { AddressId = 1, Status = (AddressStatus) 1, AddressType = (AddressType) 1, FirstName = "John", LastName = "Smith", Phone = "5555555555", AddressLine1 = "33 Main St.", AddressLine2 = "Apt. 2", City = "Athens", State = "GA", Zip = "30605", Country = "USA", DateCreated = DateTime.Now});
-			context.Addresses.AddOrUpdate(a => a.AddressId, new Entity.Address { AddressId = 2, Status = (AddressStatus) 1, AddressType = (AddressType) 2, FirstName = "John", LastName = "Smith", Phone = "7777777777", AddressLine1 = "157 Broad Ave.", AddressLine2 = "", City = "Atlanta", State = "GA", Zip = "30303", Country = "USA", DateCreated = DateTime.Now });
+			
         }
     }
 }

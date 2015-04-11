@@ -196,6 +196,10 @@
     <Compile Include="Migrations\201504110232279_AddressProperties.Designer.cs">
       <DependentUpon>201504110232279_AddressProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504111718558_CustomerAdd.cs" />
+    <Compile Include="Migrations\201504111718558_CustomerAdd.Designer.cs">
+      <DependentUpon>201504111718558_CustomerAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504110232279_AddressProperties.resx">
       <DependentUpon>201504110232279_AddressProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504111718558_CustomerAdd.resx">
+      <DependentUpon>201504111718558_CustomerAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
