@@ -4,7 +4,7 @@
 }
 <div id="categories" class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <p class="lead">@Html.Raw(Model.SelectedCategory.Name)</p>
             <div class="list-group">
                 @foreach (var productCategory in Model.Categories)
@@ -13,24 +13,26 @@
                 }
             </div>
         </div>
-        <div class="col-md-9">
-            <div class="row">
+        <div class="col-md-10">
+            <div class="row products">
                 @if (Model.Products.Any())
                 {
                     foreach (var product in Model.Products)
                     {
                         var imageUrl = (product.ProductImages.Any()) ? product.ProductImages.First().Url : "";
-                        var productDetailUrl = Url.Action(MVC.StoreArea.Product.Detail(product.UrlSlug));
-                        <div class="col-sm-6 col-lg-6 col-md-6">
-                            <div class="thumbnail">
-                                <a href="@productDetailUrl"><img src="@Html.Raw(imageUrl)" alt="@product.Name"/></a>
-                                <div class="caption">
-                                    <h4 class="pull-right">$@Html.Raw(product.Price)</h4>
-                                    <h4>
-                                        <a href="@productDetailUrl">@product.Name</a>
-                                    </h4>
-                                    <p>@product.Description</p>
-                                </div>
+                        var productDetailUrl = Url.Action(MVC.StoreArea.Product.Customize(product.UrlSlug));
+                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                            <div class="item">
+                                <a href="@productDetailUrl">
+                                    <span class="price">$@Html.Raw(product.Price)</span>
+
+                                    <p>
+                                        <img src="@Html.Raw(imageUrl)" alt="@product.Name">
+                                    </p>
+                                    <h2>@product.Name</h2>
+                                    <span class="description">@product.Description</span>
+
+                                </a>
                             </div>
                         </div>
                     }

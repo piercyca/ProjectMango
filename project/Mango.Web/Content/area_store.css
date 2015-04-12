@@ -150,6 +150,22 @@ hr {
     z-index: 54;
 }
 
+.item span.description {
+    display: none;
+}
+
+.item:hover span.description {
+    display: block;
+    position: absolute;
+    top: 0; background: #fff;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 10px 10px 20px 10px;
+    height: 80%; font-style: italic;
+    z-index: 40;
+}
+
+
 .item h2 {
     position: absolute;
     bottom: 0;
@@ -160,8 +176,10 @@ hr {
     font-family: 'Vollkorn', 'Lucida Sans', cursive;
     font-style: italic;
     width: 100%;
+    text-overflow: ellipsis;
     background: #EDEFF1;
     border-top: 1px solid #ddd;
+    z-index: 52;
 }
 
 .item p {
