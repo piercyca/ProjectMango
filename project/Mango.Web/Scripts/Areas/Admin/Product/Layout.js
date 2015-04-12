@@ -3,6 +3,9 @@ var LayoutCanvas = (function(options) {
 
     var canvas = new fabric.Canvas('c');
     $('.canvas-container').addClass('panel');
+
+    //canvas settings
+
     var center = canvas.getCenter();
     var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();
@@ -13,6 +16,7 @@ var LayoutCanvas = (function(options) {
         //default
         var bgurl = $('#noimage').val();
     }
+
     if (canvasConfig != "") {
         //If the config settings is already set
         var parseConfig = JSON.parse(canvasConfig);
@@ -26,9 +30,7 @@ var LayoutCanvas = (function(options) {
         if(textConfig != null){
         var text = new fabric.Rect({ left: textConfig.left, top: textConfig.top, fill: 'blue', width: textConfig.width, height: textConfig.height, opacity: 0.8, name: 'text' });
         canvas.add(text);
-        }
-
-        
+        }   
 }
     canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
         //center the background image
@@ -51,6 +53,11 @@ var LayoutCanvas = (function(options) {
                     '}');
 
             objCoord.join(',');
+
+            //obj settings on canvas
+            obj.transparentCorners = false;
+            obj.cornerSize = 8;
+            obj.hasRotatingPoint = false;
         });
 
         options.config = '{"layout":{' + objCoord.toString() + '}}';
@@ -60,6 +67,7 @@ var LayoutCanvas = (function(options) {
     //on click add objects
     $(options.controlAddPic).click(function () {
         //remove if exist then add
+
         canvas.remove(pic);
         canvas.add(pic);
         canvas.renderAll();
@@ -93,6 +101,7 @@ var LayoutCanvas = (function(options) {
     //remove selected object
     $(options.controlRemoveText).click(function () {
         var activeO = canvas.getActiveObject();
+
         if (!activeO) {
             return;
         }
