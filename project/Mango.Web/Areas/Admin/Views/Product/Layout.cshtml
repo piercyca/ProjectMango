@@ -21,8 +21,9 @@
 <div class="container output">
     <div class="row">
         <div class="col-sm-12">
-            <div class="col-md-7 ">
+            <div class="canvas-panel col-md-7">
                 <canvas id="c" name="productname" width="500" height="500"></canvas>
+
             </div>
             <!--<div id="contents" class="well col-md-4 col-md-offset-0 hidden-sm hidden-xs"></div>-->
 
@@ -47,27 +48,33 @@
     <div class="panel-body">
         <button id="removeObject" type="button" class="btn btn-danger btn-block">Remove the Selected Placeholder</button>
     </div>
+
+    
+
 </div>
+            <div class="canvas-panel col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.HiddenFor(model => model.ProductId)
 
 
-            <div class="panel panel-default">
+                            @Html.HiddenFor(model => model.Configuration)
+                            @Html.HiddenFor(model => model.CanvasImage)
+                            <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png" />
 
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                    @Html.HiddenFor(model => model.ProductId)
-
-
-                        @Html.HiddenFor(model => model.Configuration)
-                        @Html.HiddenFor(model => model.CanvasImage)
-                        <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png" />
-
-                                <button type="submit" class="btn btn-default btn-warning btn-block btn-lg">
-                                    <span class="fa fa-check" aria-hidden="true"></span> Save Configuration
-                                </button>
-                }
+                            <button type="submit" class="btn btn-default btn-warning btn-block btn-lg">
+                                <span class="fa fa-check" aria-hidden="true"></span> Save Configuration
+                            </button>
+                        }
+                    </div>
+                </div>
             </div>
+
+          
         </div>
     </div></div>
 
