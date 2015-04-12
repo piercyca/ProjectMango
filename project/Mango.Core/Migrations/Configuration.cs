@@ -21,6 +21,10 @@ namespace Mango.Core.Migrations
         /// <param name="context"></param>
         protected override void Seed(MangoContext context)
         {
+            // Delete products and product categories because they've been being silly when updating because of their unique contraints.
+            context.Database.ExecuteSqlCommand("DELETE FROM [dbo].[Product]");
+            context.Database.ExecuteSqlCommand("DELETE FROM [dbo].[ProductCategory]");
+
             #region Product Categories
 
             context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory
@@ -52,7 +56,7 @@ namespace Mango.Core.Migrations
 
             #region Products
 
-            context.Products.AddOrUpdate(p =>
+            context.Products.AddOrUpdate(p => 
                 new { p.ProductId, p.UrlSlug },
                          new Entity.Product
                          {
