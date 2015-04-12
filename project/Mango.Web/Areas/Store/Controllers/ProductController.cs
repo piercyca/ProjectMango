@@ -38,7 +38,43 @@ namespace Mango.Web.Areas.Store.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            return View();
+            var productCategory = _productCategoryService.GetProductCategories().OrderBy(pc => pc.Name).ToList()[0];
+
+            return RedirectToActionPermanent(MVC.StoreArea.Product.Category(productCategory.UrlSlug));
+        }
+
+        /// <summary>
+        /// GET: /store/product/category/{urlSlug}
+        /// </summary>
+        /// <param name="urlSlug"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("category/{urlSlug:regex([a-z0-9-_]*)}")]
+        public virtual ActionResult Category(string urlSlug)
+        {
+            var productCategory = _productCategoryService.GetProductCategory(urlSlug);
+            if (productCategory == null)
+            {
+                return HttpNotFound();
+            }
+
+            var products = _productService.GetProductsByCategory(productCategory.ProductCategoryId).OrderBy(p => p.Name).ToList();
+            var productCategories = _productCategoryService.GetProductCategories().ToList();
+
+            var viewModel = new ProductCategoryViewModel()
+            {
+                Categories = Mapper.Map<List<ProductCategory>, List<ProductCategoryDetailViewModel>>(productCategories),
+                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(products),
+                SelectedCategory = Mapper.Map<ProductCategory, ProductCategoryDetailViewModel>(productCategory)
+            };
+
+            foreach (var product in viewModel.Products)
+            {
+                var productImages = _productImageService.GetProductImages(product.ProductId);
+                product.ProductImages = Mapper.Map<List<ProductImage>, List<ProductImageViewModel>>(productImages.ToList());
+            }
+
+            return View(viewModel);
         }
 
 

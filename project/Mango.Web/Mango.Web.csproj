@@ -262,8 +262,10 @@
     <Compile Include="Areas\Store\Models\CartAccountViewModel.cs" />
     <Compile Include="Areas\Store\Models\CustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrderViewModel.cs" />
+    <Compile Include="Areas\Store\Models\ProductCategoryDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductImageViewModel.cs" />
+    <Compile Include="Areas\Store\Models\ProductCategoryViewModel.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Attributes\LogoutIfAdminAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -439,7 +441,7 @@
     <Content Include="Areas\Admin\Views\Organization\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\List.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\Create.cshtml" />
-    <Content Include="Areas\Store\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Store\Views\Product\Category.cshtml" />
     <Content Include="Areas\Store\Views\Cart\Index.cshtml" />
     <Content Include="Areas\Store\Views\Product\Customize.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

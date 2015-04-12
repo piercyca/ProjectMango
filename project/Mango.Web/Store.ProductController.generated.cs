@@ -57,6 +57,12 @@ namespace Mango.Web.Areas.Store.Controllers
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Category()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Category);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Customize()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customize);
@@ -84,6 +90,7 @@ namespace Mango.Web.Areas.Store.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string Category = "Category";
             public readonly string Customize = "Customize";
             public readonly string Detail = "Detail";
         }
@@ -92,11 +99,20 @@ namespace Mango.Web.Areas.Store.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string Category = "Category";
             public const string Customize = "Customize";
             public const string Detail = "Detail";
         }
 
 
+        static readonly ActionParamsClass_Category s_params_Category = new ActionParamsClass_Category();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Category CategoryParams { get { return s_params_Category; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Category
+        {
+            public readonly string urlSlug = "urlSlug";
+        }
         static readonly ActionParamsClass_Customize s_params_Customize = new ActionParamsClass_Customize();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Customize CustomizeParams { get { return s_params_Customize; } }
@@ -123,13 +139,13 @@ namespace Mango.Web.Areas.Store.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Categories = "Categories";
                 public readonly string Customize = "Customize";
                 public readonly string Detail = "Detail";
-                public readonly string Index = "Index";
             }
+            public readonly string Categories = "~/Areas/Store/Views/Product/Categories.cshtml";
             public readonly string Customize = "~/Areas/Store/Views/Product/Customize.cshtml";
             public readonly string Detail = "~/Areas/Store/Views/Product/Detail.cshtml";
-            public readonly string Index = "~/Areas/Store/Views/Product/Index.cshtml";
         }
     }
 
@@ -146,6 +162,18 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CategoryOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string urlSlug);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Category(string urlSlug)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Category);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "urlSlug", urlSlug);
+            CategoryOverride(callInfo, urlSlug);
             return callInfo;
         }
 
