@@ -21,7 +21,7 @@
         }
         else
         {
-            <table class="table">
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
 					<th>Order Id</th>
@@ -29,7 +29,7 @@
 					<th>Total Amount</th>
 					<th>Customer</th>
 					<th>Ship Address</th>
-	                <th>Bill Address</th>>
+	                <th>Bill Address</th>
 					<th>Date Created</th>
                 </tr>
                 </thead>
@@ -38,7 +38,12 @@
                 {
                     <tr>
                         <td>@item.OrderId</td>
-	                    <td><div class="active">@Html.ActionLink("View Details", MVC.Admin.Order.Details(Model.First().OrderId))</div></td>
+	                    <td>
+                            
+                                <a class="btn btn-primary btn-xs" href="@Url.Action(MVC.Admin.Order.Details(Model.First().OrderId))">
+                                    <i class="fa fa-list-ul fa-fw"></i> View Details
+                                </a>
+                           </td>
 						<td>@item.TotalAmount</td>
                         <td>@item.Customer.FirstName @item.Customer.LastName</td>
 	                    <td>
