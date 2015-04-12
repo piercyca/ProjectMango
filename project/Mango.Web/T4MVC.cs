@@ -255,7 +255,8 @@ namespace Links
         public static readonly string PagedList_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/PagedList.min.css") ? Url("PagedList.min.css") : Url("PagedList.css");
              
         public static readonly string shared_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shared.min.css") ? Url("shared.min.css") : Url("shared.css");
-             
+        public static readonly string areas_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/areas.min.css") ? Url("areas.min.css") : Url("areas.css");
+     
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class themes {
             private const string URLPATH = "~/Content/themes";
@@ -477,6 +478,7 @@ namespace Links
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
                 public const string PagedList_css = "~/Content/PagedList.css";
                 public const string shared_css = "~/Content/shared.css";
+                public const string areas_css = "~/Content/areas.css";
             }
         }
     }

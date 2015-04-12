@@ -338,6 +338,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\background.png" />
     <Content Include="Content\images\noimageavail.png" />
     <Content Include="Content\shared.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -383,6 +384,7 @@
     <Content Include="Content\images\wineglasskit.png" />
     <Content Include="Content\area_store.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\areas.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -594,7 +596,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53809</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

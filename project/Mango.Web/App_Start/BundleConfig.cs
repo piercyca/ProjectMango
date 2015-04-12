@@ -35,11 +35,13 @@ namespace Mango.Web
             // Area: Admin
             bundles.Add(new StyleBundle("~/Content/area_admin").Include(
                 "~" + Links.Content.bootstrap_css,
+                "~" + Links.Content.areas_css,
                 "~" + Links.Content.area_admin_css));
 
             // Area: Store
             bundles.Add(new StyleBundle("~/Content/area_store").Include(
                 "~" + Links.Content.bootstrap_css,
+                "~" + Links.Content.areas_css,
                 "~" + Links.Content.area_store_css));
 
             #endregion

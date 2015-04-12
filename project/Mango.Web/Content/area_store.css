@@ -2,22 +2,14 @@
    Project Mango - Etchieve.com
    ========================================================================== */
 
-/* FONTS */
-@import url(//fonts.googleapis.com/css?family=Vollkorn:400,700,400italic,700italic|Droid+Sans:400,700|Lobster);
-
 body {
     font-family: 'Droid Sans', Arial, sans-serif;
     font-size: 13px;
-    padding-top: 50px;
+    background: url('images/background.png') #fefefe top left no-repeat;
 }
 
 hr {
     border-top: 1px dotted #ccc;
-}
-
-.navbar-form .form-control {
-    background: #000;
-    border: 1px solid #555;
 }
 
 .nopadding {
@@ -38,7 +30,7 @@ hr {
 
 .carousel {
     width: 55%;
-    margin-left: 45%
+    margin-left: 45%;
 }
 
 .carousel-control, .carousel-indicators, .carousel-caption, .carousel-control.right, .carousel-control.left {
@@ -48,20 +40,20 @@ hr {
 }
 
 .jumbotron {
-    padding: 28px 0;
+    padding: 0;
     margin: 0;
     background: #A9B3BC;
 }
 
-.jumbotron .container {
-    position: relative;
-}
+    .jumbotron .container {
+        position: relative;
+    }
 
-.jumbotron p {
-    font-size: inherit !important;
-    margin: 0;
-    z-index: 5;
-}
+    .jumbotron p {
+        font-size: inherit !important;
+        margin: 0;
+        z-index: 5;
+    }
 
 .divider {
     border-top: 1px solid #aaa;
@@ -79,7 +71,8 @@ hr {
 }
 
 .img-thumbnail, .thumbnail img {
-    max-height: 165px; border:  0;
+    max-height: 165px;
+    border: 0;
 }
 
 .products div.item {
@@ -87,55 +80,94 @@ hr {
     min-height: 210px;
     max-height: 220px;
     position: relative;
+    background: #fff;
     border: 1px solid #ddd;
-    margin: 30px 0;
+    margin: 15px 0;
     border-radius: 3px;
     overflow: hidden;
 }
-.products div.item:hover { box-shadow: 0 0 10px rgba(0,0,0,.3); border: 1px solid #ccc}
 
-.products div.item:hover img { padding: 20px; }
+
+.products div.btn-allproducts {
+    height: 100%;
+    margin: 15px 0;
+    min-height: 34px;
+    display: table;
+    border-radius: 3px;
+}
+
+    .products div.btn-allproducts a {
+        color: #fff;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+
+.products div.item:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    border: 1px solid #ccc;
+}
+
+    .products div.item:hover img {
+        padding: 20px;
+    }
 
 .products img {
-    width: auto; max-height: 153px;
+    width: auto;
+    max-height: 153px;
     height: auto;
 }
 
-.item span.price {
-  position: absolute;
-  bottom: 34px;
-  right: -1px;
-  background: #D9534F;
-  border: 1px solid #ddd;
-  display: block;
-  padding: 3px 8px;
-  -webkit-border-top-left-radius: 2em;
-  -webkit-border-bottom-left-radius: 2em;
-  border-top-left-radius: 2em;
-  border-bottom-left-radius: 2em;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  color: #fff;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 0 0 0 .327em 0; z-index: 54;
+@media (min-width: 768px) and (max-width: 992px) {
+    .products div.btn-allproducts {
+        height: 100%;
+        margin: 15px 0 !important;
+        min-height: 210px;
+        max-height: 220px;
+    }
 }
+
+
+.item span.price {
+    position: absolute;
+    bottom: 34px;
+    right: -1px;
+    background: #D9534F;
+    border: 1px solid #ddd;
+    display: block;
+    padding: 3px 8px;
+    -webkit-border-top-left-radius: 2em;
+    -webkit-border-bottom-left-radius: 2em;
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0 0 0 .327em 0;
+    z-index: 54;
+}
+
 .item h2 {
     position: absolute;
-    bottom: 0; padding: 16px 10px 12px 10px;
+    bottom: 0;
+    padding: 16px 10px 12px 10px;
     font-size: 1.2em !important;
-    margin: 0; 
+    margin: 0;
     text-align: center;
     font-family: 'Vollkorn', 'Lucida Sans', cursive;
     font-style: italic;
-    width: 100%; background: #EDEFF1;
+    width: 100%;
+    background: #EDEFF1;
     border-top: 1px solid #ddd;
 }
 
 .item p {
     font-size: 1.2em !important;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     text-align: center;
     font-family: 'Vollkorn', cursive;
     font-style: italic;
@@ -154,34 +186,34 @@ hr {
 .list-group-item {
     background: transparent;
     border-width: 0 0 1px 0;
-    border-style: dotted
+    border-style: dotted;
 }
 
-.list-group-item:last-child {
-    border: 0;
-}
+    .list-group-item:last-child {
+        border: 0;
+    }
 
-.list-group-item h4 {
-    color: #545454;
-    font-family: 'Lobster', serif;
-    /*font-family: 'Vollkorn', cursive;
+    .list-group-item h4 {
+        color: #545454;
+        font-family: 'Lobster', serif;
+        /*font-family: 'Vollkorn', cursive;
     font-style: italic;*/
-    font-size: 2em;
-}
+        font-size: 2em;
+    }
 
-.list-group-item span {
-    width: 50px;
-    height: 50px;
-    -ms-border-radius: 50%;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 50px;
-    background: #54697E;
-    margin: 0 10px 10px 10px;
-    font-size: 25px;
-    font-family: 'Lobster', serif;
-    color: #fff;
-}
+    .list-group-item span {
+        width: 50px;
+        height: 50px;
+        -ms-border-radius: 50%;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        background: #54697E;
+        margin: 0 10px 10px 10px;
+        font-size: 25px;
+        font-family: 'Lobster', serif;
+        color: #fff;
+    }
 
 .steps img {
     margin-right: 0px;
@@ -201,11 +233,11 @@ footer img {
     margin-top: 20px;
 }
 
-#cart h5 {
-    text-decoration: underline;
-    color: #990000;
-    font-style: italic;
-}
+    #cart h5 {
+        text-decoration: underline;
+        color: #990000;
+        font-style: italic;
+    }
 
 textarea {
     margin: 10px 0 !important;
@@ -213,25 +245,12 @@ textarea {
 
 /*output*/
 .container.output {
-    max-width: 1000px;
     margin-top: 20px;
 }
 
-.pic {
-    color: green
-}
 
-.text {
-    color: blue
-}
 
-.panel {
-    overflow: hidden;
-    border: 5px solid #EDEFF1;
-    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .5);
-    -ms-box-shadow: 0 0 2px rgba(0, 0, 0, .5);
-    box-shadow: 0 0 2px rgba(0, 0, 0, .5);
-}
+
 
 h2.price {
     margin: 0;
@@ -253,25 +272,25 @@ h2.price {
     vertical-align: middle;
 }
 
-.icons div {
-    display: inline-block;
-    border: 3px solid transparent;
-    margin: 2px;
-    vertical-align: middle;
-}
+    .icons div {
+        display: inline-block;
+        border: 3px solid transparent;
+        margin: 2px;
+        vertical-align: middle;
+    }
 
-.icons img {
-    height: auto;
-    width: 100%;
-    max-width: 40px;
-    max-height: 40px;
-    vertical-align: middle;
-}
+    .icons img {
+        height: auto;
+        width: 100%;
+        max-width: 40px;
+        max-height: 40px;
+        vertical-align: middle;
+    }
 
-.icons .active {
-    border: 3px solid #7F9293 !important;
-    display: inline-block;
-}
+    .icons .active {
+        border: 3px solid #7F9293 !important;
+        display: inline-block;
+    }
 
 /*footer css*/
 .full {
@@ -296,41 +315,41 @@ h2.price {
     border-top: 1px solid #DDDDDD;
 }
 
-.footer p {
-    margin: 0;
-}
+    .footer p {
+        margin: 0;
+    }
 
-.footer img {
-    max-width: 100%;
-}
+    .footer img {
+        max-width: 100%;
+    }
 
-.footer h3 {
-    border-bottom: 1px solid #BAC1C8;
-    color: #54697E;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 27px;
-    padding: 30px 0 0px;
-    text-transform: uppercase;
-}
+    .footer h3 {
+        border-bottom: 1px solid #BAC1C8;
+        color: #54697E;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 27px;
+        padding: 30px 0 0px;
+        text-transform: uppercase;
+    }
 
-.footer ul {
-    font-size: 13px;
-    list-style-type: none;
-    margin-left: 0;
-    padding-left: 0;
-    margin-top: 15px;
-    color: #7F8C8D;
-}
+    .footer ul {
+        font-size: 13px;
+        list-style-type: none;
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 15px;
+        color: #7F8C8D;
+    }
 
-.footer ul li a {
-    padding: 0;
-    display: block;
-}
+        .footer ul li a {
+            padding: 0;
+            display: block;
+        }
 
-.footer a {
-    color: #78828D
-}
+    .footer a {
+        color: #78828D;
+    }
 
 .supportLi h4 {
     font-size: 20px;
@@ -368,11 +387,14 @@ h2.price {
     overflow: hidden;
 }
 
-.bg-gray {
+.btn-gray {
     background: #A9B3BC;
+    color: #fff;
 }
-    .bg-gray:hover {
-    background: #2C3E50
+
+    .btn-gray:hover {
+        background: #2C3E50;
+        color: #fff;
     }
 
 .social li {
@@ -397,28 +419,28 @@ h2.price {
     -o-transition: all 0.5s ease 0s;
 }
 
-.social li:hover {
-    transform: scale(1.15) rotate(360deg);
-    -webkit-transform: scale(1.1) rotate(360deg);
-    -moz-transform: scale(1.1) rotate(360deg);
-    -ms-transform: scale(1.1) rotate(360deg);
-    -o-transform: scale(1.1) rotate(360deg);
-}
+    .social li:hover {
+        transform: scale(1.15) rotate(360deg);
+        -webkit-transform: scale(1.1) rotate(360deg);
+        -moz-transform: scale(1.1) rotate(360deg);
+        -ms-transform: scale(1.1) rotate(360deg);
+        -o-transform: scale(1.1) rotate(360deg);
+    }
 
-.social li a {
-    color: #EDEFF1;
-}
+    .social li a {
+        color: #EDEFF1;
+    }
 
-.social li:hover {
-    border: 2px solid #2c3e50;
-    background: #2c3e50;
-}
+    .social li:hover {
+        border: 2px solid #2c3e50;
+        background: #2c3e50;
+    }
 
-.social li a i {
-    font-size: 16px;
-    margin: 0 0 0 9px;
-    color: #EDEFF1 !important;
-}
+    .social li a i {
+        font-size: 16px;
+        margin: 0 0 0 9px;
+        color: #EDEFF1 !important;
+    }
 
 .footer-bottom {
     background: #E3E3E3;
@@ -427,11 +449,10 @@ h2.price {
     padding-bottom: 10px;
 }
 
-.footer-bottom p.pull-left {
-    padding-top: 6px;
-}
+    .footer-bottom p.pull-left {
+        padding-top: 6px;
+    }
 
 .payments {
     font-size: 1.5em;
 }
-
