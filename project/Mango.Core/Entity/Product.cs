@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -58,5 +59,11 @@ namespace Mango.Core.Entity
         /// </summary>
         [ForeignKey("ProductCategoryId")]
         public virtual ProductCategory ProductCategory { get; set; }
+
+        /// <summary>
+        /// Featured homepage
+        /// </summary>
+        [DefaultValue(false)]
+        public bool FeaturedHomepage { get; set; }
     }
 }

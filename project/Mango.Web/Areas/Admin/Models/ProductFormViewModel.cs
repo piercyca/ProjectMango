@@ -82,6 +82,12 @@ namespace Mango.Web.Areas.Admin.Models
         [HiddenInput(DisplayValue = false)]
         public string ProductImagesString { get; set; }
 
+        /// <summary>
+        /// Featured Homepage
+        /// </summary>
+        [DisplayName("Featured (Homepage)")]
+        public bool FeaturedHomepage { get; set; }
+
 
         public UploadImageViewModel UploadProductImageViewModel { get; set; }
 

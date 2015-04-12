@@ -96,5 +96,12 @@ namespace Mango.Web.Areas.Store.Models
         [ReadOnly(false)]
         public string Configuration { get; set; }
 
+        /// <summary>
+        /// Featured Homepage
+        /// </summary>
+        [DisplayName("Featured (Homepage)")]
+        [ReadOnly(true)]
+        public bool FeaturedHomepage { get; set; }
+
     }
 }
