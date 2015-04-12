@@ -39,7 +39,7 @@ namespace Mango.Web.Areas.Store.Controllers
         public virtual ActionResult Index()
         {
             var productCategory = _productCategoryService.GetProductCategoriesWithProducts().OrderBy(pc => pc.Name).ToList()[0];
-            return RedirectToActionPermanent(MVC.StoreArea.Product.Category(productCategory.UrlSlug));
+            return RedirectToAction(MVC.StoreArea.Product.Category(productCategory.UrlSlug));
         }
 
         /// <summary>
