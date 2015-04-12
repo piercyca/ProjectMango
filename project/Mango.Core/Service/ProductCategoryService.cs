@@ -12,6 +12,7 @@ namespace Mango.Core.Service
     public interface IProductCategoryService
     {
         IEnumerable<ProductCategory> GetProductCategories();
+        IEnumerable<ProductCategory> GetProductCategoriesWithProducts();
         ProductCategory GetProductCategory(int id);
         ProductCategory GetProductCategory(string urlSlug);
         void CreateProductCategory(ProductCategory productCategory);
@@ -39,6 +40,11 @@ namespace Mango.Core.Service
         public IEnumerable<ProductCategory> GetProductCategories()
         {
             return _productCategoryRepository.GetAll().OrderBy(pc => pc.Name);
+        }
+
+        public IEnumerable<ProductCategory> GetProductCategoriesWithProducts()
+        {
+            return _productCategoryRepository.GetMany(pc => pc.Products.Any()).OrderBy(pc => pc.Name);
         }
 
         /// <summary>
@@ -102,7 +108,7 @@ namespace Mango.Core.Service
         /// <returns></returns>
         public IEnumerable<ProductCategory> SearchProductCategory(string productCategoryName)
         {
-            return _productCategoryRepository.GetMany(p => p.Name.ToLower().Contains(productCategoryName.ToLower())).OrderBy(p => p.Name);
+            return _productCategoryRepository.GetMany(pc => pc.Name.ToLower().Contains(productCategoryName.ToLower())).OrderBy(p => p.Name);
         }
 
         /// <summary>

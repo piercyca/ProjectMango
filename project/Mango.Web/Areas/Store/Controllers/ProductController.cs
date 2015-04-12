@@ -38,8 +38,7 @@ namespace Mango.Web.Areas.Store.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            var productCategory = _productCategoryService.GetProductCategories().OrderBy(pc => pc.Name).ToList()[0];
-
+            var productCategory = _productCategoryService.GetProductCategoriesWithProducts().OrderBy(pc => pc.Name).ToList()[0];
             return RedirectToActionPermanent(MVC.StoreArea.Product.Category(productCategory.UrlSlug));
         }
 
@@ -58,13 +57,11 @@ namespace Mango.Web.Areas.Store.Controllers
                 return HttpNotFound();
             }
 
-            var products = _productService.GetProductsByCategory(productCategory.ProductCategoryId).OrderBy(p => p.Name).ToList();
-            var productCategories = _productCategoryService.GetProductCategories().ToList();
-
+            var productCategories = _productCategoryService.GetProductCategoriesWithProducts().ToList();
             var viewModel = new ProductCategoryViewModel()
             {
                 Categories = Mapper.Map<List<ProductCategory>, List<ProductCategoryDetailViewModel>>(productCategories),
-                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(products),
+                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(productCategory.Products.ToList()),
                 SelectedCategory = Mapper.Map<ProductCategory, ProductCategoryDetailViewModel>(productCategory)
             };
 

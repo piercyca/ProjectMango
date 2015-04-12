@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,5 +27,10 @@ namespace Mango.Core.Entity
 
         [Required]
         public string Keywords { get; set; }
+
+        /// <summary>
+        /// Product Categories
+        /// </summary>
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

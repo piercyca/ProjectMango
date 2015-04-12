@@ -27,5 +27,7 @@ namespace Mango.Core.Entity
         [Required]
         [StringLength(10)]
         public string Abbreviation { get; set; }
+
+        public virtual ICollection<OrganizationImage> OrganizationImages { get; set; } 
     }
 }

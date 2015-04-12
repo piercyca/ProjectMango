@@ -48,9 +48,18 @@ namespace Mango.Core.Entity
             #region Products
 
             modelBuilder.Entity<Product>()
-               .HasRequired(e => e.ProductCategory)
-               .WithMany()
-               .HasForeignKey(f => f.ProductCategoryId);
+               .HasRequired(product => product.ProductCategory)
+               .WithMany(productCategory => productCategory.Products)
+               .HasForeignKey(product => product.ProductCategoryId);
+
+            modelBuilder.Entity<ProductImage>()
+                .HasRequired(productImage => productImage.Product)
+                .WithMany(product => product.ProductImages)
+                .HasForeignKey(productImage => productImage.ProductId);
+
+            #endregion
+
+            #region Orders
 
             modelBuilder.Entity<Order>()
                 .HasRequired(e => e.Customer)
@@ -58,7 +67,7 @@ namespace Mango.Core.Entity
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order>()
-                .HasRequired(e => e.ShipAddress)
+                .HasRequired(e => e.BillAddress)
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
@@ -66,6 +75,15 @@ namespace Mango.Core.Entity
                 .HasRequired(e => e.ShipAddress)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+
+            #endregion
+
+            #region Organization
+
+            modelBuilder.Entity<OrganizationImage>()
+                .HasRequired(organizationImage => organizationImage.Organization)
+                .WithMany(organization => organization.OrganizationImages)
+                .HasForeignKey(organizationImage => organizationImage.OrganizationId);
 
             #endregion
         }
