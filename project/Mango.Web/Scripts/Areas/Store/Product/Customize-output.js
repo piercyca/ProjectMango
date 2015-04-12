@@ -28,7 +28,7 @@ $(function () {
     }
 
     if (textConfig == null) {
-        $('#addTextField, #fontselector').attr("disabled", "disabled");
+        $('#textOptions').hide();
     }
     if (imgConfig == null) {
         $('#logos').hide();
