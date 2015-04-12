@@ -6,15 +6,17 @@
 
 <div class="container output">
 
-    <div class="col-md-12"><h3><i class="fa fa-angle-down fa-1"></i> @Html.DisplayFor(model => model.Name)</h3></div>
+    <div class="col-md-12">
+        <h3><i class="fa fa-angle-down fa-1"></i> @Html.DisplayFor(model => model.Name)</h3>
+    </div>
 
     <div class="col-md-7 canvas">
         <canvas id="c" name="productnameorid" width="520" height="500"></canvas>
 
     </div>
     <div class="col-md-5">
-       
-        
+
+
         @* TODO: need logos loop // should be a separate place in admin for managing logos / Static for now *@
         <div id="logos" class="panel panel-default">
             <span class="section-title">Select a logo below</span>
@@ -24,23 +26,23 @@
                     <img src="/Content/images/logos/ugalogo.png" width="40" height="40">
                 </div>
                 <div id="uga2">
-                    <img src="/Content/images/logos/ugalogo2.png" />
+                    <img src="/Content/images/logos/ugalogo2.png"/>
                 </div>
                 <div id="uga3">
-                    <img src="/Content/images/logos/ugalogo3.png" />
+                    <img src="/Content/images/logos/ugalogo3.png"/>
                 </div>
                 <div id="uga4">
-                    <img src="/Content/images/logos/ugalogo4.png" />
+                    <img src="/Content/images/logos/ugalogo4.png"/>
                 </div>
                 <div id="uga5">
-                    <img src="/Content/images/logos/ugalogo5.png" />
+                    <img src="/Content/images/logos/ugalogo5.png"/>
                 </div>
             </div>
         </div>
 
         <div class="panel panel-default form-group">
-         
-                <span class="section-title">Select a font & Enter Text</span>
+
+            <span class="section-title">Select a font & Enter Text</span>
 
             <div class="panel-body">
                 <div class="input-group">
@@ -54,13 +56,15 @@
                 </div>
 
                 <textarea class="panel-body form-control textareafield" placeholder="Enter your desired text here" rows="5" id="addTextField"></textarea>
-            <hr/><h2 class="price col-4-md pull-left">$@Html.DisplayFor(model => model.Price)</h2>
-                <a class="col-6-md pull-right btn btn-success" name="productnameorid"><i class="fa fa-shopping-cart fa-lg fa-fw"></i> Add To Cart</a></div>
-
-                @Html.HiddenFor(model => model.Configuration)
-                @Html.HiddenFor(model => model.CanvasImage)
-                <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png" />
+                <hr/>
+                <h2 class="price col-4-md pull-left">$@Html.DisplayFor(model => model.Price)</h2>
+                <a class="col-6-md pull-right btn btn-success" name="productnameorid"><i class="fa fa-shopping-cart fa-lg fa-fw"></i> Add To Cart</a>
             </div>
+
+            @Html.HiddenFor(model => model.Configuration)
+            @Html.HiddenFor(model => model.CanvasImage)
+            <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png"/>
+        </div>
     </div>
     <div class="product-details col-md-7 pull-left">
         <h4>Product Description:</h4>
