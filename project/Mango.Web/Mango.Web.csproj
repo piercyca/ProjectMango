@@ -453,7 +453,6 @@
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\UploadImageViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Product\ScriptUploadProductImage.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
-    <Content Include="Areas\Store\Views\Product\Detail.cshtml" />
     <Content Include="Areas\Store\Views\Shared\EditorTemplates\AddressViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\ScriptUploadOrganizationImage.cshtml" />
     <Content Include="Areas\Admin\Views\Organization\EditorTemplates\OrganizationImageFormViewModel.cshtml" />

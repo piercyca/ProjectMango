@@ -92,34 +92,11 @@ namespace Mango.Web.Areas.Store.Controllers
             {
                 return HttpNotFound();
             }
-            return View(GetProductModel(product));
-        }
 
-        /// <summary>
-        /// GET: /store/product/detail/{urlSlug}
-        /// </summary>
-        /// <param name="urlSlug"></param>
-        /// <returns></returns>
-        [Route("detail/{urlSlug:regex([a-z0-9-_]*)}")]
-        [HttpGet]
-        public virtual ActionResult Detail(string urlSlug)
-        {
-            var product = _productService.GetProduct(urlSlug);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(GetProductModel(product));
-        }
-
-        private ProductDetailViewModel GetProductModel(Product product)
-        {
             var viewModel = Mapper.Map<Product, ProductDetailViewModel>(product);
-
             var productImages = _productImageService.GetProductImages(viewModel.ProductId);
             viewModel.ProductImages = Mapper.Map<List<ProductImage>, List<ProductImageViewModel>>(productImages.ToList());
-            return viewModel;
+            return View(viewModel);
         }
-
     }
 }
