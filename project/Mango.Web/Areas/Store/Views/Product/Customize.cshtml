@@ -67,17 +67,18 @@
         @Html.DisplayFor(model => model.Description)
         <hr/>
         <div class="more-images col-lg-12">
-            @* product images will show in modal on click
+            @* product images will show in modal on click*@
 
-    @if (Model.ProductImages.Any())
-    {
-        for (int i = 0; i < Model.ProductImages.Count; i++)
-        {
-            var cssClass = (i == 0) ? "col-md-offset-1" : string.Empty;
-            var image = Model.ProductImages[i];
-            <img src="@image.Url" class="img-thumbnail img-responsive col-lg-2 col-sm-2 col-md-2 col-xs-2"/>
-        }
-    }*@
+            @if (Model.ProductImages.Any())
+            {
+                var images = Model.ProductImages.ToList();
+                for (int i = 0; i < images.Count; i++)
+                {
+                    var cssClass = (i == 0) ? "col-md-offset-1" : string.Empty;
+                    var image = images[i];
+                    <img src="@image.Url" class="img-thumbnail img-responsive col-lg-2 col-sm-2 col-md-2 col-xs-2"/>
+                }
+            }
         </div>
     </div>
 </div>
