@@ -2,6 +2,7 @@
 var LayoutCanvas = (function(options) {
 
     var canvas = new fabric.Canvas('c');
+    $('.canvas-container').addClass('panel');
     var center = canvas.getCenter();
     var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();

@@ -16,36 +16,41 @@
     <li class="active">@Html.ActionLink("Layout", MVC.Admin.Product.Layout(Model.ProductId))</li>
 </ol>
 
-    <h2>Product Layout</h2>
+    <h2 class="pull-left">Product Layout: <span class="text-info small">Use this tool to modify the product's logo and text placement</span></h2>
 
-    <div class="row">
-        <div class=" col-sm-12">
-            <p>Use this tool to specify placement of logo and text</p>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <a class="btn btn-info" id="btnUploadImageOpenModal">Upload Background Image</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<div class="output">
+<div class="container output">
     <div class="row">
         <div class="col-sm-12">
             <div class="col-md-7 ">
                 <canvas id="c" name="productname" width="500" height="500"></canvas>
             </div>
-            <div id="contents" class="well col-md-4 col-md-offset-0 hidden-sm hidden-xs"></div>
+            <!--<div id="contents" class="well col-md-4 col-md-offset-0 hidden-sm hidden-xs"></div>-->
 
-            <div class="well col-md-4 col-md-offset-0 col-sm-12">
-                <input id="addPic" type="button" value="Add Pic" class="btn btn-success"/>
-                <input id="addText" type="button" value="Add Text" class="btn btn-primary"/>
-                <input id="removeObject" type="button" value="Remove" class="btn btn-danger"/>
+            <div class="panel panel-default">
+                <span class="section-title"><strong>Step 1:</strong> Choose an image for the background</span>
+                <div class="panel-body">
+                    <button class="btn btn-info btn-block" id="btnUploadImageOpenModal">Upload Background Image</button>
+                </div>
             </div>
 
+            <div class="panel panel-default"><div class="section-title"><strong>Step 2:</strong> Add an 
+                <strong class="pic">image</strong> and/or <strong class="text">text</strong> placeholder to the preview. Afterward, click the placeholder to move & resize.</div>
+                <div class="panel-body">
+                    <div class="btn-group btn-block">
+                        <button id="addPic" type="button" class="btn btn-success col-xs-6">Add a Logo Placeholder</button>
+                        <button id="addText" type="button" class="btn btn-primary col-xs-6">Add a Text Placeholder</button>
+                    </div>
+                </div>
+            </div><div class="panel panel-default">
 
-            <div class="well col-md-4 col-md-offset-0 col-sm-12">
+    <div class="section-title"><strong>Step 3 (Optional):</strong> To remove a placeholder, click on the placeholder in the preview, then click the "Remove" button.</div>
+    <div class="panel-body">
+        <button id="removeObject" type="button" class="btn btn-danger btn-block">Remove the Selected Placeholder</button>
+    </div>
+</div>
+
+
+            <div class="panel panel-default">
 
                 @using (Html.BeginForm())
                 {
@@ -58,8 +63,8 @@
                         @Html.HiddenFor(model => model.CanvasImage)
                         <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png" />
 
-                                <button type="submit" class="btn btn-default btn-info btn-block">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save Configuration
+                                <button type="submit" class="btn btn-default btn-warning btn-block btn-lg">
+                                    <span class="fa fa-check" aria-hidden="true"></span> Save Configuration
                                 </button>
                 }
             </div>
