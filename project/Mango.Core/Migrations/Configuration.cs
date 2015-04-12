@@ -41,14 +41,6 @@ namespace Mango.Core.Migrations
             });
             context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory
             {
-                Name = "Cutting Board",
-                Description = "Cutting board description",
-                ProductCategoryId = 3,
-                UrlSlug = "cutting-board",
-                Keywords = "cutting board,kitchen"
-            });
-            context.ProductCategories.AddOrUpdate(pc => pc.ProductCategoryId, new ProductCategory
-            {
                 Name = "Ornaments",
                 Description = "This category includes holiday related items such as ornaments and panels",
                 ProductCategoryId = 4,
@@ -71,7 +63,7 @@ namespace Mango.Core.Migrations
                              Configuration = "{\"layout\":{\"pic\": {\"top\":181,\"left\":117,\"width\":193,\"height\":151}}}",
                              CanvasImage = "https://mangoassets.blob.core.windows.net/images/0a59f9ee37564e33bcf36b8f6e73866d.png",
                              UrlSlug = "coffee-cup-black",
-                             Description = "Whether it's a nameplate for your desk or an address plaque for your home; show your team colors with Personalized Stoneworkz Sports collection. Starting with the Bulldogs of Georgia and the Yellow Jackets of Georgia Tech, we have a collection for school logoed items carved into beautiful granite along with the personalized elements that will proclaim your loyalties \nand your classy taste. "
+                             Description = "11 Oz. Traditional Personalized Ceramic Coffee Mug "
                          },
                         new Entity.Product
                         {
@@ -82,7 +74,7 @@ namespace Mango.Core.Migrations
                             Configuration = "{\"layout\":{\"pic\": {\"top\":157,\"left\":104,\"width\":175,\"height\":200}}}",
                             CanvasImage = "https://mangoassets.blob.core.windows.net/images/51d6993c67574ae1b0ad0c1a9b94dba1.png",
                             UrlSlug = "glass-beer-mug",
-                            Description = "Whether it's a nameplate for your desk or an address plaque for your home; show your team colors with Personalized Stoneworkz Sports collection. Starting with the Bulldogs of Georgia and the Yellow Jackets of Georgia Tech, we have a collection for school logoed items carved into beautiful granite along with the personalized elements that will proclaim your loyalties \nand your classy taste. "
+                            Description = "Get this item with a customized clear laser engraving "
                         },
                         new Entity.Product
                         {
@@ -93,7 +85,7 @@ namespace Mango.Core.Migrations
                             Configuration = "{\"layout\":{\"text\": {\"top\":200,\"left\":111,\"width\":286,\"height\":276},\"pic\": {\"top\":43,\"left\":140,\"width\":222,\"height\":130}}}",
                             CanvasImage = "https://mangoassets.blob.core.windows.net/images/28e552c9b0b84fcb8dcee37ab3ca772b.jpg",
                             UrlSlug = "welcome-sign-granite-slate",
-                            Description = "Whether it's a nameplate for your desk or an address plaque for your home; show your team colors with Personalized Stoneworkz Sports collection. Starting with the Bulldogs of Georgia and the Yellow Jackets of Georgia Tech, we have a collection for school logoed items carved into beautiful granite along with the personalized elements that will proclaim your loyalties \nand your classy taste. "
+                            Description = "Get this item with a customized clear laser engraving "
                         },
                         new Entity.Product
                         {
@@ -104,7 +96,7 @@ namespace Mango.Core.Migrations
                             Configuration = "{\"layout\":{\"pic\": {\"top\":155,\"left\":98,\"width\":204,\"height\":200}}}",
                             CanvasImage = "https://mangoassets.blob.core.windows.net/images/c8da200e2c7d48ec8e63352d03d3a045.png",
                             UrlSlug = "white-coffee-mug",
-                            Description = "Whether it's a nameplate for your desk or an address plaque for your home; show your team colors with Personalized Stoneworkz Sports collection. Starting with the Bulldogs of Georgia and the Yellow Jackets of Georgia Tech, we have a collection for school logoed items carved into beautiful granite along with the personalized elements that will proclaim your loyalties \nand your classy taste. "
+                            Description = "11 Oz. Traditional Personalized Ceramic Coffee Mug"
                         },
                         new Entity.Product
                         {
@@ -115,7 +107,7 @@ namespace Mango.Core.Migrations
                             Configuration = "{\"layout\":{\"pic\": {\"top\":94,\"left\":173,\"width\":230,\"height\":200}}}",
                             CanvasImage = "https://mangoassets.blob.core.windows.net/images/10edf6c0036b46759b137765d29733e5.png",
                             UrlSlug = "glass-coffee-cup",
-                            Description = "Whether it's a nameplate for your desk or an address plaque for your home; show your team colors with Personalized Stoneworkz Sports collection. Starting with the Bulldogs of Georgia and the Yellow Jackets of Georgia Tech, we have a collection for school logoed items carved into beautiful granite along with the personalized elements that will proclaim your loyalties \nand your classy taste. "
+                            Description = "Get this item with a customized clear laser engraving "
                         },
                         new Entity.Product
                         {
@@ -137,7 +129,7 @@ namespace Mango.Core.Migrations
                             Configuration = "{\"layout\":{\"text\": {\"top\":264,\"left\":89,\"width\":326,\"height\":200},\"pic\": {\"top\":98,\"left\":153,\"width\":204,\"height\":162}}}",
                             CanvasImage = "https://mangoassets.blob.core.windows.net/images/3484beb037c5492992db7868bb1b5ee0.png",
                             UrlSlug = "glass-round-ornament",
-                            Description = "he glass ornaments are a clear optical glass with beveled edges. The engraving appears a frosty white. Engraved on the back of the glass, the front is remains smooth and has a three dimensional appearance."
+                            Description = "The glass ornaments are a clear optical glass with beveled edges. The engraving appears a frosty white."
                         },
                         new Entity.Product
                         {
@@ -148,7 +140,7 @@ namespace Mango.Core.Migrations
                             Configuration = "{\"layout\":{\"pic\": {\"top\":143,\"left\":150,\"width\":213,\"height\":165}}}",
                             CanvasImage = "https://mangoassets.blob.core.windows.net/images/51d1a2aecbe449f2950b7fa2ec30ed57.png",
                             UrlSlug = "rocks-shot-glass",
-                            Description = "Whether it's a nameplate for your desk or an address plaque for your home; show your team colors with Personalized Stoneworkz Sports collection. Starting with the Bulldogs of Georgia and the Yellow Jackets of Georgia Tech, we have a collection for school logoed items carved into beautiful granite along with the personalized elements that will proclaim your loyalties \nand your classy taste. "
+                            Description = "Get this item with a customized clear laser engraving "
                         });
 
                         // Product Images
