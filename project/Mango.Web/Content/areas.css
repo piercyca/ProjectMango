@@ -17,6 +17,9 @@ hr {
 
 h2 .btn { margin: 8px 10px;
 }
+h2 span.small {
+    font-size: 50%;
+}
 
 .navbar {
     background: rgba(237,239,241,0.9);
