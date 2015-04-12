@@ -19,6 +19,7 @@ namespace Mango.Core.Service
         void DeleteProduct(int id);
         void SaveProduct();
         IEnumerable<Product> SearchProductsByName(string productName);
+        IEnumerable<Product> GetProductsByCategory(int productCategoryId);
         IEnumerable<Product> GetProductsByPage(int currentPage, int noOfRecords, string sortBy);
     }
 
@@ -117,6 +118,16 @@ namespace Mango.Core.Service
         public IEnumerable<Product> SearchProductsByName(string productName)
         {
             return _productRepository.GetMany(p => p.Name.ToLower().Contains(productName.ToLower())).OrderBy(p => p.Name);
+        }
+
+        /// <summary>
+        /// Get products by productCategoryId
+        /// </summary>
+        /// <param name="productCategoryId"></param>
+        /// <returns></returns>
+        public IEnumerable<Product> GetProductsByCategory(int productCategoryId)
+        {
+            return _productRepository.GetMany(p => p.ProductCategoryId == productCategoryId);
         }
 
         /// <summary>

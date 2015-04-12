@@ -132,13 +132,13 @@ namespace Mango.Web.Areas.Store.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Account = "Account";
-                public readonly string Address = "Address";
+                public readonly string Customer = "Customer";
                 public readonly string Index = "Index";
                 public readonly string Login = "Login";
                 public readonly string Register = "Register";
             }
             public readonly string Account = "~/Areas/Store/Views/Cart/Account.cshtml";
-            public readonly string Address = "~/Areas/Store/Views/Cart/Address.cshtml";
+            public readonly string Customer = "~/Areas/Store/Views/Cart/Customer.cshtml";
             public readonly string Index = "~/Areas/Store/Views/Cart/Index.cshtml";
             public readonly string Login = "~/Areas/Store/Views/Cart/Login.cshtml";
             public readonly string Register = "~/Areas/Store/Views/Cart/Register.cshtml";
@@ -148,6 +148,7 @@ namespace Mango.Web.Areas.Store.Controllers
             public partial class _EditorTemplatesClass
             {
                 public readonly string AddressViewModel = "AddressViewModel";
+                public readonly string CustomerViewModel = "CustomerViewModel";
                 public readonly string LoginViewModel = "LoginViewModel";
                 public readonly string RegisterViewModel = "RegisterViewModel";
             }

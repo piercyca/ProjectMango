@@ -5,13 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Mango.Core.Entity;
 using Mango.Core.Web.CustomValidators;
 using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Areas.Store.Models
 {
     /// <summary>
-    /// TODO comment
+    /// View Model for <seealso cref="Product"/> detail
     /// </summary>
     public class ProductDetailViewModel
     {
@@ -79,7 +80,7 @@ namespace Mango.Web.Areas.Store.Models
         /// </summary>
         [DisplayName("Product Images")]
         [ReadOnly(true)]
-        public List<ProductImageViewModel> ProductImages { get; set; }
+        public IEnumerable<ProductImageViewModel> ProductImages { get; set; }
 
         /// <summary>
         /// Canvas Image

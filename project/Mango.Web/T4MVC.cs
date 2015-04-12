@@ -185,6 +185,8 @@ namespace Links
              
         public static readonly string area_store_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/area_store.min.css") ? Url("area_store.min.css") : Url("area_store.css");
              
+        public static readonly string areas_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/areas.min.css") ? Url("areas.min.css") : Url("areas.css");
+             
         public static readonly string bootstrap_theme_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-theme.min.css") ? Url("bootstrap-theme.min.css") : Url("bootstrap-theme.css");
              
         public static readonly string bootstrap_theme_css_map = Url("bootstrap-theme.css.map");
@@ -202,6 +204,7 @@ namespace Links
             public static readonly string _04_granite_welcome_sign_png = Url("04-granite welcome sign.png");
             public static readonly string ajax_loader_gif = Url("ajax-loader.gif");
             public static readonly string alumni_png = Url("alumni.png");
+            public static readonly string background_png = Url("background.png");
             public static readonly string coaster_leather_png = Url("coaster leather.png");
             public static readonly string coffee_cup_white_16_png = Url("coffee cup white 16.png");
             public static readonly string coffee_mug_black_png = Url("coffee mug black.png");
@@ -255,8 +258,7 @@ namespace Links
         public static readonly string PagedList_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/PagedList.min.css") ? Url("PagedList.min.css") : Url("PagedList.css");
              
         public static readonly string shared_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/shared.min.css") ? Url("shared.min.css") : Url("shared.css");
-        public static readonly string areas_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/areas.min.css") ? Url("areas.min.css") : Url("areas.css");
-     
+             
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class themes {
             private const string URLPATH = "~/Content/themes";
@@ -472,13 +474,13 @@ namespace Links
             {
                 public const string area_admin_css = "~/Content/area_admin.css";
                 public const string area_store_css = "~/Content/area_store.css";
+                public const string areas_css = "~/Content/areas.css";
                 public const string bootstrap_theme_css = "~/Content/bootstrap-theme.css";
                 public const string bootstrap_theme_min_css = "~/Content/bootstrap-theme.min.css";
                 public const string bootstrap_css = "~/Content/bootstrap.css";
                 public const string bootstrap_min_css = "~/Content/bootstrap.min.css";
                 public const string PagedList_css = "~/Content/PagedList.css";
                 public const string shared_css = "~/Content/shared.css";
-                public const string areas_css = "~/Content/areas.css";
             }
         }
     }
