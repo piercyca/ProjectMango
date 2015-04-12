@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Mango.Web.Attributes;
 
 namespace Mango.Web.Areas.Store.Controllers
 {
     [RouteArea("store")]
     [RoutePrefix("home")]
-    [Route("{action=index}")] 
+    [Route("{action=index}")]
+    [LogoutIfAdmin]
     public partial class HomeController : Controller
     {
         // GET: Store/Home

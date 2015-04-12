@@ -43,8 +43,11 @@ namespace Mango.Web.Areas.Store.Models
         public string Email { get; set; }
 
         /// <summary>
-        /// TODO figure this out
+        /// Username
         /// </summary>
-        public string UserId { get; set; }
+        [EmailAddress]
+        [StringLength(200)]
+        [HiddenInput(DisplayValue = false)]
+        public string Username { get; set; }
     }
 }

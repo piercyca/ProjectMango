@@ -221,7 +221,7 @@ namespace Mango.Core.Migrations
             #region Orders
 			
             context.Orders.AddOrUpdate(o => o.OrderId, 
-                new Entity.Order { OrderId = 1, CustomerId = 1, ShipAddressId = 1, BillAddressId = 2, TotalAmount = 100.00m, DateCreated = DateTime.Now});
+                new Entity.Order { OrderId = 1, CustomerId = 1, ShipAddressId = 2, BillAddressId = 1, TotalAmount = 100.00m, DateCreated = DateTime.Now});
 
             #endregion
 

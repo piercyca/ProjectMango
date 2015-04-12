@@ -1,29 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using Links;
 using Mango.Core.Entity;
+using Mango.Core.Service;
 using Mango.Web.Areas.Store.Models;
+using Mango.Web.Attributes;
 using Mango.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
 namespace Mango.Web.Areas.Store.Controllers
 {
     [RouteArea("store")]
     [RoutePrefix("cart")]
     [Route("{action}")]
+    [LogoutIfAdmin]
     public partial class CartController : Controller
     {
+        private readonly IAddressService _addressService;
+        private readonly ICustomerService _customerService;
+        private readonly IOrderService _orderService;
+
         public CartController() { }
+
+        public CartController(IAddressService addressService, ICustomerService customerService,
+            IOrderService orderService, IProductService productService)
+        {
+            _addressService = addressService;
+            _customerService = customerService;
+            _orderService = orderService;
+        }
         public CartController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
 
         /// <summary>
         /// GET: /store/cart
@@ -35,15 +53,55 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         /// <summary>
-        /// GET: /store/address
+        /// GET: /store/customer
         /// </summary>
         /// <returns></returns>
-        public virtual ActionResult Address()
+        [HttpGet]
+        public virtual ActionResult Customer()
         {
-            var addressesViewModel = new AddressesViewModel
+            var customer = new Customer();
+            var loggedInUsername = HttpContext.User.Identity.GetUserName();
+            if (HttpContext.User.Identity.IsAuthenticated && (!string.IsNullOrEmpty(loggedInUsername)))
             {
-                Billing = new AddressViewModel(AddressType.Bill),
-                Shipping = new AddressViewModel(AddressType.Ship)
+                customer = _customerService.GetCustomer(loggedInUsername);
+                if (customer == null)
+                {
+                    customer = new Customer { Email = loggedInUsername, Username = loggedInUsername };
+                }
+            }
+
+            // Setup default addresses
+            var billingAddress = new AddressViewModel(AddressType.Bill);
+            var shippingAddress = new AddressViewModel(AddressType.Ship);
+
+            // Get last order addresses
+            if (customer.CustomerId > 0)
+            {
+                // Populate default address
+                billingAddress.FirstName = customer.FirstName;
+                billingAddress.LastName = customer.LastName;
+                shippingAddress.FirstName = customer.FirstName;
+                shippingAddress.LastName = customer.LastName;
+
+                var order = _orderService.GetOrdersByCustomer(customer.CustomerId).OrderByDescending(o => o.DateCreated).FirstOrDefault();
+                if (order != null)
+                {
+                    if (order.BillAddress != null)
+                    {
+                        billingAddress = Mapper.Map<Address, AddressViewModel>(order.BillAddress);
+                    }
+                    if (order.ShipAddress != null)
+                    {
+                        shippingAddress = Mapper.Map<Address, AddressViewModel>(order.ShipAddress);
+                    }
+                }
+            }
+
+            var addressesViewModel = new CartCustomerViewModel
+            {
+                Customer = Mapper.Map<Customer, CustomerViewModel>(customer),
+                BillingAddress = billingAddress,
+                ShippingAddress = shippingAddress
             };
 
             return View(addressesViewModel);
@@ -84,7 +142,7 @@ namespace Mango.Web.Areas.Store.Controllers
         [HttpGet]
         public virtual ActionResult Account()
         {
-            ViewBag.ReturnUrl = Url.Action(MVC.StoreArea.Cart.Address());
+            ViewBag.ReturnUrl = Url.Action(MVC.StoreArea.Cart.Customer());
 
             var viewModel = new CartAccountViewModel
             {
@@ -187,5 +245,13 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         #endregion
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Mango.Web.Areas.Store.Models.AddressesViewModel
+﻿@model Mango.Web.Areas.Store.Models.CartCustomerViewModel
 @{
     ViewBag.Title = "Address";
 }
@@ -24,10 +24,16 @@
 
         <div class="row">
             <div class="col-md-6">
-                @Html.EditorFor(model => model.Billing)
+                @Html.EditorFor(model => model.Customer)
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.BillingAddress)
             </div>
             <div class="col-md-6">
-                @Html.EditorFor(model => model.Shipping)
+                @Html.EditorFor(model => model.ShippingAddress)
             </div>
         </div>
         <div class="row">

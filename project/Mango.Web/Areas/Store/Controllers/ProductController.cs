@@ -8,12 +8,14 @@ using Links;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Web.Areas.Store.Models;
+using Mango.Web.Attributes;
 
 namespace Mango.Web.Areas.Store.Controllers
 {
     [RouteArea("store")]
     [RoutePrefix("product")]
     [Route("{action}")]
+    [LogoutIfAdmin]
     public partial class ProductController : Controller
     {
         private readonly IProductService _productService;

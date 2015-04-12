@@ -86,7 +86,7 @@ namespace Mango.Web.Areas.Store.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
-            public readonly string Address = "Address";
+            public readonly string Customer = "Customer";
             public readonly string Account = "Account";
             public readonly string Login = "Login";
             public readonly string Register = "Register";
@@ -96,7 +96,7 @@ namespace Mango.Web.Areas.Store.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
-            public const string Address = "Address";
+            public const string Customer = "Customer";
             public const string Account = "Account";
             public const string Login = "Login";
             public const string Register = "Register";
@@ -171,13 +171,13 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void AddressOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CustomerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Address()
+        public override System.Web.Mvc.ActionResult Customer()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Address);
-            AddressOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customer);
+            CustomerOverride(callInfo);
             return callInfo;
         }
 

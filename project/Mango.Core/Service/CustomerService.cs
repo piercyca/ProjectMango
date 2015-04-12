@@ -13,6 +13,7 @@ namespace Mango.Core.Service
     {
         IEnumerable<Customer> GetCustomers();
         Customer GetCustomer(int id);
+        Customer GetCustomer(string username);
         void CreateCustomer(Customer customer);
         void EditCustomer(Customer customer);
         void DeleteCustomer(int id);
@@ -58,6 +59,11 @@ namespace Mango.Core.Service
         public Customer GetCustomer(int id)
         {
             return _customerRepository.GetById(id);
+        }
+
+        public Customer GetCustomer(string username)
+        {
+            return _customerRepository.Get(c => c.Username == username);
         }
 
         /// <summary>
