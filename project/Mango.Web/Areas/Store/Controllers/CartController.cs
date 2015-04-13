@@ -71,25 +71,18 @@ namespace Mango.Web.Areas.Store.Controllers
             }
 
             // Setup default addresses
-            var billingAddress = new AddressViewModel(AddressType.Bill);
             var shippingAddress = new AddressViewModel(AddressType.Ship);
 
             // Get last order addresses
             if (customer.CustomerId > 0)
             {
                 // Populate default address
-                billingAddress.FirstName = customer.FirstName;
-                billingAddress.LastName = customer.LastName;
                 shippingAddress.FirstName = customer.FirstName;
                 shippingAddress.LastName = customer.LastName;
 
                 var order = _orderService.GetOrdersByCustomer(customer.CustomerId).OrderByDescending(o => o.DateCreated).FirstOrDefault();
                 if (order != null)
                 {
-                    if (order.BillAddress != null)
-                    {
-                        billingAddress = Mapper.Map<Address, AddressViewModel>(order.BillAddress);
-                    }
                     if (order.ShipAddress != null)
                     {
                         shippingAddress = Mapper.Map<Address, AddressViewModel>(order.ShipAddress);
@@ -100,7 +93,6 @@ namespace Mango.Web.Areas.Store.Controllers
             var addressesViewModel = new CartCustomerViewModel
             {
                 Customer = Mapper.Map<Customer, CustomerViewModel>(customer),
-                BillingAddress = billingAddress,
                 ShippingAddress = shippingAddress
             };
 

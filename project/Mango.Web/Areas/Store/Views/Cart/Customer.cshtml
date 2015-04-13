@@ -30,9 +30,6 @@
         
         <div class="row">
             <div class="col-md-6">
-                @Html.EditorFor(model => model.BillingAddress)
-            </div>
-            <div class="col-md-6">
                 @Html.EditorFor(model => model.ShippingAddress)
             </div>
         </div>
@@ -46,7 +43,7 @@
 
 
 @section scripts {
-    <script>
+    @*<script>
         $(window).load(function () {
             $('#same-as-billing').click(function () {
                 console.log("checked - " + $('#same-as-billing:checked').length);
@@ -58,19 +55,8 @@
                         console.log(name + " - " + $(element).val());
                         $('#' + name).val($(element).val());
                     });
-
-
-                    //$('#address-field1').val($('#address-field').val());
-                    //$('#city-field1').val($('#city-field').val());
-                    //$('#zip-field1').val($('#zip-field').val());
-                    //var state = $('#state-field option:selected').val();
-                    //$('#state-field1 option[value=' + state + ']').attr('selected', 'selected');
                 } else {
                     //Clear on uncheck
-                    //$('#address-field1').val("");
-                    //$('#city-field1').val("");
-                    //$('#zip-field1').val("");
-                    //$('#state-field1 option[value=Nothing]').attr('selected', 'selected');
 
                     $('input[type=text][id^="Shipping_"],select[id^="Shipping_"]').each(function (i, element) {
                         //var name = element.id.replace("Billing_", "Shipping_");
@@ -85,5 +71,5 @@
             });
         });
         
-    </script>
+    </script>*@
 }
