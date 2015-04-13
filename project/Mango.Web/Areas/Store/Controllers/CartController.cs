@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using AutoMapper;
 using Links;
 using Mango.Core.Entity;
 using Mango.Core.Service;
+using Mango.Core.Web.Checkout;
 using Mango.Web.Areas.Store.Models;
 using Mango.Web.Attributes;
 using Mango.Web.Models;
@@ -98,6 +100,206 @@ namespace Mango.Web.Areas.Store.Controllers
 
             return View(addressesViewModel);
         }
+
+        #region Checkout
+
+        public ActionResult Cart()
+        {
+            //Display all the information
+            PaypalModel model = new PaypalModel
+            {
+                BuyerName = "Pratik Bhoir",
+                ShippingAddress = "Mumbai. Pin - 602304",
+                Cart = new List<CartItemModel>
+                {
+                    new CartItemModel {ProductId = 1, ProductName = "Product 1", Quantity = 1, UnitPrice = 3},
+                    new CartItemModel {ProductId = 2, ProductName = "Product 2", Quantity = 2, UnitPrice = 2}
+                }
+            };
+
+            Session["PayPalModel"] = model;
+            Session["payment_amt"] = model.TotalAmount;
+            return View(model);
+        }
+
+        public ActionResult CheckoutStart()
+        {
+            PayPalNvpApiCaller payPalCaller = new PayPalNvpApiCaller();
+            string retMsg = "";
+            string token = "";
+
+            PaypalModel model = new PaypalModel();
+
+
+            if (Session["PayPalModel"] != null && Session["payment_amt"] != null)
+            {
+                model = (PaypalModel)Session["PayPalModel"];
+                string amt = Session["payment_amt"].ToString();
+                if (model.Cart.Count > 0)
+                {
+                    bool ret = payPalCaller.ShortcutExpressCheckout(model, ref token, ref retMsg);
+                    if (ret)
+                    {
+                        Session["token"] = token;
+                        return Redirect(retMsg);
+                    }
+                    else
+                    {
+                        TempData["PayPalError"] = retMsg;
+                        return RedirectToAction("CheckoutError");
+                    }
+                }
+                else
+                {
+                    TempData["PayPalError"] = "Cart is Empty. Please add some Items to the cart.";
+                    return RedirectToAction("CheckoutError");
+                }
+            }
+            else
+            {
+                TempData["PayPalError"] = "Amount Missing";
+                return RedirectToAction("CheckoutError");
+            }
+        }
+
+        public ActionResult CheckoutReview()
+        {
+            if (Session["token"] != null)
+            {
+                PayPalNvpApiCaller payPalCaller = new PayPalNvpApiCaller();
+                string retMsg = "";
+                string token = "";
+                string payerId = "";
+                var decoder = new PayPalNvpCodec();
+                token = Session["token"].ToString();
+
+                bool ret = payPalCaller.GetCheckoutDetails(token, ref payerId, ref decoder, ref retMsg);
+                if (ret)
+                {
+                    Session["payerId"] = payerId;
+                    //Add all the order Data to the DB 
+
+                    // Set OrderId.
+                    Session["currentOrderId"] = 123;//myOrder.OrderId;
+
+                    //Display all the information
+                    var model = (PaypalModel)Session["PayPalModel"];
+                    return View(model);
+                }
+                else
+                {
+                    TempData["PayPalError"] = "Amount Missing";
+                    return RedirectToAction("CheckoutError");
+                    //Response.Redirect("CheckoutError.aspx?" + retMsg);
+                }
+            }
+            else
+            {
+                TempData["PayPalError"] = "Token is not generated or Session is destroyed. Please try checking out again.";
+                return RedirectToAction("CheckoutError");
+            }
+        }
+
+
+        public ActionResult CheckoutComplete()
+        {
+            //// Verify user has completed the checkout process.
+            //if ((string)Session["userCheckoutCompleted"] != "true")
+            //{
+            //    Session["userCheckoutCompleted"] = string.Empty;
+            //    Response.Redirect("CheckoutError.aspx?" + "Desc=Unvalidated%20Checkout.");
+            //}
+
+            if (Session["payerId"] != null)
+            {
+                var payPalCaller = new PayPalNvpApiCaller();
+                string retMsg = "";
+                string token = "";
+                string finalPaymentAmount = "";
+                string payerId = "";
+                var decoder = new PayPalNvpCodec();
+
+                token = Session["token"].ToString();
+                payerId = Session["payerId"].ToString();
+                finalPaymentAmount = Session["payment_amt"].ToString();
+
+                bool ret = payPalCaller.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
+                if (ret)
+                {
+                    // Retrieve PayPal confirmation value.
+                    var paymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"];
+
+                    ViewBag.TransactionId = paymentConfirmation;
+
+                    // Get the current order id.
+                    int currentOrderId = -1;
+                    if (Session["currentOrderId"] != null)
+                    {
+                        currentOrderId = Convert.ToInt32(Session["currentOrderID"]);
+                    }
+                    ViewBag.OrderId = currentOrderId;
+
+                    ////Save the transaction Status to the database
+
+                    //// Clear shopping cart.
+
+                    //Clear order id.
+                    Session["currentOrderId"] = null;
+                    return View();
+                }
+                else
+                {
+                    TempData["PayPalError"] = retMsg;
+                    return RedirectToAction("CheckoutError");
+                }
+            }
+            else
+            {
+                TempData["PayPalError"] = "Payer Id is blank. So, There was some error while processing. Please Try again Later.";
+                return RedirectToAction("CheckoutError");
+            }
+        }
+
+        public ActionResult CheckoutCancel()
+        {
+            //// Clear shopping cart.
+            Session["PayPalModel"] = null;
+            Session["payment_amt"] = null;
+            Session["payerId"] = null;
+            Session["token"] = null;
+
+            //Clear order id.
+            Session["currentOrderId"] = null;
+            return View();
+        }
+
+
+        public ActionResult CheckoutError()
+        {
+            //// Clear shopping cart.
+            Session["PayPalModel"] = null;
+            Session["payment_amt"] = null;
+            Session["payerId"] = null;
+            Session["token"] = null;
+            //Clear order id.
+            Session["currentOrderId"] = null;
+
+            //Parsing the error
+            if (TempData["PayPalError"] != null)
+            {
+                string queryString = Convert.ToString(TempData["PayPalError"]);
+                queryString = "http://www.example.com?" + queryString; //padded with fake url to convert it to uri
+                NameValueCollection qscoll = HttpUtility.ParseQueryString(new Uri(queryString).Query);
+
+                @ViewBag.Error = qscoll["ErrorCode"] + ": " + qscoll["Desc"];
+                @ViewBag.Desc = qscoll["Desc2"];
+
+            }
+            return View();
+
+        }
+
+        #endregion
 
         #region Account
 

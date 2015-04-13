@@ -52,7 +52,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -85,6 +87,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConverters\PagedListConverter.cs" />
+    <Compile Include="Checkout\PayPal.cs" />
+    <Compile Include="Checkout\PayPalModel.cs" />
     <Compile Include="CustomValidators\UniqueValidatorAttribute.cs" />
     <Compile Include="CustomValidators\UrlSlugValidatorAttribute.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />

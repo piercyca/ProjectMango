@@ -466,6 +466,9 @@
     <Content Include="Areas\Store\Views\Cart\EditorTemplates\RegisterViewModel.cshtml" />
     <Content Include="Areas\Store\Views\Cart\EditorTemplates\AddressViewModel.cshtml" />
     <Content Include="Areas\Store\Views\Cart\EditorTemplates\CustomerViewModel.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutCancel.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutComplete.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutReview.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web - Web Deploy %282%29.pubxml" />

@@ -1,0 +1,42 @@
+@model Mango.Core.Web.Checkout.PaypalModel
+@{
+    ViewBag.Title = "CheckoutReview";
+}
+
+<h2>Checkout Review</h2>
+
+
+<h3>Shopping Cart</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cart)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.Quantity</td>
+                <td>@(item.UnitPrice * item.Quantity)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Shipping Details</h3>
+
+@Model.BuyerName,
+@Model.ShippingAddress
+<br />
+<h3>Total Amount</h3>
+<b>@Model.TotalAmount</b>
+
+<br /><br />
+@Html.ActionLink("Complete Order", "CheckoutComplete", "Checkout", null, new { @class = "btn btn-success" })
+
