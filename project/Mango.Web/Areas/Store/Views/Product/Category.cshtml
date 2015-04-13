@@ -19,8 +19,12 @@
                 {
                     foreach (var product in Model.Products)
                     {
-                        var imageUrl = (product.ProductImages.Any()) ? product.ProductImages.First().Url : "";
+                        var imageUrl = (product.ProductImages.Any()) ? product.ProductImages.First().Url : product.CanvasImage;
                         var productDetailUrl = Url.Action(MVC.StoreArea.Product.Customize(product.UrlSlug));
+                        if (product.Description.Length > 120)
+                        {
+                            product.Description = product.Description.Substring(0, 120) + "...";
+                        }
                         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
                             <div class="item">
                                 <a href="@productDetailUrl">
@@ -30,7 +34,9 @@
                                         <img src="@Html.Raw(imageUrl)" alt="@product.Name">
                                     </p>
                                     <h2>@product.Name</h2>
-                                    <span class="description">@product.Description</span>
+                                    <span class="description">@product.Description
+                                    <span class="btn btn-gray"><i class="fa fa-check fa-fw"></i>Customize It!</span>
+                                    </span>
 
                                 </a>
                             </div>
