@@ -5,11 +5,12 @@
 <div id="categories" class="container">
     <div class="row">
         <div class="col-md-2">
-            <p class="lead">@Html.Raw(Model.SelectedCategory.Name)</p>
+            <p class="lead">Our Products</p>
             <div class="list-group">
                 @foreach (var productCategory in Model.Categories)
                 {
-                    <a href="@Url.Action(MVC.StoreArea.Product.Category(productCategory.UrlSlug))" class="list-group-item">@productCategory.Name</a>
+                    var cssClass = (@Model.SelectedCategory.Name == @productCategory.Name) ? "fa-check" : "";
+                    <a href="@Url.Action(MVC.StoreArea.Product.Category(productCategory.UrlSlug))" class="list-group-item"><i class="fa @cssClass fa-lg fa-fw"></i> @productCategory.Name</a>
                 }
             </div>
         </div>

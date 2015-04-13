@@ -36,11 +36,11 @@ $(function () {
 
         //TODO: this is an example -- the final version should grab the image from the admin tool
         canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
-            //center the background image
+            //center the background image (minus 8 for padding ?)
             scaleX: 1,
             scaleY: 1,
-            top: center.top,
-            left: center.left,
+            top: center.top - 8,
+            left: center.left - 8,
             originX: 'center',
             originY: 'center'
         });
