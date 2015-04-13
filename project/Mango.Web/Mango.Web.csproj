@@ -260,6 +260,7 @@
     <Compile Include="Areas\Store\Models\CartCustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\AddressViewModel.cs" />
     <Compile Include="Areas\Store\Models\CartAccountViewModel.cs" />
+    <Compile Include="Areas\Store\Models\CartIndexViewModel.cs" />
     <Compile Include="Areas\Store\Models\CustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrderViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductCategoryDetailViewModel.cs" />

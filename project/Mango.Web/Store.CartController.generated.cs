@@ -87,6 +87,12 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Customer = "Customer";
+            public readonly string Cart = "Cart";
+            public readonly string CheckoutStart = "CheckoutStart";
+            public readonly string CheckoutReview = "CheckoutReview";
+            public readonly string CheckoutComplete = "CheckoutComplete";
+            public readonly string CheckoutCancel = "CheckoutCancel";
+            public readonly string CheckoutError = "CheckoutError";
             public readonly string Account = "Account";
             public readonly string Login = "Login";
             public readonly string Register = "Register";
@@ -97,6 +103,12 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             public const string Index = "Index";
             public const string Customer = "Customer";
+            public const string Cart = "Cart";
+            public const string CheckoutStart = "CheckoutStart";
+            public const string CheckoutReview = "CheckoutReview";
+            public const string CheckoutComplete = "CheckoutComplete";
+            public const string CheckoutCancel = "CheckoutCancel";
+            public const string CheckoutError = "CheckoutError";
             public const string Account = "Account";
             public const string Login = "Login";
             public const string Register = "Register";
@@ -132,12 +144,18 @@ namespace Mango.Web.Areas.Store.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Account = "Account";
+                public readonly string CheckoutCancel = "CheckoutCancel";
+                public readonly string CheckoutComplete = "CheckoutComplete";
+                public readonly string CheckoutReview = "CheckoutReview";
                 public readonly string Customer = "Customer";
                 public readonly string Index = "Index";
                 public readonly string Login = "Login";
                 public readonly string Register = "Register";
             }
             public readonly string Account = "~/Areas/Store/Views/Cart/Account.cshtml";
+            public readonly string CheckoutCancel = "~/Areas/Store/Views/Cart/CheckoutCancel.cshtml";
+            public readonly string CheckoutComplete = "~/Areas/Store/Views/Cart/CheckoutComplete.cshtml";
+            public readonly string CheckoutReview = "~/Areas/Store/Views/Cart/CheckoutReview.cshtml";
             public readonly string Customer = "~/Areas/Store/Views/Cart/Customer.cshtml";
             public readonly string Index = "~/Areas/Store/Views/Cart/Index.cshtml";
             public readonly string Login = "~/Areas/Store/Views/Cart/Login.cshtml";
@@ -179,6 +197,72 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customer);
             CustomerOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CartOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Cart()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Cart);
+            CartOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutStartOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CheckoutStart()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutStart);
+            CheckoutStartOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutReviewOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CheckoutReview()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutReview);
+            CheckoutReviewOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutCompleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CheckoutComplete()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutComplete);
+            CheckoutCompleteOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutCancelOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CheckoutCancel()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutCancel);
+            CheckoutCancelOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutErrorOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CheckoutError()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutError);
+            CheckoutErrorOverride(callInfo);
             return callInfo;
         }
 

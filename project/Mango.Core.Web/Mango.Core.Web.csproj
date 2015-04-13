@@ -87,6 +87,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConverters\PagedListConverter.cs" />
+    <Compile Include="Checkout\CartModel.cs" />
+    <Compile Include="Checkout\CartService.cs" />
     <Compile Include="Checkout\PayPal.cs" />
     <Compile Include="Checkout\PayPalModel.cs" />
     <Compile Include="CustomValidators\UniqueValidatorAttribute.cs" />

@@ -29,15 +29,17 @@ namespace Mango.Web.Areas.Store.Controllers
         private readonly IAddressService _addressService;
         private readonly ICustomerService _customerService;
         private readonly IOrderService _orderService;
+        private readonly ICartService _cartService;
 
         public CartController() { }
 
         public CartController(IAddressService addressService, ICustomerService customerService,
-            IOrderService orderService, IProductService productService)
+            IOrderService orderService, ICartService cartService)
         {
             _addressService = addressService;
             _customerService = customerService;
             _orderService = orderService;
+            _cartService = cartService;
         }
         public CartController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -49,13 +51,18 @@ namespace Mango.Web.Areas.Store.Controllers
         /// GET: /store/cart
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public virtual ActionResult Index()
         {
-            return View();
+            var viewModel = new CartIndexViewModel
+            {
+                CartModel = _cartService.GetCartModel()
+            };
+            return View(viewModel);
         }
 
         /// <summary>
-        /// GET: /store/customer
+        /// GET: /store/cart/customer
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -103,17 +110,17 @@ namespace Mango.Web.Areas.Store.Controllers
 
         #region Checkout
 
-        public ActionResult Cart()
+        public virtual ActionResult Cart()
         {
             //Display all the information
             PaypalModel model = new PaypalModel
             {
                 BuyerName = "Pratik Bhoir",
                 ShippingAddress = "Mumbai. Pin - 602304",
-                Cart = new List<CartItemModel>
+                Cart = new List<PayPalCartItemModel>
                 {
-                    new CartItemModel {ProductId = 1, ProductName = "Product 1", Quantity = 1, UnitPrice = 3},
-                    new CartItemModel {ProductId = 2, ProductName = "Product 2", Quantity = 2, UnitPrice = 2}
+                    new PayPalCartItemModel {ProductId = 1, ProductName = "Product 1", Quantity = 1, UnitPrice = 3},
+                    new PayPalCartItemModel {ProductId = 2, ProductName = "Product 2", Quantity = 2, UnitPrice = 2}
                 }
             };
 
@@ -122,7 +129,7 @@ namespace Mango.Web.Areas.Store.Controllers
             return View(model);
         }
 
-        public ActionResult CheckoutStart()
+        public virtual ActionResult CheckoutStart()
         {
             PayPalNvpApiCaller payPalCaller = new PayPalNvpApiCaller();
             string retMsg = "";
@@ -162,7 +169,7 @@ namespace Mango.Web.Areas.Store.Controllers
             }
         }
 
-        public ActionResult CheckoutReview()
+        public virtual ActionResult CheckoutReview()
         {
             if (Session["token"] != null)
             {
@@ -201,7 +208,7 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
 
-        public ActionResult CheckoutComplete()
+        public virtual ActionResult CheckoutComplete()
         {
             //// Verify user has completed the checkout process.
             //if ((string)Session["userCheckoutCompleted"] != "true")
@@ -260,7 +267,7 @@ namespace Mango.Web.Areas.Store.Controllers
             }
         }
 
-        public ActionResult CheckoutCancel()
+        public virtual ActionResult CheckoutCancel()
         {
             //// Clear shopping cart.
             Session["PayPalModel"] = null;
@@ -274,7 +281,7 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
 
-        public ActionResult CheckoutError()
+        public virtual ActionResult CheckoutError()
         {
             //// Clear shopping cart.
             Session["PayPalModel"] = null;

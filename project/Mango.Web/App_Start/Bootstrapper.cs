@@ -10,6 +10,7 @@ using Mango.Web.Mappings;
 using Mango.Core.Infrastructure;
 using Mango.Core.Repository;
 using Mango.Core.Service;
+using Mango.Core.Web.Checkout;
 
 namespace Mango.Web
 {
@@ -30,6 +31,8 @@ namespace Mango.Web
             builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>().InstancePerRequest();
             builder.RegisterAssemblyTypes(typeof(ProductRepository).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterAssemblyTypes(typeof(ProductService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
+
+            builder.RegisterAssemblyTypes(typeof(CartService).Assembly).Where(t => t.Name.EndsWith("CartService")).AsImplementedInterfaces().InstancePerRequest();
 
             builder.RegisterFilterProvider();
             IContainer container = builder.Build();
