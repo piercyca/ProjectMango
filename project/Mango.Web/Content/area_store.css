@@ -269,6 +269,11 @@ footer img {
         font-style: italic;
     }
 
+img.cart { max-height: 100px;
+           max-width: 150px;
+           margin: 0 auto;
+}
+
 textarea {
     margin: 10px 0 !important;
 }
