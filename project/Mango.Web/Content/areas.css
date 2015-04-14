@@ -82,7 +82,7 @@ h2 span.small {
     text-align: left;
 }
 
-.select button { width: 165px; text-align:left; overflow: hidden; text-overflow: ellipsis;}
+.select button { width: 165px; text-align:left; overflow: hidden; text-overflow: ellipsis; overflow: hidden; height: 34px;}
 .select .caret {position:absolute; right:10px; margin-top:10px;}
 .select:last-child>.btn {border-top-left-radius:5px; border-bottom-left-radius:5px;}
 .selected {padding-right:10px;}
