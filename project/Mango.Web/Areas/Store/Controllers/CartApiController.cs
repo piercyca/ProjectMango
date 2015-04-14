@@ -10,6 +10,7 @@ using Mango.Core.Service;
 using Mango.Core.Web.Checkout;
 using Mango.Web.Areas.Store.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Mango.Web.Areas.Store.Controllers
 {
@@ -70,8 +71,11 @@ namespace Mango.Web.Areas.Store.Controllers
         /// <param name="index"></param>
         /// <param name="quantity"></param>
         /// <returns></returns>
-        public object UpdateItemQuantity([FromBody]int index, int quantity)
+        public object UpdateItemQuantity(JObject jsonData)
         {
+            dynamic json = jsonData;
+            int index = json.index;
+            int quantity = json.quantity;
             _cartService.UpdateItemQuantity(index, quantity);
             return new { index = index, quanity = quantity };
         }

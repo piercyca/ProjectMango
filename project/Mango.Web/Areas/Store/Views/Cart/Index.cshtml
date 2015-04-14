@@ -38,8 +38,9 @@
                 {
 
                     <div class="panel-body">
-                        @foreach (var cartItem in Model.CartModel.Items)
+                        @for (int index = 0; index < Model.CartModel.Items.Count; index++)
                         {
+                            var cartItem = Model.CartModel.Items[index];
                             var product = cartItem.Product;
                             var imageUrl = (cartItem.ProductImages.Any()) ? cartItem.ProductImages.First().Url : product.CanvasImage;
                             <div class="row">
@@ -47,18 +48,24 @@
                                     <img class="img-responsive" src="@imageUrl">
                                 </div>
                                 <div class="col-xs-4">
-                                    <h4 class="product-name"><strong>@cartItem.Product.Name</strong></h4><h4><small>@cartItem.Product.Description</small></h4>
+                                    <h4 class="product-name">
+                                        <strong>@cartItem.Product.Name</strong>
+                                    </h4><h4>
+                                        <small>@cartItem.Product.Description</small>
+                                    </h4>
                                     <h5>Edit this product</h5>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="col-xs-6 text-right">
-                                        <h6><strong>$@cartItem.Product.Price <span class="text-muted">x</span></strong></h6>
+                                        <h6>
+                                            <strong>$@cartItem.Product.Price <span class="text-muted">x</span></strong>
+                                        </h6>
                                     </div>
                                     <div class="col-xs-4">
-                                        <input type="text" class="form-control input-sm" value="@cartItem.Quantity">
+                                        <input type="text" class="form-control input-sm" data-cartaction="UpdateItemQuantity" data-index="@index" value="@cartItem.Quantity">
                                     </div>
                                     <div class="col-xs-2">
-                                        <button type="button" class="btn btn-link btn-xs">
+                                        <button type="button" class="btn btn-link btn-xs" data-index="@index" data-cartaction="RemoveItem">
                                             <span class="glyphicon glyphicon-trash"> </span>
                                         </button>
                                     </div>
@@ -108,3 +115,29 @@
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script src="@Links.Scripts.Areas.Store.Cart.CartService_js"></script>
+    <script>
+        $(window).load(function() {
+            $("button[data-cartaction='RemoveItem']").click(function () {
+                console.log($(this).attr('data-index'));
+                var cartService = new CartService.RemoveItem({
+                    index: $(this).attr('data-index'),
+                    onSuccess: function() {
+                        window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
+                    }
+                });
+            });
+            $("input[data-cartaction='UpdateItemQuantity']").on('change keyup paste', function () {
+                var cartService = new CartService.UpdateItemQuantity({
+                    index: $(this).attr('data-index'),
+                    quantity: $(this).val(),
+                    onSuccess: function () {
+                        window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
+                    }
+                })
+            });
+        });
+    </script>
+}

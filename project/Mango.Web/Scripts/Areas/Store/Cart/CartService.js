@@ -19,65 +19,58 @@ var CartService = {
                 url: "/store/api/cartapi/additem",
                 data: model,
                 success: function(data) {
-                    alert(JSON.stringify(data));
+                    console.log(JSON.stringify(data));
                     if (opt.onSuccess && typeof (opt.onSuccess) === "function") {
                         opt.onSuccess();
                     }
                 },
                 error: function (error) {
                     console.log(error.responseText);
-                    //alert(error.responseText);
                 }
             });
         });
     },
     RemoveItem: function (opt) {
         /*
-         * OPTIONS (opt): onSuccess, controlRemove, index
+         * OPTIONS (opt): onSuccess, index
          */
-        $(opt.controlRemove).click(function() {
-            
-            var model = JSON.stringify({ index: opt.index });
             $.ajax({
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json",
                 url: "/store/api/cartapi/removeitem",
-                data: model,
+                data: opt.index,
                 success: function(data) {
-                    alert(JSON.stringify(data));
+                    console.log(JSON.stringify(data));
                     if (opt.onSuccess && typeof (opt.onSuccess) === "function") {
                         opt.onSuccess();
                     }
                 },
                 error: function(error) {
-                    //alert(error.responseText);
+                    console.log(error.responseText);
                 }
             });
-        });
     },
     UpdateItemQuantity: function(opt) {
         /*
-         * OPTIONS (opt): onSuccess, controlUpdateItemQuantity, index, quanity
+         * OPTIONS (opt): onSuccess, index, quantity
          */
-        $(opt.controlUpdateItemQuantity).click(function() {
-            var model = JSON.stringify({ index: opt.index, quanity: opt.quanity });
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                contentType: "application/json",
-                url: "/store/api/cartapi/updateitemquantity",
-                data: model,
-                success: function(data) {
-                    alert(JSON.stringify(data));
-                    if (opt.onSuccess && typeof (opt.onSuccess) === "function") {
-                        opt.onSuccess();
-                    }
-                },
-                error: function(error) {
-                    //alert(error.responseText);
+        var model = JSON.stringify({ index: opt.index, quantity: opt.quantity });
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: "/store/api/cartapi/updateitemquantity",
+            data: model,
+            success: function(data) {
+                console.log(JSON.stringify(data));
+                if (opt.onSuccess && typeof (opt.onSuccess) === "function") {
+                    opt.onSuccess();
                 }
-            });
+            },
+            error: function(error) {
+                console.log(error.responseText);
+            }
         });
     }
 };
