@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Mvc;
 
 namespace Mango.Web.Areas.Store
 {
@@ -17,6 +18,13 @@ namespace Mango.Web.Areas.Store
             var routes = context.Routes;
 
             routes.LowercaseUrls = true;
+
+            // Web API configuration and services
+            context.Routes.MapHttpRoute(
+                name: "store_DefaultApi",
+                routeTemplate: "store/api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
 
             //context.MapRoute(
             //    "Store_default",

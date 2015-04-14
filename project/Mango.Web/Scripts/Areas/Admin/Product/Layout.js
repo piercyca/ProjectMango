@@ -12,26 +12,26 @@ var LayoutCanvas = (function(options) {
     var pic = new fabric.Rect({ left: 0, top: 0, fill: 'green', width: 340, height: 200, opacity: 0.8, name: 'pic' });
     var text = new fabric.Rect({ left: 0, top: pic.height, fill: 'blue', width: 340, height: 200, opacity: 0.8, name: 'text' });
 
-    if (bgurl == "") {
+    if (bgurl === "") {
         //default
         var bgurl = $('#noimage').val();
     }
 
-    if (canvasConfig != "") {
+    if (canvasConfig !== "") {
         //If the config settings is already set
         var parseConfig = JSON.parse(canvasConfig);
         var imgConfig = parseConfig.layout.pic;
         var textConfig = parseConfig.layout.text;
         if (imgConfig != null) {
-        var pic = new fabric.Rect({ left: imgConfig.left, top: imgConfig.top, fill: 'green', width: imgConfig.width, height: imgConfig.height, opacity: 0.8, name: 'pic' });
-        canvas.add(pic);
+            var pic = new fabric.Rect({ left: imgConfig.left, top: imgConfig.top, fill: 'green', width: imgConfig.width, height: imgConfig.height, opacity: 0.8, name: 'pic' });
+            canvas.add(pic);
         }
 
-        if(textConfig != null){
-        var text = new fabric.Rect({ left: textConfig.left, top: textConfig.top, fill: 'blue', width: textConfig.width, height: textConfig.height, opacity: 0.8, name: 'text' });
-        canvas.add(text);
-        }   
-}
+        if (textConfig != null) {
+            var text = new fabric.Rect({ left: textConfig.left, top: textConfig.top, fill: 'blue', width: textConfig.width, height: textConfig.height, opacity: 0.8, name: 'text' });
+            canvas.add(text);
+        }
+    }
     canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
         //center the background image
         scaleX: 1,
@@ -44,13 +44,13 @@ var LayoutCanvas = (function(options) {
 
     function setConfig() {
         var objCoord = [];
-        canvas.forEachObject(function (obj) {
-            objCoord.push( '"' + obj.name + '": {' +
-                    '"top":' + Math.ceil(obj.top) + ',' +
-                    '"left":' + Math.ceil(obj.left) + ',' +
-                    '"width":' + Math.ceil(obj.getWidth()) + ',' +
-                    '"height":' + Math.ceil(obj.getHeight()) +
-                    '}');
+        canvas.forEachObject(function(obj) {
+            objCoord.push('"' + obj.name + '": {' +
+                '"top":' + Math.ceil(obj.top) + ',' +
+                '"left":' + Math.ceil(obj.left) + ',' +
+                '"width":' + Math.ceil(obj.getWidth()) + ',' +
+                '"height":' + Math.ceil(obj.getHeight()) +
+                '}');
 
             objCoord.join(',');
 
@@ -65,7 +65,7 @@ var LayoutCanvas = (function(options) {
     }
 
     //on click add objects
-    $(options.controlAddPic).click(function () {
+    $(options.controlAddPic).click(function() {
         //remove if exist then add
 
         canvas.remove(pic);
@@ -81,7 +81,7 @@ var LayoutCanvas = (function(options) {
     });
 
     //observe any mouse movement
-    canvas.observe('mouse:move', function () {
+    canvas.observe('mouse:move', function() {
         setConfig();
         $("#contents").html(
             '<div class=\"pic col-sm-6\">' +
@@ -99,7 +99,7 @@ var LayoutCanvas = (function(options) {
     });
 
     //remove selected object
-    $(options.controlRemoveText).click(function () {
+    $(options.controlRemoveText).click(function() {
         var activeO = canvas.getActiveObject();
 
         if (!activeO) {
@@ -160,7 +160,7 @@ var LayoutCanvas = (function(options) {
         });
     };
 
-//download should be productname or id
+    //download should be productname or id
     $(options.controlDownload).click(function() {
         downloadFabric(canvas, 'download');
     });
