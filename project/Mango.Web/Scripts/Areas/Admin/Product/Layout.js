@@ -22,12 +22,12 @@ var LayoutCanvas = (function(options) {
         var parseConfig = JSON.parse(canvasConfig);
         var imgConfig = parseConfig.layout.pic;
         var textConfig = parseConfig.layout.text;
-        if (imgConfig != null) {
+        if (imgConfig !== undefined || imgConfig !== null) {
             var pic = new fabric.Rect({ left: imgConfig.left, top: imgConfig.top, fill: 'green', width: imgConfig.width, height: imgConfig.height, opacity: 0.8, name: 'pic' });
             canvas.add(pic);
         }
 
-        if (textConfig != null) {
+        if (textConfig !== undefined || textConfig !== null) {
             var text = new fabric.Rect({ left: textConfig.left, top: textConfig.top, fill: 'blue', width: textConfig.width, height: textConfig.height, opacity: 0.8, name: 'text' });
             canvas.add(text);
         }

@@ -50,15 +50,25 @@
 
             <span class="section-title">Select a font & Enter Text</span>
 
-            <div class="panel-body">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Font: </span>
-                    <select id="fontselector" class="form-control">
-                        @* TODO: need font loop // should be a separate place in admin for managing fonts / Static for now *@
-                        <option id="dancing+script">Dancing Script</option>
-                        <option id="vast+shadow">Vast Shadow</option>
-                        <option id="open+sans">Open Sans</option>
-                    </select>
+            <div class="panel-body col-lg-12">
+                
+                <div class="btn-group">
+                    <div class="btn-group select" id="select1">
+                        <button id="fontselector" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="selected">Dancing Script</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu option" role="menu">
+                            <li id="dancing+script"><a href="#">Dancing Script</a></li>
+                            <li id="vast+shadow"><a href="#">Vast Shadow</a></li>
+                            <li id="open+sans"><a href="#">Open Sans</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-group" id="alignBtn">
+                        <a id="left" class="btn btn-default" href="#"><i class="fa fa-align-left"></i></a>
+                        <a id="center" class="btn btn-default" href="#"><i class="fa fa-align-center"></i></a>
+                        <a id="right" class="btn btn-default" href="#"><i class="fa fa-align-right"></i></a>
+                    </div>
                 </div>
 
                 <textarea class="panel-body form-control textareafield" placeholder="Enter your desired text here" rows="5" id="addTextField"></textarea>
