@@ -41,7 +41,7 @@
                         @foreach (var cartItem in Model.CartModel.Items)
                         {
                             var product = cartItem.Product;
-                            var imageUrl = (product.ProductImages.Any()) ? product.ProductImages.First().Url : product.CanvasImage;
+                            var imageUrl = (cartItem.ProductImages.Any()) ? cartItem.ProductImages.First().Url : product.CanvasImage;
                             <div class="row">
                                 <div class="col-xs-2">
                                     <img class="img-responsive" src="@imageUrl">

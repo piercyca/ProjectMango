@@ -50,6 +50,9 @@
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\packages\Autofac.Mvc5.3.3.3\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac.Integration.WebApi">
+      <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
@@ -257,7 +260,7 @@
     <Compile Include="Areas\Store\Controllers\CartController.cs" />
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\Controllers\ProductController.cs" />
-    <Compile Include="Areas\Store\Controllers\UtilityController.cs" />
+    <Compile Include="Areas\Store\Controllers\CartApiController.cs" />
     <Compile Include="Areas\Store\Models\AddToCartModel.cs" />
     <Compile Include="Areas\Store\Models\CartCustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\AddressViewModel.cs" />
@@ -485,6 +488,7 @@
     <Content Include="Scripts\Areas\Admin\Product\Layout.js" />
     <Content Include="Scripts\Areas\Admin\Shared\SortableImages.js" />
     <Content Include="Scripts\Areas\Admin\Shared\UploadImage.js" />
+    <Content Include="Scripts\Areas\Store\Cart\CartService.js" />
     <Content Include="Scripts\Areas\Store\Product\Customize-output.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

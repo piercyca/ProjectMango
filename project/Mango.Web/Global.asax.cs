@@ -29,5 +29,10 @@ namespace Mango.Web
                 Response.Redirect(string.Format("https://{0}{1}", Request.ServerVariables["HTTP_HOST"], HttpContext.Current.Request.RawUrl));
             }
         }
+
+        protected void Application_PostAuthorizeRequest()
+        {
+            HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
+        }
     }
 }

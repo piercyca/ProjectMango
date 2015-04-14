@@ -11,7 +11,7 @@ namespace Mango.Core.Web.Checkout
     public interface ICartService
     {
         CartModel GetCartModel();
-        void AddItem(Product product, int quantity, int price, string configuration);
+        void AddItem(Product product, List<ProductImage> productImages,  int quantity, decimal price, string configuration);
         void UpdateItemQuantity(int index, int quantity);
         void RemoveItem(int index);
         PaypalModel ConvertToPaypalModel(); 
@@ -27,13 +27,11 @@ namespace Mango.Core.Web.Checkout
         {
             get
             {
-                var session = (CartModel)HttpContext.Current.Session[_sessionId];
-                if (session == null)
+                if (HttpContext.Current.Session[_sessionId] == null)
                 {
-                    session = new CartModel();
-                    HttpContext.Current.Session[_sessionId] = session;
+                    HttpContext.Current.Session[_sessionId] = new CartModel();
                 }
-                return session;
+                return (CartModel)HttpContext.Current.Session[_sessionId];
             }
             set
             {
@@ -49,11 +47,12 @@ namespace Mango.Core.Web.Checkout
             return _cart;
         }
 
-        public void AddItem(Product product, int quantity, int price, string configuration)
+        public void AddItem(Product product, List<ProductImage> productImages, int quantity, decimal price, string configuration)
         {
             var cartItem = new CartItemModel
             {
                 Product = product,
+                ProductImages = productImages,
                 Quantity = quantity,
                 UnitPrice = price,
                 Configuration = configuration

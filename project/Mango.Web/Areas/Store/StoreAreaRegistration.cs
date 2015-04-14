@@ -22,7 +22,7 @@ namespace Mango.Web.Areas.Store
             // Web API configuration and services
             context.Routes.MapHttpRoute(
                 name: "store_DefaultApi",
-                routeTemplate: "store/api/{controller}/{id}",
+                routeTemplate: "store/api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 

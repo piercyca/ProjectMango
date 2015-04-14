@@ -82,7 +82,8 @@
                 @Html.HiddenFor(model => model.Configuration)
                 @Html.HiddenFor(model => model.CanvasImage)
                 @Html.HiddenFor(model => model.ProductId)
-                <input type="hidden" id="Quantity" value="1"/>
+                @Html.HiddenFor(model => model.Price)
+                <input type="hidden" id="Quantity" name="Quantity" value="1" />
                 <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png"/>
             </div>
         </div>
@@ -112,48 +113,24 @@
     <script src="@Links.Scripts.product_canvas.fabric_min_js"></script>
     <script src="@Links.Scripts.product_canvas.wordwrap_js"></script>
     <script src="@Links.Scripts.Areas.Store.Product.Customize_output_js"></script>
-
+    <script src="@Links.Scripts.Areas.Store.Cart.CartService_js"></script>
     <script>
-        var optionsAddToCart = {
-            controlProductId: '#ProductId',
-            controlPrice: '#Price',
-            controlConfiguration: '#Configuration',
-            controlQuantity: '#Quantity',
-            controlSubmit: '#addToCart',
-            onSuccess: function() {
-                window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
+        $(window).load(function () {
+            
+            var optionsAddToCart = {
+                controlProductId: '#ProductId',
+                controlPrice: '#Price',
+                controlConfiguration: '#Configuration',
+                controlQuantity: '#Quantity',
+                controlSubmit: '#addToCart',
+                onSuccess: function () {
+                    window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
+                }
             }
-        }
-
-        var AddToCart = (function(opt) {
-            $(opt.controlSubmit).click(function() {
-                var modelData = {
-                    ProductId: $(opt.controlProductId).val(),
-                    Quantity: $(opt.controlQuantity),
-                    UnitPrice: $(opt.controlPrice).val(),
-                    Configuration: $(opt.controlConfiguration).val()
-                };
-                var model = JSON.stringify(modelData);
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    contentType: "application/json",
-                    url: "/store/api/utility/addtocart",
-                    data: model,
-                    success: function (data) {
-                        alert(JSON.stringify(data));
-                        if (opt.onSuccess && typeof (opt.onSuccess) === "function") {
-                            opt.onSuccess();
-                        }
-                    },
-                    error: function (error) {
-                        //alert(error.responseText);
-                    }
-                });
-            });
+            var cartService = new CartService.AddItem(optionsAddToCart);
         });
 
-        var addToCart = new AddToCart(optionsAddToCart);
+        
 
     </script>
 }
