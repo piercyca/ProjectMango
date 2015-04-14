@@ -46,6 +46,8 @@ $(function () {
         addText(o);
     }); /*end font and selections*/
 
+
+
     if (bgurl === "") {
         //default
         var bgurl = $('#noimage').val();
@@ -160,8 +162,11 @@ $(function () {
 
     //TEXT / APPLY SELECTED FONT
     function addText(o) {
+        var fontSelection = $('#fontselector span.selected').html();
         var addTextField = $('#addTextField').val();
+        //NOTE: For applying text to canvas -- get from inputs
 
+        //TODO: Fonts should be placed here
         var unformatted = new fabric.Text(addTextField, {
             name: 'text',
             fill: 'white',

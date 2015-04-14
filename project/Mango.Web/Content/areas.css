@@ -88,3 +88,10 @@ h2 span.small {
 .selected {padding-right:10px;}
 .option {width:auto;}
 
+#fontOptions.open > .dropdown-menu {
+  display: block;
+  height: 160px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+

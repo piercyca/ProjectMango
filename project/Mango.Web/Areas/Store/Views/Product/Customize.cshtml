@@ -53,14 +53,18 @@
             <div class="panel-body col-lg-12">
                 
                 <div class="btn-group">
-                    <div class="btn-group select" id="select1">
+                    <div class="btn-group select" id="fontOptions">
                         <button id="fontselector" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <span class="selected">Dancing Script</span> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu option" role="menu">
-                            <li id="dancing+script"><a href="#">Dancing Script</a></li>
-                            <li id="vast+shadow"><a href="#">Vast Shadow</a></li>
-                            <li id="open+sans"><a href="#">Open Sans</a></li>
+                            @{ string[] fontList = { "Dancing Script", "Vast Shadow", "Open Sans", "Arbutus Slab", "Bilbo Swash Caps", "Buenard", "Cookie", "Droid Serif", "Great Vibes", "Italianno", "Libre Baskerville", "Miss Fajardose", "Monsieur La Doulaise", "Mr De Haviland", "Mrs Saint Delafield", "Niconne", "Oswald", "Parisienne", "Petit Formal Script", "Pinyon Script", "Playball", "Qwigley", "Rochester", "Rouge Script", "Ruthie", "Sancreek", "Tangerine" };
+
+                             foreach (var font in fontList)
+                                {
+                                <li id="@font.ToLower().Replace(" ", "+")"><a href="#">@font</a></li>
+                                }
+                             }
                         </ul>
                     </div>
 
