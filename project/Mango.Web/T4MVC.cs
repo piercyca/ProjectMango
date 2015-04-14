@@ -134,6 +134,14 @@ namespace Links
                 public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                 public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class Cart {
+                    private const string URLPATH = "~/Scripts/Areas/Store/Cart";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string CartService_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/CartService.min.js") ? Url("CartService.min.js") : Url("CartService.js");
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class Product {
                     private const string URLPATH = "~/Scripts/Areas/Store/Product";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
@@ -366,6 +374,13 @@ namespace Links
                 }
                 public static partial class Store 
                 {
+                    public static partial class Cart 
+                    {
+                        public static class Assets
+                        {
+                            public const string CartService_js = "~/Scripts/Areas/Store/Cart/CartService.js"; 
+                        }
+                    }
                     public static partial class Product 
                     {
                         public static class Assets
