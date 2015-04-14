@@ -15,26 +15,25 @@ $(function () {
     var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();
 
-    if (bgurl == "") {
+    if (bgurl === "") {
         //default
         var bgurl = $('#noimage').val();
     }
 
-    if (canvasConfig != "") {
+    if (canvasConfig !== "") {
         //If the config settings is already set
         var parseConfig = JSON.parse(canvasConfig);
         var imgConfig = parseConfig.layout.pic;
         var textConfig = parseConfig.layout.text;
     }
 
-    if (textConfig == null) {
+    if (textConfig === undefined || textConfig === null) {
         $('#textOptions').hide();
     }
-    if (imgConfig == null) {
+    if (imgConfig === undefined || imgConfig === null) {
         $('#logos').hide();
     }
 
-        //TODO: this is an example -- the final version should grab the image from the admin tool
         canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
             //center the background image (minus 8 for padding ?)
             scaleX: 1,
@@ -69,7 +68,7 @@ $(function () {
 
         var image = new fabric.Image(imgObj);
 
-        if (imgConfig == null) return;
+        if (imgConfig === undefined || imgConfig === null) return;
         image.set({
             //TODO: using and offsetting center for now but NEED to get image position coord from db
             name: 'logo',
@@ -112,51 +111,6 @@ $(function () {
     });
 
 
-    //TEXT / APPLY SELECTED FONT
-    function addText() {
-        var fontSelection = $('#fontselector').val();
-        var addTextField = $('#addTextField').val();
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'http://fonts.googleapis.com/css?family=' + fontSelection;
-        $('head').append(link);
-
-        //NOTE: For applying text to canvas -- get from inputs
-        //TODO: Fonts should be placed here
-        var unformatted = new fabric.Text(addTextField, {
-            name: 'text',
-            fill: 'white',
-            fontFamily: fontSelection,
-            fontSize: 25,
-            top: textConfig.top,
-            left:  textConfig.width / 2 + textConfig.left,
-            originX: 'center'
-        });
-
-
-        //need to fit within coordinates
-        //TODO: change height and width to textcoord h/w and font selection
-        var formatted = wrapCanvasText(unformatted, canvas, textConfig.width, textConfig.height, 'left');
-        formatted.name = 'text';
-        formatted.selectable = false;
-
-        var newText = canvas.getItemByName(unformatted.name);
-
-        if (!newText) {
-            canvas.add(formatted);
-        }
-        else {
-            canvas.remove(newText);
-            canvas.add(formatted);
-        }
-    }
-
-    canvas.renderAll();
-
-
-    //TODO: Load available fonts from db
-    //TODO: load available logos from db
 
     //apply new text on change
     $("#addTextField").on('keyup', function () {
@@ -180,5 +134,63 @@ $(function () {
         downloadFabric(canvas, 'download');
     });
 
+
+    //selections
+    $('body').on('click', '.option li', function () {
+        var i = $(this).parents('.select').attr('id');
+        var v = $(this).children().text();
+        var o = $(this).attr('id');
+        $('#' + i + ' .selected').attr('id', o);
+        $('#' + i + ' .selected').text(v);
+        addText();
+    });
+
+    $('body').on('click', '#alignBtn a', function () {
+        var o = $(this).attr('id');
+        $('#' + o + ' .selected').attr('id', o);
+        addText(o);
+    });
+
+    //TEXT / APPLY SELECTED FONT
+    function addText(o) {
+        var fontSelection = $('#fontselector span.selected').html();
+        var addTextField = $('#addTextField').val();
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'http://fonts.googleapis.com/css?family=' + fontSelection;
+        $('head').append(link);
+
+        //NOTE: For applying text to canvas -- get from inputs
+
+        //TODO: Fonts should be placed here
+        var unformatted = new fabric.Text(addTextField, {
+            name: 'text',
+            fill: 'white',
+            fontFamily: fontSelection,
+            fontSize: 25,
+            top: textConfig.top,
+            left: textConfig.width / 2 + textConfig.left,
+            originX: 'center'
+        });
+
+
+        //fits coords
+        var formatted = wrapCanvasText(unformatted, canvas, textConfig.width, textConfig.height, o);
+        formatted.name = 'text';
+        formatted.orginX = 'center';
+        formatted.selectable = true;
+
+        var newText = canvas.getItemByName(unformatted.name);
+        
+
+        if (!newText) {
+            canvas.add(formatted);
+        }
+        else {
+            canvas.remove(newText);
+            canvas.add(formatted);
+        }
+    }
 
 });
