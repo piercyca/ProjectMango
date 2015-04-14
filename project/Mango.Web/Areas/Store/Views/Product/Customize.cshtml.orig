@@ -127,7 +127,41 @@
                     window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
                 }
             }
+<<<<<<< HEAD
             var cartService = new CartService.AddItem(optionsAddToCart);
+=======
+        }
+
+        var AddToCart = (function(opt) {
+            $(opt.controlSubmit).click(function() {
+                var modelData = {
+                    ProductId: $(opt.controlProductId).val(),
+                    Quantity: $(opt.controlQuantity).val(),
+                    UnitPrice: $(opt.controlPrice).val(),
+                    Configuration: $(opt.controlConfiguration).val()
+                };
+                var model = JSON.stringify(modelData);
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json",
+                    url: "/store/api/utility/addtocart",
+                    data: model,
+                    success: function (data) {
+                        alert(JSON.stringify(data));
+                        if (opt.onSuccess && typeof (opt.onSuccess) === "function") {
+                            opt.onSuccess();
+                        }
+                    },
+                    error: function (error) {
+                        //alert(error.responseText);
+                    }
+                });
+            });
+>>>>>>> 29a8db187dd4492b9845dcd4f3ed32cd8a0e9167
         });
+
+        
+
     </script>
 }
