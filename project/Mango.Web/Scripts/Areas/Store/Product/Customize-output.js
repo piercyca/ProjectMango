@@ -22,7 +22,7 @@ $(function () {
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'http://fonts.googleapis.com/css?family=' + v;
+        link.href = 'https://fonts.googleapis.com/css?family=' + v;
         $('head').append(link);
         $(this).css("font-family", v);
     });
