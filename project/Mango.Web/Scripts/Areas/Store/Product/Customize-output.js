@@ -15,6 +15,37 @@ $(function () {
     var canvasConfig = $('#Configuration').val();
     var bgurl = $('#CanvasImage').val();
 
+    //Font and Selections
+    //style preload and style font options
+    $(".option li a").each(function (index) {
+        var v = $(this).html();
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'http://fonts.googleapis.com/css?family=' + v;
+        $('head').append(link);
+        $(this).css("font-family", v);
+    });
+
+    //style selected fonts
+    var fontSelection = $('#fontselector span.selected').html();
+    $('#fontselector span.selected').css("font-family", fontSelection);
+
+    //selections
+    $('body').on('click', '.option li', function () {
+        var i = $(this).parents('.select').attr('id');
+        var v = $(this).children().text();
+        var o = $(this).attr('id');
+        $('#' + i + ' .selected').attr('id', o).text(v).css("font-family", v);
+        addText();
+    });
+
+    $('body').on('click', '#alignBtn a', function () {
+        var o = $(this).attr('id');
+        $('#' + o + ' .selected').attr('id', o);
+        addText(o);
+    }); /*end font and selections*/
+
     if (bgurl === "") {
         //default
         var bgurl = $('#noimage').val();
@@ -94,12 +125,6 @@ $(function () {
             image.scaleToWidth(imgConfig.width * .75);
         }
      
-
-        //TODO: get size from db
-        //image.scaleToWidth(imgConfig.width * .75);
-        //image.scaleToHeight(imgConfig.height);
-
-
         //get name in order to overwrite the logo object
         var newImg = canvas.getItemByName(image.name);
         if (!newImg)
@@ -109,8 +134,6 @@ $(function () {
             canvas.add(image);
         }
     });
-
-
 
     //apply new text on change
     $("#addTextField").on('keyup', function () {
@@ -135,35 +158,10 @@ $(function () {
     });
 
 
-    //selections
-    $('body').on('click', '.option li', function () {
-        var i = $(this).parents('.select').attr('id');
-        var v = $(this).children().text();
-        var o = $(this).attr('id');
-        $('#' + i + ' .selected').attr('id', o);
-        $('#' + i + ' .selected').text(v);
-        addText();
-    });
-
-    $('body').on('click', '#alignBtn a', function () {
-        var o = $(this).attr('id');
-        $('#' + o + ' .selected').attr('id', o);
-        addText(o);
-    });
-
     //TEXT / APPLY SELECTED FONT
     function addText(o) {
-        var fontSelection = $('#fontselector span.selected').html();
         var addTextField = $('#addTextField').val();
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'http://fonts.googleapis.com/css?family=' + fontSelection;
-        $('head').append(link);
 
-        //NOTE: For applying text to canvas -- get from inputs
-
-        //TODO: Fonts should be placed here
         var unformatted = new fabric.Text(addTextField, {
             name: 'text',
             fill: 'white',
