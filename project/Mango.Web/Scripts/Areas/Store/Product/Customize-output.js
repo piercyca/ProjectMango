@@ -70,6 +70,7 @@ $(function () {
 
     if ((!textConfig) && (!imgConfig)) {
         $('#textOptions').show(); $('#logos').show();
+        $('h3:first').append('<div class="warning"><i class="fa fa-exclamation-triangle fa-fw"></i><strong>The Live Preview is unavailable.</strong> However, you can still order this product.</div>');
     }
 
         canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {

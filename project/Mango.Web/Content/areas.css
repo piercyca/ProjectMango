@@ -64,6 +64,10 @@ h2 span.small {
 .text {
     color: blue;
 }
+.warning {
+    color: goldenrod; padding: 10px;
+    font-size: 14px;
+}
 
 .panel {
     overflow: hidden;
