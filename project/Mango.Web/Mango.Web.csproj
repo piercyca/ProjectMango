@@ -353,8 +353,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\02-granite platter state ga.png" />
-    <Content Include="Content\images\04-granite welcome sign.png" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\alumni.png" />
     <Content Include="Content\images\coaster leather.png" />
@@ -362,15 +360,12 @@
     <Content Include="Content\images\coffee mug black.png" />
     <Content Include="Content\images\coffee mug White.png" />
     <Content Include="Content\images\collegiateproducts.png" />
-    <Content Include="Content\images\cuttingboard.png" />
-    <Content Include="Content\images\family plaque.png" />
     <Content Include="Content\images\Glass Beer Mug Georgia.png" />
     <Content Include="Content\images\Glass Coffee Cup Georgia.png" />
     <Content Include="Content\images\glass coffee cup.png" />
     <Content Include="Content\images\glass cutting board georgia shape.png" />
     <Content Include="Content\images\glass mug handle.png" />
     <Content Include="Content\images\Glass Rocks Georgia.png" />
-    <Content Include="Content\images\granite cheese board georgia shape.png" />
     <Content Include="Content\images\gtech.png" />
     <Content Include="Content\images\logo-605x182.jpg" />
     <Content Include="Content\images\logo-93x28.jpg" />
@@ -464,8 +459,6 @@
     <Content Include="Areas\Admin\Views\Organization\EditorTemplates\OrganizationImageFormViewModel.cshtml" />
     <Content Include="Areas\Store\Views\Cart\Account.cshtml" />
     <Content Include="Areas\Store\Views\Cart\Customer.cshtml" />
-    <Content Include="Areas\Store\Views\Cart\Login.cshtml" />
-    <Content Include="Areas\Store\Views\Cart\Register.cshtml" />
     <Content Include="Areas\Store\Views\Cart\EditorTemplates\LoginViewModel.cshtml" />
     <Content Include="Areas\Admin\Views\Order\List.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
