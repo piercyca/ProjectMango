@@ -60,11 +60,16 @@ $(function () {
         var textConfig = parseConfig.layout.text;
     }
 
-    if (textConfig === undefined || textConfig === null) {
+
+    if (!textConfig) {
         $('#textOptions').hide();
     }
-    if (imgConfig === undefined || imgConfig === null) {
+    if (!imgConfig) {
         $('#logos').hide();
+    }
+
+    if ((!textConfig) && (!imgConfig)) {
+        $('#textOptions').show(); $('#logos').show();
     }
 
         canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
@@ -101,7 +106,7 @@ $(function () {
 
         var image = new fabric.Image(imgObj);
 
-        if (imgConfig === undefined || imgConfig === null) return;
+        if (!imgConfig) return;
         image.set({
             //TODO: using and offsetting center for now but NEED to get image position coord from db
             name: 'logo',
@@ -166,33 +171,35 @@ $(function () {
         var addTextField = $('#addTextField').val();
         //NOTE: For applying text to canvas -- get from inputs
 
-        //TODO: Fonts should be placed here
-        var unformatted = new fabric.Text(addTextField, {
-            name: 'text',
-            fill: 'white',
-            fontFamily: fontSelection,
-            fontSize: 25,
-            top: textConfig.top,
-            left: textConfig.width / 2 + textConfig.left,
-            originX: 'center'
-        });
+        if ((textConfig) && (imgConfig)) {
+            //TODO: Fonts should be placed here
+            var unformatted = new fabric.Text(addTextField, {
+                name: 'text',
+                fill: 'white',
+                fontFamily: fontSelection,
+                fontSize: 25,
+                top: textConfig.top,
+                left: textConfig.width / 2 + textConfig.left,
+                originX: 'center'
+            });
 
 
-        //fits coords
-        var formatted = wrapCanvasText(unformatted, canvas, textConfig.width, textConfig.height, o);
-        formatted.name = 'text';
-        formatted.orginX = 'center';
-        formatted.selectable = true;
+            //fits coords
+            var formatted = wrapCanvasText(unformatted, canvas, textConfig.width, textConfig.height, o);
+            formatted.name = 'text';
+            formatted.orginX = 'center';
+            formatted.selectable = true;
 
-        var newText = canvas.getItemByName(unformatted.name);
-        
+            var newText = canvas.getItemByName(unformatted.name);
 
-        if (!newText) {
-            canvas.add(formatted);
-        }
-        else {
-            canvas.remove(newText);
-            canvas.add(formatted);
+
+            if (!newText) {
+                canvas.add(formatted);
+            }
+            else {
+                canvas.remove(newText);
+                canvas.add(formatted);
+            }
         }
     }
 
