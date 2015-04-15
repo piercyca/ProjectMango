@@ -24,9 +24,19 @@ namespace Mango.Web
 
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
-            if (!HttpContext.Current.Request.IsLocal && !HttpContext.Current.Request.IsSecureConnection)
+            if (!HttpContext.Current.Request.IsLocal)
             {
-                Response.Redirect(string.Format("https://{0}{1}", Request.ServerVariables["HTTP_HOST"], HttpContext.Current.Request.RawUrl));
+                var httpHost = Request.ServerVariables["HTTP_HOST"];
+                var domainName = "etchieve.com";
+                if (httpHost != domainName)
+                {
+                    Response.Redirect(string.Format("https://{0}{1}", domainName, HttpContext.Current.Request.RawUrl));
+                }
+
+                if (!HttpContext.Current.Request.IsSecureConnection)
+                {
+                    Response.Redirect(string.Format("https://{0}{1}", httpHost, HttpContext.Current.Request.RawUrl));
+                }  
             }
         }
 
