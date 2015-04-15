@@ -191,6 +191,8 @@ hr {
     text-overflow: ellipsis;
     background: #EDEFF1;
     border-top: 1px solid #ddd;
+    white-space:nowrap;
+    overflow: hidden;
     z-index: 52;
 }
 
