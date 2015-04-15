@@ -208,8 +208,6 @@ namespace Links
             private const string URLPATH = "~/Content/images";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-            public static readonly string _02_granite_platter_state_ga_png = Url("02-granite platter state ga.png");
-            public static readonly string _04_granite_welcome_sign_png = Url("04-granite welcome sign.png");
             public static readonly string ajax_loader_gif = Url("ajax-loader.gif");
             public static readonly string alumni_png = Url("alumni.png");
             public static readonly string background_png = Url("background.png");
@@ -218,15 +216,12 @@ namespace Links
             public static readonly string coffee_mug_black_png = Url("coffee mug black.png");
             public static readonly string coffee_mug_White_png = Url("coffee mug White.png");
             public static readonly string collegiateproducts_png = Url("collegiateproducts.png");
-            public static readonly string cuttingboard_png = Url("cuttingboard.png");
-            public static readonly string family_plaque_png = Url("family plaque.png");
             public static readonly string Glass_Beer_Mug_Georgia_png = Url("Glass Beer Mug Georgia.png");
             public static readonly string Glass_Coffee_Cup_Georgia_png = Url("Glass Coffee Cup Georgia.png");
             public static readonly string glass_coffee_cup_png = Url("glass coffee cup.png");
             public static readonly string glass_cutting_board_georgia_shape_png = Url("glass cutting board georgia shape.png");
             public static readonly string glass_mug_handle_png = Url("glass mug handle.png");
             public static readonly string Glass_Rocks_Georgia_png = Url("Glass Rocks Georgia.png");
-            public static readonly string granite_cheese_board_georgia_shape_png = Url("granite cheese board georgia shape.png");
             public static readonly string gtech_png = Url("gtech.png");
             public static readonly string logo_605x182_jpg = Url("logo-605x182.jpg");
             public static readonly string logo_93x28_jpg = Url("logo-93x28.jpg");
