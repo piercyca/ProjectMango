@@ -108,203 +108,226 @@ namespace Mango.Web.Areas.Store.Controllers
             return View(addressesViewModel);
         }
 
-        #region Checkout
-
         public virtual ActionResult Cart()
         {
             //Display all the information
-            PaypalModel model = new PaypalModel
+            PaypalCartModel cartModel = new PaypalCartModel
             {
                 BuyerName = "Pratik Bhoir",
                 ShippingAddress = "Mumbai. Pin - 602304",
-                Cart = new List<PayPalCartItemModel>
+                CartItems = new List<PayPalCartItemModel>
                 {
                     new PayPalCartItemModel {ProductId = 1, ProductName = "Product 1", Quantity = 1, UnitPrice = 3},
                     new PayPalCartItemModel {ProductId = 2, ProductName = "Product 2", Quantity = 2, UnitPrice = 2}
                 }
             };
 
-            Session["PayPalModel"] = model;
-            Session["payment_amt"] = model.TotalAmount;
-            return View(model);
+            Session["PayPalModel"] = cartModel;
+            Session["payment_amt"] = cartModel.TotalAmount;
+            return View(cartModel);
         }
 
-        public virtual ActionResult CheckoutStart()
+        #region Paypal
+
+        // PayPal
+        public ActionResult CheckoutWithPayPal()
         {
-            PayPalNvpApiCaller payPalCaller = new PayPalNvpApiCaller();
+            var cart = _cartService.GetCartModel();
+            if (!cart.Items.Any())
+            {
+                ModelState.AddModelError("", "Sorry, your cart is empty!");
+                return View("Completed");
+            }
+            
+
+                int orderID = StoreOrderAndOrderItems(cart);
+                UserSessionData.OrderID = orderID;
+
+                NVPAPICaller payPalCaller = new NVPAPICaller();
+                payPalCaller.SetCredentials();
+
+                string retMsg = "";
+                string token = "";
+                decimal amtVal = cart.ComputeTotalValue();
+                string amt = amtVal.ToString();
+                bool ret = payPalCaller.ShortcutExpressCheckout(cart, amt, ref token, ref retMsg);
+
+            if (ret)
+            {
+
+                UserSessionData.Token = token;
+                UserSessionData.PaymentAmount = amtVal;
+
+                return Redirect(retMsg);
+            }
+            else
+            {
+                return View("Completed");
+            }
+
+        }
+
+        public ViewResult CheckoutReview()
+        {
+
+            int orderID;
+
+            string firstName, lastName, company, email,
+                streetLine1, streetLine2, streetLine3,
+                city, postalCode, county, country;
+
             string retMsg = "";
             string token = "";
+            decimal paymentAmountOnCheckout = 0;
+            string PayerID = "";
 
-            PaypalModel model = new PaypalModel();
+            NVPAPICaller payPalCaller = new NVPAPICaller();
+            payPalCaller.SetCredentials();
 
+            NVPCodec decoder = new NVPCodec();
 
-            if (Session["PayPalModel"] != null && Session["payment_amt"] != null)
+            token = UserSessionData.Token.ToString();
+            paymentAmountOnCheckout = UserSessionData.PaymentAmount;
+
+            bool ret = payPalCaller.GetCheckoutDetails(token, ref PayerID, ref decoder, ref retMsg);
+            if (ret)
             {
-                model = (PaypalModel)Session["PayPalModel"];
-                string amt = Session["payment_amt"].ToString();
-                if (model.Cart.Count > 0)
+
+                // Verify total payment amount as set on CheckoutStart.aspx.
+                try
                 {
-                    bool ret = payPalCaller.ShortcutExpressCheckout(model, ref token, ref retMsg);
-                    if (ret)
+                    decimal paymentAmoutFromPayPal = Convert.ToDecimal(decoder["AMT"].ToString());
+                    if (paymentAmountOnCheckout != paymentAmoutFromPayPal)
                     {
-                        Session["token"] = token;
-                        return Redirect(retMsg);
-                    }
-                    else
-                    {
-                        TempData["PayPalError"] = retMsg;
-                        return RedirectToAction("CheckoutError");
+                        return View("CheckoutError");
                     }
                 }
-                else
+                catch (Exception)
                 {
-                    TempData["PayPalError"] = "Cart is Empty. Please add some Items to the cart.";
-                    return RedirectToAction("CheckoutError");
+                    return View("CheckoutError");
                 }
+
+
+                //Session information
+                UserSessionData.PayerID = PayerID;
+                orderID = UserSessionData.OrderID;
+
+                //Update the order with PayPal Informatin
+                company = string.Empty; city = string.Empty; county = string.Empty;
+                //OrderDate = Convert.ToDateTime(decoder["TIMESTAMP"].ToString());
+                //Username = User.Identity.Name;
+                firstName = decoder["FIRSTNAME"].ToString();
+                lastName = decoder["LASTNAME"].ToString();
+                streetLine1 = decoder["SHIPTOSTREET"].ToString();
+                streetLine2 = decoder["SHIPTOCITY"].ToString();
+                streetLine3 = decoder["SHIPTOSTATE"].ToString();
+                postalCode = decoder["SHIPTOZIP"].ToString();
+                country = decoder["SHIPTOCOUNTRYCODE"].ToString();
+                email = decoder["EMAIL"].ToString();
+                //Total = Convert.ToDecimal(decoder["AMT"].ToString());
+                orderID = UpdateOrderShipTo(orderID, firstName, lastName, company, email,
+                    streetLine1, streetLine2, streetLine3,
+                    city, postalCode, county, country);
+
+                //Prepare for display
+                PayPalReview ppReview = new PayPalReview();
+                ppReview.OrderID = orderID.ToString();
+                ppReview.OrderDate = decoder["TIMESTAMP"].ToString();
+                ppReview.Username = User.Identity.Name;
+                ppReview.FirstName = firstName;
+                ppReview.LastName = lastName;
+                ppReview.Address = streetLine1;
+                ppReview.City = streetLine2;
+                ppReview.State = streetLine3;
+                ppReview.PostalCode = postalCode;
+                ppReview.Email = email;
+                ppReview.TotalAmount = paymentAmountOnCheckout.ToString();
+                ViewBag.PayPalReview = ppReview;
+
+                return View("CheckoutReviewOrder");
             }
             else
             {
-                TempData["PayPalError"] = "Amount Missing";
-                return RedirectToAction("CheckoutError");
+                return View("CheckoutError");
             }
         }
-
-        public virtual ActionResult CheckoutReview()
+        public ViewResult CheckoutReviewOrderCont()
         {
-            if (Session["token"] != null)
+
+            int orderID;
+            int currentOrderId = 0;
+            string retMsg = "";
+            string token = "";
+            string finalPaymentAmount = "";
+            string PayerID = "";
+
+            NVPAPICaller payPalCaller = new NVPAPICaller();
+            payPalCaller.SetCredentials();
+
+            NVPCodec decoder = new NVPCodec();
+
+
+            token = UserSessionData.Token.ToString();
+            finalPaymentAmount = UserSessionData.PaymentAmount.ToString();
+            PayerID = UserSessionData.PayerID;
+            currentOrderId = UserSessionData.OrderID;
+
+            bool ret = payPalCaller.DoCheckoutPayment(finalPaymentAmount, token, PayerID, ref decoder, ref retMsg);
+            if (ret)
             {
-                PayPalNvpApiCaller payPalCaller = new PayPalNvpApiCaller();
-                string retMsg = "";
-                string token = "";
-                string payerId = "";
-                var decoder = new PayPalNvpCodec();
-                token = Session["token"].ToString();
+                // Retrieve PayPal confirmation value.
+                string PaymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"].ToString();
 
-                bool ret = payPalCaller.GetCheckoutDetails(token, ref payerId, ref decoder, ref retMsg);
-                if (ret)
+                //Update the order 
+                orderID = UserSessionData.OrderID;
+                orderID = UpdateOrderConfirmation(orderID, PaymentConfirmation);
+
+                //Reset session data
+                UserSessionData.PaymentAmount = 0;
+                UserSessionData.OrderID = 0;
+
+                ViewBag.PaymentConfirmation = PaymentConfirmation;
+
+                //Reduce the quantity of products in stock
+                IEnumerable<OrderItem> orderItems = orderItemRepository.OrderItems.Where(x => x.OrderID == orderID);
+                foreach (var orderItem in orderItems)
                 {
-                    Session["payerId"] = payerId;
-                    //Add all the order Data to the DB 
-
-                    // Set OrderId.
-                    Session["currentOrderId"] = 123;//myOrder.OrderId;
-
-                    //Display all the information
-                    var model = (PaypalModel)Session["PayPalModel"];
-                    return View(model);
+                    UpdateProductQuantity(orderItem.ProductID, orderItem.Quantity);
                 }
-                else
-                {
-                    TempData["PayPalError"] = "Amount Missing";
-                    return RedirectToAction("CheckoutError");
-                    //Response.Redirect("CheckoutError.aspx?" + retMsg);
-                }
+
+                return View("CheckoutReviewTrans");
             }
             else
             {
-                TempData["PayPalError"] = "Token is not generated or Session is destroyed. Please try checking out again.";
-                return RedirectToAction("CheckoutError");
+                return View("CheckoutError");
             }
         }
-
-
-        public virtual ActionResult CheckoutComplete()
+        public ViewResult CheckoutReviewTransCont()
         {
-            //// Verify user has completed the checkout process.
-            //if ((string)Session["userCheckoutCompleted"] != "true")
-            //{
-            //    Session["userCheckoutCompleted"] = string.Empty;
-            //    Response.Redirect("CheckoutError.aspx?" + "Desc=Unvalidated%20Checkout.");
-            //}
-
-            if (Session["payerId"] != null)
-            {
-                var payPalCaller = new PayPalNvpApiCaller();
-                string retMsg = "";
-                string token = "";
-                string finalPaymentAmount = "";
-                string payerId = "";
-                var decoder = new PayPalNvpCodec();
-
-                token = Session["token"].ToString();
-                payerId = Session["payerId"].ToString();
-                finalPaymentAmount = Session["payment_amt"].ToString();
-
-                bool ret = payPalCaller.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
-                if (ret)
-                {
-                    // Retrieve PayPal confirmation value.
-                    var paymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"];
-
-                    ViewBag.TransactionId = paymentConfirmation;
-
-                    // Get the current order id.
-                    int currentOrderId = -1;
-                    if (Session["currentOrderId"] != null)
-                    {
-                        currentOrderId = Convert.ToInt32(Session["currentOrderID"]);
-                    }
-                    ViewBag.OrderId = currentOrderId;
-
-                    ////Save the transaction Status to the database
-
-                    //// Clear shopping cart.
-
-                    //Clear order id.
-                    Session["currentOrderId"] = null;
-                    return View();
-                }
-                else
-                {
-                    TempData["PayPalError"] = retMsg;
-                    return RedirectToAction("CheckoutError");
-                }
-            }
-            else
-            {
-                TempData["PayPalError"] = "Payer Id is blank. So, There was some error while processing. Please Try again Later.";
-                return RedirectToAction("CheckoutError");
-            }
+            return View("Completed");
         }
 
-        public virtual ActionResult CheckoutCancel()
+        public ViewResult CheckoutCancel()
         {
-            //// Clear shopping cart.
-            Session["PayPalModel"] = null;
-            Session["payment_amt"] = null;
-            Session["payerId"] = null;
-            Session["token"] = null;
-
-            //Clear order id.
-            Session["currentOrderId"] = null;
-            return View();
+            return View("CheckoutCancel");
         }
 
-
-        public virtual ActionResult CheckoutError()
+        public ViewResult CheckoutCancelContinue()
         {
-            //// Clear shopping cart.
-            Session["PayPalModel"] = null;
-            Session["payment_amt"] = null;
-            Session["payerId"] = null;
-            Session["token"] = null;
-            //Clear order id.
-            Session["currentOrderId"] = null;
-
-            //Parsing the error
-            if (TempData["PayPalError"] != null)
-            {
-                string queryString = Convert.ToString(TempData["PayPalError"]);
-                queryString = "http://www.example.com?" + queryString; //padded with fake url to convert it to uri
-                NameValueCollection qscoll = HttpUtility.ParseQueryString(new Uri(queryString).Query);
-
-                @ViewBag.Error = qscoll["ErrorCode"] + ": " + qscoll["Desc"];
-                @ViewBag.Desc = qscoll["Desc2"];
-
-            }
-            return View();
-
+            return View("Completed");
         }
+
+        public ViewResult CheckoutErrorContinue()
+        {
+            return View("Completed");
+        }
+
+        public ViewResult CheckoutCompleteContinue()
+        {
+            return View("Completed");
+        }
+
+        // End PayPal
 
         #endregion
 

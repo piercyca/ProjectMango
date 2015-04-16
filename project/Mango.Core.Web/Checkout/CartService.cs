@@ -14,7 +14,7 @@ namespace Mango.Core.Web.Checkout
         void AddItem(Product product, List<ProductImage> productImages,  int quantity, decimal price, string configuration);
         void UpdateItemQuantity(int index, int quantity);
         void RemoveItem(int index);
-        PaypalModel ConvertToPaypalModel(); 
+        PaypalCartModel ConvertToPaypalModel(); 
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ namespace Mango.Core.Web.Checkout
             _cart.Items.RemoveAt(index);
         }
 
-        public PaypalModel ConvertToPaypalModel()
+        public PaypalCartModel ConvertToPaypalModel()
         {
             return _cart.ConvertToPaypalModel();
         }

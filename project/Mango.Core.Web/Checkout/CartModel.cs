@@ -42,9 +42,9 @@ namespace Mango.Core.Web.Checkout
         /// Convert to Paypal Model
         /// </summary>
         /// <returns></returns>
-        public PaypalModel ConvertToPaypalModel()
+        public PaypalCartModel ConvertToPaypalModel()
         {
-            var paypalModel = new PaypalModel();
+            var paypalModel = new PaypalCartModel();
             foreach (var item in Items)
             {
                 var paypalItemModel = new PayPalCartItemModel
@@ -54,7 +54,7 @@ namespace Mango.Core.Web.Checkout
                     Quantity = item.Quantity,
                     UnitPrice = item.UnitPrice
                 };
-                paypalModel.Cart.Add(paypalItemModel);
+                paypalModel.CartItems.Add(paypalItemModel);
             }
             return paypalModel;
         }

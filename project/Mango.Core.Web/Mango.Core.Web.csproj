@@ -89,8 +89,9 @@
     <Compile Include="AutoMapperConverters\PagedListConverter.cs" />
     <Compile Include="Checkout\CartModel.cs" />
     <Compile Include="Checkout\CartService.cs" />
-    <Compile Include="Checkout\PayPal.cs" />
-    <Compile Include="Checkout\PayPalModel.cs" />
+    <Compile Include="Checkout\PayPalNvpApiCaller.cs" />
+    <Compile Include="Checkout\PaypalCartModel.cs" />
+    <Compile Include="Checkout\PayPalNVPCodec.cs" />
     <Compile Include="CustomValidators\UniqueValidatorAttribute.cs" />
     <Compile Include="CustomValidators\UrlSlugValidatorAttribute.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
@@ -100,7 +101,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
