@@ -36,13 +36,13 @@ namespace Mango.Web
             bundles.Add(new StyleBundle("~/Content/area_admin").Include(
                 "~" + Links.Content.bootstrap_css,
                 "~" + Links.Content.areas_css,
-                "~" + Links.Content.area_admin_css));
+                "~" + Links.Content.area_admin_css).Include("~/Content/font-awesome.css", new CssRewriteUrlTransform()));
 
             // Area: Store
             bundles.Add(new StyleBundle("~/Content/area_store").Include(
                 "~" + Links.Content.bootstrap_css,
                 "~" + Links.Content.areas_css,
-                "~" + Links.Content.area_store_css));
+                "~" + Links.Content.area_store_css).Include("~/Content/font-awesome.css", new CssRewriteUrlTransform()));
 
             #endregion
         }

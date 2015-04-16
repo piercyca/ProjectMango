@@ -347,6 +347,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\background.png" />
     <Content Include="Content\images\noimageavail.png" />
     <Content Include="Content\shared.css" />
@@ -423,6 +425,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\area_admin.css" />
@@ -469,6 +472,11 @@
     <Content Include="Areas\Store\Views\Cart\CheckoutCancel.cshtml" />
     <Content Include="Areas\Store\Views\Cart\CheckoutComplete.cshtml" />
     <Content Include="Areas\Store\Views\Cart\CheckoutReview.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\mango-web %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web.pubxml" />
     <None Include="Properties\Settings.settings">
