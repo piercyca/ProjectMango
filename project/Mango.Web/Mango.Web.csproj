@@ -269,6 +269,7 @@
     <Compile Include="Areas\Store\Models\CartIndexViewModel.cs" />
     <Compile Include="Areas\Store\Models\CustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrderViewModel.cs" />
+    <Compile Include="Areas\Store\Models\PayPalReviewViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductCategoryDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductImageViewModel.cs" />
@@ -469,6 +470,10 @@
     <Content Include="Areas\Store\Views\Cart\CheckoutCancel.cshtml" />
     <Content Include="Areas\Store\Views\Cart\CheckoutComplete.cshtml" />
     <Content Include="Areas\Store\Views\Cart\CheckoutReview.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\Checkout.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutError.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutReviewOrder.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutReviewTrans.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

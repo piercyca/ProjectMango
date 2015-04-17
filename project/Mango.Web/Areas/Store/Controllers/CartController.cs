@@ -11,6 +11,7 @@ using Links;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Core.Web.Checkout;
+using Mango.Core.Web.Helpers;
 using Mango.Web.Areas.Store.Models;
 using Mango.Web.Attributes;
 using Mango.Web.Models;
@@ -29,16 +30,18 @@ namespace Mango.Web.Areas.Store.Controllers
         private readonly IAddressService _addressService;
         private readonly ICustomerService _customerService;
         private readonly IOrderService _orderService;
+        private readonly IOrderLineItemService _orderLineItemService;
         private readonly ICartService _cartService;
 
         public CartController() { }
 
         public CartController(IAddressService addressService, ICustomerService customerService,
-            IOrderService orderService, ICartService cartService)
+            IOrderService orderService, IOrderLineItemService orderLineItemService, ICartService cartService)
         {
             _addressService = addressService;
             _customerService = customerService;
             _orderService = orderService;
+            _orderLineItemService = orderLineItemService;
             _cartService = cartService;
         }
         public CartController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -108,29 +111,10 @@ namespace Mango.Web.Areas.Store.Controllers
             return View(addressesViewModel);
         }
 
-        public virtual ActionResult Cart()
-        {
-            //Display all the information
-            PaypalCartModel cartModel = new PaypalCartModel
-            {
-                BuyerName = "Pratik Bhoir",
-                ShippingAddress = "Mumbai. Pin - 602304",
-                CartItems = new List<PayPalCartItemModel>
-                {
-                    new PayPalCartItemModel {ProductId = 1, ProductName = "Product 1", Quantity = 1, UnitPrice = 3},
-                    new PayPalCartItemModel {ProductId = 2, ProductName = "Product 2", Quantity = 2, UnitPrice = 2}
-                }
-            };
-
-            Session["PayPalModel"] = cartModel;
-            Session["payment_amt"] = cartModel.TotalAmount;
-            return View(cartModel);
-        }
-
         #region Paypal
 
         // PayPal
-        public ActionResult CheckoutWithPayPal()
+        public virtual ActionResult CheckoutWithPayPal()
         {
             var cart = _cartService.GetCartModel();
             if (!cart.Items.Any())
@@ -139,18 +123,16 @@ namespace Mango.Web.Areas.Store.Controllers
                 return View("Completed");
             }
             
-
-                int orderID = StoreOrderAndOrderItems(cart);
+            int orderID = StoreOrderAndOrderItems(cart);
                 UserSessionData.OrderID = orderID;
 
-                NVPAPICaller payPalCaller = new NVPAPICaller();
-                payPalCaller.SetCredentials();
+                var payPalCaller = new PayPalNvpApiCaller();
 
                 string retMsg = "";
                 string token = "";
-                decimal amtVal = cart.ComputeTotalValue();
+                decimal amtVal = cart.TotalPrice;
                 string amt = amtVal.ToString();
-                bool ret = payPalCaller.ShortcutExpressCheckout(cart, amt, ref token, ref retMsg);
+                bool ret = payPalCaller.ShortcutExpressCheckout(cart.ConvertToPaypalModel(), amt, ref token, ref retMsg);
 
             if (ret)
             {
@@ -167,7 +149,7 @@ namespace Mango.Web.Areas.Store.Controllers
 
         }
 
-        public ViewResult CheckoutReview()
+        public virtual ViewResult CheckoutReview()
         {
 
             int orderID;
@@ -181,10 +163,8 @@ namespace Mango.Web.Areas.Store.Controllers
             decimal paymentAmountOnCheckout = 0;
             string PayerID = "";
 
-            NVPAPICaller payPalCaller = new NVPAPICaller();
-            payPalCaller.SetCredentials();
-
-            NVPCodec decoder = new NVPCodec();
+            var payPalCaller = new PayPalNvpApiCaller();
+            var decoder = new PayPalNvpCodec();
 
             token = UserSessionData.Token.ToString();
             paymentAmountOnCheckout = UserSessionData.PaymentAmount;
@@ -225,12 +205,14 @@ namespace Mango.Web.Areas.Store.Controllers
                 country = decoder["SHIPTOCOUNTRYCODE"].ToString();
                 email = decoder["EMAIL"].ToString();
                 //Total = Convert.ToDecimal(decoder["AMT"].ToString());
+                
+                //TODO uncomment
                 orderID = UpdateOrderShipTo(orderID, firstName, lastName, company, email,
                     streetLine1, streetLine2, streetLine3,
                     city, postalCode, county, country);
 
                 //Prepare for display
-                PayPalReview ppReview = new PayPalReview();
+                var ppReview = new PayPalReviewViewModel();
                 ppReview.OrderID = orderID.ToString();
                 ppReview.OrderDate = decoder["TIMESTAMP"].ToString();
                 ppReview.Username = User.Identity.Name;
@@ -251,49 +233,48 @@ namespace Mango.Web.Areas.Store.Controllers
                 return View("CheckoutError");
             }
         }
-        public ViewResult CheckoutReviewOrderCont()
+        public virtual ViewResult CheckoutReviewOrderCont()
         {
 
-            int orderID;
+            int orderId;
             int currentOrderId = 0;
             string retMsg = "";
             string token = "";
             string finalPaymentAmount = "";
-            string PayerID = "";
+            string payerId = "";
 
-            NVPAPICaller payPalCaller = new NVPAPICaller();
-            payPalCaller.SetCredentials();
-
-            NVPCodec decoder = new NVPCodec();
+            var payPalCaller = new PayPalNvpApiCaller();
+            var decoder = new PayPalNvpCodec();
 
 
             token = UserSessionData.Token.ToString();
             finalPaymentAmount = UserSessionData.PaymentAmount.ToString();
-            PayerID = UserSessionData.PayerID;
+            payerId = UserSessionData.PayerID;
             currentOrderId = UserSessionData.OrderID;
 
-            bool ret = payPalCaller.DoCheckoutPayment(finalPaymentAmount, token, PayerID, ref decoder, ref retMsg);
+            bool ret = payPalCaller.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
             if (ret)
             {
                 // Retrieve PayPal confirmation value.
-                string PaymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"].ToString();
+                string paymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"].ToString();
 
                 //Update the order 
-                orderID = UserSessionData.OrderID;
-                orderID = UpdateOrderConfirmation(orderID, PaymentConfirmation);
+                orderId = UserSessionData.OrderID;
+                orderId = _orderService.UpdateOrderConfirmation(orderId, paymentConfirmation);
 
                 //Reset session data
                 UserSessionData.PaymentAmount = 0;
                 UserSessionData.OrderID = 0;
 
-                ViewBag.PaymentConfirmation = PaymentConfirmation;
+                ViewBag.PaymentConfirmation = paymentConfirmation;
 
+                //TODO remove
                 //Reduce the quantity of products in stock
-                IEnumerable<OrderItem> orderItems = orderItemRepository.OrderItems.Where(x => x.OrderID == orderID);
-                foreach (var orderItem in orderItems)
-                {
-                    UpdateProductQuantity(orderItem.ProductID, orderItem.Quantity);
-                }
+                //IEnumerable<OrderItem> orderItems = orderItemRepository.OrderItems.Where(x => x.OrderID == orderId);
+                //foreach (var orderItem in orderItems)
+                //{
+                //    UpdateProductQuantity(orderItem.ProductID, orderItem.Quantity);
+                //}
 
                 return View("CheckoutReviewTrans");
             }
@@ -302,32 +283,119 @@ namespace Mango.Web.Areas.Store.Controllers
                 return View("CheckoutError");
             }
         }
-        public ViewResult CheckoutReviewTransCont()
+        public virtual ViewResult CheckoutReviewTransCont()
         {
             return View("Completed");
         }
 
-        public ViewResult CheckoutCancel()
+        public virtual ViewResult CheckoutCancel()
         {
             return View("CheckoutCancel");
         }
 
-        public ViewResult CheckoutCancelContinue()
+        public virtual ViewResult CheckoutCancelContinue()
         {
             return View("Completed");
         }
 
-        public ViewResult CheckoutErrorContinue()
+        public virtual ViewResult CheckoutErrorContinue()
         {
             return View("Completed");
         }
 
-        public ViewResult CheckoutCompleteContinue()
+        public virtual ViewResult CheckoutCompleteContinue()
         {
             return View("Completed");
         }
 
         // End PayPal
+
+        public int StoreOrderAndOrderItems(CartModel cart)
+        {
+
+            var order = new Order();
+            var shippingAddress = new Address();
+            var customer = new Customer();
+
+            //order.OrderID
+            //order.OrderDate = DateTime.Now;
+            order.DateShipped = null;
+            order.TotalAmount = cart.TotalPrice;
+            //order.ProductCount = cart.ComputeNumItems();
+            order.PayPalOrderConfirmation = string.Empty;
+            order.DateCreated = DateTime.Now;
+            order.DateUpdated = DateTime.Now;
+
+            customer.Email = string.Empty;
+            
+            shippingAddress.FirstName = string.Empty;
+            shippingAddress.LastName = string.Empty;
+            shippingAddress.AddressLine1 = string.Empty;
+            shippingAddress.AddressLine2 = string.Empty;
+            shippingAddress.AddressLine3 = string.Empty;
+            shippingAddress.City = string.Empty;
+            shippingAddress.Zip = string.Empty;
+            shippingAddress.County = string.Empty;
+            shippingAddress.Country = string.Empty;
+            shippingAddress.Phone = string.Empty;
+            
+            //order.BillToAddressID = 1;
+            //order.ShipToAddressID = 1;
+            //order.CustomerID = 1;
+
+            _addressService.CreateAddress(shippingAddress);
+            _customerService.CreateCustomer(customer);
+
+            order.ShipAddressId = shippingAddress.AddressId;
+            order.CustomerId = customer.CustomerId;
+
+            _orderService.CreateOrder(order);
+
+            for (int i = 0; i < cart.Items.Count; i++)
+            {
+                var line = cart.Items[i];
+                var orderItem = new OrderLineItem
+                {
+                    OrderId = order.OrderId,
+                    OrderItemSequence = i + 1,
+                    Configuration = line.Configuration,
+                    ProductId = line.Product.ProductId,
+                    Quantity = line.Quantity,
+                    UnitPrice = line.UnitPrice
+                };
+                _orderLineItemService.CreateOrderLineItem(orderItem);
+            }
+
+            return order.OrderId;
+        }
+
+        public int UpdateOrderShipTo(int orderId, string firstName, string lastName, string company, string email,
+            string streetLine1, string streetLine2, string streetLine3,
+            string city, string postalCode, string county, string country)
+        {
+            var order = _orderService.GetOrder(orderId);
+            order.ShipAddress.FirstName = firstName;
+            order.ShipAddress.LastName = lastName;
+            //order.Company = company;
+            order.Customer.Email = email;
+            order.ShipAddress.AddressLine1 = streetLine1;
+            order.ShipAddress.AddressLine2 = streetLine2;
+            order.ShipAddress.AddressLine3 = streetLine3;
+            order.ShipAddress.City = city;
+            order.ShipAddress.Zip = postalCode;
+            order.ShipAddress.County = county;
+            order.ShipAddress.Country = country;
+            _orderService.EditOrder(order);
+            return orderId;
+        }
+
+        public int UpdateOrderConfirmation(int orderId, string paymentConfirmation)
+        {
+            var order = _orderService.GetOrder(orderId);
+            order.PayPalOrderConfirmation = paymentConfirmation;
+            _orderService.EditOrder(order);
+            return orderId;
+        }
 
         #endregion
 

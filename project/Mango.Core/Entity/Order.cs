@@ -26,10 +26,23 @@ namespace Mango.Core.Entity
         /// </summary>
         public int? BillAddressId { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PayPalOrderId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PayPalOrderConfirmation { get; set; }
+
         [Required]
         public decimal TotalAmount { get; set; }
 
         public DateTime DateCreated { get; set; }
+
+        public DateTime DateUpdated { get; set; }
+
+        public DateTime? DateShipped { get; set; }
 
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
@@ -44,7 +57,6 @@ namespace Mango.Core.Entity
 
         public Order()
         {
-            DateCreated = DateTime.Now;
         }
     }
 }

@@ -36,7 +36,19 @@ namespace Mango.Core.Web.Checkout
         public CartModel()
         {
             Items = new List<CartItemModel>();
+            Customer = new Customer();
+            ShippingAddress = new Address();
         }
+
+        /// <summary>
+        /// Shipping Address entity
+        /// </summary>
+        public Address ShippingAddress { get; set; }
+        
+        /// <summary>
+        /// Customer entity
+        /// </summary>
+        public Customer Customer { get; set; }
 
         /// <summary>
         /// Convert to Paypal Model

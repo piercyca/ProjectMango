@@ -1,0 +1,59 @@
+﻿@model Mango.Core.Entity.Address
+
+@{
+    ViewBag.Title = "WebStore: Checkout";
+}
+
+@*@section featured {
+    @Html.Partial("MainHeadingPartial")
+}*@
+
+<h2>Check out now</h2>
+<p>Please enter your details, and we'll ship your goods right away!</p>
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary()    
+    <h3>Ship to</h3>
+    <div class="form-group">
+        <label>Name</label>
+        @*@Html.TextBoxFor(x => x.Name, new { @class = "form-control" })*@
+    </div>
+
+    <h3>Address</h3>
+
+    foreach (var property in ViewData.ModelMetadata.Properties) {
+        if (property.PropertyName != "Name" && property.PropertyName != "GiftWrap") {
+            <div class="form-group">
+                <label>@(property.DisplayName ?? property.PropertyName)</label>
+                @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+            </div>
+        }
+    }
+
+    <h3>Options</h3>
+    @*<div class="checkbox">
+        <label>
+            @Html.EditorFor(x => x.GiftWrap)
+            Gift wrap these items
+        </label>
+    </div>*@
+    <style>
+        .buttonPayPAl {
+            background-image: url('https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif');
+            background-repeat: no-repeat;
+            width: 145px;
+            height: 40px;
+            display: inline-block;
+            text-indent: -9999px;
+        }
+    </style>
+ 
+    <table>
+        <tr>
+            <td><input class="btn btn-primary" type="submit" value="Return to Product List" /></td>
+            <td>@Html.ActionLink("Checkout with PayPal", "CheckoutWithPayPal", null, new { @class = "buttonPayPAl" })</td>
+        </tr>
+    </table>
+
+}

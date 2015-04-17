@@ -80,10 +80,23 @@ namespace Mango.Core.Entity
         public string AddressLine2 { get; set; }
 
         /// <summary>
+        /// Address Line 3
+        /// </summary>
+        [StringLength(200)]
+        [Display(Name = "Address Line 2")]
+        public string AddressLine3 { get; set; }
+
+        /// <summary>
         /// City
         /// </summary>
         [StringLength(50)]
         public string City { get; set; }
+
+        /// <summary>
+        /// County
+        /// </summary>
+        [StringLength(100)]
+        public string County { get; set; }
 
         /// <summary>
         /// State Abbreviation
@@ -162,6 +175,7 @@ namespace Mango.Core.Entity
                 return
                     (AddressLine1 + " " +
                      (String.IsNullOrEmpty(AddressLine2) ? "" : string.Format("{0} ", AddressLine2)) +
+                     (String.IsNullOrEmpty(AddressLine3) ? "" : string.Format("{0} ", AddressLine3)) +
                      (String.IsNullOrEmpty(City) ? "" : string.Format("{0}, ", City)) + State + " " + Zip +
                      (String.IsNullOrEmpty(Country) ? "" : string.Format(", {0}", Country))).Trim();
             }
@@ -177,7 +191,9 @@ namespace Mango.Core.Entity
             newaddr.Phone = this.Phone;
             newaddr.AddressLine1 = this.AddressLine1;
             newaddr.AddressLine2 = this.AddressLine2;
+            newaddr.AddressLine3 = this.AddressLine3;
             newaddr.City = this.City;
+            newaddr.County = this.County;
             newaddr.State = this.State;
             newaddr.Zip = this.Zip;
             newaddr.Country = this.Country;

@@ -16,9 +16,10 @@ namespace Mango.Core.Service
         void CreateOrder(Order order);
         void EditOrder(Order order);
         void DeleteOrder(int id);
-        void SaveOrder();
+        void SaveOrder();   
         IEnumerable<Order> GetOrdersByCustomer(int customerId);
         IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords, string sortBy);
+        int UpdateOrderConfirmation(int id, string payPalPaymentConfirmation);
     }
 
     /// <summary>
@@ -118,6 +119,16 @@ namespace Mango.Core.Service
         public IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords, string sortBy)
         {
             return _orderRepository.GetOrdersByPage(currentPage, noOfRecords);
+        }
+
+
+        public int UpdateOrderConfirmation(int id, string payPalPaymentConfirmation)
+        {
+            var order = _orderRepository.GetById(id);
+            order.PayPalOrderConfirmation = payPalPaymentConfirmation;
+            _orderRepository.Update(order);
+            SaveOrder();
+            return order.OrderId;
         }
     }
 }
