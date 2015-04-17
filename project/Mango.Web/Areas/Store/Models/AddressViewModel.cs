@@ -18,6 +18,17 @@ namespace Mango.Web.Areas.Store.Models
         /// <summary>
         /// Constructor
         /// </summary>
+        public AddressViewModel()
+        {
+            Status = AddressStatus.Active;
+            AddressType = AddressType.Ship;
+            States = UnitedStatesHelper.States;
+            Country = "US";
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public AddressViewModel(AddressType addressType)
         {
             Status = AddressStatus.Active;
@@ -63,6 +74,7 @@ namespace Mango.Web.Areas.Store.Models
         /// <summary>
         /// Phone
         /// </summary>
+        [Required]
         [Display(Name = "Phone")]
         [StringLength(20)]
         public string Phone { get; set; }
@@ -83,17 +95,34 @@ namespace Mango.Web.Areas.Store.Models
         public string AddressLine2 { get; set; }
 
         /// <summary>
+        /// Address Line 3
+        /// </summary>
+        [StringLength(200)]
+        [Display(Name = "Address Line 3")]
+        public string AddressLine3 { get; set; }
+
+        /// <summary>
         /// City
         /// </summary>
         [Required]
         [StringLength(50)]
+        [Display(Name = "City")]
         public string City { get; set; }
+
+        /// <summary>
+        /// County
+        /// </summary>
+        [Required]
+        [StringLength(100)]
+        [Display(Name = "County")]
+        public string County { get; set; }
 
         /// <summary>
         /// State Abbreviation
         /// </summary>
         [Required]
         [StringLength(10)]
+        [Display(Name = "State")]
         public string State { get; set; }
 
         /// <summary>
@@ -106,6 +135,7 @@ namespace Mango.Web.Areas.Store.Models
         /// </summary>
         [Required]
         [StringLength(10)]
+        [Display(Name = "Zip Code")]
         public string Zip { get; set; }
 
         /// <summary>

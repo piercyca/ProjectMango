@@ -346,6 +346,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModelHelpers\OrderViewModelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\background.png" />
@@ -474,6 +475,7 @@
     <Content Include="Areas\Store\Views\Cart\CheckoutError.cshtml" />
     <Content Include="Areas\Store\Views\Cart\CheckoutReviewOrder.cshtml" />
     <Content Include="Areas\Store\Views\Cart\CheckoutReviewTrans.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\Completed.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

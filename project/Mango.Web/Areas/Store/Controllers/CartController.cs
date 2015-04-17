@@ -18,6 +18,7 @@ using Mango.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Mango.Web.ViewModelHelpers;
 
 namespace Mango.Web.Areas.Store.Controllers
 {
@@ -71,68 +72,61 @@ namespace Mango.Web.Areas.Store.Controllers
         [HttpGet]
         public virtual ActionResult Customer()
         {
-            var customer = new Customer();
-            var loggedInUsername = HttpContext.User.Identity.GetUserName();
-            if (HttpContext.User.Identity.IsAuthenticated && (!string.IsNullOrEmpty(loggedInUsername)))
-            {
-                customer = _customerService.GetCustomer(loggedInUsername);
-                if (customer == null)
-                {
-                    customer = new Customer { Email = loggedInUsername, Username = loggedInUsername };
-                }
-            }
+            // Setup Customer
+            var customerViewModel = OrderViewModelHelper.Customer(_customerService);
 
-            // Setup default addresses
-            var shippingAddress = new AddressViewModel(AddressType.Ship);
-
-            // Get last order addresses
-            if (customer.CustomerId > 0)
-            {
-                // Populate default address
-                shippingAddress.FirstName = customer.FirstName;
-                shippingAddress.LastName = customer.LastName;
-
-                var order = _orderService.GetOrdersByCustomer(customer.CustomerId).OrderByDescending(o => o.DateCreated).FirstOrDefault();
-                if (order != null)
-                {
-                    if (order.ShipAddress != null)
-                    {
-                        shippingAddress = Mapper.Map<Address, AddressViewModel>(order.ShipAddress);
-                    }
-                }
-            }
+            // Setup Shipping Address
+            var shippingAddressViewModel = OrderViewModelHelper.ShippingAddress(customerViewModel, _orderService);
 
             var addressesViewModel = new CartCustomerViewModel
             {
-                Customer = Mapper.Map<Customer, CustomerViewModel>(customer),
-                ShippingAddress = shippingAddress
+                Customer = customerViewModel,
+                ShippingAddress = shippingAddressViewModel
             };
 
             return View(addressesViewModel);
         }
 
-        #region Paypal
-
-        // PayPal
-        public virtual ActionResult CheckoutWithPayPal()
+        /// <summary>
+        /// POST: /store/cart/customer
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public virtual ActionResult Customer(CartCustomerViewModel viewModel)
         {
+            // Check if cart is empty
             var cart = _cartService.GetCartModel();
             if (!cart.Items.Any())
             {
-                ModelState.AddModelError("", "Sorry, your cart is empty!");
-                return View("Completed");
+                ModelState.AddModelError("", "Sorry, your cart is empty.");
             }
-            
-            int orderID = StoreOrderAndOrderItems(cart);
-                UserSessionData.OrderID = orderID;
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    var customer = Mapper.Map<CustomerViewModel, Customer>(viewModel.Customer);
+                    var shippingAddress = Mapper.Map<AddressViewModel, Address>(viewModel.ShippingAddress);
+                    UserSessionData.OrderId = OrderViewModelHelper.CreateOrder(customer, shippingAddress, _addressService, _customerService, _orderService, _orderLineItemService, _cartService);
+                    return RedirectToAction(MVC.StoreArea.Cart.CheckoutPayPal());
+                }
+            }
+            return View(viewModel);
+        }
 
-                var payPalCaller = new PayPalNvpApiCaller();
+        #region Paypal
 
-                string retMsg = "";
-                string token = "";
-                decimal amtVal = cart.TotalPrice;
-                string amt = amtVal.ToString();
-                bool ret = payPalCaller.ShortcutExpressCheckout(cart.ConvertToPaypalModel(), amt, ref token, ref retMsg);
+
+        public virtual ActionResult CheckoutPayPal()
+        {
+            var orderId = UserSessionData.OrderId;
+            var payPalCaller = new PayPalNvpApiCaller();
+
+            string retMsg = "";
+            string token = "";
+            decimal amtVal = cart.TotalPrice;
+            string amt = amtVal.ToString();
+            bool ret = payPalCaller.ShortcutExpressCheckout(cart.ConvertToPaypalModel(), amt, ref token, ref retMsg);
 
             if (ret)
             {
@@ -190,7 +184,7 @@ namespace Mango.Web.Areas.Store.Controllers
 
                 //Session information
                 UserSessionData.PayerID = PayerID;
-                orderID = UserSessionData.OrderID;
+                orderID = UserSessionData.OrderId;
 
                 //Update the order with PayPal Informatin
                 company = string.Empty; city = string.Empty; county = string.Empty;
@@ -250,7 +244,7 @@ namespace Mango.Web.Areas.Store.Controllers
             token = UserSessionData.Token.ToString();
             finalPaymentAmount = UserSessionData.PaymentAmount.ToString();
             payerId = UserSessionData.PayerID;
-            currentOrderId = UserSessionData.OrderID;
+            currentOrderId = UserSessionData.OrderId;
 
             bool ret = payPalCaller.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
             if (ret)
@@ -259,12 +253,12 @@ namespace Mango.Web.Areas.Store.Controllers
                 string paymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"].ToString();
 
                 //Update the order 
-                orderId = UserSessionData.OrderID;
+                orderId = UserSessionData.OrderId;
                 orderId = _orderService.UpdateOrderConfirmation(orderId, paymentConfirmation);
 
                 //Reset session data
                 UserSessionData.PaymentAmount = 0;
-                UserSessionData.OrderID = 0;
+                UserSessionData.OrderId = 0;
 
                 ViewBag.PaymentConfirmation = paymentConfirmation;
 
@@ -310,64 +304,7 @@ namespace Mango.Web.Areas.Store.Controllers
 
         // End PayPal
 
-        public int StoreOrderAndOrderItems(CartModel cart)
-        {
-
-            var order = new Order();
-            var shippingAddress = new Address();
-            var customer = new Customer();
-
-            //order.OrderID
-            //order.OrderDate = DateTime.Now;
-            order.DateShipped = null;
-            order.TotalAmount = cart.TotalPrice;
-            //order.ProductCount = cart.ComputeNumItems();
-            order.PayPalOrderConfirmation = string.Empty;
-            order.DateCreated = DateTime.Now;
-            order.DateUpdated = DateTime.Now;
-
-            customer.Email = string.Empty;
-            
-            shippingAddress.FirstName = string.Empty;
-            shippingAddress.LastName = string.Empty;
-            shippingAddress.AddressLine1 = string.Empty;
-            shippingAddress.AddressLine2 = string.Empty;
-            shippingAddress.AddressLine3 = string.Empty;
-            shippingAddress.City = string.Empty;
-            shippingAddress.Zip = string.Empty;
-            shippingAddress.County = string.Empty;
-            shippingAddress.Country = string.Empty;
-            shippingAddress.Phone = string.Empty;
-            
-            //order.BillToAddressID = 1;
-            //order.ShipToAddressID = 1;
-            //order.CustomerID = 1;
-
-            _addressService.CreateAddress(shippingAddress);
-            _customerService.CreateCustomer(customer);
-
-            order.ShipAddressId = shippingAddress.AddressId;
-            order.CustomerId = customer.CustomerId;
-
-            _orderService.CreateOrder(order);
-
-            for (int i = 0; i < cart.Items.Count; i++)
-            {
-                var line = cart.Items[i];
-                var orderItem = new OrderLineItem
-                {
-                    OrderId = order.OrderId,
-                    OrderItemSequence = i + 1,
-                    Configuration = line.Configuration,
-                    ProductId = line.Product.ProductId,
-                    Quantity = line.Quantity,
-                    UnitPrice = line.UnitPrice
-                };
-                _orderLineItemService.CreateOrderLineItem(orderItem);
-            }
-
-            return order.OrderId;
-        }
+       
 
         public int UpdateOrderShipTo(int orderId, string firstName, string lastName, string company, string email,
             string streetLine1, string streetLine2, string streetLine3,

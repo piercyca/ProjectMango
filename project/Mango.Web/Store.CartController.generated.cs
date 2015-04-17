@@ -87,7 +87,7 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Customer = "Customer";
-            public readonly string CheckoutWithPayPal = "CheckoutWithPayPal";
+            public readonly string CheckoutPayPal = "CheckoutPayPal";
             public readonly string CheckoutReview = "CheckoutReview";
             public readonly string CheckoutReviewOrderCont = "CheckoutReviewOrderCont";
             public readonly string CheckoutReviewTransCont = "CheckoutReviewTransCont";
@@ -105,7 +105,7 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             public const string Index = "Index";
             public const string Customer = "Customer";
-            public const string CheckoutWithPayPal = "CheckoutWithPayPal";
+            public const string CheckoutPayPal = "CheckoutPayPal";
             public const string CheckoutReview = "CheckoutReview";
             public const string CheckoutReviewOrderCont = "CheckoutReviewOrderCont";
             public const string CheckoutReviewTransCont = "CheckoutReviewTransCont";
@@ -119,6 +119,14 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
 
+        static readonly ActionParamsClass_Customer s_params_Customer = new ActionParamsClass_Customer();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Customer CustomerParams { get { return s_params_Customer; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Customer
+        {
+            public readonly string viewModel = "viewModel";
+        }
         static readonly ActionParamsClass_Login s_params_Login = new ActionParamsClass_Login();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Login LoginParams { get { return s_params_Login; } }
@@ -209,13 +217,25 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void CheckoutWithPayPalOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CustomerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Store.Models.CartCustomerViewModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CheckoutWithPayPal()
+        public override System.Web.Mvc.ActionResult Customer(Mango.Web.Areas.Store.Models.CartCustomerViewModel viewModel)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutWithPayPal);
-            CheckoutWithPayPalOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customer);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            CustomerOverride(callInfo, viewModel);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutPayPalOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult CheckoutPayPal()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutPayPal);
+            CheckoutPayPalOverride(callInfo);
             return callInfo;
         }
 

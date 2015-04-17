@@ -12,5 +12,11 @@ namespace Mango.Web.Areas.Store.Models
     {
         public CustomerViewModel Customer { get; set; }
         public AddressViewModel ShippingAddress { get; set; }
+
+        public CartCustomerViewModel()
+        {
+            Customer = new CustomerViewModel();
+            ShippingAddress = new AddressViewModel();
+        }
     }
 }

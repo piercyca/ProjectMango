@@ -117,7 +117,7 @@ namespace Mango.Core.Web.Helpers
             set { Write(PAYERID, value); }
         }
 
-        public static int OrderID
+        public static int OrderId
         {
             get { return Read<int>(ORDERID); }
             set { Write(ORDERID, value); }

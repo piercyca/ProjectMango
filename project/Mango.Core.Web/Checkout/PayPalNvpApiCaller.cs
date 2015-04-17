@@ -60,7 +60,7 @@ namespace Mango.Core.Web.Checkout
         {
         }
 
-        public bool ShortcutExpressCheckout(PaypalCartModel cartModel, string amt, ref string token, ref string retMsg)
+        public bool ShortcutExpressCheckout(int orderId, string amt, ref string token, ref string retMsg)
         {
             int i;
 

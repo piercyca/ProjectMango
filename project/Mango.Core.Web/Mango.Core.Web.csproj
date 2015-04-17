@@ -89,6 +89,8 @@
     <Compile Include="AutoMapperConverters\PagedListConverter.cs" />
     <Compile Include="Checkout\CartModel.cs" />
     <Compile Include="Checkout\CartService.cs" />
+    <Compile Include="Checkout\CheckoutHelper.cs" />
+    <Compile Include="Checkout\PaypalHelper.cs" />
     <Compile Include="Checkout\PayPalNvpApiCaller.cs" />
     <Compile Include="Checkout\PaypalCartModel.cs" />
     <Compile Include="Checkout\PayPalNVPCodec.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Helpers\UnitedStatesHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\UserSessionData.cs" />
+    <Compile Include="ViewModelHelpers\OrderViewModelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
