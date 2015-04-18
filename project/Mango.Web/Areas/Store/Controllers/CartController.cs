@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using Links;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Core.Web.Checkout;
@@ -18,7 +14,6 @@ using Mango.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Mango.Web.ViewModelHelpers;
 
 namespace Mango.Web.Areas.Store.Controllers
 {
