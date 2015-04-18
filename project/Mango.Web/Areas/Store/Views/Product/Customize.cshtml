@@ -88,6 +88,7 @@
                 @Html.HiddenFor(model => model.Price)
                 <input type="hidden" id="Quantity" name="Quantity" value="1" />
                 <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png"/>
+                <img class="hidden" id="#@Model.ProductId" src="~/Content/images/noimageavail.png" width="1" height="1"/>
             </div>
         </div>
     </div>
@@ -119,7 +120,7 @@
     <script src="@Links.Scripts.Areas.Store.Cart.CartService_js"></script>
     <script>
         $(window).load(function () {
-            
+
             var optionsAddToCart = {
                 controlProductId: '#ProductId',
                 controlPrice: '#Price',
@@ -127,10 +128,14 @@
                 controlQuantity: '#Quantity',
                 controlSubmit: '#addToCart',
                 onSuccess: function () {
+
+                    var dataURL = canvas.toDataURL("image/png");
+                    $('img#@Html.HiddenFor(model => model.ProductId)').src = dataURL;
+                    //Craig, store the id, and dataURL -- Will not work locally
                     window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
                 }
             }
             var cartService = new CartService.AddItem(optionsAddToCart);
         });
-    </script>
+</script>
 }

@@ -7,7 +7,6 @@
 /*NOTE: Product image that used here is created with admin to, and should not be the
 /product image*/
 
-$(function () {
 
     var canvas = new fabric.Canvas('c');
     $('.canvas-container').addClass('panel');
@@ -151,20 +150,6 @@ $(function () {
         addText();
     });
 
-    //Download canvas output to file (Placeholder)
-    function download(url, name) {
-        //make the link. set the href and download. emulate dom click
-        $('<a>').attr({ href: url, download: name })[0].click();
-    }
-    function downloadFabric(canvas, name) {
-        //convert the canvas to a data url and download it.
-        download(canvas.toDataURL(), name + '.png');
-    }
-    //download should be productname or id
-    $("#download").click(function () {
-        downloadFabric(canvas, 'download');
-    });
-
 
     //TEXT / APPLY SELECTED FONT
     function addText(o) {
@@ -203,5 +188,3 @@ $(function () {
             }
         }
     }
-
-});
