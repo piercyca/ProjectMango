@@ -346,7 +346,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModelHelpers\OrderViewModelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\background.png" />
@@ -564,6 +563,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModelHelpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

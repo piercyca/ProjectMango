@@ -95,13 +95,6 @@ namespace Mango.Web.Areas.Store.Models
         public string AddressLine2 { get; set; }
 
         /// <summary>
-        /// Address Line 3
-        /// </summary>
-        [StringLength(200)]
-        [Display(Name = "Address Line 3")]
-        public string AddressLine3 { get; set; }
-
-        /// <summary>
         /// City
         /// </summary>
         [Required]

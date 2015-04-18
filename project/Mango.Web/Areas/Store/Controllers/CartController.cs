@@ -33,17 +33,22 @@ namespace Mango.Web.Areas.Store.Controllers
         private readonly IOrderService _orderService;
         private readonly IOrderLineItemService _orderLineItemService;
         private readonly ICartService _cartService;
+        private readonly ICheckoutService _checkoutService;
+        private readonly IPayPalNvpApiCallerService _payPalNvpApiCallerService;
 
         public CartController() { }
 
         public CartController(IAddressService addressService, ICustomerService customerService,
-            IOrderService orderService, IOrderLineItemService orderLineItemService, ICartService cartService)
+            IOrderService orderService, IOrderLineItemService orderLineItemService,
+            ICartService cartService, ICheckoutService checkoutService, IPayPalNvpApiCallerService payPalNvpApiCallerService)
         {
             _addressService = addressService;
             _customerService = customerService;
             _orderService = orderService;
             _orderLineItemService = orderLineItemService;
             _cartService = cartService;
+            _checkoutService = checkoutService;
+            _payPalNvpApiCallerService = payPalNvpApiCallerService;
         }
         public CartController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -73,15 +78,17 @@ namespace Mango.Web.Areas.Store.Controllers
         public virtual ActionResult Customer()
         {
             // Setup Customer
-            var customerViewModel = OrderViewModelHelper.Customer(_customerService);
+            var loggedInUsername = HttpContext.User.Identity.GetUserName();
+            var isAuthenticated = HttpContext.User.Identity.IsAuthenticated;
+            var customer = _checkoutService.Customer(loggedInUsername, isAuthenticated);
 
             // Setup Shipping Address
-            var shippingAddressViewModel = OrderViewModelHelper.ShippingAddress(customerViewModel, _orderService);
+            var shipAddress = _checkoutService.ShippingAddress(customer);
 
             var addressesViewModel = new CartCustomerViewModel
             {
-                Customer = customerViewModel,
-                ShippingAddress = shippingAddressViewModel
+                Customer = Mapper.Map<Customer, CustomerViewModel>(customer),
+                ShippingAddress = Mapper.Map<Address, AddressViewModel>(shipAddress)
             };
 
             return View(addressesViewModel);
@@ -107,7 +114,7 @@ namespace Mango.Web.Areas.Store.Controllers
                 {
                     var customer = Mapper.Map<CustomerViewModel, Customer>(viewModel.Customer);
                     var shippingAddress = Mapper.Map<AddressViewModel, Address>(viewModel.ShippingAddress);
-                    UserSessionData.OrderId = OrderViewModelHelper.CreateOrder(customer, shippingAddress, _addressService, _customerService, _orderService, _orderLineItemService, _cartService);
+                    UserSessionData.OrderId = _checkoutService.CreateOrder(customer, shippingAddress);
                     return RedirectToAction(MVC.StoreArea.Cart.CheckoutPayPal());
                 }
             }
@@ -120,17 +127,15 @@ namespace Mango.Web.Areas.Store.Controllers
         public virtual ActionResult CheckoutPayPal()
         {
             var orderId = UserSessionData.OrderId;
-            var payPalCaller = new PayPalNvpApiCaller();
 
             string retMsg = "";
             string token = "";
-            decimal amtVal = cart.TotalPrice;
+            decimal amtVal = _orderService.GetOrder(orderId).TotalAmount;
             string amt = amtVal.ToString();
-            bool ret = payPalCaller.ShortcutExpressCheckout(cart.ConvertToPaypalModel(), amt, ref token, ref retMsg);
+            bool ret = _payPalNvpApiCallerService.ShortcutExpressCheckout(orderId, amt, ref token, ref retMsg);
 
             if (ret)
             {
-
                 UserSessionData.Token = token;
                 UserSessionData.PaymentAmount = amtVal;
 
@@ -145,25 +150,17 @@ namespace Mango.Web.Areas.Store.Controllers
 
         public virtual ViewResult CheckoutReview()
         {
-
-            int orderID;
-
-            string firstName, lastName, company, email,
-                streetLine1, streetLine2, streetLine3,
-                city, postalCode, county, country;
-
             string retMsg = "";
             string token = "";
             decimal paymentAmountOnCheckout = 0;
-            string PayerID = "";
+            string payerID = "";
 
-            var payPalCaller = new PayPalNvpApiCaller();
             var decoder = new PayPalNvpCodec();
 
-            token = UserSessionData.Token.ToString();
+            token = UserSessionData.Token;
             paymentAmountOnCheckout = UserSessionData.PaymentAmount;
 
-            bool ret = payPalCaller.GetCheckoutDetails(token, ref PayerID, ref decoder, ref retMsg);
+            bool ret = _payPalNvpApiCallerService.GetCheckoutDetails(token, ref payerID, ref decoder, ref retMsg);
             if (ret)
             {
 
@@ -183,41 +180,42 @@ namespace Mango.Web.Areas.Store.Controllers
 
 
                 //Session information
-                UserSessionData.PayerID = PayerID;
-                orderID = UserSessionData.OrderId;
+                UserSessionData.PayerID = payerID;
+                var orderID = UserSessionData.OrderId;
 
-                //Update the order with PayPal Informatin
-                company = string.Empty; city = string.Empty; county = string.Empty;
-                //OrderDate = Convert.ToDateTime(decoder["TIMESTAMP"].ToString());
-                //Username = User.Identity.Name;
-                firstName = decoder["FIRSTNAME"].ToString();
-                lastName = decoder["LASTNAME"].ToString();
-                streetLine1 = decoder["SHIPTOSTREET"].ToString();
-                streetLine2 = decoder["SHIPTOCITY"].ToString();
-                streetLine3 = decoder["SHIPTOSTATE"].ToString();
-                postalCode = decoder["SHIPTOZIP"].ToString();
-                country = decoder["SHIPTOCOUNTRYCODE"].ToString();
-                email = decoder["EMAIL"].ToString();
+                //Update the order with PayPal Informatin              
+                var firstName = decoder["FIRSTNAME"].ToString();
+                var lastName = decoder["LASTNAME"].ToString();
+                var streetLine1 = decoder["SHIPTOSTREET"].ToString();
+                var streetLine2 = decoder["SHIPTOCITY"].ToString();
+                var state = decoder["SHIPTOSTATE"].ToString();
+                var postalCode = decoder["SHIPTOZIP"].ToString();
+                var country = decoder["SHIPTOCOUNTRYCODE"].ToString();
+                var email = decoder["EMAIL"].ToString();
                 //Total = Convert.ToDecimal(decoder["AMT"].ToString());
-                
+
+                UserSessionData.PayPalEmail = email;
+
                 //TODO uncomment
-                orderID = UpdateOrderShipTo(orderID, firstName, lastName, company, email,
-                    streetLine1, streetLine2, streetLine3,
-                    city, postalCode, county, country);
+                //orderID = UpdateOrderShipTo(orderID, firstName, lastName, company, email,
+                //    streetLine1, streetLine2, streetLine3,
+                //    city, postalCode, county, country);
 
                 //Prepare for display
-                var ppReview = new PayPalReviewViewModel();
-                ppReview.OrderID = orderID.ToString();
-                ppReview.OrderDate = decoder["TIMESTAMP"].ToString();
-                ppReview.Username = User.Identity.Name;
-                ppReview.FirstName = firstName;
-                ppReview.LastName = lastName;
-                ppReview.Address = streetLine1;
-                ppReview.City = streetLine2;
-                ppReview.State = streetLine3;
-                ppReview.PostalCode = postalCode;
-                ppReview.Email = email;
-                ppReview.TotalAmount = paymentAmountOnCheckout.ToString();
+                var ppReview = new PayPalReviewViewModel
+                {
+                    OrderID = orderID.ToString(),
+                    OrderDate = decoder["TIMESTAMP"].ToString(),
+                    Username = User.Identity.Name,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Address = streetLine1,
+                    City = streetLine2,
+                    State = state,
+                    PostalCode = postalCode,
+                    Email = email,
+                    TotalAmount = paymentAmountOnCheckout.ToString()
+                };
                 ViewBag.PayPalReview = ppReview;
 
                 return View("CheckoutReviewOrder");
@@ -237,38 +235,28 @@ namespace Mango.Web.Areas.Store.Controllers
             string finalPaymentAmount = "";
             string payerId = "";
 
-            var payPalCaller = new PayPalNvpApiCaller();
             var decoder = new PayPalNvpCodec();
 
 
             token = UserSessionData.Token.ToString();
             finalPaymentAmount = UserSessionData.PaymentAmount.ToString();
             payerId = UserSessionData.PayerID;
-            currentOrderId = UserSessionData.OrderId;
+            var payPalEmail = UserSessionData.PayPalEmail;
 
-            bool ret = payPalCaller.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
+            bool ret = _payPalNvpApiCallerService.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
             if (ret)
             {
                 // Retrieve PayPal confirmation value.
-                string paymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"].ToString();
+                string paymentConfirmation = decoder["PAYMENTINFO_0_TRANSACTIONID"];
 
                 //Update the order 
-                orderId = UserSessionData.OrderId;
-                orderId = _orderService.UpdateOrderConfirmation(orderId, paymentConfirmation);
+                _orderService.UpdatePayPalProperties(UserSessionData.OrderId, token, payerId, payPalEmail, paymentConfirmation);
 
                 //Reset session data
                 UserSessionData.PaymentAmount = 0;
                 UserSessionData.OrderId = 0;
 
                 ViewBag.PaymentConfirmation = paymentConfirmation;
-
-                //TODO remove
-                //Reduce the quantity of products in stock
-                //IEnumerable<OrderItem> orderItems = orderItemRepository.OrderItems.Where(x => x.OrderID == orderId);
-                //foreach (var orderItem in orderItems)
-                //{
-                //    UpdateProductQuantity(orderItem.ProductID, orderItem.Quantity);
-                //}
 
                 return View("CheckoutReviewTrans");
             }
@@ -317,7 +305,6 @@ namespace Mango.Web.Areas.Store.Controllers
             order.Customer.Email = email;
             order.ShipAddress.AddressLine1 = streetLine1;
             order.ShipAddress.AddressLine2 = streetLine2;
-            order.ShipAddress.AddressLine3 = streetLine3;
             order.ShipAddress.City = city;
             order.ShipAddress.Zip = postalCode;
             order.ShipAddress.County = county;

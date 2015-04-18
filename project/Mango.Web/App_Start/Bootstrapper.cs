@@ -13,6 +13,7 @@ using Mango.Core.Infrastructure;
 using Mango.Core.Repository;
 using Mango.Core.Service;
 using Mango.Core.Web.Checkout;
+using Mango.Web.ViewModelHelpers;
 
 namespace Mango.Web
 {
@@ -30,13 +31,13 @@ namespace Mango.Web
             var builder = new ContainerBuilder();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DatabaseFactory>().As<IDatabaseFactory>().InstancePerRequest();
             builder.RegisterAssemblyTypes(typeof(ProductRepository).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterAssemblyTypes(typeof(ProductService).Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterAssemblyTypes(typeof(CartService).Assembly).Where(t => t.Name.EndsWith("CartService")).AsImplementedInterfaces().InstancePerRequest();
-            builder.RegisterFilterProvider();
+            builder.RegisterAssemblyTypes(typeof(CheckoutService).Assembly).Where(t => t.Name.EndsWith("CheckoutService")).AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterAssemblyTypes(typeof(PayPalNvpApiCallerService).Assembly).Where(t => t.Name.EndsWith("PayPalNvpApiCallerService")).AsImplementedInterfaces().InstancePerRequest();
 
             var container = builder.Build();
 

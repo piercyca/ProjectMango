@@ -35,6 +35,21 @@ namespace Mango.Core.Entity
         /// </summary>
         public string PayPalOrderConfirmation { get; set; }
 
+        /// <summary>
+        /// PayPal payer id
+        /// </summary>
+        public string PayPalPayerId { get; set; }
+
+        /// <summary>
+        /// Can be different from Customer.Email
+        /// </summary>
+        public string PayPalEmail { get; set; }
+        
+        /// <summary>
+        /// PayPal token
+        /// </summary>
+        public string PayPalToken { get; set; }
+
         [Required]
         public decimal TotalAmount { get; set; }
 

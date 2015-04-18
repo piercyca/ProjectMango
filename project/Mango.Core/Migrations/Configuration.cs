@@ -228,7 +228,6 @@ namespace Mango.Core.Migrations
                     Phone = "5555555555", 
                     AddressLine1 = "33 Main St.", 
                     AddressLine2 = "Apt. 2", 
-                    AddressLine3 = string.Empty,
                     City = "Athens", 
                     State = "GA", 
                     Zip = "30605", 
