@@ -87,8 +87,8 @@
                 @Html.HiddenFor(model => model.ProductId)
                 @Html.HiddenFor(model => model.Price)
                 <input type="hidden" id="Quantity" name="Quantity" value="1" />
-                <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png"/>
-                <img class="hidden" id="#product_@Model.ProductId" src="~/Content/images/noimageavail.png" width="1" height="1"/>
+                <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png"/> 
+                <img class="hidden" id="#product_@Model.ProductId" width="1" height="1"/>
             </div>
         </div>
     </div>
@@ -130,7 +130,7 @@
                 onSuccess: function () {
 
                     var dataURL = canvas.toDataURL("image/png");
-                    $('img#@Html.HiddenFor(model => model.ProductId)').src = dataURL;
+                    $('img#product_'+ @Model.ProductId).src = dataURL;
                     //Craig, store the id, and dataURL -- Will not work locally
                     window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
                 }
