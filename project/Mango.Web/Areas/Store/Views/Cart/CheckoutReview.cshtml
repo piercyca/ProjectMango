@@ -1,4 +1,4 @@
-@model Mango.Core.Web.Checkout.PaypalModel
+@model Mango.Core.Web.Checkout.PayPalCartModel
 @{
     ViewBag.Title = "CheckoutReview";
 }
@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Cart)
+        @foreach (var item in Model.CartItems)
         {
             <tr>
                 <td>@item.ProductName</td>

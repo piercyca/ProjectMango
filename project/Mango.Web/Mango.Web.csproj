@@ -269,6 +269,7 @@
     <Compile Include="Areas\Store\Models\CartIndexViewModel.cs" />
     <Compile Include="Areas\Store\Models\CustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrderViewModel.cs" />
+    <Compile Include="Areas\Store\Models\PayPalReviewViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductCategoryDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductImageViewModel.cs" />
@@ -566,6 +567,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModelHelpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

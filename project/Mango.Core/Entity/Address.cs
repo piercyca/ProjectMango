@@ -86,6 +86,12 @@ namespace Mango.Core.Entity
         public string City { get; set; }
 
         /// <summary>
+        /// County
+        /// </summary>
+        [StringLength(100)]
+        public string County { get; set; }
+
+        /// <summary>
         /// State Abbreviation
         /// </summary>
         [StringLength(10)]
@@ -105,6 +111,15 @@ namespace Mango.Core.Entity
         public string Country { get; set; }
 
         public DateTime DateCreated { get; set; }
+
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return string.Format("{0} {1}", FirstName, LastName);
+            }
+        }
 
         [NotMapped]
         public string Shorthand
@@ -178,6 +193,7 @@ namespace Mango.Core.Entity
             newaddr.AddressLine1 = this.AddressLine1;
             newaddr.AddressLine2 = this.AddressLine2;
             newaddr.City = this.City;
+            newaddr.County = this.County;
             newaddr.State = this.State;
             newaddr.Zip = this.Zip;
             newaddr.Country = this.Country;

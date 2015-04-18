@@ -16,9 +16,10 @@ namespace Mango.Core.Service
         void CreateOrder(Order order);
         void EditOrder(Order order);
         void DeleteOrder(int id);
-        void SaveOrder();
+        void SaveOrder();   
         IEnumerable<Order> GetOrdersByCustomer(int customerId);
         IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords, string sortBy);
+        void UpdatePayPalProperties(int orderId, string payPalToken, string payPalPayerId, string payPalEmail, string payPalOrderConfirmation);
     }
 
     /// <summary>
@@ -118,6 +119,36 @@ namespace Mango.Core.Service
         public IEnumerable<Order> GetOrdersByPage(int currentPage, int noOfRecords, string sortBy)
         {
             return _orderRepository.GetOrdersByPage(currentPage, noOfRecords);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="payPalToken"></param>
+        /// <param name="payPalPayerId"></param>
+        /// <param name="payPalEmail"></param>
+        /// <param name="payPalNote"></param>
+        /// <param name="payPalOrderConfirmation"></param>
+        public void UpdatePayPalProperties(int orderId, string payPalToken, string payPalPayerId, string payPalEmail, string payPalOrderConfirmation)
+        {
+            var order = _orderRepository.GetById(orderId);
+            order.PayPalToken = payPalToken;
+            order.PayPalPayerId = payPalPayerId;
+            order.PayPalOrderConfirmation = payPalOrderConfirmation;
+            order.PayPalEmail = payPalEmail;
+            _orderRepository.Update(order);
+            SaveOrder();
+        }
+
+
+        public int UpdateOrderConfirmation(int id, string payPalPaymentConfirmation)
+        {
+            var order = _orderRepository.GetById(id);
+            order.PayPalOrderConfirmation = payPalPaymentConfirmation;
+            _orderRepository.Update(order);
+            SaveOrder();
+            return order.OrderId;
         }
     }
 }

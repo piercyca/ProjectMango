@@ -23,6 +23,7 @@ namespace Mango.Web.Areas.Store.Models
         /// <summary>
         /// First Name
         /// </summary>
+        [Display(Name = "First Name")]
         [Required]
         [StringLength(150)]
         public string FirstName { get; set; }
@@ -30,6 +31,7 @@ namespace Mango.Web.Areas.Store.Models
         /// <summary>
         /// Last Name
         /// </summary>
+        [Display(Name = "Last Name")]
         [Required]
         [StringLength(150)]
         public string LastName { get; set; }
@@ -37,6 +39,7 @@ namespace Mango.Web.Areas.Store.Models
         /// <summary>
         /// Email
         /// </summary>
+        [Display(Name = "Email")]
         [Required]
         [EmailAddress]
         [StringLength(200)]

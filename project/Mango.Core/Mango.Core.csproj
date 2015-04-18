@@ -208,6 +208,18 @@
     <Compile Include="Migrations\201504122217201_OrderForeignKeys.Designer.cs">
       <DependentUpon>201504122217201_OrderForeignKeys.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504162357139_OrderShippingFields.cs" />
+    <Compile Include="Migrations\201504162357139_OrderShippingFields.Designer.cs">
+      <DependentUpon>201504162357139_OrderShippingFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504181843187_RemoveAddressLine3DunnoWhyIDidThat.cs" />
+    <Compile Include="Migrations\201504181843187_RemoveAddressLine3DunnoWhyIDidThat.Designer.cs">
+      <DependentUpon>201504181843187_RemoveAddressLine3DunnoWhyIDidThat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504181936188_OrderPayPalFields.cs" />
+    <Compile Include="Migrations\201504181936188_OrderPayPalFields.Designer.cs">
+      <DependentUpon>201504181936188_OrderPayPalFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -328,6 +340,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504122217201_OrderForeignKeys.resx">
       <DependentUpon>201504122217201_OrderForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504162357139_OrderShippingFields.resx">
+      <DependentUpon>201504162357139_OrderShippingFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504181843187_RemoveAddressLine3DunnoWhyIDidThat.resx">
+      <DependentUpon>201504181843187_RemoveAddressLine3DunnoWhyIDidThat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504181936188_OrderPayPalFields.resx">
+      <DependentUpon>201504181936188_OrderPayPalFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

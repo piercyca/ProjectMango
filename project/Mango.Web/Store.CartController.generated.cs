@@ -87,12 +87,14 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Customer = "Customer";
-            public readonly string Cart = "Cart";
-            public readonly string CheckoutStart = "CheckoutStart";
+            public readonly string CheckoutPayPal = "CheckoutPayPal";
             public readonly string CheckoutReview = "CheckoutReview";
-            public readonly string CheckoutComplete = "CheckoutComplete";
+            public readonly string CheckoutReviewOrderCont = "CheckoutReviewOrderCont";
+            public readonly string CheckoutReviewTransCont = "CheckoutReviewTransCont";
             public readonly string CheckoutCancel = "CheckoutCancel";
-            public readonly string CheckoutError = "CheckoutError";
+            public readonly string CheckoutCancelContinue = "CheckoutCancelContinue";
+            public readonly string CheckoutErrorContinue = "CheckoutErrorContinue";
+            public readonly string CheckoutCompleteContinue = "CheckoutCompleteContinue";
             public readonly string Account = "Account";
             public readonly string Login = "Login";
             public readonly string Register = "Register";
@@ -103,18 +105,28 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             public const string Index = "Index";
             public const string Customer = "Customer";
-            public const string Cart = "Cart";
-            public const string CheckoutStart = "CheckoutStart";
+            public const string CheckoutPayPal = "CheckoutPayPal";
             public const string CheckoutReview = "CheckoutReview";
-            public const string CheckoutComplete = "CheckoutComplete";
+            public const string CheckoutReviewOrderCont = "CheckoutReviewOrderCont";
+            public const string CheckoutReviewTransCont = "CheckoutReviewTransCont";
             public const string CheckoutCancel = "CheckoutCancel";
-            public const string CheckoutError = "CheckoutError";
+            public const string CheckoutCancelContinue = "CheckoutCancelContinue";
+            public const string CheckoutErrorContinue = "CheckoutErrorContinue";
+            public const string CheckoutCompleteContinue = "CheckoutCompleteContinue";
             public const string Account = "Account";
             public const string Login = "Login";
             public const string Register = "Register";
         }
 
 
+        static readonly ActionParamsClass_Customer s_params_Customer = new ActionParamsClass_Customer();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Customer CustomerParams { get { return s_params_Customer; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Customer
+        {
+            public readonly string viewModel = "viewModel";
+        }
         static readonly ActionParamsClass_Login s_params_Login = new ActionParamsClass_Login();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Login LoginParams { get { return s_params_Login; } }
@@ -144,16 +156,24 @@ namespace Mango.Web.Areas.Store.Controllers
             public class _ViewNamesClass
             {
                 public readonly string Account = "Account";
+                public readonly string Checkout = "Checkout";
                 public readonly string CheckoutCancel = "CheckoutCancel";
                 public readonly string CheckoutComplete = "CheckoutComplete";
+                public readonly string CheckoutError = "CheckoutError";
                 public readonly string CheckoutReview = "CheckoutReview";
+                public readonly string CheckoutReviewOrder = "CheckoutReviewOrder";
+                public readonly string CheckoutReviewTrans = "CheckoutReviewTrans";
                 public readonly string Customer = "Customer";
                 public readonly string Index = "Index";
             }
             public readonly string Account = "~/Areas/Store/Views/Cart/Account.cshtml";
+            public readonly string Checkout = "~/Areas/Store/Views/Cart/Checkout.cshtml";
             public readonly string CheckoutCancel = "~/Areas/Store/Views/Cart/CheckoutCancel.cshtml";
             public readonly string CheckoutComplete = "~/Areas/Store/Views/Cart/CheckoutComplete.cshtml";
+            public readonly string CheckoutError = "~/Areas/Store/Views/Cart/CheckoutError.cshtml";
             public readonly string CheckoutReview = "~/Areas/Store/Views/Cart/CheckoutReview.cshtml";
+            public readonly string CheckoutReviewOrder = "~/Areas/Store/Views/Cart/CheckoutReviewOrder.cshtml";
+            public readonly string CheckoutReviewTrans = "~/Areas/Store/Views/Cart/CheckoutReviewTrans.cshtml";
             public readonly string Customer = "~/Areas/Store/Views/Cart/Customer.cshtml";
             public readonly string Index = "~/Areas/Store/Views/Cart/Index.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();
@@ -197,68 +217,102 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         [NonAction]
-        partial void CartOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CustomerOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Mango.Web.Areas.Store.Models.CartCustomerViewModel viewModel);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult Cart()
+        public override System.Web.Mvc.ActionResult Customer(Mango.Web.Areas.Store.Models.CartCustomerViewModel viewModel)
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Cart);
-            CartOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Customer);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            CustomerOverride(callInfo, viewModel);
             return callInfo;
         }
 
         [NonAction]
-        partial void CheckoutStartOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CheckoutPayPalOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CheckoutStart()
+        public override System.Web.Mvc.ActionResult CheckoutPayPal()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutStart);
-            CheckoutStartOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutPayPal);
+            CheckoutPayPalOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CheckoutReviewOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CheckoutReviewOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CheckoutReview()
+        public override System.Web.Mvc.ViewResult CheckoutReview()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutReview);
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.CheckoutReview);
             CheckoutReviewOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CheckoutCompleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CheckoutReviewOrderContOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CheckoutComplete()
+        public override System.Web.Mvc.ViewResult CheckoutReviewOrderCont()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutComplete);
-            CheckoutCompleteOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.CheckoutReviewOrderCont);
+            CheckoutReviewOrderContOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CheckoutCancelOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CheckoutReviewTransContOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CheckoutCancel()
+        public override System.Web.Mvc.ViewResult CheckoutReviewTransCont()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutCancel);
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.CheckoutReviewTransCont);
+            CheckoutReviewTransContOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutCancelOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult CheckoutCancel()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.CheckoutCancel);
             CheckoutCancelOverride(callInfo);
             return callInfo;
         }
 
         [NonAction]
-        partial void CheckoutErrorOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+        partial void CheckoutCancelContinueOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CheckoutError()
+        public override System.Web.Mvc.ViewResult CheckoutCancelContinue()
         {
-            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CheckoutError);
-            CheckoutErrorOverride(callInfo);
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.CheckoutCancelContinue);
+            CheckoutCancelContinueOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutErrorContinueOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult CheckoutErrorContinue()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.CheckoutErrorContinue);
+            CheckoutErrorContinueOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void CheckoutCompleteContinueOverride(T4MVC_System_Web_Mvc_ViewResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ViewResult CheckoutCompleteContinue()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.CheckoutCompleteContinue);
+            CheckoutCompleteContinueOverride(callInfo);
             return callInfo;
         }
 

@@ -9,21 +9,24 @@ namespace Mango.Core.Web.Checkout
     /// <summary>
     /// 
     /// </summary>
-    public class PaypalModel
+    public class PayPalCartModel
     {
-        public List<PayPalCartItemModel> Cart { get; set; }
+        public List<PayPalCartItemModel> CartItems { get; set; }
         public string BuyerName { get; set; }
         public string ShippingAddress { get; set; }
-        public decimal TotalAmount { get { return (Cart != null) ? Cart.Sum(x => x.Amount) : 0; } }
+        public decimal TotalAmount { get { return (CartItems != null) ? CartItems.Sum(x => x.Amount) : 0; } }
 
-        public PaypalModel()
+        public PayPalCartModel()
         {
-            Cart = new List<PayPalCartItemModel>();
+            CartItems = new List<PayPalCartItemModel>();
             BuyerName = string.Empty;
             ShippingAddress = string.Empty;
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class PayPalCartItemModel
     {
         public int ProductId { get; set; }

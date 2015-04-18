@@ -36,27 +36,39 @@ namespace Mango.Core.Web.Checkout
         public CartModel()
         {
             Items = new List<CartItemModel>();
+            Customer = new Customer();
+            ShippingAddress = new Address();
         }
+
+        /// <summary>
+        /// Shipping Address entity
+        /// </summary>
+        public Address ShippingAddress { get; set; }
+        
+        /// <summary>
+        /// Customer entity
+        /// </summary>
+        public Customer Customer { get; set; }
 
         /// <summary>
         /// Convert to Paypal Model
         /// </summary>
         /// <returns></returns>
-        public PaypalModel ConvertToPaypalModel()
+        public PayPalCartModel ConvertToPaypalModel()
         {
-            var paypalModel = new PaypalModel();
+            var payPalModel = new PayPalCartModel();
             foreach (var item in Items)
             {
-                var paypalItemModel = new PayPalCartItemModel
+                var payPalCartItemModel = new PayPalCartItemModel
                 {
                     ProductId = item.Product.ProductId,
                     ProductName = item.Product.Name,
                     Quantity = item.Quantity,
                     UnitPrice = item.UnitPrice
                 };
-                paypalModel.Cart.Add(paypalItemModel);
+                payPalModel.CartItems.Add(payPalCartItemModel);
             }
-            return paypalModel;
+            return payPalModel;
         }
     }
 

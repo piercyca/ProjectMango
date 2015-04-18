@@ -23,7 +23,6 @@
                         </div>
                     </div>
                 </div>
-
                 @if (!Model.CartModel.Items.Any())
                 {
                     <div class="panel-body">
@@ -36,7 +35,6 @@
                 }
                 else
                 {
-
                     <div class="panel-body">
                         @for (int index = 0; index < Model.CartModel.Items.Count; index++)
                         {
@@ -73,7 +71,7 @@
                             </div>
                         }
                         <hr>
-                        <div class="row">
+                        @*<div class="row">
                             <div class="text-center">
                                 <div class="col-xs-9">
                                     <h6 class="text-right">Added items?</h6>
@@ -85,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr>
+                        <hr>*@
                         @*<div class="row">
                                 <div class="text-center">
                                     <div class="col-xs-9">
@@ -103,14 +101,11 @@
                                 <h4 class="text-right">Total <strong>$@Model.CartModel.TotalPrice</strong></h4>
                             </div>
                             <div class="col-xs-3">
-                                <button type="button" class="btn btn-success btn-block">
-                                    Checkout
-                                </button>
+                                @Html.ActionLink("Checkout", MVC.StoreArea.Cart.Account(), new { @class = "btn btn-success btn-block" })
                             </div>
                         </div>
                     </div>
                 }
-
             </div>
         </div>
     </div>
@@ -121,7 +116,7 @@
     <script>
         $(window).load(function() {
             $("button[data-cartaction='RemoveItem']").click(function () {
-                console.log($(this).attr('data-index'));
+                //console.log($(this).attr('data-index'));
                 var cartService = new CartService.RemoveItem({
                     index: $(this).attr('data-index'),
                     onSuccess: function() {
@@ -133,10 +128,10 @@
                 var cartService = new CartService.UpdateItemQuantity({
                     index: $(this).attr('data-index'),
                     quantity: $(this).val(),
-                    onSuccess: function () {
+                    onSuccess: function() {
                         window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
                     }
-                })
+                });
             });
         });
     </script>
