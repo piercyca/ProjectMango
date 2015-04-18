@@ -24,6 +24,7 @@ namespace Mango.Core.Migrations
             // Delete products and product categories because they've been being silly when updating because of their unique contraints.
             context.Database.ExecuteSqlCommand("DELETE FROM [dbo].[Product]");
             context.Database.ExecuteSqlCommand("DELETE FROM [dbo].[ProductCategory]");
+            context.Database.ExecuteSqlCommand("DELETE FROM [dbo].[Order]");
 
             #region Product Categories
 
@@ -201,7 +202,15 @@ namespace Mango.Core.Migrations
             #region Customers
 
             context.Customers.AddOrUpdate(c => c.CustomerId, 
-                new Customer { CustomerId = 1, DateCreated = DateTime.UtcNow, Email = "customer_person@etcheive.com", FirstName = "Frank", LastName = "Customer", Username = "customer_person@etcheive.com" });
+                new Customer
+                {
+                    CustomerId = 1, 
+                    DateCreated = DateTime.UtcNow, 
+                    Email = "customer_person@etcheive.com", 
+                    FirstName = "Frank", 
+                    LastName = "Customer", 
+                    Username = "customer_person@etcheive.com"
+                });
             //context.Customers.AddOrUpdate(c => c.CustomerId, new Entity.Customer { CustomerId = 2, DateCreated = DateTime.UtcNow, Email = "guest@etchieve.com", FirstName = "Guest", LastName = "Customer", Username = null });
 
             #endregion
@@ -209,15 +218,41 @@ namespace Mango.Core.Migrations
             #region Adresses
 
             context.Addresses.AddOrUpdate(a => a.AddressId, 
-                new Address { AddressId = 1, Status = AddressStatus.Active, AddressType = AddressType.Bill, FirstName = "John", LastName = "Smith", Phone = "5555555555", AddressLine1 = "33 Main St.", AddressLine2 = "Apt. 2", City = "Athens", State = "GA", Zip = "30605", Country = "USA", DateCreated = DateTime.Now}, 
-                new Address { AddressId = 2, Status = AddressStatus.Active, AddressType = AddressType.Ship, FirstName = "John", LastName = "Smith", Phone = "7777777777", AddressLine1 = "157 Broad Ave.", AddressLine2 = "", City = "Atlanta", State = "GA", Zip = "30303", Country = "USA", DateCreated = DateTime.Now });
+                new Address
+                {
+                    AddressId = 1, 
+                    Status = AddressStatus.Active, 
+                    AddressType = AddressType.Ship, 
+                    FirstName = "John", 
+                    LastName = "Smith", 
+                    Phone = "5555555555", 
+                    AddressLine1 = "33 Main St.", 
+                    AddressLine2 = "Apt. 2", 
+                    City = "Athens", 
+                    State = "GA", 
+                    Zip = "30605", 
+                    County = "Fulton",
+                    Country = "USA", 
+                    DateCreated = DateTime.Now
+                }); 
+                //new Address { AddressId = 2, Status = AddressStatus.Active, AddressType = AddressType.Ship, FirstName = "John", LastName = "Smith", Phone = "7777777777", AddressLine1 = "157 Broad Ave.", AddressLine2 = "", City = "Atlanta", State = "GA", Zip = "30303", Country = "USA", DateCreated = DateTime.Now }
 
             #endregion
 
             #region Orders
 			
             context.Orders.AddOrUpdate(o => o.OrderId, 
-                new Entity.Order { OrderId = 1, CustomerId = 1, ShipAddressId = 2, BillAddressId = 1, TotalAmount = 100.00m, DateCreated = DateTime.Now});
+                new Entity.Order
+                {
+                    OrderId = 1, 
+                    CustomerId = 1, 
+                    ShipAddressId = 1, 
+                    //BillAddressId = 1, 
+                    TotalAmount = 100.00m, 
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    DateShipped = null
+                });
 
             #endregion
 

@@ -66,10 +66,10 @@ namespace Mango.Core.Entity
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Order>()
-                .HasRequired(e => e.BillAddress)
-                .WithMany()
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Order>()
+            //    .HasRequired(e => e.BillAddress)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order>()
                 .HasRequired(e => e.ShipAddress)

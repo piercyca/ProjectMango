@@ -59,6 +59,12 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -269,6 +275,7 @@
     <Compile Include="Areas\Store\Models\CartIndexViewModel.cs" />
     <Compile Include="Areas\Store\Models\CustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrderViewModel.cs" />
+    <Compile Include="Areas\Store\Models\PayPalReviewViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductCategoryDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductDetailViewModel.cs" />
     <Compile Include="Areas\Store\Models\ProductImageViewModel.cs" />
@@ -477,6 +484,11 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Areas\Store\Views\Cart\Checkout.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutError.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutReviewOrder.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutReviewTrans.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\Completed.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web.pubxml" />
     <None Include="Properties\Settings.settings">
