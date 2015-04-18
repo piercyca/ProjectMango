@@ -163,6 +163,7 @@ namespace Mango.Web.Areas.Store.Controllers
                 public readonly string CheckoutReview = "CheckoutReview";
                 public readonly string CheckoutReviewOrder = "CheckoutReviewOrder";
                 public readonly string CheckoutReviewTrans = "CheckoutReviewTrans";
+                public readonly string Completed = "Completed";
                 public readonly string Customer = "Customer";
                 public readonly string Index = "Index";
             }
@@ -174,6 +175,7 @@ namespace Mango.Web.Areas.Store.Controllers
             public readonly string CheckoutReview = "~/Areas/Store/Views/Cart/CheckoutReview.cshtml";
             public readonly string CheckoutReviewOrder = "~/Areas/Store/Views/Cart/CheckoutReviewOrder.cshtml";
             public readonly string CheckoutReviewTrans = "~/Areas/Store/Views/Cart/CheckoutReviewTrans.cshtml";
+            public readonly string Completed = "~/Areas/Store/Views/Cart/Completed.cshtml";
             public readonly string Customer = "~/Areas/Store/Views/Cart/Customer.cshtml";
             public readonly string Index = "~/Areas/Store/Views/Cart/Index.cshtml";
             static readonly _EditorTemplatesClass s_EditorTemplates = new _EditorTemplatesClass();

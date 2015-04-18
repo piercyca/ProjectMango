@@ -478,6 +478,11 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Areas\Store\Views\Cart\Checkout.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutError.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutReviewOrder.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\CheckoutReviewTrans.cshtml" />
+    <Content Include="Areas\Store\Views\Cart\Completed.cshtml" />
     <None Include="Properties\PublishProfiles\mango-web %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -567,7 +572,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModelHelpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
