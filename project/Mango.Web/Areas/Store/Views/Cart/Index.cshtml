@@ -40,7 +40,7 @@
                         {
                             var cartItem = Model.CartModel.Items[index];
                             var product = cartItem.Product;
-                            var imageUrl = (cartItem.ProductImages.Any()) ? cartItem.ProductImages.First().Url : product.CanvasImage;
+                            var imageUrl = (cartItem.ProductImages.Any()) ? cartItem.ProductImages.First().LocalUrl : product.CanvasImage;
                             <div class="row">
                                 <div class="col-xs-2">
                                     <img class="cart img-responsive" src="@imageUrl">

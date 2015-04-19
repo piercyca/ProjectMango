@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Policy;
+using Mango.Core.Common;
 using Mango.Core.Service;
 
 namespace Mango.Core.Entity
@@ -71,6 +73,10 @@ namespace Mango.Core.Entity
 
         public virtual ICollection<ProductImage> ProductImages { get; set; }
 
-
+        /// <summary>
+        /// Local Url to image
+        /// </summary>
+        [NotMapped]
+        public string LocalCanvasImage { get { return LocalBlobImageUrl.Url(CanvasImage); } }
     }
 }

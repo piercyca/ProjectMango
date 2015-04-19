@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\LocalBlobImageUrl.cs" />
     <Compile Include="Common\ValidationResult.cs" />
     <Compile Include="Entity\Address.cs" />
     <Compile Include="Entity\Customer.cs" />

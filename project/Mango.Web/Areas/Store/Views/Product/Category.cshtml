@@ -20,7 +20,7 @@
                 {
                     foreach (var product in Model.Products)
                     {
-                        var imageUrl = (product.ProductImages.Any()) ? product.ProductImages.First().Url : product.CanvasImage;
+                        var imageUrl = (product.ProductImages.Any()) ? product.ProductImages.First().LocalUrl : product.CanvasImage;
                         var productDetailUrl = Url.Action(MVC.StoreArea.Product.Customize(product.UrlSlug));
                         if (product.Description.Length > 120)
                         {

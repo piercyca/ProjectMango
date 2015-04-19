@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Mango.Core.Entity;
+using Mango.Web.Helpers;
 
 namespace Mango.Web.Mappings
 {
@@ -38,7 +39,7 @@ namespace Mango.Web.Mappings
             Mapper.CreateMap<Address, Areas.Store.Models.AddressViewModel>();
             Mapper.CreateMap<Customer, Areas.Store.Models.CustomerViewModel>();
             Mapper.CreateMap<Order, Areas.Store.Models.OrderViewModel>();
-            Mapper.CreateMap<Product, Areas.Store.Models.ProductDetailViewModel>();
+            Mapper.CreateMap<Product, Areas.Store.Models.ProductDetailViewModel>().ForMember(dest => dest.CanvasImage, opt => opt.MapFrom(src => src.LocalCanvasImage));
             Mapper.CreateMap<ProductCategory, Areas.Store.Models.ProductCategoryDetailViewModel>();
             Mapper.CreateMap<ProductImage, Areas.Store.Models.ProductImageViewModel>();
 

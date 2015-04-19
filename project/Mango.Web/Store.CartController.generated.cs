@@ -95,6 +95,7 @@ namespace Mango.Web.Areas.Store.Controllers
             public readonly string CheckoutCancelContinue = "CheckoutCancelContinue";
             public readonly string CheckoutErrorContinue = "CheckoutErrorContinue";
             public readonly string CheckoutCompleteContinue = "CheckoutCompleteContinue";
+            public readonly string GuestCheckout = "GuestCheckout";
             public readonly string Account = "Account";
             public readonly string Login = "Login";
             public readonly string Register = "Register";
@@ -113,6 +114,7 @@ namespace Mango.Web.Areas.Store.Controllers
             public const string CheckoutCancelContinue = "CheckoutCancelContinue";
             public const string CheckoutErrorContinue = "CheckoutErrorContinue";
             public const string CheckoutCompleteContinue = "CheckoutCompleteContinue";
+            public const string GuestCheckout = "GuestCheckout";
             public const string Account = "Account";
             public const string Login = "Login";
             public const string Register = "Register";
@@ -315,6 +317,17 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ViewResult(Area, Name, ActionNames.CheckoutCompleteContinue);
             CheckoutCompleteContinueOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void GuestCheckoutOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult GuestCheckout()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GuestCheckout);
+            GuestCheckoutOverride(callInfo);
             return callInfo;
         }
 

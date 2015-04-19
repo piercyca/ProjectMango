@@ -15,7 +15,7 @@
 
         @foreach (var product in Model.Products)
         {
-            var imageUrl = (product.ProductImages.Any()) ? product.ProductImages.First().Url : product.CanvasImage;
+            var imageUrl = (product.ProductImages.Any()) ? product.ProductImages.First().LocalUrl : product.CanvasImage;
             var productDetailUrl = Url.Action(MVC.StoreArea.Product.Customize(product.UrlSlug));
             <div class=" col-lg-3 col-md-3 col-sm-4 col-xs-6">
                 <div class="item">

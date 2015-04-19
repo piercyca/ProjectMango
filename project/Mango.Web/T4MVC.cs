@@ -34,6 +34,7 @@ public static partial class MVC
     public static Mango.Web.Controllers.HomeController Home = new Mango.Web.Controllers.T4MVC_HomeController();
     public static Mango.Web.Controllers.ManageController Manage = new Mango.Web.Controllers.T4MVC_ManageController();
     public static Mango.Web.Controllers.StoreController Store = new Mango.Web.Controllers.T4MVC_StoreController();
+    public static Mango.Web.Controllers.UtilityController Utility = new Mango.Web.Controllers.T4MVC_UtilityController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 
@@ -82,6 +83,19 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
     }
      
     public override void ExecuteResult(System.Web.Mvc.ControllerContext context) { }
+    
+    public string Controller { get; set; }
+    public string Action { get; set; }
+    public string Protocol { get; set; }
+    public RouteValueDictionary RouteValueDictionary { get; set; }
+}
+[GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+internal partial class T4MVC_System_Web_Mvc_FileStreamResult : System.Web.Mvc.FileStreamResult, IT4MVCActionResult
+{
+    public T4MVC_System_Web_Mvc_FileStreamResult(string area, string controller, string action, string protocol = null): base(default(System.IO.Stream), " ")
+    {
+        this.InitMVCT4Result(area, controller, action, protocol);
+    }
     
     public string Controller { get; set; }
     public string Action { get; set; }

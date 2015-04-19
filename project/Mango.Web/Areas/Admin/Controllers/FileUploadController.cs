@@ -33,7 +33,7 @@ namespace Mango.Web.Areas.Admin.Controllers
                     {
                         var info = new FileInfo(i.LocalFileName);
                         // upload to blob storage
-                        var blobUrl = Storage.Image.Upload(i.LocalFileName, i.Headers.ContentType.ToString());
+                        var blobUrl = Storage.BlobImage.Upload(i.LocalFileName, i.Headers.ContentType.ToString(), "images");
                         //return "File saved as " + blobUrl + " (" + info.Length + ") (" + i.Headers.ContentType + ")";
                         return blobUrl;
                     });

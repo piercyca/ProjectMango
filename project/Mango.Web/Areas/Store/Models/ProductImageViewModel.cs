@@ -23,5 +23,7 @@ namespace Mango.Web.Areas.Store.Models
         /// </summary>
         [ReadOnly(true)]
         public string Url { get; set; }
+
+        public string LocalUrl { get; set; }
     }
 }

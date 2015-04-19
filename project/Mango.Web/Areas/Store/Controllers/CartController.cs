@@ -343,7 +343,7 @@ namespace Mango.Web.Areas.Store.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GuestCheckout()
+        public virtual ActionResult GuestCheckout()
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {

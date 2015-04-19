@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Mango.Core.Common;
 
 namespace Mango.Core.Entity
 {
@@ -29,5 +30,11 @@ namespace Mango.Core.Entity
         /// </summary>
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
+
+        /// <summary>
+        /// Local Url to image
+        /// </summary>
+        [NotMapped]
+        public string LocalUrl { get { return LocalBlobImageUrl.Url(Url); } }
     }
 }
