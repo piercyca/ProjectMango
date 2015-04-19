@@ -38,6 +38,7 @@ namespace Mango.Web.Migrations
             {
                 new {name = "customer_person@etcheive.com", role = "Customer" },
                 new {name = "admin_person@etcheive.com", role = "Admin"},
+                new {name = "craig@olivermedia.net", role = "Customer"}
             };
             
             foreach (var seedUser in seedUsers)

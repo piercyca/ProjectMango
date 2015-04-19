@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web;
 using Mango.Core.Entity;
 
@@ -15,6 +11,7 @@ namespace Mango.Core.Web.Checkout
         void UpdateItemQuantity(int index, int quantity);
         void RemoveItem(int index);
         PayPalCartModel ConvertToPaypalModel();
+        void ClearCart();
     }
 
     /// <summary>
@@ -42,42 +39,83 @@ namespace Mango.Core.Web.Checkout
             }
         }
 
+        /// <summary>
+        /// Get cart model from session
+        /// </summary>
+        /// <returns></returns>
         public CartModel GetCartModel()
         {
             return _cart;
         }
 
+        /// <summary>
+        /// Add item to cart
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="productImages"></param>
+        /// <param name="quantity"></param>
+        /// <param name="price"></param>
+        /// <param name="configuration"></param>
         public void AddItem(Product product, List<ProductImage> productImages, int quantity, decimal price, string configuration)
         {
-            var cartItem = new CartItemModel
+            _cart.Items.Add(new CartItemModel
             {
                 Product = product,
                 ProductImages = productImages,
                 Quantity = quantity,
                 UnitPrice = price,
                 Configuration = configuration
-            };
-            _cart.Items.Add(cartItem);
+            });
         }
 
+        /// <summary>
+        /// Update Item quantity
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="quantity"></param>
         public void UpdateItemQuantity(int index, int quantity)
         {
             if (_cart.Items.Count <= index)
+            {
                 return;
+            }
 
+            if (quantity == 0)
+            {
+                RemoveItem(index);
+                return;
+            }
             _cart.Items[index].Quantity = quantity;
         }
 
+        /// <summary>
+        /// Remove item from cart
+        /// </summary>
+        /// <param name="index"></param>
         public void RemoveItem(int index)
         {
             if (_cart.Items.Count <= index)
+            {
                 return;
+            }
             _cart.Items.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Converts cart to paypal cart
+        /// </summary>
+        /// <returns></returns>
         public PayPalCartModel ConvertToPaypalModel()
         {
             return _cart.ConvertToPaypalModel();
-        }       
+        }
+
+        /// <summary>
+        /// Empty cart
+        /// </summary>
+        public void ClearCart()
+        {
+            _cart.ClearCart();
+        }
     }
 }

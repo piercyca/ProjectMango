@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Mango.Core.Entity;
 
 namespace Mango.Web.Areas.Store.Models
 {
     /// <summary>
-    /// TODO comment
+    /// Product Image ViewModel for <seealso cref="ProductImage"/>
     /// </summary>
     public class ProductImageViewModel
     {

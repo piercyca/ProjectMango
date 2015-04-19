@@ -70,6 +70,13 @@ namespace Mango.Core.Web.Checkout
             }
             return payPalModel;
         }
+
+        public void ClearCart()
+        {
+            Items = new List<CartItemModel>();
+            Customer = new Customer();
+            ShippingAddress = new Address();
+        }
     }
 
     /// <summary>

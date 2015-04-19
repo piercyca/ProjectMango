@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Mango.Core.Entity;
 using Mango.Core.Service;
+using Mango.Core.Web;
 using Mango.Core.Web.Checkout;
 using Mango.Core.Web.Helpers;
 using Mango.Web.Areas.Store.Models;
@@ -13,6 +17,7 @@ using Mango.Web.Attributes;
 using Mango.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
 namespace Mango.Web.Areas.Store.Controllers
@@ -23,32 +28,34 @@ namespace Mango.Web.Areas.Store.Controllers
     [LogoutIfAdmin]
     public partial class CartController : Controller
     {
-        private readonly IAddressService _addressService;
-        private readonly ICustomerService _customerService;
         private readonly IOrderService _orderService;
-        private readonly IOrderLineItemService _orderLineItemService;
         private readonly ICartService _cartService;
         private readonly ICheckoutService _checkoutService;
         private readonly IPayPalNvpApiCallerService _payPalNvpApiCallerService;
+        
+        private IOwinContext _owinCotext;
+        private IOwinContext OwinContext { get { return _owinCotext ?? HttpContext.GetOwinContext(); } set { _owinCotext = value; } }
+
+        #region Account
+
+        private ApplicationSignInManager _signInManager { get { return OwinContext.Get<ApplicationSignInManager>(); } }
+        private ApplicationUserManager _userManager { get { return OwinContext.GetUserManager<ApplicationUserManager>(); } }
+        private IAuthenticationManager _authenticationManager { get { return OwinContext.Authentication; } }
+
+        #endregion
 
         public CartController() { }
 
-        public CartController(IAddressService addressService, ICustomerService customerService,
-            IOrderService orderService, IOrderLineItemService orderLineItemService,
-            ICartService cartService, ICheckoutService checkoutService, IPayPalNvpApiCallerService payPalNvpApiCallerService)
+        public CartController(IOrderService orderService, ICartService cartService, ICheckoutService checkoutService, IPayPalNvpApiCallerService payPalNvpApiCallerService)
         {
-            _addressService = addressService;
-            _customerService = customerService;
             _orderService = orderService;
-            _orderLineItemService = orderLineItemService;
             _cartService = cartService;
             _checkoutService = checkoutService;
             _payPalNvpApiCallerService = payPalNvpApiCallerService;
         }
-        public CartController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public CartController(IOwinContext owinContext)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            _owinCotext = owinContext;
         }
 
         /// <summary>
@@ -95,6 +102,7 @@ namespace Mango.Web.Areas.Store.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public virtual ActionResult Customer(CartCustomerViewModel viewModel)
         {
             // Check if cart is empty
@@ -110,6 +118,7 @@ namespace Mango.Web.Areas.Store.Controllers
                     var customer = Mapper.Map<CustomerViewModel, Customer>(viewModel.Customer);
                     var shippingAddress = Mapper.Map<AddressViewModel, Address>(viewModel.ShippingAddress);
                     UserSessionData.OrderId = _checkoutService.CreateOrder(customer, shippingAddress);
+                    _cartService.ClearCart();
                     return RedirectToAction(MVC.StoreArea.Cart.CheckoutPayPal());
                 }
             }
@@ -118,59 +127,71 @@ namespace Mango.Web.Areas.Store.Controllers
 
         #region Paypal
 
-
+        /// <summary>
+        /// GET: /store/cart/checkoutpaypal
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public virtual ActionResult CheckoutPayPal()
         {
             var orderId = UserSessionData.OrderId;
-
-            string retMsg = "";
-            string token = "";
-            decimal amtVal = _orderService.GetOrder(orderId).TotalAmount;
-            string amt = amtVal.ToString();
-            bool ret = _payPalNvpApiCallerService.ShortcutExpressCheckout(orderId, amt, ref token, ref retMsg);
-
+            var retMsg = string.Empty;
+            var token = string.Empty;
+            var amtVal = _orderService.GetOrder(orderId).TotalAmount;
+            var amt = amtVal.ToString(CultureInfo.InvariantCulture);
+            var errorMessage = new StringBuilder();
+            var ret = _payPalNvpApiCallerService.ShortcutExpressCheckout(orderId, amt, ref token, ref retMsg);
             if (ret)
             {
                 UserSessionData.Token = token;
                 UserSessionData.PaymentAmount = amtVal;
-
                 return Redirect(retMsg);
             }
-            else
-            {
-                return View("Completed");
-            }
-
+            errorMessage.AppendLine("Paypal Call Failed");
+            errorMessage.AppendLine("Method: IPayPalNvpApiCallerService.ShortcutExpressCheckout()");
+            errorMessage.AppendLine("ControllerMethod: Cart.CheckoutPayPal()");
+            errorMessage.AppendLine(string.Format("retMsg: {0}", retMsg));
+            ExceptionLogger.Log(errorMessage, new List<object> { RouteData });
+            return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutError);
         }
 
+        /// <summary>
+        /// GET: /store/cart/checkoutreview
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public virtual ViewResult CheckoutReview()
         {
-            string retMsg = "";
-            string token = "";
-            decimal paymentAmountOnCheckout = 0;
-            string payerID = "";
-
+            
             var decoder = new PayPalNvpCodec();
-
-            token = UserSessionData.Token;
-            paymentAmountOnCheckout = UserSessionData.PaymentAmount;
-
-            bool ret = _payPalNvpApiCallerService.GetCheckoutDetails(token, ref payerID, ref decoder, ref retMsg);
+            var token = UserSessionData.Token;
+            var paymentAmountOnCheckout = UserSessionData.PaymentAmount;
+            var retMsg = string.Empty;
+            var payerID = string.Empty;
+            var errorMessage = new StringBuilder();
+            var ret = _payPalNvpApiCallerService.GetCheckoutDetails(token, ref payerID, ref decoder, ref retMsg);
             if (ret)
             {
-
-                // Verify total payment amount as set on CheckoutStart.aspx.
                 try
                 {
-                    decimal paymentAmoutFromPayPal = Convert.ToDecimal(decoder["AMT"].ToString());
+                    decimal paymentAmoutFromPayPal = Convert.ToDecimal(decoder["AMT"]);
                     if (paymentAmountOnCheckout != paymentAmoutFromPayPal)
                     {
-                        return View("CheckoutError");
+                        errorMessage.AppendLine("Paypal Amount is different from Checkout Amount");
+                        errorMessage.AppendFormat("Checkout Amount: {0}\r\n", paymentAmountOnCheckout);
+                        errorMessage.AppendFormat("PayPal Amount: {0}\r\n", paymentAmoutFromPayPal);
+                        errorMessage.AppendLine("ControllerMethod: Cart.CheckoutReview()");
+                        errorMessage.AppendFormat("retMsg: {0}\r\n", retMsg);
+                        ExceptionLogger.Log(errorMessage, new List<object> { RouteData });
+                        return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutError);
                     }
                 }
-                catch (Exception)
+                catch (Exception innerException)
                 {
-                    return View("CheckoutError");
+                    errorMessage.AppendLine("Checkout Error, see inner exception.");
+                    errorMessage.AppendLine("ControllerMethod: Cart.CheckoutReview()");
+                    ExceptionLogger.Log(errorMessage, innerException, new List<object> { RouteData });
+                    return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutError);
                 }
 
 
@@ -179,14 +200,13 @@ namespace Mango.Web.Areas.Store.Controllers
                 var orderID = UserSessionData.OrderId;
 
                 //Update the order with PayPal Informatin              
-                var firstName = decoder["FIRSTNAME"].ToString();
-                var lastName = decoder["LASTNAME"].ToString();
-                var streetLine1 = decoder["SHIPTOSTREET"].ToString();
-                var streetLine2 = decoder["SHIPTOCITY"].ToString();
-                var state = decoder["SHIPTOSTATE"].ToString();
-                var postalCode = decoder["SHIPTOZIP"].ToString();
-                var country = decoder["SHIPTOCOUNTRYCODE"].ToString();
-                var email = decoder["EMAIL"].ToString();
+                var firstName = decoder["FIRSTNAME"];
+                var lastName = decoder["LASTNAME"];
+                var streetLine1 = decoder["SHIPTOSTREET"];
+                var streetLine2 = decoder["SHIPTOCITY"];
+                var state = decoder["SHIPTOSTATE"];
+                var postalCode = decoder["SHIPTOZIP"];
+                var email = decoder["EMAIL"];
                 //Total = Convert.ToDecimal(decoder["AMT"].ToString());
 
                 UserSessionData.PayPalEmail = email;
@@ -200,7 +220,7 @@ namespace Mango.Web.Areas.Store.Controllers
                 var ppReview = new PayPalReviewViewModel
                 {
                     OrderID = orderID.ToString(),
-                    OrderDate = decoder["TIMESTAMP"].ToString(),
+                    OrderDate = decoder["TIMESTAMP"],
                     Username = User.Identity.Name,
                     FirstName = firstName,
                     LastName = lastName,
@@ -209,36 +229,36 @@ namespace Mango.Web.Areas.Store.Controllers
                     State = state,
                     PostalCode = postalCode,
                     Email = email,
-                    TotalAmount = paymentAmountOnCheckout.ToString()
+                    TotalAmount = paymentAmountOnCheckout.ToString(CultureInfo.InvariantCulture)
                 };
                 ViewBag.PayPalReview = ppReview;
+                return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutReviewOrder);
+            }
 
-                return View("CheckoutReviewOrder");
-            }
-            else
-            {
-                return View("CheckoutError");
-            }
+            errorMessage = new StringBuilder();
+            errorMessage.AppendLine("Paypal Call Failed");
+            errorMessage.AppendLine("Method: IPayPalNvpApiCallerService.GetCheckoutDetails()");
+            errorMessage.AppendLine("ControllerMethod: Cart.CheckoutReview()");
+            errorMessage.AppendLine(string.Format("retMsg: {0}", retMsg));
+            ExceptionLogger.Log(errorMessage, new List<object> { RouteData });
+            return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutError);
         }
+
+        /// <summary>
+        /// GET: /store/cart/checkoutreviewordercont
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public virtual ViewResult CheckoutReviewOrderCont()
         {
-
-            int orderId;
-            int currentOrderId = 0;
-            string retMsg = "";
-            string token = "";
-            string finalPaymentAmount = "";
-            string payerId = "";
-
             var decoder = new PayPalNvpCodec();
-
-
-            token = UserSessionData.Token.ToString();
-            finalPaymentAmount = UserSessionData.PaymentAmount.ToString();
-            payerId = UserSessionData.PayerID;
+            var retMsg = string.Empty;
+            var token = UserSessionData.Token;
+            var finalPaymentAmount = UserSessionData.PaymentAmount.ToString(CultureInfo.InvariantCulture);
+            var payerId = UserSessionData.PayerID;
             var payPalEmail = UserSessionData.PayPalEmail;
 
-            bool ret = _payPalNvpApiCallerService.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
+            var ret = _payPalNvpApiCallerService.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
             if (ret)
             {
                 // Retrieve PayPal confirmation value.
@@ -252,98 +272,84 @@ namespace Mango.Web.Areas.Store.Controllers
                 UserSessionData.OrderId = 0;
 
                 ViewBag.PaymentConfirmation = paymentConfirmation;
-
-                return View("CheckoutReviewTrans");
+                return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutReviewTrans);
             }
-            else
-            {
-                return View("CheckoutError");
-            }
+            
+            var message = new StringBuilder();
+            message.AppendLine("Paypal Call Failed");
+            message.AppendLine("Method: IPayPalNvpApiCallerService.DoCheckoutPayment()");
+            message.AppendLine("ControllerMethod: Cart.CheckoutReviewOrderCont()");
+            message.AppendLine(string.Format("retMsg: {0}", retMsg));
+            ExceptionLogger.Log(message, new List<object> { RouteData });
+            return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutError);
         }
+
+        /// <summary>
+        /// GET: /store/cart/checkoutreviewtranscont
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public virtual ViewResult CheckoutReviewTransCont()
         {
-            return View("Completed");
+            return View(MVC.StoreArea.Cart.Views.ViewNames.Completed);
         }
 
+        /// <summary>
+        /// GET: /store/cart/checkoutcancel
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public virtual ViewResult CheckoutCancel()
         {
-            return View("CheckoutCancel");
+            return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutCancel);
         }
 
+        /// <summary>
+        /// GET: /store/cart/checkoutcancelcontinue
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public virtual ViewResult CheckoutCancelContinue()
         {
-            return View("Completed");
+            return View(MVC.StoreArea.Cart.Views.ViewNames.Completed);
         }
 
+        /// <summary>
+        /// GET: /store/cart/checkouterrorcontinue
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public virtual ViewResult CheckoutErrorContinue()
         {
-            return View("Completed");
+            return View(MVC.StoreArea.Cart.Views.ViewNames.Completed);
         }
 
+        /// <summary>
+        /// GET: /store/cart/checkoutcompletecontinue
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public virtual ViewResult CheckoutCompleteContinue()
         {
-            return View("Completed");
+            return View(MVC.StoreArea.Cart.Views.ViewNames.Completed);
         }
 
-        // End PayPal
-
-       
-
-        public int UpdateOrderShipTo(int orderId, string firstName, string lastName, string company, string email,
-            string streetLine1, string streetLine2, string streetLine3,
-            string city, string postalCode, string county, string country)
-        {
-            var order = _orderService.GetOrder(orderId);
-            order.ShipAddress.FirstName = firstName;
-            order.ShipAddress.LastName = lastName;
-            //order.Company = company;
-            order.Customer.Email = email;
-            order.ShipAddress.AddressLine1 = streetLine1;
-            order.ShipAddress.AddressLine2 = streetLine2;
-            order.ShipAddress.City = city;
-            order.ShipAddress.Zip = postalCode;
-            order.ShipAddress.County = county;
-            order.ShipAddress.Country = country;
-            _orderService.EditOrder(order);
-            return orderId;
-        }
-
-        public int UpdateOrderConfirmation(int orderId, string paymentConfirmation)
-        {
-            var order = _orderService.GetOrder(orderId);
-            order.PayPalOrderConfirmation = paymentConfirmation;
-            _orderService.EditOrder(order);
-            return orderId;
-        }
-
-        #endregion
+        #endregion // PayPal
 
         #region Account
 
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-
-        public ApplicationSignInManager SignInManager
+        /// <summary>
+        /// GET: /store/cart/guestcheckout
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult GuestCheckout()
         {
-            get
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                _authenticationManager.SignOut();
             }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
+            return RedirectToAction(MVC.StoreArea.Cart.Customer());
         }
 
         /// <summary>
@@ -354,7 +360,6 @@ namespace Mango.Web.Areas.Store.Controllers
         public virtual ActionResult Account()
         {
             ViewBag.ReturnUrl = Url.Action(MVC.StoreArea.Cart.Customer());
-
             var viewModel = new CartAccountViewModel
             {
                 LoginViewModel = new LoginViewModel(),
@@ -370,7 +375,6 @@ namespace Mango.Web.Areas.Store.Controllers
         /// <param name="returnUrl"></param>
         /// <returns></returns>
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Login(CartAccountViewModel model, string returnUrl)
         {
@@ -383,7 +387,7 @@ namespace Mango.Web.Areas.Store.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.LoginViewModel.Email, model.LoginViewModel.Password, model.LoginViewModel.RememberMe, shouldLockout: false);
+            var result = await _signInManager.PasswordSignInAsync(model.LoginViewModel.Email, model.LoginViewModel.Password, model.LoginViewModel.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -392,8 +396,7 @@ namespace Mango.Web.Areas.Store.Controllers
                     return View("Lockout"); //TODO handle lockout
                 //case SignInStatus.RequiresVerification:
                 //    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
+                default: // Includes 'case SignInStatus.Failure:'
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(MVC.StoreArea.Cart.Views.ViewNames.Account, model);
             }
@@ -415,13 +418,13 @@ namespace Mango.Web.Areas.Store.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.RegisterViewModel.Email, Email = model.RegisterViewModel.Email };
-                var result = await UserManager.CreateAsync(user, model.RegisterViewModel.Password);
+                var result = await _userManager.CreateAsync(user, model.RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
                     // Add user to Customer role
-                    await UserManager.AddToRoleAsync(user.Id, "Customer");
+                    await _userManager.AddToRoleAsync(user.Id, "Customer");
 
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -446,23 +449,20 @@ namespace Mango.Web.Areas.Store.Controllers
             }
         }
 
+        /// <summary>
+        /// Prevents hijacking <see cref="returnUrl"/>
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(MVC.StoreArea.Home.Index());
         }
 
         #endregion
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Mango.Core.Entity;
 using Mango.Core.Service;
@@ -7,7 +8,7 @@ using Mango.Core.Service;
 namespace Mango.Core.Web.Checkout
 {
     /// <summary>
-    /// 
+    /// Checkout Service Interface
     /// </summary>
     public interface ICheckoutService
     {
@@ -17,7 +18,7 @@ namespace Mango.Core.Web.Checkout
     }
 
     /// <summary>
-    /// 
+    /// Checkout Service
     /// </summary>
     public class CheckoutService : ICheckoutService
     {
@@ -56,8 +57,7 @@ namespace Mango.Core.Web.Checkout
             var customer = new Customer();
             if (isAuthenticated && (!string.IsNullOrEmpty(loggedInUsername)))
             {
-                customer = _customerService.GetCustomer(loggedInUsername) ??
-                           new Customer {Email = loggedInUsername, Username = loggedInUsername};
+                customer = _customerService.GetCustomer(loggedInUsername) ?? new Customer {Email = loggedInUsername, Username = loggedInUsername};
             }
             return customer;
         }
@@ -105,13 +105,11 @@ namespace Mango.Core.Web.Checkout
         /// <returns>OrderId</returns>
         public int CreateOrder(Customer customer, Address shippingAddress)
         {
-            Console.WriteLine("CheckoutService - {0} - {1}", customer.CustomerId, shippingAddress.AddressId);
-
             // Check if cart is empty
             var cart = _cartService.GetCartModel();
             if (!cart.Items.Any())
             {
-                //todo capture error
+                ExceptionLogger.Log("Order created without cart items.", new List<object>{customer, shippingAddress});
                 return 0;
             }
 
@@ -165,49 +163,5 @@ namespace Mango.Core.Web.Checkout
 
             return order.OrderId;
         }
-
-
-        //    public int StoreOrderAndOrderItems(CartModel cart)
-        //    {
-
-        //        var order = new Order();
-        //        var shippingAddress = new Address();
-        //        var customer = new Customer();
-
-        //        //order.OrderID
-        //        //order.OrderDate = DateTime.Now;
-
-        //        //order.ProductCount = cart.ComputeNumItems();
-
-
-
-        //        customer.Email = string.Empty;
-
-        //        shippingAddress.FirstName = string.Empty;
-        //        shippingAddress.LastName = string.Empty;
-        //        shippingAddress.AddressLine1 = string.Empty;
-        //        shippingAddress.AddressLine2 = string.Empty;
-        //        shippingAddress.AddressLine3 = string.Empty;
-        //        shippingAddress.City = string.Empty;
-        //        shippingAddress.Zip = string.Empty;
-        //        shippingAddress.County = string.Empty;
-        //        shippingAddress.Country = string.Empty;
-        //        shippingAddress.Phone = string.Empty;
-
-        //        //order.BillToAddressID = 1;
-        //        //order.ShipToAddressID = 1;
-        //        //order.CustomerID = 1;
-
-
-
-        //        order.ShipAddressId = shippingAddress.AddressId;
-        //        order.CustomerId = customer.CustomerId;
-
-        //        //_orderService.CreateOrder(order);
-
-
-
-        //        return order.OrderId;
-        //}
     }
 }
