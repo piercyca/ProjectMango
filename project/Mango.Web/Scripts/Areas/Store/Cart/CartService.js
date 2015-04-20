@@ -4,14 +4,18 @@ var CartService = {
         /*
          * OPTIONS (opt): onSuccess, controlProductId, controlQuantity, controlPrice, controlConfiguration
          */
+
         $(opt.controlSubmit).click(function() {
             var modelData = {
                 ProductId: $(opt.controlProductId).val(),
                 Quantity: $(opt.controlQuantity).val(),
                 UnitPrice: $(opt.controlPrice).val(),
-                Configuration: $(opt.controlConfiguration).val()
+                Configuration: $(opt.controlConfiguration).val(),
+                CartImg: canvas.toDataURL("image/png").toString() //may want to convert from base64 and save it
             };
             var model = JSON.stringify(modelData);
+            console.log(model);
+
             $.ajax({
                 type: "POST",
                 dataType: "json",
