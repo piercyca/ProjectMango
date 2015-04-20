@@ -10,7 +10,13 @@ namespace Mango.Web.Controllers
 {
     public partial class UtilityController : Controller
     {
-        // GET: Utility
+        /// <summary>
+        /// GET: /bi/{container}/{blobId}
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="blobId"></param>
+        /// <returns></returns>
+        [OutputCache(CacheProfile = "Cache24Hour")]
         [HttpGet]
         public virtual FileStreamResult BlobImage(string container, string blobId)
         {
