@@ -18,11 +18,7 @@ namespace Mango.Web.Areas.Admin.Models
 
         [Required]
         [StringLength(100)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string LastName { get; set; }
+        public string FullName { get; set; }
 
         [Required]
         [EmailAddress]

@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "customer-shippingaddress" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
@@ -40,6 +40,12 @@
 
 
 @section scripts {
+    <script>
+        $("#customer-shippingaddress").submit(function(e) {
+            $("#ShippingAddress_FullName").val($("#Customer_FullName").val());
+            return true;
+        });
+    </script>
     @*<script>
         $(window).load(function () {
             $('#same-as-billing').click(function () {

@@ -122,11 +122,13 @@ namespace Mango.Core.Web.Checkout
             encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
             encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = _currencyCode;
             encoder["REQCONFIRMSHIPPING"] = "0";
+            encoder["SOLUTIONTYPE"] = "Sole";
+            encoder["LANDINGPAGE"] = "Billing";
 
             var shippingAddress = order.ShipAddress;
             encoder["PAYMENTREQUEST_0_SHIPTONAME"] = shippingAddress.FullName;
             encoder["PAYMENTREQUEST_0_SHIPTOSTREET"] = shippingAddress.AddressLine1;
-            if (!string.IsNullOrEmpty(shippingAddress.AddressLine2)) { encoder["PAYMENTREQUEST_0_SHIPTOSTREET2"] = shippingAddress.AddressLine2; }
+            encoder["PAYMENTREQUEST_0_SHIPTOSTREET2"] = shippingAddress.AddressLine2;
             encoder["PAYMENTREQUEST_0_SHIPTOCITY"] = shippingAddress.City;
             encoder["PAYMENTREQUEST_0_SHIPTOSTATE"] = shippingAddress.State;
             encoder["PAYMENTREQUEST_0_SHIPTOZIP"] = shippingAddress.Zip;

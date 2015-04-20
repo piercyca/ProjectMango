@@ -48,7 +48,7 @@ namespace Mango.Core.Service
         /// <returns></returns>
         public IEnumerable<Customer> GetCustomers()
         {
-            return _customerRepository.GetAll().OrderBy(p => p.LastName);
+            return _customerRepository.GetAll().OrderBy(p => p.FullName);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Mango.Core.Service
         /// <returns></returns>
         public IEnumerable<Customer> SearchCustomerName(string name)
         {
-            return _customerRepository.GetMany(c => c.FirstName.ToLower().Contains(name.ToLower()) || c.LastName.ToLower().Contains(name.ToLower())).OrderBy(c => c.LastName);
+            return _customerRepository.GetMany(c => c.FullName.ToLower().Contains(name.ToLower())).OrderBy(c => c.FullName);
         }
 
         /// <summary>

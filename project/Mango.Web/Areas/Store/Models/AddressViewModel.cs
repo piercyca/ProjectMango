@@ -59,17 +59,9 @@ namespace Mango.Web.Areas.Store.Models
         /// First Name
         /// </summary>
         [Required]
-        [Display(Name = "First Name")]
-        [StringLength(150)]
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// Last Name
-        /// </summary>
-        [Required]
-        [Display(Name = "Last Name")]
-        [StringLength(150)]
-        public string LastName { get; set; }
+        [Display(Name = "Full Name")]
+        [StringLength(300)]
+        public string FullName { get; set; }
 
         /// <summary>
         /// Phone
@@ -101,14 +93,6 @@ namespace Mango.Web.Areas.Store.Models
         [StringLength(50)]
         [Display(Name = "City")]
         public string City { get; set; }
-
-        /// <summary>
-        /// County
-        /// </summary>
-        [Required]
-        [StringLength(100)]
-        [Display(Name = "County")]
-        public string County { get; set; }
 
         /// <summary>
         /// State Abbreviation

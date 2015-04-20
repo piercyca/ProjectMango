@@ -174,7 +174,7 @@ namespace Mango.Web.Areas.Store.Controllers
             {
                 try
                 {
-                    decimal paymentAmoutFromPayPal = Convert.ToDecimal(decoder["AMT"]);
+                    decimal paymentAmoutFromPayPal = Convert.ToDecimal(decoder["PAYMENTREQUEST_0_AMT"]);
                     if (paymentAmountOnCheckout != paymentAmoutFromPayPal)
                     {
                         errorMessage.AppendLine("Paypal Amount is different from Checkout Amount");
@@ -197,19 +197,23 @@ namespace Mango.Web.Areas.Store.Controllers
 
                 //Session information
                 UserSessionData.PayerID = payerID;
-                var orderID = UserSessionData.OrderId;
+                var orderId = UserSessionData.OrderId;
 
-                //Update the order with PayPal Informatin              
-                var firstName = decoder["FIRSTNAME"];
-                var lastName = decoder["LASTNAME"];
-                var streetLine1 = decoder["SHIPTOSTREET"];
-                var streetLine2 = decoder["SHIPTOCITY"];
-                var state = decoder["SHIPTOSTATE"];
-                var postalCode = decoder["SHIPTOZIP"];
+                var order = _orderService.GetOrder(orderId);
+
+                //Update the order with PayPal Information              
+                var fullName = decoder["PAYMENTREQUEST_0_SHIPTONAME"];
+                var addressLine1 = decoder["PAYMENTREQUEST_0_SHIPTOSTREET"];
+                var addressLine2 = decoder["PAYMENTREQUEST_0_SHIPTOSTREET2"];
+                var city = decoder["PAYMENTREQUEST_0_SHIPTOCITY"];
+                var state = decoder["PAYMENTREQUEST_0_SHIPTOSTATE"];
+                var zip = decoder["PAYMENTREQUEST_0_SHIPTOZIP"];
                 var email = decoder["EMAIL"];
                 //Total = Convert.ToDecimal(decoder["AMT"].ToString());
 
                 UserSessionData.PayPalEmail = email;
+
+                _checkoutService.UpdateShippingAddress(orderId, fullName, addressLine1, addressLine2, city, zip, state);
 
                 //TODO uncomment
                 //orderID = UpdateOrderShipTo(orderID, firstName, lastName, company, email,
@@ -219,15 +223,14 @@ namespace Mango.Web.Areas.Store.Controllers
                 //Prepare for display
                 var ppReview = new PayPalReviewViewModel
                 {
-                    OrderID = orderID.ToString(),
+                    OrderID = orderId.ToString(),
                     OrderDate = decoder["TIMESTAMP"],
                     Username = User.Identity.Name,
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Address = streetLine1,
-                    City = streetLine2,
+                    FullName = fullName,
+                    Address = addressLine1,
+                    City = addressLine2,
                     State = state,
-                    PostalCode = postalCode,
+                    PostalCode = zip,
                     Email = email,
                     TotalAmount = paymentAmountOnCheckout.ToString(CultureInfo.InvariantCulture)
                 };

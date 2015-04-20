@@ -106,7 +106,7 @@ namespace Mango.Core.Service
         {
             return
                 _addressRepository.GetMany(
-                    a => a.FirstName.ToLower().Contains(name.ToLower()) || a.LastName.ToLower().Contains(name.ToLower()));
+                    a => a.FullName.ToLower().Contains(name.ToLower()));
         }
     }
 }
