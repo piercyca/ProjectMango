@@ -105,6 +105,12 @@ namespace Mango.Web.Areas.Store.Controllers
         [ValidateAntiForgeryToken]
         public virtual ActionResult Customer(CartCustomerViewModel viewModel)
         {
+            // Double submit prevention
+            if (!string.IsNullOrEmpty(UserSessionData.PayPalCheckoutUrl))
+            {
+                return Redirect(UserSessionData.PayPalCheckoutUrl);
+            }
+
             // Check if cart is empty
             var cart = _cartService.GetCartModel();
             if (!cart.Items.Any())
@@ -134,23 +140,30 @@ namespace Mango.Web.Areas.Store.Controllers
         [HttpGet]
         public virtual ActionResult CheckoutPayPal()
         {
+            // Double submit prevention
+            if (!string.IsNullOrEmpty(UserSessionData.PayPalCheckoutUrl))
+            {
+                return Redirect(UserSessionData.PayPalCheckoutUrl);
+            }
+
             var orderId = UserSessionData.OrderId;
-            var retMsg = string.Empty;
+            var payPalCheckoutUrl = string.Empty;
             var token = string.Empty;
             var amtVal = _orderService.GetOrder(orderId).TotalAmount;
             var amt = amtVal.ToString(CultureInfo.InvariantCulture);
             var errorMessage = new StringBuilder();
-            var ret = _payPalNvpApiCallerService.ShortcutExpressCheckout(orderId, amt, ref token, ref retMsg);
+            var ret = _payPalNvpApiCallerService.ShortcutExpressCheckout(orderId, amt, ref token, ref payPalCheckoutUrl);
             if (ret)
             {
                 UserSessionData.Token = token;
                 UserSessionData.PaymentAmount = amtVal;
-                return Redirect(retMsg);
+                UserSessionData.PayPalCheckoutUrl = payPalCheckoutUrl;
+                return Redirect(payPalCheckoutUrl);
             }
             errorMessage.AppendLine("Paypal Call Failed");
             errorMessage.AppendLine("Method: IPayPalNvpApiCallerService.ShortcutExpressCheckout()");
             errorMessage.AppendLine("ControllerMethod: Cart.CheckoutPayPal()");
-            errorMessage.AppendLine(string.Format("retMsg: {0}", retMsg));
+            errorMessage.AppendLine(string.Format("retMsg: {0}", payPalCheckoutUrl));
             ExceptionLogger.Log(errorMessage, new List<object> { RouteData });
             return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutError);
         }
@@ -196,10 +209,8 @@ namespace Mango.Web.Areas.Store.Controllers
 
 
                 //Session information
-                UserSessionData.PayerID = payerID;
+                UserSessionData.PayerId = payerID;
                 var orderId = UserSessionData.OrderId;
-
-                var order = _orderService.GetOrder(orderId);
 
                 //Update the order with PayPal Information              
                 var fullName = decoder["PAYMENTREQUEST_0_SHIPTONAME"];
@@ -258,7 +269,7 @@ namespace Mango.Web.Areas.Store.Controllers
             var retMsg = string.Empty;
             var token = UserSessionData.Token;
             var finalPaymentAmount = UserSessionData.PaymentAmount.ToString(CultureInfo.InvariantCulture);
-            var payerId = UserSessionData.PayerID;
+            var payerId = UserSessionData.PayerId;
             var payPalEmail = UserSessionData.PayPalEmail;
 
             var ret = _payPalNvpApiCallerService.DoCheckoutPayment(finalPaymentAmount, token, payerId, ref decoder, ref retMsg);
@@ -271,9 +282,8 @@ namespace Mango.Web.Areas.Store.Controllers
                 _orderService.UpdatePayPalProperties(UserSessionData.OrderId, token, payerId, payPalEmail, paymentConfirmation);
 
                 //Reset session data
-                UserSessionData.PaymentAmount = 0;
-                UserSessionData.OrderId = 0;
-
+                UserSessionData.Reset();
+                
                 ViewBag.PaymentConfirmation = paymentConfirmation;
                 return View(MVC.StoreArea.Cart.Views.ViewNames.CheckoutReviewTrans);
             }

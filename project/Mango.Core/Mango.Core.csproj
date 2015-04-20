@@ -367,9 +367,7 @@
       <DependentUpon>201504182122506_Elmah.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504200054161_AddressRemoveCounty.resx">
       <DependentUpon>201504200054161_AddressRemoveCounty.cs</DependentUpon>
