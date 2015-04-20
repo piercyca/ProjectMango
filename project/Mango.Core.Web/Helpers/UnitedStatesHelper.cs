@@ -23,6 +23,7 @@ namespace Mango.Core.Web.Helpers
                     new SelectListItem { Text = "Colorado", Value = "CO" },
                     new SelectListItem { Text = "Connecticut", Value = "CT" },
                     new SelectListItem { Text = "Delaware", Value = "DE" },
+                    new SelectListItem { Text = "District of Columbia", Value = "DC" },
                     new SelectListItem { Text = "Florida", Value = "FL" },
                     new SelectListItem { Text = "Georgia", Value = "GA" },
                     new SelectListItem { Text = "Hawaii", Value = "HI" },
