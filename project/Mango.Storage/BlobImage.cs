@@ -14,16 +14,37 @@ namespace Mango.Storage
         /// <summary>
         /// Uploads to a Azure Storage Blob
         /// </summary>
-        /// <param name="localPath">Local Path</param>
-        /// <param name="contentType">Content Type</param>
         /// <param name="container">blob container name</param>
+        /// <param name="contentType">Content Type</param>
+        /// <param name="localPath">Local Path</param>
         /// <returns>Url to file</returns>
-        public static string Upload(string localPath, string contentType, string container)
+        public static string Upload(string container, string contentType, string localPath)
         {
-            var blobStorage = new BlobStorage(container, _connectionString);
-            var blobUrl = blobStorage.CreateBlockBlob(Path.GetFileName(localPath), contentType, File.ReadAllBytes(localPath));
+            var filename = Path.GetFileName(localPath);
+            var bytes = File.ReadAllBytes(localPath);
+            var blobUrl = new BlobStorage(container, _connectionString).CreateBlockBlob(filename, contentType, bytes);
             return blobUrl;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="container">blob container name</param>
+        /// <param name="contentType">Content Type</param>
+        /// /// <param name="extension">File extension</param>
+        /// <param name="bytes">Byte array</param>
+        /// <returns></returns>
+        public static string Upload(string container, string contentType, string extension, byte[] bytes)
+        {
+            if (!extension.StartsWith("."))
+            {
+                extension = string.Format(".{0}", extension);
+            }
+            var fileName = string.Format("{0}{1}", Guid.NewGuid().ToString("N"), extension);
+            var blobUrl = new BlobStorage(container, _connectionString).CreateBlockBlob(fileName, contentType, bytes);
+            return blobUrl;
+        }
+
 
         /// <summary>
         /// Downloads blob from Azure Storage blob

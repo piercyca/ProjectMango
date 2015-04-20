@@ -17,13 +17,6 @@ namespace Mango.Web.Areas.Admin
         {
             context.Routes.LowercaseUrls = true;
 
-            // Web API configuration and services
-            context.Routes.MapHttpRoute(
-                name: "admin_DefaultApi",
-                routeTemplate: "admin/api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
             // Routes
             context.MapRoute(
                 "admin_default",

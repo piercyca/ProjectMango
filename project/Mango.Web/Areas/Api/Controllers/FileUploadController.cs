@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 
 namespace Mango.Web.Areas.Api.Controllers
@@ -33,7 +32,7 @@ namespace Mango.Web.Areas.Api.Controllers
                     {
                         var info = new FileInfo(i.LocalFileName);
                         // upload to blob storage
-                        var blobUrl = Storage.BlobImage.Upload(i.LocalFileName, i.Headers.ContentType.ToString(), "images");
+                        var blobUrl = Storage.BlobImage.Upload("images", i.Headers.ContentType.ToString(), i.LocalFileName);
                         //return "File saved as " + blobUrl + " (" + info.Length + ") (" + i.Headers.ContentType + ")";
                         return blobUrl;
                     });

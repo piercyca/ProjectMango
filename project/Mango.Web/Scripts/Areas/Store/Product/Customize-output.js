@@ -72,15 +72,15 @@
         $('h3:first').append('<div class="warning"><i class="fa fa-exclamation-triangle fa-fw"></i><strong>The Live Preview is unavailable.</strong> However, you can still order this product.</div>');
     }
 
-        canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
-            //center the background image (minus 8 for padding ?)
-            scaleX: 1,
-            scaleY: 1,
-            top: center.top - 8,
-            left: center.left - 8,
-            originX: 'center',
-            originY: 'center'
-        });
+    canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
+        //center the background image (minus 8 for padding ?)
+        scaleX: 1,
+        scaleY: 1,
+        top: center.top - 8,
+        left: center.left - 8,
+        originX: 'center',
+        originY: 'center'
+    });
 
     //Helper -- get all objects by name
     fabric.Canvas.prototype.getItemByName = function (name) {
@@ -106,7 +106,9 @@
 
         var image = new fabric.Image(imgObj);
 
-        if (!imgConfig) return;
+        if (!imgConfig) {
+            return;
+        }
         image.set({
             //TODO: using and offsetting center for now but NEED to get image position coord from db
             name: 'logo',
@@ -134,8 +136,9 @@
      
         //get name in order to overwrite the logo object
         var newImg = canvas.getItemByName(image.name);
-        if (!newImg)
-        { canvas.add(image); }
+        if (!newImg) {
+            canvas.add(image);
+        }
         else {
             canvas.remove(newImg);
             canvas.add(image);
@@ -169,7 +172,6 @@
                 originX: 'center'
             });
 
-
             //fits coords
             var formatted = wrapCanvasText(unformatted, canvas, textConfig.width, textConfig.height, o);
             formatted.name = 'text';
@@ -177,7 +179,6 @@
             formatted.selectable = true;
 
             var newText = canvas.getItemByName(unformatted.name);
-
 
             if (!newText) {
                 canvas.add(formatted);
@@ -187,4 +188,21 @@
                 canvas.add(formatted);
             }
         }
+    }
+
+    function saveOrderImage() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: "/api/orderimage",
+            processData: false,
+            data: JSON.stringify({ value: canvas.toDataURL() }),
+            success: function (results) {
+                alert(results);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.responseText);
+            }
+        });
     }

@@ -9,12 +9,14 @@ namespace Mango.Web.Areas.Api
         {
             get 
             {
-                return "Api";
+                return "api";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
+            // Lowercase Urls
+            context.Routes.LowercaseUrls = true;
 
             // Web API configuration and services
             context.Routes.MapHttpRoute(
