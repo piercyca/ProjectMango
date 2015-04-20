@@ -15,6 +15,8 @@ namespace Mango.Core.Web.Checkout
         Customer Customer(string loggedInUsername, bool isAuthenticated);
         Address ShippingAddress(Customer customer);
         int CreateOrder(Customer customer, Address shippingAddress);
+        void UpdateShippingAddress(int orderId, string fullName, string addressLine1,
+            string addressLine2, string city, string zip, string state);
     }
 
     /// <summary>
@@ -75,8 +77,7 @@ namespace Mango.Core.Web.Checkout
                 AddressType = AddressType.Ship,
                 Status = AddressStatus.Active,
                 Country = "US",
-                FirstName = customer.FirstName,
-                LastName = customer.LastName
+                FullName = customer.FullName
             };
 
             // Get last order addresses
@@ -125,8 +126,7 @@ namespace Mango.Core.Web.Checkout
 
             // Create shipping address
             shippingAddress.AddressId = 0;
-            shippingAddress.FirstName = customer.FirstName;
-            shippingAddress.LastName = customer.LastName;
+            shippingAddress.FullName = customer.FullName;
             _addressService.CreateAddress(shippingAddress);
 
             // Get cart
@@ -162,6 +162,30 @@ namespace Mango.Core.Web.Checkout
             }
 
             return order.OrderId;
+        }
+
+        /// <summary>
+        /// Update Shipping Address from PayPal
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="fullName"></param>
+        /// <param name="addressLine1"></param>
+        /// <param name="addressLine2"></param>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
+        /// <param name="zip"></param>
+        public void UpdateShippingAddress(int orderId, string fullName, string addressLine1, string addressLine2,
+            string city, string state, string zip)
+        {
+            var shippingAddress = _orderService.GetOrder(orderId).ShipAddress;
+            shippingAddress.FullName = fullName;
+            shippingAddress.AddressLine1 = addressLine1;
+            shippingAddress.AddressLine2 = addressLine2;
+            shippingAddress.City = city;
+            shippingAddress.State = state;
+            shippingAddress.Zip = zip;
+            _addressService.EditAddress(shippingAddress);
+
         }
     }
 }

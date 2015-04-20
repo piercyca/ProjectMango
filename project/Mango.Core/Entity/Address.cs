@@ -47,16 +47,9 @@ namespace Mango.Core.Entity
         /// <summary>
         /// First Name
         /// </summary>
-        [Display(Name = "First Name")]
-        [StringLength(150)]
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// Last Name
-        /// </summary>
-        [Display(Name = "Last Name")]
-        [StringLength(150)]
-        public string LastName { get; set; }
+        [Display(Name = "Full Name")]
+        [StringLength(300)]
+        public string FullName { get; set; }
 
         /// <summary>
         /// Phone
@@ -86,12 +79,6 @@ namespace Mango.Core.Entity
         public string City { get; set; }
 
         /// <summary>
-        /// County
-        /// </summary>
-        [StringLength(100)]
-        public string County { get; set; }
-
-        /// <summary>
         /// State Abbreviation
         /// </summary>
         [StringLength(10)]
@@ -113,26 +100,14 @@ namespace Mango.Core.Entity
         public DateTime DateCreated { get; set; }
 
         [NotMapped]
-        public string FullName
-        {
-            get
-            {
-                return string.Format("{0} {1}", FirstName, LastName);
-            }
-        }
-
-        [NotMapped]
         public string Shorthand
         {
             get
             {
                 string result = "";
 
-                if (!String.IsNullOrEmpty(FirstName))
-                    result += string.Format("{0} ", FirstName);
-
-                if (!String.IsNullOrEmpty(LastName))
-                    result += string.Format("{0} ", LastName);
+                if (!String.IsNullOrEmpty(FullName))
+                    result += string.Format("{0} ", FullName);
 
                 result += AddressLine1;
 
@@ -152,8 +127,8 @@ namespace Mango.Core.Entity
             {
                 string result = "";
 
-                if (!string.IsNullOrEmpty(FirstName) || !string.IsNullOrEmpty(LastName))
-                    result += string.Format("{0}{1}", (FirstName + " " + LastName).Trim(), Environment.NewLine);
+                if (!string.IsNullOrEmpty(FullName))
+                    result += string.Format("{0}{1}", (FullName).Trim(), Environment.NewLine);
 
                 result += string.Format("{0}{1}", AddressLine1, Environment.NewLine);
 
@@ -187,13 +162,11 @@ namespace Mango.Core.Entity
             var newaddr = new Address();
 
             newaddr.AddressType = this.AddressType;
-            newaddr.FirstName = this.FirstName;
-            newaddr.LastName = this.LastName;
+            newaddr.FullName = this.FullName;
             newaddr.Phone = this.Phone;
             newaddr.AddressLine1 = this.AddressLine1;
             newaddr.AddressLine2 = this.AddressLine2;
             newaddr.City = this.City;
-            newaddr.County = this.County;
             newaddr.State = this.State;
             newaddr.Zip = this.Zip;
             newaddr.Country = this.Country;

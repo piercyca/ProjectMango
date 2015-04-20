@@ -23,18 +23,10 @@ namespace Mango.Web.Areas.Store.Models
         /// <summary>
         /// First Name
         /// </summary>
-        [Display(Name = "First Name")]
+        [Display(Name = "Full Name")]
         [Required]
-        [StringLength(150)]
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// Last Name
-        /// </summary>
-        [Display(Name = "Last Name")]
-        [Required]
-        [StringLength(150)]
-        public string LastName { get; set; }
+        [StringLength(300)]
+        public string FullName { get; set; }
 
         /// <summary>
         /// Email

@@ -207,8 +207,7 @@ namespace Mango.Core.Migrations
                     CustomerId = 1, 
                     DateCreated = DateTime.UtcNow, 
                     Email = "customer_person@etcheive.com", 
-                    FirstName = "Frank", 
-                    LastName = "Customer", 
+                    FullName = "Frank Customer", 
                     Username = "customer_person@etcheive.com"
                 });
             //context.Customers.AddOrUpdate(c => c.CustomerId, new Entity.Customer { CustomerId = 2, DateCreated = DateTime.UtcNow, Email = "guest@etchieve.com", FirstName = "Guest", LastName = "Customer", Username = null });
@@ -223,15 +222,13 @@ namespace Mango.Core.Migrations
                     AddressId = 1, 
                     Status = AddressStatus.Active, 
                     AddressType = AddressType.Ship, 
-                    FirstName = "John", 
-                    LastName = "Smith", 
+                    FullName = "John Smith", 
                     Phone = "5555555555", 
                     AddressLine1 = "33 Main St.", 
                     AddressLine2 = "Apt. 2", 
                     City = "Athens", 
                     State = "GA", 
                     Zip = "30605", 
-                    County = "Fulton",
                     Country = "USA", 
                     DateCreated = DateTime.Now
                 }); 

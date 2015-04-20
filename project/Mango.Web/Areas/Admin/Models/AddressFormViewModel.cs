@@ -19,15 +19,10 @@ namespace Mango.Web.Areas.Admin.Models
 
         public AddressType AddressType { get; set; }
 
-        [Display(Name = "First Name")]
-        [StringLength(100)]
+        [Display(Name = "Full Name")]
+        [StringLength(300)]
         [Required]
-        public string FirstName { get; set; }
-
-        [Display(Name = "Last Name")]
-        [StringLength(100)]
-        [Required]
-        public string LastName { get; set; }
+        public string FullName { get; set; }
 
         [Display(Name = "Company")]
         [StringLength(100)]

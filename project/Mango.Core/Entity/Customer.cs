@@ -18,18 +18,11 @@ namespace Mango.Core.Entity
         public int CustomerId { get; set; }
 
         /// <summary>
-        /// First Name
+        /// Full Name
         /// </summary>
         [Required]
-        [StringLength(150)]
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// Last Name
-        /// </summary>
-        [Required]
-        [StringLength(150)]
-        public string LastName { get; set; }
+        [StringLength(300)]
+        public string FullName { get; set; }
 
         /// <summary>
         /// Email

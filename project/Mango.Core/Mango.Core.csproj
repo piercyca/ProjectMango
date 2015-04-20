@@ -225,6 +225,14 @@
     <Compile Include="Migrations\201504182122506_Elmah.Designer.cs">
       <DependentUpon>201504182122506_Elmah.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504200054161_AddressRemoveCounty.cs" />
+    <Compile Include="Migrations\201504200054161_AddressRemoveCounty.Designer.cs">
+      <DependentUpon>201504200054161_AddressRemoveCounty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504200141526_CombineNamesToFullName.cs" />
+    <Compile Include="Migrations\201504200141526_CombineNamesToFullName.Designer.cs">
+      <DependentUpon>201504200141526_CombineNamesToFullName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -363,6 +371,12 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504200054161_AddressRemoveCounty.resx">
+      <DependentUpon>201504200054161_AddressRemoveCounty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504200141526_CombineNamesToFullName.resx">
+      <DependentUpon>201504200141526_CombineNamesToFullName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ELMAH-db-SQLServer.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
