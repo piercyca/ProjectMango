@@ -88,7 +88,6 @@
                 @Html.HiddenFor(model => model.Price)
                 <input type="hidden" id="Quantity" name="Quantity" value="1" />
                 <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png"/> 
-                <img class="hidden" id="cartImg" src="~/Content/images/noimageavail.png" width="1" height="1" />
             </div>
         </div>
     </div>
@@ -127,7 +126,6 @@
                 controlConfiguration: '#Configuration',
                 controlQuantity: '#Quantity',
                 controlSubmit: '#addToCart',
-                controlCartImg: '#cartImg',
                 onSuccess: function () {
                         
                     window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
