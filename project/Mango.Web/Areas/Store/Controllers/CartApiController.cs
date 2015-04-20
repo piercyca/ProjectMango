@@ -68,8 +68,7 @@ namespace Mango.Web.Areas.Store.Controllers
         /// 
         /// Updates item quanity
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="quantity"></param>
+        /// <param name="jsonData"></param>
         /// <returns></returns>
         public object UpdateItemQuantity(JObject jsonData)
         {
@@ -77,7 +76,7 @@ namespace Mango.Web.Areas.Store.Controllers
             int index = json.index;
             int quantity = json.quantity;
             _cartService.UpdateItemQuantity(index, quantity);
-            return new { index = index, quanity = quantity };
+            return new { index, quantity };
         }
     }
 }
