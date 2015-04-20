@@ -28,6 +28,8 @@ public static partial class MVC
 {
     static readonly AdminClass s_Admin = new AdminClass();
     public static AdminClass Admin { get { return s_Admin; } }
+    static readonly ApiClass s_Api = new ApiClass();
+    public static ApiClass Api { get { return s_Api; } }
     static readonly StoreClass s_Store = new StoreClass();
     public static StoreClass StoreArea { get { return s_Store; } }
     public static Mango.Web.Controllers.AccountController Account = new Mango.Web.Controllers.T4MVC_AccountController();
@@ -52,6 +54,12 @@ namespace T4MVC
         public Mango.Web.Areas.Admin.Controllers.ProductController Product = new Mango.Web.Areas.Admin.Controllers.T4MVC_ProductController();
         public Mango.Web.Areas.Admin.Controllers.UserController User = new Mango.Web.Areas.Admin.Controllers.T4MVC_UserController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
+    }
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public class ApiClass
+    {
+        public readonly string Name = "Api";
+        public T4MVC.Api.SharedController Shared = new T4MVC.Api.SharedController();
     }
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public class StoreClass

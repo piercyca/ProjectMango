@@ -243,6 +243,9 @@
     <Compile Include="Admin.UserController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Api.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -251,10 +254,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\FileUploadController.cs" />
+    <Compile Include="Areas\Api\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrganizationController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Store\Models\HomeIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrderListViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrganizationFormViewModel.cs" />
@@ -267,7 +271,7 @@
     <Compile Include="Areas\Store\Controllers\CartController.cs" />
     <Compile Include="Areas\Store\Controllers\HomeController.cs" />
     <Compile Include="Areas\Store\Controllers\ProductController.cs" />
-    <Compile Include="Areas\Store\Controllers\CartApiController.cs" />
+    <Compile Include="Areas\Api\Controllers\CartController.cs" />
     <Compile Include="Areas\Store\Models\AddToCartModel.cs" />
     <Compile Include="Areas\Store\Models\CartCustomerViewModel.cs" />
     <Compile Include="Areas\Store\Models\AddressViewModel.cs" />
@@ -494,6 +498,7 @@
     <Content Include="Areas\Store\Views\Cart\CheckoutReviewOrder.cshtml" />
     <Content Include="Areas\Store\Views\Cart\CheckoutReviewTrans.cshtml" />
     <Content Include="Areas\Store\Views\Cart\Completed.cshtml" />
+    <Content Include="Areas\Api\Views\web.config" />
     <None Include="Properties\PublishProfiles\mango-web %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\mango-web.pubxml" />
     <None Include="Properties\Settings.settings">
@@ -583,6 +588,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Api\Models\" />
+    <Folder Include="Areas\Api\Views\Shared\" />
     <Folder Include="Views\Utility\" />
   </ItemGroup>
   <ItemGroup>

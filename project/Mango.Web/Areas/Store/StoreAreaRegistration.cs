@@ -19,13 +19,6 @@ namespace Mango.Web.Areas.Store
 
             routes.LowercaseUrls = true;
 
-            // Web API configuration and services
-            context.Routes.MapHttpRoute(
-                name: "store_DefaultApi",
-                routeTemplate: "store/api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
             //context.MapRoute(
             //    "Store_default",
             //    "Store/{controller}/{action}/{id}",

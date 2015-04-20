@@ -20,7 +20,7 @@ var CartService = {
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json",
-                url: "/store/api/cartapi/additem",
+                url: "/api/cart/additem",
                 data: model,
                 success: function(data) {
                     console.log(JSON.stringify(data));
@@ -42,7 +42,7 @@ var CartService = {
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json",
-                url: "/store/api/cartapi/removeitem",
+                url: "/api/cart/removeitem",
                 data: opt.index,
                 success: function(data) {
                     console.log(JSON.stringify(data));
@@ -64,7 +64,7 @@ var CartService = {
             type: "POST",
             dataType: "json",
             contentType: "application/json",
-            url: "/store/api/cartapi/updateitemquantity",
+            url: "/api/cart/updateitemquantity",
             data: model,
             success: function(data) {
                 console.log(JSON.stringify(data));

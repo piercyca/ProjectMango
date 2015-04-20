@@ -78,7 +78,7 @@ var UploadImage = (function (opt) {
                 }
                 $.ajax({
                     type: "POST",
-                    url: "/admin/api/fileupload",
+                    url: "/api/fileupload",
                     contentType: false,
                     processData: false,
                     data: data,

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
-namespace Mango.Web.Areas.Admin.Controllers
+namespace Mango.Web.Areas.Api.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class FileUploadController : ApiController

@@ -12,19 +12,19 @@ using Mango.Web.Areas.Store.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Mango.Web.Areas.Store.Controllers
+namespace Mango.Web.Areas.Api.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
-    public class CartApiController : ApiController
+    public class CartController : ApiController
     {
         private readonly IProductService _productService;
         private readonly IProductImageService _productImageService;
         private readonly ICartService _cartService;
 
-        public CartApiController() { }
-        public CartApiController(IProductService productService, IProductImageService productImageService, ICartService cartService)
+        public CartController() { }
+        public CartController(IProductService productService, IProductImageService productImageService, ICartService cartService)
         {
             _productService = productService;
             _productImageService = productImageService;
@@ -32,7 +32,7 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         /// <summary>
-        /// /store/api/cartapi/additem
+        /// /api/cart/additem
         /// 
         /// Adds item to cart
         /// </summary>
@@ -51,7 +51,7 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         /// <summary>
-        /// /store/api/cartapi/removeitem
+        /// /api/cart/removeitem
         /// 
         /// Removes Item from cart
         /// </summary>
@@ -64,7 +64,7 @@ namespace Mango.Web.Areas.Store.Controllers
         }
 
         /// <summary>
-        /// /store/api/cartapi/updateitemquantity
+        /// /api/cart/updateitemquantity
         /// 
         /// Updates item quanity
         /// </summary>
