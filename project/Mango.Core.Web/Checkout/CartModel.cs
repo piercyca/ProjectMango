@@ -89,5 +89,6 @@ namespace Mango.Core.Web.Checkout
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public string Configuration { get; set; }
+        public string OrderImage { get; set; }
     }
 }

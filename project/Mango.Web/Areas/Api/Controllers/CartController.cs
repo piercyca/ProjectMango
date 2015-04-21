@@ -44,7 +44,7 @@ namespace Mango.Web.Areas.Api.Controllers
             if (product != null && product.ProductId > 0)
             {
                 var productImages = _productImageService.GetProductImages(product.ProductId).ToList();
-                _cartService.AddItem(product, productImages, cartItem.Quantity, cartItem.UnitPrice, cartItem.Configuration);
+                _cartService.AddItem(product, productImages, cartItem.Quantity, cartItem.UnitPrice, cartItem.Configuration, cartItem.OrderImage);
             }
             return cartItem;
             //return new HttpStatusCodeResult(HttpStatusCode.OK);
