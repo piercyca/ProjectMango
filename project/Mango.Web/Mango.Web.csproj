@@ -366,11 +366,13 @@
   <ItemGroup>
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\AM_mc_vs_dc_ae.png" />
     <Content Include="Content\images\background.png" />
     <Content Include="Content\images\etchieve-logo-cap.png" />
     <Content Include="Content\images\etchieve-logo-solid.png" />
     <Content Include="Content\images\etchieve-logo.png" />
     <Content Include="Content\images\noimageavail.png" />
+    <Content Include="Content\images\paypal-button-medium.png" />
     <Content Include="Content\shared.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

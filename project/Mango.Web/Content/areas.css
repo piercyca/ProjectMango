@@ -137,7 +137,7 @@ h2 span.small {
     }
 
 .btn-paypal, .btn-paypal:active {
-    background-image: url('https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png');
+    background-image: url('/Content/images/paypal-button-medium.png');
     background-repeat: no-repeat;
     background-color: transparent;
     border: 2px solid #fff;
