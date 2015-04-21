@@ -13,6 +13,10 @@ var CustomizeOutput = (function (opt) {
     var center = canvas.getCenter();
     var canvasConfig = $(opt.controlConfiguration).val();
     var canvasImage = $(opt.controlCanvasImage).val();
+    var filter = new fabric.Image.filters.Tint({
+        color: '#ddd',
+        opacity: 1
+    });
 
     var parseConfig, imgConfig, textConfig;
 
@@ -40,7 +44,7 @@ var CustomizeOutput = (function (opt) {
             //TODO: Fonts should be placed here
             var unformatted = new fabric.Text(addTextField, {
                 name: 'text',
-                fill: 'white',
+                fill: '#eeeeee',
                 fontFamily: fontSelection,
                 fontSize: 25,
                 top: textConfig.top,
@@ -154,10 +158,13 @@ var CustomizeOutput = (function (opt) {
             imgObj.src = logoUrl;
 
             var image = new fabric.Image(imgObj);
+            image.filters.push(filter);
+            image.applyFilters(canvas.renderAll.bind(canvas));
 
             if (!imgConfig) {
                 return;
             }
+
             image.set({
                 //TODO: using and offsetting center for now but NEED to get image position coord from db
                 name: 'logo',

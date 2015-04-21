@@ -304,6 +304,7 @@ h2.price {
 }
 
 /*logo icons*/
+
 .icons {
     text-align: center;
     vertical-align: middle;
@@ -325,8 +326,9 @@ h2.price {
     }
 
     .icons .active {
-        border: 3px solid #7F9293 !important;
+        border: 3px solid #D9534F !important;
         display: inline-block;
+        border-radius: 5px;
     }
 
 /*footer css*/
@@ -367,7 +369,6 @@ h2.price {
         font-weight: 600;
         line-height: 27px;
         padding: 30px 0 0px;
-        text-transform: uppercase;
     }
 
     .footer ul {
@@ -425,8 +426,8 @@ h2.price {
 }
 
 .social li {
-    background: none repeat scroll 0 0 #B5B5B5;
-    border: 2px solid #B5B5B5;
+    background: none repeat scroll 0 0 #2c3e50;
+    border: 2px solid #2c3e50;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
@@ -459,14 +460,14 @@ h2.price {
     }
 
     .social li:hover {
-        border: 2px solid #2c3e50;
-        background: #2c3e50;
+        border: 2px solid #337AB7;
+        background: #337AB7;
     }
 
     .social li a i {
         font-size: 16px;
         margin: 0 0 0 9px;
-        color: #EDEFF1 !important;
+        color: #fff !important;
     }
 
 .footer-bottom {
@@ -482,4 +483,10 @@ h2.price {
 
 .payments {
     font-size: 1.5em;
+}
+
+.cplicense {
+    padding-top: 80px;
+    width:64px;
+    text-align:center;
 }
