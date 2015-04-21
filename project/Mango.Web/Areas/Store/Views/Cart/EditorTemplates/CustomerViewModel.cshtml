@@ -1,11 +1,11 @@
 ﻿@model Mango.Web.Areas.Store.Models.CustomerViewModel
 
 <div class="form-horizontal">
-    <h4>Customer</h4>
-    <hr/>
-
     @Html.HiddenFor(model => model.CustomerId)
     @Html.HiddenFor(model => model.Username)
+<div class="col-md-6">
+    <h4><i class="fa fa-user fa-fw"></i> Customer</h4>
+    <hr />
 
     <div class="form-group">
         @Html.LabelFor(model => model.FullName, new {@class = "control-label col-md-3"})
@@ -22,4 +22,4 @@
             @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
         </div>
     </div>
-</div>
+<!--Form continues on AddressViewModel-->

@@ -5,12 +5,11 @@
 
 
 <div class="container">
-
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Checkout</h1>
-        </div>
-    </div>
+        <ol class="breadcrumb">
+            <li>@Html.ActionLink("Home", MVC.StoreArea.Product.Index())</li>
+            <li>@Html.ActionLink("Shopping Cart", MVC.StoreArea.Cart.Index())</li>
+            <li class="active">@Html.ActionLink("Checkout", MVC.StoreArea.Cart.GuestCheckout())</li>
+        </ol>
 
     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "customer-shippingaddress" }))
     {
@@ -18,18 +17,14 @@
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.Customer)
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-6">
                 @Html.EditorFor(model => model.ShippingAddress)
             </div>
         </div>
+        <hr/>
         <div class="row">
-            <div class="col-md-offset-9 col-md-3">
+            <div class="col-md-12 text-right">
                 <button type="submit" class="btn btn-success btn-block btn-paypal"> @* TODO - style btn-paypal *@
                     <span class="glyphicon" aria-hidden="true"></span> Checkout with PayPal
                 </button>

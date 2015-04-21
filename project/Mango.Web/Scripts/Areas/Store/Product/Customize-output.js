@@ -199,7 +199,7 @@
             processData: false,
             data: JSON.stringify({ value: canvas.toDataURL() }),
             success: function (results) {
-                alert(results);
+                console.log(results);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(xhr.responseText);

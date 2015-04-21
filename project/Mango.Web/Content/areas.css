@@ -95,3 +95,22 @@ h2 span.small {
   overflow-y: scroll;
 }
 
+.btn-paypal {
+    background-image: url('https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    width: 174px;
+    height: 36px;
+    display: inline-block;
+    text-indent: -9999px;
+    box-shadow:  0 0 5px rgba(0,0,0,0.5);
+    
+}
+    .btn-paypal:hover {
+        border: 2px solid #A9B3BC;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    }
+
+
