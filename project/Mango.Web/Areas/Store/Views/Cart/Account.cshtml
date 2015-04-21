@@ -2,41 +2,32 @@
 @{
     ViewBag.Title = "Account";
 }
-<div class="container">
 
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Checkout</h1>
+<ol class="breadcrumb">
+    <li>@Html.ActionLink("Home", MVC.StoreArea.Product.Index())</li>
+    <li>@Html.ActionLink("Shopping Cart", MVC.StoreArea.Cart.Index())</li>
+    <li class="active">Account</li>
+</ol>
+
+<div class="row vertical-divider">
+    <div class="col-md-6">
+        <div class="col-md-11">
+        <h3>Returning Customer?</h3><hr/>
+        Please, Sign In to Speedup the Checkout process.
+            <div class="margined">@Html.EditorFor(model => model.LoginViewModel)</div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-offset-4 col-md-4">
-            <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#cart_account_login">Returning customer? Login</button>
-            <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#cart_account_register">Need a login? Create one</button>
-            <a class="btn btn-primary btn-lg btn-block" href="@Url.Action(MVC.StoreArea.Cart.GuestCheckout())">Neither? Checkout as a guest</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-
-        </div>
-    </div>
-</div>
-
-@Html.EditorFor(model => model.LoginViewModel)
+    <div class="col-md-5">
+        <div class="col-md-11 col-md-offset-1">
+            <h3>New Customer?</h3><hr />
+            Proceed to Checkout now. You will have the opportunity to create an account at a later time.
+            <br/><div class="text-center"><a class="btn btn-dkgray margined" href="@Url.Action(MVC.StoreArea.Cart.GuestCheckout())">Checkout as a Guest</a></div><br/>
+            Or <a href="#" data-toggle="modal" data-target="#cart_account_register"> create an account</a> with us now to save your info for current and future purchases.
+            <div class="text-center">
+                <button class="btn btn-dkgray margined" data-toggle="modal" data-target="#cart_account_register">Create an Account</button></div>
+            </div>
+</div></div>
 @Html.EditorFor(model => model.RegisterViewModel)
 
 
-@section scripts
-{
-    @if (!string.IsNullOrEmpty(Model.LoginMethod))
-    {
-        <script>
-            $(window).load(function () {
-                $('#cart_account_@Model.LoginMethod.ToLower()').modal('show');
-            });
-        </script>
-    }
-}
 

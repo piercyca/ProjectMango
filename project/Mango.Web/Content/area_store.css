@@ -416,16 +416,6 @@ h2.price {
     overflow: hidden;
 }
 
-.btn-gray {
-    background: #A9B3BC;
-    color: #fff;
-}
-
-    .btn-gray:hover {
-        background: #2C3E50;
-        color: #fff;
-    }
-
 .social li {
     background: none repeat scroll 0 0 #B5B5B5;
     border: 2px solid #B5B5B5;

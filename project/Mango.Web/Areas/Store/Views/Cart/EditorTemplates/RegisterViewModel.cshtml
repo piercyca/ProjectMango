@@ -1,18 +1,19 @@
 ﻿@model Mango.Web.Models.RegisterViewModel
 
-<div class="modal" id="cart_account_register">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            @using (Html.BeginForm(MVC.StoreArea.Cart.ActionNames.Register,
+@using (Html.BeginForm(MVC.StoreArea.Cart.ActionNames.Register,
                 MVC.StoreArea.Cart.Name,
                 new { returnUrl = ViewBag.ReturnUrl, area = MVC.StoreArea.Name },
                 FormMethod.Post,
-                new { role = "form" }
+                new { role = "form", name = "Register" }
                 ))
-            {
+{
+<div class="modal" id="cart_account_register">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
                 <div class="modal-header">
                     <a class="close" data-dismiss="modal" aria-label="Close" href="@Url.Action(MVC.StoreArea.Cart.Account())"><span aria-hidden="true">&times;</span></a>
-                    <h4 class="modal-title">Login</h4>
+                    <h4 class="modal-title">Create an Account</h4>
                 </div>
                 <div class="modal-body">
                     @Html.AntiForgeryToken()
@@ -44,10 +45,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-default" href="@Url.Action(MVC.StoreArea.Cart.Account())">Close</a>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <a class="btn btn-default" href="@Url.Action(MVC.StoreArea.Cart.Account())">Cancel</a>
+                    <button type="submit" class="btn btn-success">Create & Continue <i class="fa fa-angle-right fa-fw"></i></button>
                 </div>
-            }
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+           
+        </div>
+    </div>
+</div> }
