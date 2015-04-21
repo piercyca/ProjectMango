@@ -68,6 +68,7 @@ namespace T4MVC
         public Mango.Web.Areas.Store.Controllers.CartController Cart = new Mango.Web.Areas.Store.Controllers.T4MVC_CartController();
         public Mango.Web.Areas.Store.Controllers.HomeController Home = new Mango.Web.Areas.Store.Controllers.T4MVC_HomeController();
         public Mango.Web.Areas.Store.Controllers.ProductController Product = new Mango.Web.Areas.Store.Controllers.T4MVC_ProductController();
+        public T4MVC.Store.BaseController Base = new T4MVC.Store.BaseController();
         public T4MVC.Store.SharedController Shared = new T4MVC.Store.SharedController();
     }
 }
@@ -248,6 +249,7 @@ namespace Links
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
             public static readonly string ajax_loader_gif = Url("ajax-loader.gif");
             public static readonly string alumni_png = Url("alumni.png");
+            public static readonly string AM_mc_vs_dc_ae_png = Url("AM_mc_vs_dc_ae.png");
             public static readonly string background_png = Url("background.png");
             public static readonly string coaster_leather_png = Url("coaster leather.png");
             public static readonly string coffee_cup_white_16_png = Url("coffee cup white 16.png");
@@ -281,6 +283,7 @@ namespace Links
             public static readonly string noimageavail_png = Url("noimageavail.png");
             public static readonly string official_licensed_logo_jpg = Url("official_licensed_logo.jpg");
             public static readonly string ornamentsplash_png = Url("ornamentsplash.png");
+            public static readonly string paypal_button_medium_png = Url("paypal-button-medium.png");
             [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
             public static class product {
                 private const string URLPATH = "~/Content/images/product";

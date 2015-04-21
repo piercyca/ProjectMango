@@ -20,12 +20,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="@Url.Action(MVC.StoreArea.Home.Index())"><img src="~/Content/images/etchieve-logo-solid.png" class="navbar-brand"/></a>
-
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action(MVC.StoreArea.Product.Index())">Our Products</a></li>
-                    <li class="pull-right"><a href="@Url.Action(MVC.StoreArea.Cart.Index())">Your Shopping Cart</a></li>
+                    <li class="pull-right"><a href="@Url.Action(MVC.StoreArea.Cart.Index())">Your Shopping Cart @ViewBag.CartItemCount</a></li>
                 </ul>
             </div><!--/.navbar-collapse -->
         </div>

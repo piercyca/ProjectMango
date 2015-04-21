@@ -12,6 +12,7 @@ namespace Mango.Core.Web.Checkout
         void RemoveItem(int index);
         PayPalCartModel ConvertToPaypalModel();
         void ClearCart();
+        int Count();
     }
 
     /// <summary>
@@ -118,6 +119,15 @@ namespace Mango.Core.Web.Checkout
         public void ClearCart()
         {
             _cart.ClearCart();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int Count()
+        {
+            return _cart.Items.Count;
         }
     }
 }
