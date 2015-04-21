@@ -225,12 +225,20 @@ hr {
         border: 0;
     }
 
-    .list-group-item h4 {
+    .list-group-item h4, .main-container h3, .lead {
         color: #545454;
         font-family: 'Lobster', serif;
         /*font-family: 'Vollkorn', cursive;
     font-style: italic;*/
         font-size: 2em;
+    }
+
+        .product-details h4, .product-name {
+        color: #2C3E50;
+        font-family: 'Lobster', serif;
+        /*font-family: 'Vollkorn', cursive;
+    font-style: italic;*/
+        font-size: 1.5em;
     }
 
     .list-group-item span {
