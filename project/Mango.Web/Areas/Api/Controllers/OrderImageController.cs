@@ -35,7 +35,6 @@ namespace Mango.Web.Areas.Api.Controllers
             if (!string.IsNullOrEmpty(value.ToString()))
             {
                 var base64Data = Regex.Match(value.ToString(), @"data:image/(?<type>.+?),(?<data>.+)");
-                var type = base64Data.Groups["type"].Value;
                 var binData = Convert.FromBase64String(base64Data.Groups["data"].Value);
                 try
                 {

@@ -53,28 +53,58 @@
                 
                 <div class="btn-group">
                     <div class="btn-group select" id="fontOptions">
-                        <button id="fontselector" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <button id="fontSelector" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <span class="selected">Dancing Script</span> <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu option" role="menu">
-                            @{ string[] fontList = { "Dancing Script", "Vast Shadow", "Open Sans", "Arbutus Slab", "Bilbo Swash Caps", "Buenard", "Cookie", "Droid Serif", "Great Vibes", "Italianno", "Libre Baskerville", "Miss Fajardose", "Monsieur La Doulaise", "Mr De Haviland", "Mrs Saint Delafield", "Niconne", "Oswald", "Parisienne", "Petit Formal Script", "Pinyon Script", "Playball", "Qwigley", "Rochester", "Rouge Script", "Ruthie", "Sancreek", "Tangerine" };
-
-                             foreach (var font in fontList)
+                        <ul class="dropdown-menu option" role="menu" id="fontList">
+                            @{
+                                string[] fontList =
                                 {
-                                <li id="@font.ToLower().Replace(" ", "+")"><a href="#">@font</a></li>
+                                    "Dancing Script",
+                                    "Vast Shadow",
+                                    "Open Sans",
+                                    "Arbutus Slab",
+                                    "Bilbo Swash Caps",
+                                    "Buenard",
+                                    "Cookie",
+                                    "Droid Serif",
+                                    "Great Vibes",
+                                    "Italianno",
+                                    "Libre Baskerville",
+                                    "Miss Fajardose",
+                                    "Monsieur La Doulaise",
+                                    "Mr De Haviland",
+                                    "Mrs Saint Delafield",
+                                    "Niconne",
+                                    "Oswald",
+                                    "Parisienne",
+                                    "Petit Formal Script",
+                                    "Pinyon Script",
+                                    "Playball",
+                                    "Qwigley",
+                                    "Rochester",
+                                    "Rouge Script",
+                                    "Ruthie",
+                                    "Sancreek",
+                                    "Tangerine"
+                                };
+
+                                foreach (var font in fontList)
+                                {
+                                    <li id="@font.ToLower().Replace(" ", "+")"><a href="#">@font</a></li>
                                 }
-                             }
+                            }
                         </ul>
                     </div>
 
-                    <div class="btn-group" id="alignBtn">
+                    <div class="btn-group" id="textAlign">
                         <a id="left" class="btn btn-default" href="#"><i class="fa fa-align-left"></i></a>
                         <a id="center" class="btn btn-default" href="#"><i class="fa fa-align-center"></i></a>
                         <a id="right" class="btn btn-default" href="#"><i class="fa fa-align-right"></i></a>
                     </div>
                 </div>
 
-                <textarea class="panel-body form-control textareafield" placeholder="Enter your desired text here" rows="5" id="addTextField"></textarea>
+                <textarea class="panel-body form-control textareafield" placeholder="Enter your desired text here" rows="5" id="textToAdd"></textarea>
             </div>
         </div>
 
@@ -87,7 +117,8 @@
                 @Html.HiddenFor(model => model.ProductId)
                 @Html.HiddenFor(model => model.Price)
                 <input type="hidden" id="Quantity" name="Quantity" value="1" />
-                <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png"/> 
+                <input id="noimage" type="hidden" value="~/Content/images/noimageavail.png"/>
+                <input type="hidden" id="outputImageString" value="" />
             </div>
         </div>
     </div>
@@ -120,17 +151,32 @@
     <script>
         $(window).load(function () {
 
-            var optionsAddToCart = {
+            var co = new CustomizeOutput({
+                controlConfiguration: '#Configuration',
+                controlCanvasImage: '#CanvasImage',
+                controlFontList: '#fontList',
+                controlFontSelector: '#fontSelector',
+                wrapperLogoOptions: '#logos',
+                wrapperTextOptions: '#textOptions',
+                controlTextAlign: '#textAlign',
+                imgNoImage: '#noimage',
+                controlTextToAdd: '#textToAdd'
+            });
+
+
+            var cs = new CartService.AddItem({
+                customizeOutput: co,
                 controlProductId: '#ProductId',
                 controlPrice: '#Price',
                 controlConfiguration: '#Configuration',
                 controlQuantity: '#Quantity',
                 controlSubmit: '#addToCart',
-                onSuccess: function () {
+                onSuccess: function() {
                     window.location = '@Url.Action(MVC.StoreArea.Cart.Index())';
                 }
-            }
-            var cartService = new CartService.AddItem(optionsAddToCart);
+            });
+
+
         });
 </script>
 }

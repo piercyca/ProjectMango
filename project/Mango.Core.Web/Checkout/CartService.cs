@@ -7,7 +7,7 @@ namespace Mango.Core.Web.Checkout
     public interface ICartService
     {
         CartModel GetCartModel();
-        void AddItem(Product product, List<ProductImage> productImages,  int quantity, decimal price, string configuration);
+        void AddItem(Product product, List<ProductImage> productImages,  int quantity, decimal price, string configuration, string orderImage);
         void UpdateItemQuantity(int index, int quantity);
         void RemoveItem(int index);
         PayPalCartModel ConvertToPaypalModel();
@@ -56,7 +56,8 @@ namespace Mango.Core.Web.Checkout
         /// <param name="quantity"></param>
         /// <param name="price"></param>
         /// <param name="configuration"></param>
-        public void AddItem(Product product, List<ProductImage> productImages, int quantity, decimal price, string configuration)
+        /// <param name="orderImage"></param>
+        public void AddItem(Product product, List<ProductImage> productImages, int quantity, decimal price, string configuration, string orderImage)
         {
             _cart.Items.Add(new CartItemModel
             {
@@ -64,7 +65,8 @@ namespace Mango.Core.Web.Checkout
                 ProductImages = productImages,
                 Quantity = quantity,
                 UnitPrice = price,
-                Configuration = configuration
+                Configuration = configuration,
+                OrderImage = orderImage
             });
         }
 

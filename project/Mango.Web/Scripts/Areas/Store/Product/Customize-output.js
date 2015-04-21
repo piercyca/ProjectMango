@@ -7,80 +7,14 @@
 /*NOTE: Product image that used here is created with admin to, and should not be the
 /product image*/
 
-
+var CustomizeOutput = (function (opt) {
     var canvas = new fabric.Canvas('c');
-    $('.canvas-container').addClass('panel');
+    //$('.canvas-container').addClass('panel');
     var center = canvas.getCenter();
-    var canvasConfig = $('#Configuration').val();
-    var bgurl = $('#CanvasImage').val();
+    var canvasConfig = $(opt.controlConfiguration).val();
+    var canvasImage = $(opt.controlCanvasImage).val();
 
-    //Font and Selections
-    //style preload and style font options
-    $(".option li a").each(function (index) {
-        var v = $(this).html();
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'https://fonts.googleapis.com/css?family=' + v;
-        $('head').append(link);
-        $(this).css("font-family", v);
-    });
-
-    //style selected fonts
-    var fontSelection = $('#fontselector span.selected').html();
-    $('#fontselector span.selected').css("font-family", fontSelection);
-
-    //selections
-    $('body').on('click', '.option li', function () {
-        var i = $(this).parents('.select').attr('id');
-        var v = $(this).children().text();
-        var o = $(this).attr('id');
-        $('#' + i + ' .selected').attr('id', o).text(v).css("font-family", v);
-        addText();
-    });
-
-    $('body').on('click', '#alignBtn a', function () {
-        var o = $(this).attr('id');
-        $('#' + o + ' .selected').attr('id', o);
-        addText(o);
-    }); /*end font and selections*/
-
-
-
-    if (bgurl === "") {
-        //default
-        var bgurl = $('#noimage').val();
-    }
-
-    if (canvasConfig !== "") {
-        //If the config settings is already set
-        var parseConfig = JSON.parse(canvasConfig);
-        var imgConfig = parseConfig.layout.pic;
-        var textConfig = parseConfig.layout.text;
-    }
-
-
-    if (!textConfig) {
-        $('#textOptions').hide();
-    }
-    if (!imgConfig) {
-        $('#logos').hide();
-    }
-
-    if ((!textConfig) && (!imgConfig)) {
-        $('#textOptions').show(); $('#logos').show();
-        $('h3:first').append('<div class="warning"><i class="fa fa-exclamation-triangle fa-fw"></i><strong>The Live Preview is unavailable.</strong> However, you can still order this product.</div>');
-    }
-
-    canvas.setBackgroundImage(bgurl, canvas.renderAll.bind(canvas), {
-        //center the background image (minus 8 for padding ?)
-        scaleX: 1,
-        scaleY: 1,
-        top: center.top - 8,
-        left: center.left - 8,
-        originX: 'center',
-        originY: 'center'
-    });
+    var parseConfig, imgConfig, textConfig;
 
     //Helper -- get all objects by name
     fabric.Canvas.prototype.getItemByName = function (name) {
@@ -95,69 +29,11 @@
         } return object;
     };
 
-    //IMAGES / LOGOS
-    //activate clicked icon
-    $(".icons div").click(function (e) {
-        $('#' + this.id).addClass('active').siblings().removeClass('active');
-        var logoURL = $(".active img").attr('src');
-
-        var imgObj = new Image();
-        imgObj.src = logoURL;
-
-        var image = new fabric.Image(imgObj);
-
-        if (!imgConfig) {
-            return;
-        }
-        image.set({
-            //TODO: using and offsetting center for now but NEED to get image position coord from db
-            name: 'logo',
-            //top: center.top * .75,
-            //left: center.left,
-            top: imgConfig.height / 2 + imgConfig.top,
-            left: imgConfig.width / 2 + imgConfig.left,
-            padding: 0,
-            cornersize: 0,
-            selectable: false,
-            originX: 'center',
-            originY: 'center'
-        });
-
-
-        if (imgConfig.width/2 > imgConfig.height) {
-            image.scaleToHeight(imgConfig.height * .75);
-        } else {
-            image.scaleToWidth(imgConfig.width * .75);
-        }
-
-        if (imgConfig.height/2 > imgConfig.width) {
-            image.scaleToWidth(imgConfig.width * .75);
-        }
-     
-        //get name in order to overwrite the logo object
-        var newImg = canvas.getItemByName(image.name);
-        if (!newImg) {
-            canvas.add(image);
-        }
-        else {
-            canvas.remove(newImg);
-            canvas.add(image);
-        }
-    });
-
-    //apply new text on change
-    $("#addTextField").on('keyup', function () {
-        addText();
-    });
-    $("#fontselector").change(function () {
-        addText();
-    });
-
 
     //TEXT / APPLY SELECTED FONT
     function addText(o) {
-        var fontSelection = $('#fontselector span.selected').html();
-        var addTextField = $('#addTextField').val();
+        var fontSelection = $(opt.controlFontSelector + ' span.selected').html();
+        var addTextField = $(opt.controlTextToAdd).val();
         //NOTE: For applying text to canvas -- get from inputs
 
         if ((textConfig) && (imgConfig)) {
@@ -179,7 +55,6 @@
             formatted.selectable = true;
 
             var newText = canvas.getItemByName(unformatted.name);
-
             if (!newText) {
                 canvas.add(formatted);
             }
@@ -190,19 +65,149 @@
         }
     }
 
-    function saveOrderImage() {
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            contentType: "application/json",
-            url: "/api/orderimage",
-            processData: false,
-            data: JSON.stringify({ value: canvas.toDataURL() }),
-            success: function (results) {
-                console.log(results);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(xhr.responseText);
+    // INITIALIZE
+    function init() {
+        //Font and Selections
+        //style preload and style font options
+        $(opt.controlFontList + " li a").each(function(index) {
+
+            var v = $(this).text();
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'https://fonts.googleapis.com/css?family=' + v;
+            $('head').append(link);
+            $(this).css("font-family", v);
+        });
+
+        //style selected fonts
+        var fontSelection = $(opt.controlFontSelector + ' span.selected').html();
+        $(opt.controlFontSelector + ' span.selected').css("font-family", fontSelection);
+
+
+        //selections
+        $(opt.controlFontList + " li").click(function () {
+        //$('body').on('click', '.option li', function () {
+            var i = $(this).parents('.select').attr('id');
+            var v = $(this).children().text();
+            var o = $(this).attr('id');
+            $('#' + i + ' .selected').attr('id', o).text(v).css("font-family", v);
+            console.log(i);
+            console.log(v);
+            console.log(o);
+            addText();
+        });
+
+        if (canvasConfig !== "") {
+            //If the config settings is already set
+            parseConfig = JSON.parse(canvasConfig);
+            imgConfig = parseConfig.layout.pic;
+            textConfig = parseConfig.layout.text;
+        }
+
+
+        if (typeof textConfig !== 'undefined' && !textConfig) {
+            $(opt.wrapperTextOptions).hide();
+        }
+        if (typeof imgConfig !== 'undefined' && !imgConfig) {
+            $(opt.wrapperLogoOptions).hide();
+        }
+
+        if ((!textConfig) && (!imgConfig)) {
+            $(opt.wrapperTextOptions).show();
+            $(opt.wrapperLogoOptions).show();
+            $('h3:first').append(
+                '<div class="warning">' +
+                '<i class="fa fa-exclamation-triangle fa-fw"></i><strong>The Live Preview is unavailable.</strong> However, you can still order this product.' +
+                '</div>');
+        }
+
+        canvas.setBackgroundImage(canvasImage, canvas.renderAll.bind(canvas), {
+            //center the background image (minus 8 for padding ?)
+            scaleX: 1,
+            scaleY: 1,
+            top: center.top - 8,
+            left: center.left - 8,
+            originX: 'center',
+            originY: 'center'
+        });
+
+        $(opt.controlTextAlign + ' a').click(function() {
+            var o = $(this).attr('id');
+            $('#' + o + ' .selected').attr('id', o);
+            addText(o);
+        });/*end font and selections*/
+
+        if (canvasImage === "") {
+            //default
+            canvasImage = $(opt.imgNoImage).val();
+        }
+
+
+        //IMAGES / LOGOS
+        //activate clicked icon
+        $(opt.wrapperLogoOptions + " > div").click(function (e) {
+            $('#' + this.id).addClass('active').siblings().removeClass('active');
+            var logoUrl = $(".active img").attr('src');
+
+            var imgObj = new Image();
+            imgObj.src = logoUrl;
+
+            var image = new fabric.Image(imgObj);
+
+            if (!imgConfig) {
+                return;
+            }
+            image.set({
+                //TODO: using and offsetting center for now but NEED to get image position coord from db
+                name: 'logo',
+                //top: center.top * .75,
+                //left: center.left,
+                top: imgConfig.height / 2 + imgConfig.top,
+                left: imgConfig.width / 2 + imgConfig.left,
+                padding: 0,
+                cornersize: 0,
+                selectable: false,
+                originX: 'center',
+                originY: 'center'
+            });
+
+
+            if (imgConfig.width / 2 > imgConfig.height) {
+                image.scaleToHeight(imgConfig.height * .75);
+            } else {
+                image.scaleToWidth(imgConfig.width * .75);
+            }
+
+            if (imgConfig.height / 2 > imgConfig.width) {
+                image.scaleToWidth(imgConfig.width * .75);
+            }
+
+            //get name in order to overwrite the logo object
+            var newImg = canvas.getItemByName(image.name);
+            if (!newImg) {
+                canvas.add(image);
+            }
+            else {
+                canvas.remove(newImg);
+                canvas.add(image);
             }
         });
+
+        //apply new text on change
+        $(opt.controlTextToAdd).on('change keyup paste', function () {
+            addText();
+        });
+        $(opt.controlFontSelector).change(function () {
+            addText();
+        });
+
+        
     }
+
+    init();
+
+    this.canvasDataUrl = function() {
+        return canvas.toDataURL();
+    }
+});   

@@ -255,9 +255,9 @@ namespace Mango.Core.Migrations
 
             #region Order Line Items
 			
-            context.OrderLineItems.AddOrUpdate(ol => ol.OrderId, 
-                new OrderLineItem { OrderId = 1, OrderItemSequence = 1, ProductId = 1, UnitPrice = 22.50m, Quantity = 2, Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" },
-                new OrderLineItem { OrderId = 1, OrderItemSequence = 2, ProductId = 2, UnitPrice = 15.50m, Quantity = 5, Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" });
+            context.OrderLineItems.AddOrUpdate(ol => ol.OrderId,
+                new OrderLineItem { OrderId = 1, OrderItemSequence = 1, ProductId = 1, UnitPrice = 22.50m, Quantity = 2, OrderImage = "https://mangoassets.blob.core.windows.net/order-images/2f0677b853d54288af2d5e0c6533d73b.png", Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" },
+                new OrderLineItem { OrderId = 1, OrderItemSequence = 2, ProductId = 2, UnitPrice = 15.50m, Quantity = 5, OrderImage = "https://mangoassets.blob.core.windows.net/order-images/2f0677b853d54288af2d5e0c6533d73b.png", Configuration = "{\"layout\":{\"pic\":{\"top\":112,\"left\":111,\"width\":297,\"height\":136},\"text\":{\"top\":294,\"left\":133,\"width\":248,\"height\":114}}}" });
 
             #endregion
         }
