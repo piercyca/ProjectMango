@@ -254,6 +254,9 @@ namespace Links
             public static readonly string coffee_mug_black_png = Url("coffee mug black.png");
             public static readonly string coffee_mug_White_png = Url("coffee mug White.png");
             public static readonly string collegiateproducts_png = Url("collegiateproducts.png");
+            public static readonly string etchieve_logo_cap_png = Url("etchieve-logo-cap.png");
+            public static readonly string etchieve_logo_solid_png = Url("etchieve-logo-solid.png");
+            public static readonly string etchieve_logo_png = Url("etchieve-logo.png");
             public static readonly string Glass_Beer_Mug_Georgia_png = Url("Glass Beer Mug Georgia.png");
             public static readonly string Glass_Coffee_Cup_Georgia_png = Url("Glass Coffee Cup Georgia.png");
             public static readonly string glass_coffee_cup_png = Url("glass coffee cup.png");
