@@ -14,7 +14,7 @@
     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "customer-shippingaddress" }))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+       // @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
         <div class="row">
             <div class="col-md-12">
