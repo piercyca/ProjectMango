@@ -49,14 +49,15 @@ var CustomizeOutput = (function (opt) {
                 fontSize: 25,
                 top: textConfig.top,
                 left: textConfig.width / 2 + textConfig.left,
-                originX: 'center'
+                originX: 'center',
+                selectable: false
             });
 
             //fits coords
             var formatted = wrapCanvasText(unformatted, canvas, textConfig.width, textConfig.height, o);
             formatted.name = 'text';
             formatted.orginX = 'center';
-            formatted.selectable = true;
+            formatted.selectable = false;
 
             var newText = canvas.getItemByName(unformatted.name);
             if (!newText) {
