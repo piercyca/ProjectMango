@@ -233,6 +233,10 @@
     <Compile Include="Migrations\201504200141526_CombineNamesToFullName.Designer.cs">
       <DependentUpon>201504200141526_CombineNamesToFullName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504211555231_OrderImageAdd.cs" />
+    <Compile Include="Migrations\201504211555231_OrderImageAdd.Designer.cs">
+      <DependentUpon>201504211555231_OrderImageAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -374,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504200141526_CombineNamesToFullName.resx">
       <DependentUpon>201504200141526_CombineNamesToFullName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504211555231_OrderImageAdd.resx">
+      <DependentUpon>201504211555231_OrderImageAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ELMAH-db-SQLServer.sql" />
   </ItemGroup>

@@ -156,7 +156,8 @@ namespace Mango.Core.Web.Checkout
                     Configuration = line.Configuration,
                     ProductId = line.Product.ProductId,
                     Quantity = line.Quantity,
-                    UnitPrice = line.UnitPrice
+                    UnitPrice = line.UnitPrice,
+                    OrderImage = line.OrderImage
                 };
                 _orderLineItemService.CreateOrderLineItem(orderItem);
             }

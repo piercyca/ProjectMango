@@ -30,6 +30,8 @@ namespace Mango.Core.Entity
 
         public string Configuration { get; set; }
 
+        public string OrderImage { get; set; }
+
         [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
 
