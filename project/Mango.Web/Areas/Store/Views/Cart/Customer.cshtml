@@ -8,7 +8,7 @@
         <ol class="breadcrumb">
             <li>@Html.ActionLink("Home", MVC.StoreArea.Product.Index())</li>
             <li>@Html.ActionLink("Shopping Cart", MVC.StoreArea.Cart.Index())</li>
-            <li class="active">@Html.ActionLink("Checkout", MVC.StoreArea.Cart.GuestCheckout())</li>
+            <li class="active">Checkout</li>
         </ol>
 
     @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "customer-shippingaddress" }))
