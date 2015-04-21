@@ -9,7 +9,7 @@
 
 var CustomizeOutput = (function (opt) {
     var canvas = new fabric.Canvas('c');
-    //$('.canvas-container').addClass('panel');
+    $('.canvas-container').addClass('panel'); //for stying purposes only
     var center = canvas.getCenter();
     var canvasConfig = $(opt.controlConfiguration).val();
     var canvasImage = $(opt.controlCanvasImage).val();
@@ -106,10 +106,10 @@ var CustomizeOutput = (function (opt) {
         }
 
 
-        if (typeof textConfig !== 'undefined' && !textConfig) {
+        if (typeof textConfing === 'undefined' && !textConfig) {
             $(opt.wrapperTextOptions).hide();
         }
-        if (typeof imgConfig !== 'undefined' && !imgConfig) {
+        if (typeof imgConfing === 'undefined' && !imgConfig) {
             $(opt.wrapperLogoOptions).hide();
         }
 
@@ -146,7 +146,7 @@ var CustomizeOutput = (function (opt) {
 
         //IMAGES / LOGOS
         //activate clicked icon
-        $(opt.wrapperLogoOptions + " > div").click(function (e) {
+        $(opt.wrapperLogoOptions + " div").click(function (e) {
             $('#' + this.id).addClass('active').siblings().removeClass('active');
             var logoUrl = $(".active img").attr('src');
 
