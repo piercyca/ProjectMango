@@ -371,6 +371,7 @@
     <Content Include="Content\images\etchieve-logo-cap.png" />
     <Content Include="Content\images\etchieve-logo-solid.png" />
     <Content Include="Content\images\etchieve-logo.png" />
+    <Content Include="Content\images\homepage_ad.png" />
     <Content Include="Content\images\logos\ugalogo6.png" />
     <Content Include="Content\images\noimageavail.png" />
     <Content Include="Content\images\paypal-button-medium.png" />
