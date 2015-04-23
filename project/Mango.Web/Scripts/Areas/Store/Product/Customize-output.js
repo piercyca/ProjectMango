@@ -70,6 +70,34 @@ var CustomizeOutput = (function (opt) {
         }
     }
 
+    //RESIZE CANVAS ONLOAD
+    resizeCanvas();
+    window.onresize = function () { resizeCanvas(); }
+
+    function resizeCanvas() {
+        //let's make canvas responsive
+        var oriX = 520, oriY = 500; //default
+        var x = $(window).outerWidth() || $(document.documentElement).width() || $('body').width();
+        var p = x - $("#logos").outerWidth(); //padding      
+        var cv = $("canvas");
+        var cc = $(".canvas-container");
+        var cx, cy;
+
+        cx = (x - p);
+        cy = (x * oriY / oriX) - p;
+
+        //shrink the canvas as the window decreases
+        if (x < 820) {
+            cc.attr("style", "width: " + cx + "px; height: " + cy + "px;");
+            cv.attr("style", "width: " + cx + "px; height: " + cy + "px; position: relative; left: 0px");
+        }
+            //show default size
+        else {
+            cc.attr("style", "width: " + oriX + "px; height: " + oriY + "px;");
+            cv.attr("style", "width: " + oriX + "px; height: " + oriY + "px; position: relative; left: 0px");
+        }
+    }
+
     // INITIALIZE
     function init() {
         //Font and Selections
@@ -209,13 +237,19 @@ var CustomizeOutput = (function (opt) {
         $(opt.controlFontSelector).change(function () {
             addText();
         });
-
-        
+  
     }
+
+
+
+
 
     init();
 
     this.canvasDataUrl = function() {
         return canvas.toDataURL();
     }
+
+
+ 
 });   

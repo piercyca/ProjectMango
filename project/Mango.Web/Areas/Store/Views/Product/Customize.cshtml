@@ -125,10 +125,10 @@
             </div>
         </div>
     </div>
-    <div class="product-details col-md-7 pull-left">
+    <div class="product-details col-md-7 col-sm-12 col-xs-12 pull-left">
         <h4>Product Description:</h4>
         @Html.DisplayFor(model => model.Description)
-        <hr/>
+        <hr />
         <div class="more-images col-lg-12">
             @* product images will show in modal on click*@
 
@@ -139,7 +139,7 @@
                 {
                     var cssClass = (i == 0) ? "col-md-offset-1" : string.Empty;
                     var image = images[i];
-                    <img src="@image.LocalUrl" class="img-thumbnail img-responsive col-lg-2 col-sm-2 col-md-2 col-xs-2"/>
+                    <img src="@image.LocalUrl" class="img-thumbnail img-responsive col-lg-2 col-sm-2 col-md-2 col-xs-2" />
                 }
             }
         </div>
