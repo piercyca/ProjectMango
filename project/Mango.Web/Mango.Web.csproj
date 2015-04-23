@@ -260,7 +260,6 @@
     <Compile Include="Areas\Admin\Controllers\OrganizationController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
-    <Compile Include="Areas\Store\Controllers\BaseController.cs" />
     <Compile Include="Areas\Store\Models\HomeIndexViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrderListViewModel.cs" />
     <Compile Include="Areas\Admin\Models\OrganizationFormViewModel.cs" />
