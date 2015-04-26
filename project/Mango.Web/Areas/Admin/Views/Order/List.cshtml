@@ -26,11 +26,13 @@
                 <tr>
 					<th>Order Id</th>
 	                <th>Order Items</th>
-					<th>Total Amount</th>
+	                <th>Total Amount</th>
+					<th>Paypal Order Id</th>
 					<th>Customer</th>
 					<th>Ship Address</th>
-	                <th>Bill Address</th>
-					<th>Date Created</th>
+@*	                <th>Bill Address</th>*@
+	                <th>Date Created</th>
+					<th>Date Shipped</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,7 +46,8 @@
                                     <i class="fa fa-list-ul fa-fw"></i> View Details
                                 </a>
                            </td>
-						<td>@item.TotalAmount</td>
+	                    <td>@item.TotalAmount</td>
+						<td>@item.PayPalOrderId</td>
                         <td>@item.Customer.FullName</td>
 	                    <td>
 		                    <table>
@@ -64,7 +67,8 @@
 			                    <tr><td>@item.BillAddress.Phone</td></tr>
 		                    </table>
 	                    </td>*@
-						<td>@item.DateCreated</td>
+	                    <td>@item.DateCreated</td>
+						<td>@item.DateShipped</td>
                     </tr>
                 }
                 </tbody>
