@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using Links;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Web.Areas.Store.Models;
@@ -86,6 +83,10 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             var product = _productService.GetProduct(urlSlug);
             if (product == null)
+            {
+                return HttpNotFound();
+            }
+            if (product.Archived)
             {
                 return HttpNotFound();
             }
