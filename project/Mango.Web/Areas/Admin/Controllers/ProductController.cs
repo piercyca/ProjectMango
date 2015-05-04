@@ -119,7 +119,7 @@ namespace Mango.Web.Areas.Admin.Controllers
         public virtual ActionResult Edit(ProductFormViewModel viewModel)
         {
             var product = _productService.GetProduct(viewModel.ProductId);
-            var productDetails = Mapper.Map<ProductFormViewModel, Product>(viewModel, product);
+            var productDetails = Mapper.Map(viewModel, product);
             if (ModelState.IsValid)
             {
                 ManageProductUrlSlugRedirect(viewModel);

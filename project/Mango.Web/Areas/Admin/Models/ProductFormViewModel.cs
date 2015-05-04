@@ -88,6 +88,11 @@ namespace Mango.Web.Areas.Admin.Models
         [DisplayName("Featured (Homepage)")]
         public bool FeaturedHomepage { get; set; }
 
+        /// <summary>
+        /// Archived
+        /// </summary>
+        [DisplayName("Archived")]
+        public bool Archived { get; set; }
 
         public UploadImageViewModel UploadProductImageViewModel { get; set; }
 

@@ -18,16 +18,12 @@ namespace Mango.Web.Areas.Store.Controllers
     public partial class HomeController : Controller
     {
         private readonly IProductService _productService;
-        private readonly IProductCategoryService _productCategoryService;
-        private readonly IProductImageService _productImageService;
 
         public HomeController() { }
 
-        public HomeController(IProductService productService, IProductCategoryService productCategoryService, IProductImageService productImageService)
+        public HomeController(IProductService productService)
         {
             _productService = productService;
-            _productCategoryService = productCategoryService;
-            _productImageService = productImageService;
         }
 
         // GET: Store/Home
@@ -42,7 +38,7 @@ namespace Mango.Web.Areas.Store.Controllers
 
             var viewModel = new HomeIndexViewModel
             {
-                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(_productService.GetProducts().Take(8).ToList())
+                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(_productService.GetProducts().Where(p => !p.Archived).Take(8).ToList())
             };
 
             return View(viewModel);

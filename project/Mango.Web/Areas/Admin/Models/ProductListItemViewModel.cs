@@ -17,5 +17,6 @@ namespace Mango.Web.Areas.Admin.Models
         public string UrlSlug { get; set; }
         public string Price { get; set; }
         public bool FeaturedHomepage { get; set; }
+        public bool Archived { get; set; }
     }
 }
