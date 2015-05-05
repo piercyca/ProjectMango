@@ -38,7 +38,7 @@ namespace Mango.Web.Areas.Store.Controllers
 
             var viewModel = new HomeIndexViewModel
             {
-                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(_productService.GetProducts().Where(p => !p.Archived).Take(8).ToList())
+                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(_productService.GetProducts().Where(p => !p.Archived && !string.IsNullOrEmpty(p.CanvasImage)).Take(8).ToList())
             };
 
             return View(viewModel);

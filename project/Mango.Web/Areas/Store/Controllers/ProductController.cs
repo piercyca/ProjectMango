@@ -58,7 +58,7 @@ namespace Mango.Web.Areas.Store.Controllers
             var viewModel = new ProductCategoryViewModel()
             {
                 Categories = Mapper.Map<List<ProductCategory>, List<ProductCategoryDetailViewModel>>(productCategories),
-                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(productCategory.Products.Where(p => !p.Archived).ToList()),
+                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(productCategory.Products.Where(p => !p.Archived && p.FeaturedHomepage).ToList()),
                 SelectedCategory = Mapper.Map<ProductCategory, ProductCategoryDetailViewModel>(productCategory)
             };
 
@@ -86,7 +86,7 @@ namespace Mango.Web.Areas.Store.Controllers
             {
                 return HttpNotFound();
             }
-            if (product.Archived)
+            if (product.Archived || string.IsNullOrEmpty(product.CanvasImage))
             {
                 return HttpNotFound();
             }
