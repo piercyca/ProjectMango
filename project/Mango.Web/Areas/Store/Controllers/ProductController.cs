@@ -58,7 +58,7 @@ namespace Mango.Web.Areas.Store.Controllers
             var viewModel = new ProductCategoryViewModel()
             {
                 Categories = Mapper.Map<List<ProductCategory>, List<ProductCategoryDetailViewModel>>(productCategories),
-                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(productCategory.Products.Where(p => !p.Archived && p.FeaturedHomepage).ToList()),
+                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(productCategory.Products.Where(p => !p.Archived && !string.IsNullOrEmpty(p.CanvasImage)).ToList()),
                 SelectedCategory = Mapper.Map<ProductCategory, ProductCategoryDetailViewModel>(productCategory)
             };
 
