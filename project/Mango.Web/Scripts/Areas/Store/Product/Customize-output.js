@@ -35,15 +35,21 @@ var CustomizeOutput = (function (opt) {
 
 
     //TEXT / APPLY SELECTED FONT
-    function addText(o) {
+
+
+    function addText(aLign) {
         var fontSelection = $(opt.controlFontSelector + ' span.selected').html();
         var addTextField = $(opt.controlTextToAdd).val();
         //NOTE: For applying text to canvas -- get from inputs
+        if (!aLign) { aLign = "center"; }
 
         if ((textConfig) && (imgConfig)) {
             //TODO: Fonts should be placed here
-            var unformatted = new fabric.Text(addTextField, {
+            var textblock = new fabric.Textbox(addTextField, {
                 name: 'text',
+                width: textConfig.width,
+                height: textConfig.height,
+                textAlign: aLign,
                 fill: '#eeeeee',
                 fontFamily: fontSelection,
                 fontSize: 25,
@@ -53,20 +59,15 @@ var CustomizeOutput = (function (opt) {
                 selectable: false
             });
 
-            //fits coords
-            var formatted = wrapCanvasText(unformatted, canvas, textConfig.width, textConfig.height, o);
-            formatted.name = 'text';
-            formatted.orginX = 'center';
-            formatted.selectable = false;
-
-            var newText = canvas.getItemByName(unformatted.name);
+            var newText = canvas.getItemByName(textblock.name);
             if (!newText) {
-                canvas.add(formatted);
+                canvas.add(textblock);
             }
             else {
                 canvas.remove(newText);
-                canvas.add(formatted);
+                canvas.add(textblock);
             }
+
         }
     }
 
@@ -125,9 +126,6 @@ var CustomizeOutput = (function (opt) {
             var v = $(this).children().text();
             var o = $(this).attr('id');
             $('#' + i + ' .selected').attr('id', o).text(v).css("font-family", v);
-            console.log(i);
-            console.log(v);
-            console.log(o);
             addText();
         });
 
