@@ -34,14 +34,24 @@ var CustomizeOutput = (function (opt) {
     };
 
 
+    //Toggle font size / 25 default
+    $(".incr").click(function () {
+        var ds = parseInt($('#fontSize').val()) + 2;
+        $('#fontSize').val(ds);
+    });
+    $(".decr").click(function () {
+        var ds = parseInt($('#fontSize').val()) - 2;
+        $('#fontSize').val(ds);
+    });
+
     //TEXT / APPLY SELECTED FONT
-
-
     function addText(aLign) {
         var fontSelection = $(opt.controlFontSelector + ' span.selected').html();
         var addTextField = $(opt.controlTextToAdd).val();
         //NOTE: For applying text to canvas -- get from inputs
         if (!aLign) { aLign = "center"; }
+
+        var fontSize = $("#fontSize").val();
 
         if ((textConfig) && (imgConfig)) {
             //TODO: Fonts should be placed here
@@ -50,9 +60,9 @@ var CustomizeOutput = (function (opt) {
                 width: textConfig.width,
                 height: textConfig.height,
                 textAlign: aLign,
+                fontSize: parseInt(fontSize),
                 fill: '#eeeeee',
                 fontFamily: fontSelection,
-                fontSize: 25,
                 top: textConfig.top,
                 left: textConfig.width / 2 + textConfig.left,
                 originX: 'center',
@@ -118,7 +128,6 @@ var CustomizeOutput = (function (opt) {
         var fontSelection = $(opt.controlFontSelector + ' span.selected').html();
         $(opt.controlFontSelector + ' span.selected').css("font-family", fontSelection);
 
-
         //selections
         $(opt.controlFontList + " li").click(function () {
         //$('body').on('click', '.option li', function () {
@@ -168,6 +177,7 @@ var CustomizeOutput = (function (opt) {
             $('#' + o + ' .selected').attr('id', o);
             addText(o);
         });/*end font and selections*/
+
 
         if (canvasImage === "") {
             //default
@@ -237,10 +247,6 @@ var CustomizeOutput = (function (opt) {
         });
   
     }
-
-
-
-
 
     init();
 

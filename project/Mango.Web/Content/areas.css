@@ -114,6 +114,23 @@ h2 span.small {
   overflow-y: scroll;
 }
 
+#textAlign a.btn {
+      padding: 6px 8px;
+      height: 34px;
+}
+#textAlign a.btn i.fa-stack-2x {
+    top: 8px;
+    width: 20px;
+    font-size: 1em;
+    left: 0
+}
+#textAlign a.btn i.fa-stack-1x {
+    top: 0;
+    width: 37px;
+    font-size: 0.6em;
+    right: 0
+}
+
 .btn-gray {
     background: #A9B3BC;
     color: #fff;
