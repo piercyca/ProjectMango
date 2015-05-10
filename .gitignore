@@ -188,3 +188,4 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 static/PMviews/.idea/
+project/Mango.Web/App_Data/error-*

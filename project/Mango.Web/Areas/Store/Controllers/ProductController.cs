@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using Links;
 using Mango.Core.Entity;
 using Mango.Core.Service;
 using Mango.Web.Areas.Store.Models;
@@ -61,7 +58,7 @@ namespace Mango.Web.Areas.Store.Controllers
             var viewModel = new ProductCategoryViewModel()
             {
                 Categories = Mapper.Map<List<ProductCategory>, List<ProductCategoryDetailViewModel>>(productCategories),
-                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(productCategory.Products.ToList()),
+                Products = Mapper.Map<List<Product>, List<ProductDetailViewModel>>(productCategory.Products.Where(p => !p.Archived && !string.IsNullOrEmpty(p.CanvasImage)).ToList()),
                 SelectedCategory = Mapper.Map<ProductCategory, ProductCategoryDetailViewModel>(productCategory)
             };
 
@@ -86,6 +83,10 @@ namespace Mango.Web.Areas.Store.Controllers
         {
             var product = _productService.GetProduct(urlSlug);
             if (product == null)
+            {
+                return HttpNotFound();
+            }
+            if (product.Archived || string.IsNullOrEmpty(product.CanvasImage))
             {
                 return HttpNotFound();
             }

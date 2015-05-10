@@ -78,7 +78,13 @@ namespace Mango.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _productService.CreateProduct(product);
-                _productImageService.InsertProductImages(product.ProductId, viewModel.ProductImagesString);
+                
+                // Check if product image string is null.
+                if (!string.IsNullOrEmpty(viewModel.ProductImagesString))
+                {
+                    _productImageService.InsertProductImages(product.ProductId, viewModel.ProductImagesString);
+                }
+
                 // Deletes redirect if it exists
                 _productUrlSlugRedirectService.DeleteProductUrlSlugRedirect(viewModel.UrlSlug);
 
@@ -119,14 +125,18 @@ namespace Mango.Web.Areas.Admin.Controllers
         public virtual ActionResult Edit(ProductFormViewModel viewModel)
         {
             var product = _productService.GetProduct(viewModel.ProductId);
-            var productDetails = Mapper.Map<ProductFormViewModel, Product>(viewModel, product);
+            var productDetails = Mapper.Map(viewModel, product);
             if (ModelState.IsValid)
             {
                 ManageProductUrlSlugRedirect(viewModel);
 
                 _productService.EditProduct(productDetails);
-                _productImageService.InsertProductImages(viewModel.ProductId, viewModel.ProductImagesString);
 
+                // Check if product image string is null.
+                if (!string.IsNullOrEmpty(viewModel.ProductImagesString))
+                {
+                    _productImageService.InsertProductImages(viewModel.ProductId, viewModel.ProductImagesString);
+                }
                 return RedirectToAction(MVC.Admin.Product.List());
             }
             var productCategories = _productCategoryService.GetProductCategories();

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using Mango.Core.Entity;
-using Mango.Core.Web.CustomValidators;
-using Mango.Web.Areas.Admin.Models;
 
 namespace Mango.Web.Areas.Store.Models
 {
@@ -103,5 +97,11 @@ namespace Mango.Web.Areas.Store.Models
         [ReadOnly(true)]
         public bool FeaturedHomepage { get; set; }
 
+        /// <summary>
+        /// Archived
+        /// </summary>
+        [DisplayName("Archived")]
+        [ReadOnly(false)]
+        public bool Archived { get; set; }
     }
 }

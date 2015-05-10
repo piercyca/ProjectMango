@@ -9,6 +9,9 @@ using Mango.Core.Service;
 
 namespace Mango.Core.Entity
 {
+    /// <summary>
+    /// Represents a product
+    /// </summary>
     [Table("Product")]
     public class Product
     {
@@ -71,6 +74,12 @@ namespace Mango.Core.Entity
         [DefaultValue(false)]
         public bool FeaturedHomepage { get; set; }
 
+        /// <summary>
+        /// Archived
+        /// </summary>
+        [DefaultValue(false)]
+        public bool Archived { get; set; }
+
         public virtual ICollection<ProductImage> ProductImages { get; set; }
 
         /// <summary>
@@ -78,5 +87,8 @@ namespace Mango.Core.Entity
         /// </summary>
         [NotMapped]
         public string LocalCanvasImage { get { return LocalBlobImageUrl.Url(CanvasImage); } }
+
+
+
     }
 }

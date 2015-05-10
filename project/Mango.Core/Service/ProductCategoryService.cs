@@ -44,7 +44,7 @@ namespace Mango.Core.Service
 
         public IEnumerable<ProductCategory> GetProductCategoriesWithProducts()
         {
-            return _productCategoryRepository.GetMany(pc => pc.Products.Any()).OrderBy(pc => pc.Name);
+            return _productCategoryRepository.GetMany(pc => pc.Products.Any(p => !p.Archived && !string.IsNullOrEmpty(p.CanvasImage))).OrderBy(pc => pc.Name);
         }
 
         /// <summary>

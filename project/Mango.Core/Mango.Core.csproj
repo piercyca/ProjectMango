@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201504211555231_OrderImageAdd.Designer.cs">
       <DependentUpon>201504211555231_OrderImageAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505041255441_ProductAddArchived.cs" />
+    <Compile Include="Migrations\201505041255441_ProductAddArchived.Designer.cs">
+      <DependentUpon>201505041255441_ProductAddArchived.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\OrderItemRepository.cs" />
@@ -381,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504211555231_OrderImageAdd.resx">
       <DependentUpon>201504211555231_OrderImageAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505041255441_ProductAddArchived.resx">
+      <DependentUpon>201505041255441_ProductAddArchived.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ELMAH-db-SQLServer.sql" />
   </ItemGroup>

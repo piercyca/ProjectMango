@@ -31,10 +31,11 @@
                 <thead>
                     <tr>
                         <th class="col-xs-2">Actions</th>
-                        <th class="col-xs-1">Featured?</th>
+                        <th class="col-xs-1">Featured</th>
                         <th class="col-xs-5">Name</th>
                         <th class="col-xs-3">Url Slug</th>
                         <th class="col-xs-1">Price</th>
+                        <th class="col-xs-1">Archived</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,14 +56,20 @@
                                 {
                                     <span class="fa fa-check"></span>
                                 }
-                                else
+                                @*else
                                 {
                                     <span class="fa fa-times"></span>
-                                }
+                                }*@
                             </td>
                             <td>@item.Name</td>
                             <td><a href="@Url.Action(MVC.StoreArea.Product.Customize(item.UrlSlug))" target="_blank"><span class="fa fa-external-link fa-fw"></span> @item.UrlSlug </a></td>
                             <td>$@item.Price</td>
+                            <td>
+                                @if (item.Archived)
+                                {
+                                    <span class="fa fa-check"></span>
+                                }
+                            </td>
                         </tr>
                     }
                 </tbody>

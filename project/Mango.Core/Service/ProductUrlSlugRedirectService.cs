@@ -81,8 +81,11 @@ namespace Mango.Core.Service
         public void DeleteProductUrlSlugRedirect(string oldUrlSlug)
         {
             var productUrlSlugRedirect = _productUrlSlugRedirectRepository.GetById(oldUrlSlug);
-            _productUrlSlugRedirectRepository.Delete(productUrlSlugRedirect);
-            SaveProductUrlSlugRedirect();
+            if (productUrlSlugRedirect != null)
+            {
+                _productUrlSlugRedirectRepository.Delete(productUrlSlugRedirect);
+                SaveProductUrlSlugRedirect();
+            }
         }
 
         /// <summary>
