@@ -243,7 +243,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\OrderItemRepository.cs" />
+    <Compile Include="Repository\OrderLineItemRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\AddressRepository.cs" />
@@ -251,7 +251,7 @@
     <Compile Include="Repository\OrganizationImageRepository.cs" />
     <Compile Include="Repository\ProductUrlSlugRedirectRepository.cs" />
     <Compile Include="Repository\ProductImageRepository.cs" />
-    <Compile Include="Service\OrderItemService.cs" />
+    <Compile Include="Service\OrderLineItemService.cs" />
     <Compile Include="Service\OrderService.cs" />
     <Compile Include="Service\CustomerService.cs" />
     <Compile Include="Repository\ProductCategoryRepository.cs" />
@@ -260,6 +260,7 @@
     <Compile Include="Service\ProductCategoryService.cs" />
     <Compile Include="Service\AddressService.cs" />
     <Compile Include="Service\OrganizationImageService.cs" />
+    <Compile Include="Service\ImageService.cs" />
     <Compile Include="Service\ProductUrlSlugRedirectService.cs" />
     <Compile Include="Service\ProductImageService.cs" />
     <Compile Include="Service\ProductService.cs" />

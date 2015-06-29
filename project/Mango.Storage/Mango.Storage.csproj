@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlobClean.cs" />
     <Compile Include="BlobImage.cs" />
     <Compile Include="BlobImageDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +87,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mango.Core\Mango.Core.csproj">
+      <Project>{6f8e9878-0641-4fd2-9e78-480b5ac287cc}</Project>
+      <Name>Mango.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
