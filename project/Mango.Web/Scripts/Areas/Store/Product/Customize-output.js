@@ -53,7 +53,7 @@ var CustomizeOutput = (function (opt) {
 
         var fontSize = $("#fontSize").val();
 
-        if ((textConfig) && (imgConfig)) {
+        if ((textConfig)) { // && (imgConfig)
             //TODO: Fonts should be placed here
             var textblock = new fabric.Textbox(addTextField, {
                 name: 'text',
